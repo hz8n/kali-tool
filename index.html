@@ -38,6 +38,7 @@
         --bad-rgb: 251, 113, 133;
         --shadow: 0 26px 90px rgba(0, 0, 0, 0.62);
         --r: 20px;
+        --container: 1150px;
       }
       * {
         box-sizing: border-box;
@@ -85,8 +86,41 @@
         text-decoration: none;
       }
       .container {
-        width: min(1150px, 94vw);
+        width: min(var(--container), 94vw);
         margin-inline: auto;
+      }
+      [data-density="compact"] {
+        --container: 1040px;
+      }
+      [data-density="compact"] header.hero {
+        padding: 16px 0 12px;
+      }
+      [data-density="compact"] main {
+        padding: 12px 0 40px;
+      }
+      [data-density="compact"] .panel-inner {
+        padding: 14px;
+      }
+      [data-density="compact"] .controls {
+        gap: 8px;
+      }
+      [data-density="compact"] .toggle-row {
+        gap: 8px;
+      }
+      [data-density="compact"] .stats {
+        gap: 8px;
+      }
+      [data-density="compact"] .stat {
+        padding: 10px;
+      }
+      [data-density="compact"] .tools-toolbar {
+        padding: 10px;
+      }
+      [data-density="compact"] .grid {
+        gap: 10px;
+      }
+      [data-density="compact"] .card {
+        padding: 12px;
       }
       .nav {
         position: sticky;
@@ -229,6 +263,23 @@
         opacity: 0.9;
         pointer-events: none;
       }
+      .panel::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 0%), rgba(var(--accent-rgb), 0.18), transparent 60%),
+          radial-gradient(
+            480px circle at calc(var(--mx, 50%) + 12%) calc(var(--my, 0%) + 18%),
+            rgba(var(--accent2-rgb), 0.16),
+            transparent 65%
+          );
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      .panel:hover::after {
+        opacity: 1;
+      }
       .panel-inner {
         position: relative;
         z-index: 1;
@@ -262,6 +313,10 @@
         border: 1px solid rgba(255, 255, 255, 0.12);
         background: rgba(255, 255, 255, 0.05);
         overflow: hidden;
+      }
+      details.import-box.dragover {
+        border-color: rgba(var(--accent-rgb), 0.42);
+        background: rgba(var(--accent-rgb), 0.075);
       }
       details.import-box > summary {
         cursor: pointer;
@@ -514,6 +569,13 @@
         border: 1px solid rgba(255, 255, 255, 0.12);
         background: rgba(255, 255, 255, 0.04);
       }
+      #toolsToolbar.tools-toolbar {
+        position: sticky;
+        top: calc(var(--nav-h, 72px) + 10px);
+        z-index: 40;
+        backdrop-filter: blur(18px) saturate(160%);
+        background: rgba(6, 6, 16, 0.72);
+      }
       .tools-toolbar-left {
         display: flex;
         align-items: flex-end;
@@ -538,6 +600,11 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+      }
+      #toolsWrap,
+      #eduPanel,
+      #importPanel {
+        scroll-margin-top: calc(var(--nav-h, 72px) + 16px);
       }
       details.catgroup {
         border-radius: 18px;
@@ -584,6 +651,28 @@
         position: relative;
         overflow: hidden;
         transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+      .card::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        z-index: 0;
+        background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 0%), rgba(var(--accent-rgb), 0.22), transparent 60%),
+          radial-gradient(
+            420px circle at calc(var(--mx, 50%) + 12%) calc(var(--my, 0%) + 20%),
+            rgba(var(--accent2-rgb), 0.16),
+            transparent 66%
+          );
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.22s ease;
+      }
+      .card:hover::after {
+        opacity: 1;
+      }
+      .card > * {
+        position: relative;
+        z-index: 1;
       }
       .card:hover {
         transform: translateY(-6px);
@@ -948,6 +1037,8 @@
         }
         .btn,
         .card,
+        .panel::after,
+        .card::after,
         .tagbtn,
         details.import-box > summary::after {
           transition: none !important;
@@ -982,6 +1073,9 @@
           <div class="nav-actions">
             <button id="langBtn" class="btn ghost" type="button" title="Toggle language">
               <span aria-hidden="true">🌐</span><span id="langBtnText">AR</span>
+            </button>
+            <button id="densityBtn" class="btn" type="button" title="Toggle density">
+              <span aria-hidden="true">▦</span><span id="densityBtnText"></span>
             </button>
             <button id="exportBtn" class="btn" type="button">
               <span aria-hidden="true">⤓</span><span data-i18n="export">تصدير JSON</span>
@@ -1106,8 +1200,12 @@
                       <span class="mono">tags</span>.
                     </div>
                     <div class="toggle-row" style="margin-top: 12px">
+                      <input id="jsonFile" type="file" accept="application/json,.json" hidden />
                       <button id="importBtn" class="btn primary" type="button">
                         <span aria-hidden="true">＋</span><span data-i18n="importBtn">استيراد</span>
+                      </button>
+                      <button id="importFileBtn" class="btn ghost" type="button">
+                        <span aria-hidden="true">📄</span><span data-i18n="importFile">استيراد من ملف</span>
                       </button>
                       <button id="clearJsonBtn" class="btn" type="button">
                         <span aria-hidden="true">✕</span><span data-i18n="clearBox">مسح المربع</span>
@@ -1349,6 +1447,9 @@ Report template:
           export: "تصدير JSON",
           reset: "إعادة ضبط",
           optional: "اختياري",
+          densityCozy: "مريح",
+          densityCompact: "مضغوط",
+          densityTip: "تبديل كثافة التصميم",
           brandTitle: "موسوعة أدوات كالي",
           brandSub: "للأغراض التعليمية فقط (استخدام قانوني)",
           footerText: "موسوعة أدوات كالي (تعليمي)",
@@ -1406,6 +1507,7 @@ Report template:
           schemaHint:
             "الحقول المطلوبة: name و category. الحقول الاختيارية: risk (low|medium|high), defensive (true/false), descAr, descEn, detailsAr, detailsEn, cmdAr, cmdEn, tags.",
           importBtn: "استيراد",
+          importFile: "استيراد من ملف",
           clearBox: "مسح المربع",
           tipsLbl: "ملاحظات",
           tipsHead: "كيف أرتّب الأدوات؟",
@@ -1521,6 +1623,9 @@ log(event)`,
           export: "Export JSON",
           reset: "Reset",
           optional: "Optional",
+          densityCozy: "Cozy",
+          densityCompact: "Compact",
+          densityTip: "Toggle layout density",
           brandTitle: "Kali Tools Encyclopedia",
           brandSub: "Educational index (Legal use only)",
           footerText: "Kali Tools Encyclopedia (Educational)",
@@ -1576,6 +1681,7 @@ log(event)`,
           schemaHint:
             "Required: name, category. Optional: risk (low|medium|high), defensive (true/false), descAr, descEn, detailsAr, detailsEn, cmdAr, cmdEn, tags.",
           importBtn: "Import",
+          importFile: "Import File",
           clearBox: "Clear box",
           tipsLbl: "Notes",
           tipsHead: "How to organize tools?",
@@ -4589,6 +4695,8 @@ log(event)`,
         brandLogo: document.getElementById("brandLogo"),
         langBtn: document.getElementById("langBtn"),
         langBtnText: document.getElementById("langBtnText"),
+        densityBtn: document.getElementById("densityBtn"),
+        densityBtnText: document.getElementById("densityBtnText"),
         exportBtn: document.getElementById("exportBtn"),
         resetBtn: document.getElementById("resetBtn"),
         q: document.getElementById("q"),
@@ -4617,8 +4725,10 @@ log(event)`,
         countTotal: document.getElementById("countTotal"),
         countHidden: document.getElementById("countHidden"),
         jsonBox: document.getElementById("jsonBox"),
+        jsonFile: document.getElementById("jsonFile"),
         importPanel: document.getElementById("importPanel"),
         importBtn: document.getElementById("importBtn"),
+        importFileBtn: document.getElementById("importFileBtn"),
         clearJsonBtn: document.getElementById("clearJsonBtn"),
         importOk: document.getElementById("importOk"),
         importErr: document.getElementById("importErr")
@@ -4653,13 +4763,75 @@ log(event)`,
         safetyMode: true,
         onlyDef: false,
         onlyDual: false,
-        includeUser: true
+        includeUser: true,
+        density: "cozy"
       });
       let userTools = readJsonStorage(STORAGE_KEYS.userTools, []);
       if (!Array.isArray(userTools)) userTools = [];
       function i18n(key) {
         const dict = I18N[lang] || I18N.ar;
         return dict[key];
+      }
+      function applyDensity() {
+        const d = settings && settings.density === "compact" ? "compact" : "cozy";
+        document.documentElement.dataset.density = d;
+        if (els.densityBtnText) {
+          els.densityBtnText.textContent = d === "compact" ? i18n("densityCompact") : i18n("densityCozy");
+        }
+        if (els.densityBtn) {
+          els.densityBtn.title = i18n("densityTip");
+        }
+      }
+      let navResizeObserver = null;
+      function syncNavHeight() {
+        const nav = document.querySelector(".nav");
+        if (!nav) return;
+        const h = Math.ceil(nav.getBoundingClientRect().height);
+        document.documentElement.style.setProperty("--nav-h", `${h}px`);
+      }
+      function initNavHeight() {
+        syncNavHeight();
+        window.addEventListener("resize", () => syncNavHeight(), { passive: true });
+        if (!("ResizeObserver" in window)) return;
+        const nav = document.querySelector(".nav");
+        if (!nav) return;
+        if (navResizeObserver) return;
+        navResizeObserver = new ResizeObserver(() => syncNavHeight());
+        navResizeObserver.observe(nav);
+      }
+      function isTypingTarget(el) {
+        if (!el) return false;
+        const tag = String(el.tagName || "").toUpperCase();
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+        return Boolean(el.isContentEditable);
+      }
+      function enableSpotlight() {
+        const fine = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!fine || reduce) return;
+
+        let raf = 0;
+        let last = null;
+        document.addEventListener(
+          "pointermove",
+          (e) => {
+            last = e;
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+              raf = 0;
+              const ev = last;
+              if (!ev) return;
+              const target = ev.target && ev.target.closest ? ev.target.closest(".card, .panel") : null;
+              if (!target) return;
+              const r = target.getBoundingClientRect();
+              const x = ((ev.clientX - r.left) / r.width) * 100;
+              const y = ((ev.clientY - r.top) / r.height) * 100;
+              target.style.setProperty("--mx", `${x.toFixed(2)}%`);
+              target.style.setProperty("--my", `${y.toFixed(2)}%`);
+            });
+          },
+          { passive: true }
+        );
       }
       function applyI18n() {
         document.documentElement.lang = lang === "en" ? "en" : "ar";
@@ -4673,6 +4845,7 @@ log(event)`,
         });
         // Keep placeholders reasonably bilingual.
         els.q.placeholder = lang === "en" ? "e.g. nmap, web, forensics..." : "مثال: nmap, web, forensics...";
+        applyDensity();
         rebuildSelects();
         rebuildSortSelect();
         renderEdu100();
@@ -5331,8 +5504,9 @@ log(event)`,
       }
       function parseUserToolsFromJson(raw) {
         const data = JSON.parse(raw);
-        if (!Array.isArray(data)) return [];
-        return data
+        const list = Array.isArray(data) ? data : Array.isArray(data && data.tools) ? data.tools : [];
+        if (!Array.isArray(list)) return [];
+        return list
           .map((t) => ({
             name: String(t && t.name ? t.name : "").trim(),
             category: String(t && t.category ? t.category : "").trim(),
@@ -5356,8 +5530,38 @@ log(event)`,
         userTools = Array.from(byName.values()).sort((a, b) => a.name.localeCompare(b.name));
         writeJsonStorage(STORAGE_KEYS.userTools, userTools);
       }
+      function importToolsFromText(raw) {
+        showMsg(els.importOk, "");
+        showMsg(els.importErr, "");
+        const text = String(raw || "").trim();
+        if (!text) return 0;
+        try {
+          const parsed = parseUserToolsFromJson(text);
+          if (!parsed.length) {
+            showMsg(els.importErr, i18n("importedBad"));
+            return 0;
+          }
+          mergeUserTools(parsed);
+          showMsg(els.importOk, i18n("importedOk")(parsed.length));
+          rebuildSelects();
+          render();
+          return parsed.length;
+        } catch (_) {
+          showMsg(els.importErr, i18n("importedBad"));
+          return 0;
+        }
+      }
+      function readFileAsText(file) {
+        return new Promise((resolve, reject) => {
+          const fr = new FileReader();
+          fr.onload = () => resolve(String(fr.result || ""));
+          fr.onerror = () => reject(fr.error || new Error("Failed to read file."));
+          fr.readAsText(file);
+        });
+      }
       function wire() {
         els.year.textContent = String(new Date().getFullYear());
+        initNavHeight();
         // Settings -> controls
         settings.q = String(settings.q || "");
         settings.cat = String(settings.cat || "all");
@@ -5370,6 +5574,9 @@ log(event)`,
         settings.onlyDual = safeBool(settings.onlyDual, false);
         if (settings.onlyDef && settings.onlyDual) settings.onlyDual = false;
         settings.includeUser = safeBool(settings.includeUser, true);
+        settings.density = String(settings.density || "cozy");
+        if (settings.density !== "cozy" && settings.density !== "compact") settings.density = "cozy";
+        applyDensity();
         applyViewFromHash();
         maybeOpenImportFromHash();
         els.safetyMode.checked = settings.safetyMode;
@@ -5411,9 +5618,27 @@ log(event)`,
           }
           maybeOpenImportFromHash();
         });
+        let qTimer = 0;
         els.q.addEventListener("input", () => {
-          settings.q = els.q.value || "";
-          render();
+          clearTimeout(qTimer);
+          qTimer = setTimeout(() => {
+            settings.q = els.q.value || "";
+            render();
+          }, 70);
+        });
+        document.addEventListener("keydown", (e) => {
+          const typing = isTypingTarget(document.activeElement);
+          const k = String(e.key || "");
+          const ctrlk = (e.ctrlKey || e.metaKey) && k.toLowerCase() === "k";
+          if (!typing && (k === "/" || ctrlk)) {
+            e.preventDefault();
+            els.q.focus();
+          }
+          if (k === "Escape" && document.activeElement === els.q) {
+            els.q.value = "";
+            settings.q = "";
+            render();
+          }
         });
         els.cat.addEventListener("change", () => {
           settings.cat = els.cat.value || "all";
@@ -5474,30 +5699,70 @@ log(event)`,
           lang = lang === "en" ? "ar" : "en";
           applyI18n();
         });
+        if (els.densityBtn) {
+          els.densityBtn.addEventListener("click", () => {
+            settings.density = settings.density === "compact" ? "cozy" : "compact";
+            writeJsonStorage(STORAGE_KEYS.settings, settings);
+            applyDensity();
+          });
+        }
         els.clearJsonBtn.addEventListener("click", () => {
           els.jsonBox.value = "";
           showMsg(els.importOk, "");
           showMsg(els.importErr, "");
         });
         els.importBtn.addEventListener("click", () => {
-          showMsg(els.importOk, "");
-          showMsg(els.importErr, "");
-          const raw = String(els.jsonBox.value || "").trim();
-          if (!raw) return;
-          try {
-            const parsed = parseUserToolsFromJson(raw);
-            if (!parsed.length) {
-              showMsg(els.importErr, i18n("importedBad"));
-              return;
-            }
-            mergeUserTools(parsed);
-            showMsg(els.importOk, i18n("importedOk")(parsed.length));
-            rebuildSelects();
-            render();
-          } catch (_) {
-            showMsg(els.importErr, i18n("importedBad"));
-          }
+          importToolsFromText(els.jsonBox.value);
         });
+        if (els.importFileBtn && els.jsonFile) {
+          els.importFileBtn.addEventListener("click", () => {
+            els.jsonFile.click();
+          });
+          els.jsonFile.addEventListener("change", async () => {
+            const file = els.jsonFile.files && els.jsonFile.files[0];
+            els.jsonFile.value = "";
+            if (!file) return;
+            try {
+              const raw = await readFileAsText(file);
+              if (els.importPanel) els.importPanel.open = true;
+              els.jsonBox.value = raw;
+              importToolsFromText(raw);
+            } catch (_) {
+              showMsg(els.importErr, i18n("importedBad"));
+            }
+          });
+        }
+        if (els.importPanel) {
+          const panel = els.importPanel;
+          const isFileDrag = (e) => {
+            const types = e && e.dataTransfer && e.dataTransfer.types ? Array.from(e.dataTransfer.types) : [];
+            return types.includes("Files");
+          };
+          panel.addEventListener("dragover", (e) => {
+            if (!isFileDrag(e)) return;
+            e.preventDefault();
+            panel.classList.add("dragover");
+            panel.open = true;
+          });
+          panel.addEventListener("dragleave", () => {
+            panel.classList.remove("dragover");
+          });
+          panel.addEventListener("drop", async (e) => {
+            if (!isFileDrag(e)) return;
+            e.preventDefault();
+            panel.classList.remove("dragover");
+            panel.open = true;
+            const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+            if (!file) return;
+            try {
+              const raw = await readFileAsText(file);
+              els.jsonBox.value = raw;
+              importToolsFromText(raw);
+            } catch (_) {
+              showMsg(els.importErr, i18n("importedBad"));
+            }
+          });
+        }
         els.exportBtn.addEventListener("click", () => {
           const payload = {
             exportedAt: new Date().toISOString(),
@@ -5519,16 +5784,19 @@ log(event)`,
             safetyMode: true,
             onlyDef: false,
             onlyDual: false,
-            includeUser: true
+            includeUser: true,
+            density: "cozy"
           };
           writeJsonStorage(STORAGE_KEYS.userTools, userTools);
           writeJsonStorage(STORAGE_KEYS.settings, settings);
+          applyDensity();
           els.jsonBox.value = "";
           showMsg(els.importOk, "");
           showMsg(els.importErr, "");
           rebuildSelects();
           render();
         });
+        enableSpotlight();
         render();
       }
       applyViewFromHash();
