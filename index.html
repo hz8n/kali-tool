@@ -16,25 +16,35 @@
     />
     <style>
       :root {
-        --bg0: #000000;
-        --bg1: #000000;
-        --bg2: #000000;
+        color-scheme: dark;
+        --bg0: #050611;
+        --bg1: #070b18;
+        --bg2: #060613;
         --mark-url: url("warning.svg");
         --card: rgba(255, 255, 255, 0.06);
-        --card2: rgba(255, 255, 255, 0.085);
+        --card2: rgba(255, 255, 255, 0.1);
         --line: rgba(255, 255, 255, 0.12);
         --text: rgba(248, 251, 255, 0.96);
-        --muted: rgba(229, 238, 255, 0.72);
-        --accent: #00e5ff;
-        --accent2: #ff2d7a;
-        --ok: #2de9a6;
-        --warn: #ffd166;
-        --bad: #ff4d6d;
-        --shadow: 0 22px 70px rgba(0, 0, 0, 0.55);
-        --r: 18px;
+        --muted: rgba(222, 232, 255, 0.74);
+        --accent: #22d3ee;
+        --accent-rgb: 34, 211, 238;
+        --accent2: #a78bfa;
+        --accent2-rgb: 167, 139, 250;
+        --ok: #34d399;
+        --ok-rgb: 52, 211, 153;
+        --warn: #fbbf24;
+        --warn-rgb: 251, 191, 36;
+        --bad: #fb7185;
+        --bad-rgb: 251, 113, 133;
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.62);
+        --r: 20px;
       }
       * {
         box-sizing: border-box;
+      }
+      :focus-visible {
+        outline: 2px solid rgba(var(--accent-rgb), 0.55);
+        outline-offset: 2px;
       }
       html {
         scroll-behavior: smooth;
@@ -43,27 +53,31 @@
         margin: 0;
         font-family: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
         color: var(--text);
-        background: #000;
+        background: radial-gradient(1200px 740px at 15% 0%, rgba(var(--accent2-rgb), 0.22), transparent 60%),
+          radial-gradient(1000px 680px at 85% 10%, rgba(var(--accent-rgb), 0.16), transparent 60%),
+          radial-gradient(900px 620px at 65% 95%, rgba(var(--warn-rgb), 0.1), transparent 62%),
+          linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
         overflow-x: hidden;
+        min-height: 100vh;
       }
       .bg-mark {
         position: fixed;
         inset: 0;
         pointer-events: none;
         z-index: -2;
-        opacity: 0.08;
+        opacity: 0.065;
         background-image: var(--mark-url);
         background-repeat: no-repeat;
-        background-position: 85% 16%;
-        background-size: min(720px, 92vw);
-        filter: drop-shadow(0 30px 90px rgba(0, 229, 255, 0.12));
+        background-position: 88% 14%;
+        background-size: min(720px, 96vw);
+        filter: drop-shadow(0 30px 90px rgba(var(--accent-rgb), 0.12));
       }
       .grain {
         position: fixed;
         inset: 0;
         pointer-events: none;
         z-index: -1;
-        opacity: 0.09;
+        opacity: 0.1;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
       }
       a {
@@ -78,9 +92,9 @@
         position: sticky;
         top: 0;
         z-index: 50;
-        backdrop-filter: blur(16px);
-        background: rgba(0, 0, 0, 0.78);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(18px) saturate(160%);
+        background: rgba(6, 6, 16, 0.74);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
       }
       .nav-inner {
         display: flex;
@@ -103,8 +117,8 @@
         border-radius: 14px;
         display: grid;
         place-items: center;
-        background: linear-gradient(135deg, rgba(255, 45, 122, 0.98), rgba(0, 229, 255, 0.92));
-        box-shadow: 0 18px 50px rgba(255, 45, 122, 0.16);
+        background: linear-gradient(135deg, rgba(var(--accent2-rgb), 0.98), rgba(var(--accent-rgb), 0.92));
+        box-shadow: 0 18px 58px rgba(var(--accent2-rgb), 0.14);
         overflow: hidden;
       }
       .logo img {
@@ -143,8 +157,8 @@
         font-weight: 1000;
       }
       .navtab.active {
-        border-color: rgba(0, 229, 255, 0.5);
-        background: rgba(0, 229, 255, 0.1);
+        border-color: rgba(var(--accent-rgb), 0.5);
+        background: rgba(var(--accent-rgb), 0.11);
       }
       .nav-actions {
         display: flex;
@@ -155,7 +169,7 @@
       }
       .btn {
         border: 1px solid rgba(255, 255, 255, 0.14);
-        background: rgba(255, 255, 255, 0.06);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
         color: var(--text);
         padding: 10px 12px;
         border-radius: 14px;
@@ -170,31 +184,31 @@
       }
       .btn:hover {
         transform: translateY(-2px);
-        border-color: rgba(255, 45, 122, 0.35);
-        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(var(--accent2-rgb), 0.35);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
       }
       .btn.primary {
-        background: linear-gradient(135deg, rgba(255, 45, 122, 0.98), rgba(255, 119, 169, 0.82));
-        border-color: rgba(255, 45, 122, 0.6);
+        background: linear-gradient(135deg, rgba(var(--accent2-rgb), 0.98), rgba(var(--accent-rgb), 0.76));
+        border-color: rgba(var(--accent2-rgb), 0.55);
       }
       .btn.primary:hover {
-        border-color: rgba(255, 45, 122, 0.85);
+        border-color: rgba(var(--accent2-rgb), 0.85);
       }
       .btn.ghost {
-        background: rgba(0, 229, 255, 0.08);
-        border-color: rgba(0, 229, 255, 0.2);
+        background: rgba(var(--accent-rgb), 0.085);
+        border-color: rgba(var(--accent-rgb), 0.22);
       }
       .btn.ghost:hover {
-        border-color: rgba(0, 229, 255, 0.44);
+        border-color: rgba(var(--accent-rgb), 0.48);
       }
       header.hero {
-        padding: 26px 0 18px;
+        padding: 20px 0 14px;
       }
-      .hero-grid {
+      .hero-top-grid {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-columns: 0.95fr 1.05fr;
         gap: 14px;
-        align-items: stretch;
+        align-items: start;
       }
       .panel {
         border-radius: var(--r);
@@ -203,12 +217,15 @@
         box-shadow: var(--shadow);
         overflow: hidden;
         position: relative;
+        backdrop-filter: blur(16px);
       }
       .panel::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 55%);
+        background: radial-gradient(900px 180px at 20% 0%, rgba(var(--accent-rgb), 0.12), transparent 68%),
+          radial-gradient(900px 180px at 80% 0%, rgba(var(--accent2-rgb), 0.14), transparent 68%),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.045), transparent 55%);
         opacity: 0.9;
         pointer-events: none;
       }
@@ -217,17 +234,92 @@
         z-index: 1;
         padding: 18px;
       }
+      .hero-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 0;
+      }
+      .hero-controls .controls,
+      .hero-controls .toggle-row,
+      .hero-controls .stats {
+        margin-top: 0;
+      }
+      .hero-links {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 2px;
+      }
+      .hero-links .btn {
+        border-radius: 999px;
+        padding: 9px 12px;
+      }
+      details.import-box {
+        margin-top: 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+      }
+      details.import-box > summary {
+        cursor: pointer;
+        user-select: none;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.94);
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        list-style: none;
+        padding: 12px 14px;
+      }
+      .import-meta {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+        margin-inline-start: auto;
+        white-space: nowrap;
+      }
+      details.import-box > summary::-webkit-details-marker {
+        display: none;
+      }
+      details.import-box > summary::after {
+        content: "▾";
+        width: 28px;
+        height: 28px;
+        display: grid;
+        place-items: center;
+        border-radius: 999px;
+        border: 1px solid rgba(var(--accent-rgb), 0.22);
+        background: rgba(var(--accent-rgb), 0.085);
+        color: rgba(248, 251, 255, 0.94);
+        flex: none;
+        transition: transform 0.18s ease;
+      }
+      details.import-box[open] > summary::after {
+        transform: rotate(180deg);
+      }
+      .import-inner {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 14px;
+      }
       .tag {
         display: inline-flex;
         align-items: center;
         gap: 8px;
         border-radius: 999px;
         padding: 7px 10px;
-        border: 1px solid rgba(0, 229, 255, 0.26);
-        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(var(--accent-rgb), 0.26);
+        background: rgba(var(--accent-rgb), 0.1);
         font-weight: 1000;
         font-size: 12px;
         color: rgba(248, 251, 255, 0.92);
+      }
+      .tag.tag-alt {
+        border-color: rgba(var(--accent2-rgb), 0.34);
+        background: rgba(var(--accent2-rgb), 0.12);
       }
       h1 {
         margin: 12px 0 8px;
@@ -247,8 +339,8 @@
       .notice {
         margin-top: 14px;
         border-radius: 16px;
-        border: 1px solid rgba(255, 209, 102, 0.3);
-        background: rgba(255, 209, 102, 0.12);
+        border: 1px solid rgba(var(--warn-rgb), 0.3);
+        background: rgba(var(--warn-rgb), 0.12);
         padding: 12px;
         color: rgba(255, 255, 255, 0.92);
         font-weight: 850;
@@ -260,22 +352,22 @@
       }
       .view-banner {
         margin: 10px 0 0;
-        border-color: rgba(0, 229, 255, 0.22);
-        background: rgba(0, 229, 255, 0.06);
+        border-color: rgba(var(--accent-rgb), 0.24);
+        background: rgba(var(--accent-rgb), 0.06);
       }
       .view-banner b {
         color: var(--accent);
       }
       .view-banner.defense {
-        border-color: rgba(45, 233, 166, 0.32);
-        background: rgba(45, 233, 166, 0.11);
+        border-color: rgba(var(--ok-rgb), 0.32);
+        background: rgba(var(--ok-rgb), 0.11);
       }
       .view-banner.defense b {
         color: var(--ok);
       }
       .view-banner.dual {
-        border-color: rgba(255, 45, 122, 0.38);
-        background: rgba(255, 45, 122, 0.11);
+        border-color: rgba(var(--accent2-rgb), 0.34);
+        background: rgba(var(--accent2-rgb), 0.11);
       }
       .view-banner.dual b {
         color: var(--accent2);
@@ -331,6 +423,10 @@
         font-weight: 850;
         transition: border-color 0.18s ease, background 0.18s ease;
       }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(222, 232, 255, 0.52);
+      }
       textarea {
         min-height: 120px;
         resize: vertical;
@@ -341,8 +437,9 @@
       input:focus,
       select:focus,
       textarea:focus {
-        border-color: rgba(0, 229, 255, 0.5);
-        background: rgba(0, 0, 0, 0.28);
+        border-color: rgba(var(--accent-rgb), 0.55);
+        background: rgba(0, 0, 0, 0.26);
+        box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.12);
       }
       .toggle-row {
         display: flex;
@@ -371,16 +468,16 @@
         accent-color: var(--accent);
       }
       .chip.good {
-        border-color: rgba(45, 233, 166, 0.25);
-        background: rgba(45, 233, 166, 0.1);
+        border-color: rgba(var(--ok-rgb), 0.25);
+        background: rgba(var(--ok-rgb), 0.1);
       }
       .chip.warn {
-        border-color: rgba(255, 209, 102, 0.25);
-        background: rgba(255, 209, 102, 0.1);
+        border-color: rgba(var(--warn-rgb), 0.25);
+        background: rgba(var(--warn-rgb), 0.1);
       }
       .chip.bad {
-        border-color: rgba(255, 77, 109, 0.25);
-        background: rgba(255, 77, 109, 0.1);
+        border-color: rgba(var(--bad-rgb), 0.25);
+        background: rgba(var(--bad-rgb), 0.1);
       }
       main {
         padding: 14px 0 44px;
@@ -475,8 +572,9 @@
       }
       .grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         gap: 12px;
+        align-content: start;
       }
       .card {
         border-radius: 18px;
@@ -489,7 +587,7 @@
       }
       .card:hover {
         transform: translateY(-6px);
-        border-color: rgba(255, 45, 122, 0.32);
+        border-color: rgba(var(--accent2-rgb), 0.3);
         background: var(--card2);
       }
       .card-title {
@@ -509,8 +607,8 @@
         font-weight: 1000;
         border-radius: 999px;
         padding: 6px 9px;
-        border: 1px solid rgba(0, 229, 255, 0.26);
-        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(var(--accent-rgb), 0.26);
+        background: rgba(var(--accent-rgb), 0.1);
         color: rgba(248, 251, 255, 0.92);
         white-space: nowrap;
       }
@@ -531,16 +629,16 @@
         color: rgba(248, 251, 255, 0.92);
       }
       .pill.low {
-        border-color: rgba(45, 233, 166, 0.25);
-        background: rgba(45, 233, 166, 0.1);
+        border-color: rgba(var(--ok-rgb), 0.25);
+        background: rgba(var(--ok-rgb), 0.1);
       }
       .pill.med {
-        border-color: rgba(255, 209, 102, 0.25);
-        background: rgba(255, 209, 102, 0.1);
+        border-color: rgba(var(--warn-rgb), 0.25);
+        background: rgba(var(--warn-rgb), 0.1);
       }
       .pill.high {
-        border-color: rgba(255, 77, 109, 0.25);
-        background: rgba(255, 77, 109, 0.1);
+        border-color: rgba(var(--bad-rgb), 0.25);
+        background: rgba(var(--bad-rgb), 0.1);
       }
       .card p {
         margin: 10px 0 0;
@@ -578,13 +676,13 @@
       }
       .tagbtn:hover {
         transform: translateY(-2px);
-        border-color: rgba(0, 229, 255, 0.28);
-        background: rgba(0, 229, 255, 0.06);
+        border-color: rgba(var(--accent-rgb), 0.28);
+        background: rgba(var(--accent-rgb), 0.07);
       }
       .tagbtn.active {
         border-style: solid;
-        border-color: rgba(0, 229, 255, 0.46);
-        background: rgba(0, 229, 255, 0.1);
+        border-color: rgba(var(--accent-rgb), 0.48);
+        background: rgba(var(--accent-rgb), 0.11);
       }
       .minihead {
         margin: 0 0 10px;
@@ -629,8 +727,8 @@
         display: grid;
         place-items: center;
         border-radius: 999px;
-        border: 1px solid rgba(0, 229, 255, 0.22);
-        background: rgba(0, 229, 255, 0.08);
+        border: 1px solid rgba(var(--accent-rgb), 0.22);
+        background: rgba(var(--accent-rgb), 0.085);
         color: rgba(248, 251, 255, 0.92);
         flex: none;
       }
@@ -679,8 +777,8 @@
       .error {
         margin-top: 10px;
         border-radius: 14px;
-        border: 1px solid rgba(255, 77, 109, 0.32);
-        background: rgba(255, 77, 109, 0.12);
+        border: 1px solid rgba(var(--bad-rgb), 0.32);
+        background: rgba(var(--bad-rgb), 0.12);
         padding: 10px 12px;
         display: none;
         font-weight: 900;
@@ -689,8 +787,8 @@
       .success {
         margin-top: 10px;
         border-radius: 14px;
-        border: 1px solid rgba(45, 233, 166, 0.3);
-        background: rgba(45, 233, 166, 0.12);
+        border: 1px solid rgba(var(--ok-rgb), 0.3);
+        background: rgba(var(--ok-rgb), 0.12);
         padding: 10px 12px;
         display: none;
         font-weight: 900;
@@ -709,7 +807,7 @@
         font-weight: 900;
       }
       @media (max-width: 980px) {
-        .hero-grid {
+        .hero-top-grid {
           grid-template-columns: 1fr;
         }
         .stats {
@@ -844,6 +942,22 @@
           gap: 8px;
         }
       }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .btn,
+        .card,
+        .tagbtn,
+        details.import-box > summary::after {
+          transition: none !important;
+        }
+        .btn:hover,
+        .card:hover,
+        .tagbtn:hover {
+          transform: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -881,168 +995,153 @@
     </nav>
     <header class="hero">
       <div class="container">
-        <div class="hero-grid">
-          <section class="panel">
-            <div class="panel-inner">
-              <span class="tag" data-i18n="tag">موسوعة تعليمية لأدوات Kali Linux</span>
-              <h1 data-i18n="title">أدوات كالي مرتبة وسهلة البحث</h1>
-              <p class="sub" data-i18n="subtitle">
-                هذه الصفحة لا تعطي خطوات هجوم ولا أوامر تشغيل. الهدف: تنظيم الأدوات وفهم
-                استخداماتها بشكل عام، ضمن تدريب قانوني مصرح به.
-              </p>
-              <div class="notice" role="note">
-                <b data-i18n="legalHead">تنبيه قانوني:</b>
-                <span data-i18n="legalBody">
-                  استخدم هذه المعلومات فقط على أنظمة تملكها أو لديك إذن صريح لاختبارها. أي
-                  استخدام غير مصرح به قد يكون مخالفاً للقانون.
-                </span>
-              </div>
-              <div class="controls" aria-label="Search and filters">
-                <div class="field">
-                  <label for="q" data-i18n="searchLbl">بحث</label>
-                  <input id="q" type="search" placeholder="مثال: nmap, web, forensics..." />
-                </div>
-                <div class="field">
-                  <label for="cat" data-i18n="catLbl">التصنيف</label>
-                  <select id="cat"></select>
-                </div>
-                <div class="field">
-                  <label for="risk" data-i18n="riskLbl">الخطورة</label>
-                  <select id="risk"></select>
+        <section class="panel">
+          <div class="panel-inner">
+            <div class="hero-top-grid">
+              <div>
+                <span class="tag" data-i18n="tag">موسوعة تعليمية لأدوات Kali Linux</span>
+                <h1 data-i18n="title">أدوات كالي مرتبة وسهلة البحث</h1>
+                <p class="sub" data-i18n="subtitle">
+                  هذه الصفحة لا تعطي خطوات هجوم ولا أوامر تشغيل. الهدف: تنظيم الأدوات وفهم
+                  استخداماتها بشكل عام، ضمن تدريب قانوني مصرح به.
+                </p>
+                <div class="notice" role="note">
+                  <b data-i18n="legalHead">تنبيه قانوني:</b>
+                  <span data-i18n="legalBody">
+                    استخدم هذه المعلومات فقط على أنظمة تملكها أو لديك إذن صريح لاختبارها. أي
+                    استخدام غير مصرح به قد يكون مخالفاً للقانون.
+                  </span>
                 </div>
               </div>
-              <div class="toggle-row">
-                <span class="chip good" title="Recommended default">
-                  <input id="safetyMode" type="checkbox" />
-                  <span data-i18n="safetyMode">وضع الأمان: إخفاء الأدوات عالية الخطورة</span>
-                </span>
-                <span class="chip warn">
-                  <input id="onlyDef" type="checkbox" />
-                  <span data-i18n="onlyDef">عرض الأدوات الدفاعية فقط</span>
-                </span>
-                <span class="chip bad">
-                  <input id="onlyDual" type="checkbox" />
-                  <span data-i18n="onlyDual">عرض أدوات الهجوم (ثنائية الاستخدام) فقط</span>
-                </span>
-                <span class="chip">
-                  <input id="includeUser" type="checkbox" checked />
-                  <span data-i18n="includeUser">تضمين الأدوات المستوردة</span>
-                </span>
-              </div>
-              <div class="stats" aria-label="Counts">
-                <div class="stat">
-                  <div id="countTools" class="num">0</div>
-                  <div class="lbl" data-i18n="statTools">أداة معروضة</div>
+              <div class="hero-controls">
+                <div class="controls" aria-label="Search and filters">
+                  <div class="field">
+                    <label for="q" data-i18n="searchLbl">بحث</label>
+                    <input id="q" type="search" placeholder="مثال: nmap, web, forensics..." />
+                  </div>
+                  <div class="field">
+                    <label for="cat" data-i18n="catLbl">التصنيف</label>
+                    <select id="cat"></select>
+                  </div>
+                  <div class="field">
+                    <label for="risk" data-i18n="riskLbl">الخطورة</label>
+                    <select id="risk"></select>
+                  </div>
                 </div>
-                <div class="stat">
-                  <div id="countTotal" class="num">0</div>
-                  <div class="lbl" data-i18n="statTotal">إجمالي الأدوات</div>
+                <div class="toggle-row">
+                  <span class="chip good" title="Recommended default">
+                    <input id="safetyMode" type="checkbox" />
+                    <span data-i18n="safetyMode">وضع الأمان: إخفاء الأدوات عالية الخطورة</span>
+                  </span>
+                  <span class="chip warn">
+                    <input id="onlyDef" type="checkbox" />
+                    <span data-i18n="onlyDef">عرض الأدوات الدفاعية فقط</span>
+                  </span>
+                  <span class="chip bad">
+                    <input id="onlyDual" type="checkbox" />
+                    <span data-i18n="onlyDual">عرض أدوات الهجوم (ثنائية الاستخدام) فقط</span>
+                  </span>
+                  <span class="chip">
+                    <input id="includeUser" type="checkbox" checked />
+                    <span data-i18n="includeUser">تضمين الأدوات المستوردة</span>
+                  </span>
                 </div>
-                <div class="stat">
-                  <div id="countCats" class="num">0</div>
-                  <div class="lbl" data-i18n="statCats">تصنيف</div>
+                <div class="hero-links" aria-label="Quick links">
+                  <a class="btn primary" href="#toolsWrap"><span aria-hidden="true">⬇</span><span data-i18n="sectionsLinkTools">الأدوات</span></a>
+                  <a class="btn" href="#eduPanel"><span aria-hidden="true">📚</span><span data-i18n="sectionsLinkEdu">الشرح التعليمي</span></a>
+                  <a class="btn ghost" href="#jsonBox"><span aria-hidden="true">＋</span><span data-i18n="sectionsLinkImport">الاستيراد</span></a>
                 </div>
-                <div class="stat">
-                  <div id="countHidden" class="num">0</div>
-                  <div class="lbl" data-i18n="statHidden">مخفية بوضع الأمان</div>
+                <div>
+                  <div class="minihead" style="margin: 0" data-i18n="sectionsCatsHead">تصنيفات الأدوات</div>
+                  <div class="hint" style="margin-top: 6px" data-i18n="sectionsCatsDesc">اضغط على أي تصنيف لتطبيق فلتر سريع.</div>
+                  <div id="catChips" class="tags" style="margin-top: 10px"></div>
+                </div>
+                <div class="stats" aria-label="Counts">
+                  <div class="stat">
+                    <div id="countTools" class="num">0</div>
+                    <div class="lbl" data-i18n="statTools">أداة معروضة</div>
+                  </div>
+                  <div class="stat">
+                    <div id="countTotal" class="num">0</div>
+                    <div class="lbl" data-i18n="statTotal">إجمالي الأدوات</div>
+                  </div>
+                  <div class="stat">
+                    <div id="countCats" class="num">0</div>
+                    <div class="lbl" data-i18n="statCats">تصنيف</div>
+                  </div>
+                  <div class="stat">
+                    <div id="countHidden" class="num">0</div>
+                    <div class="lbl" data-i18n="statHidden">مخفية بوضع الأمان</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </section>
-          <section class="panel">
-            <div class="panel-inner">
-              <div class="section-head" style="margin-top: 0">
-                <div>
-                  <h2 data-i18n="importTitle">استيراد قائمة أدوات (JSON)</h2>
-                  <p data-i18n="importDesc">
-                    إذا بدك "كل أدوات كالي" فعلياً: حمّل/اجمع قائمة كاملة بصيغة JSON ثم ألصقها هنا.
-                    الصفحة بتولّد الواجهة تلقائياً بدون أوامر تشغيل.
-                  </p>
+
+            <details class="import-box" id="importPanel">
+              <summary>
+                <span data-i18n="importTitle">استيراد قائمة أدوات (JSON)</span>
+                <span class="import-meta" data-i18n="optional">اختياري</span>
+              </summary>
+              <div class="import-inner">
+                <div class="hint" data-i18n="importDesc">
+                  إذا بدك "كل أدوات كالي" فعلياً: حمّل/اجمع قائمة كاملة بصيغة JSON ثم ألصقها هنا.
+                  الصفحة بتولّد الواجهة تلقائياً بدون أوامر تشغيل.
                 </div>
-              </div>
-              <div class="split">
-                <div>
-                  <label for="jsonBox" data-i18n="jsonLbl">JSON</label>
-                  <textarea
-                    id="jsonBox"
-                    spellcheck="false"
-                    class="mono"
-                    placeholder='[
+                <div class="split" style="margin-top: 10px">
+                  <div>
+                    <label for="jsonBox" data-i18n="jsonLbl">JSON</label>
+                    <textarea
+                      id="jsonBox"
+                      spellcheck="false"
+                      class="mono"
+                      placeholder='[
   {"name":"tool-name","category":"Web","risk":"medium","defensive":true,"descAr":"شرح مختصر","descEn":"Short desc","detailsAr":["نقطة 1","نقطة 2"],"detailsEn":["Point 1","Point 2"],"cmdAr":["ملاحظات عامة عن بنية الأوامر"],"cmdEn":["General notes about command structure"],"tags":["tag1","tag2"]}
 ]'
-                  ></textarea>
-                  <div class="hint" data-i18n="schemaHint">
-                    الحقول المطلوبة: <span class="mono">name</span> و <span class="mono">category</span>.
-                    الحقول الاختيارية: <span class="mono">risk</span> (low|medium|high),
-                    <span class="mono">defensive</span> (true/false), <span class="mono">descAr</span>,
-                    <span class="mono">descEn</span>, <span class="mono">detailsAr</span>, <span class="mono">detailsEn</span>, <span class="mono">cmdAr</span>, <span class="mono">cmdEn</span>,
-                    <span class="mono">tags</span>.
-                  </div>
-                  <div class="toggle-row" style="margin-top: 12px">
-                    <button id="importBtn" class="btn primary" type="button">
-                      <span aria-hidden="true">＋</span><span data-i18n="importBtn">استيراد</span>
-                    </button>
-                    <button id="clearJsonBtn" class="btn" type="button">
-                      <span aria-hidden="true">✕</span><span data-i18n="clearBox">مسح المربع</span>
-                    </button>
-                  </div>
-                  <div id="importOk" class="success"></div>
-                  <div id="importErr" class="error"></div>
-                </div>
-                <div>
-                  <label data-i18n="tipsLbl">ملاحظات</label>
-                  <div class="tools-empty" style="background: rgba(0, 0, 0, 0.18)">
-                    <div style="font-weight: 1000" data-i18n="tipsHead">كيف أرتّب الأدوات؟</div>
-                    <div data-i18n="tipsBody" style="margin-top: 8px">
-                      1) صنّف الأدوات حسب "المجال" (شبكات، ويب، جنائي، هندسة عكسية...). 2) استخدم
-                      <span class="mono">risk</span> لتفعيل وضع الأمان. 3) اجعل الوصف عاماً وغير إجرائي
-                      (بدون خطوات أو أوامر).
+                    ></textarea>
+                    <div class="hint" data-i18n="schemaHint">
+                      الحقول المطلوبة: <span class="mono">name</span> و <span class="mono">category</span>.
+                      الحقول الاختيارية: <span class="mono">risk</span> (low|medium|high),
+                      <span class="mono">defensive</span> (true/false), <span class="mono">descAr</span>,
+                      <span class="mono">descEn</span>, <span class="mono">detailsAr</span>, <span class="mono">detailsEn</span>, <span class="mono">cmdAr</span>, <span class="mono">cmdEn</span>,
+                      <span class="mono">tags</span>.
                     </div>
+                    <div class="toggle-row" style="margin-top: 12px">
+                      <button id="importBtn" class="btn primary" type="button">
+                        <span aria-hidden="true">＋</span><span data-i18n="importBtn">استيراد</span>
+                      </button>
+                      <button id="clearJsonBtn" class="btn" type="button">
+                        <span aria-hidden="true">✕</span><span data-i18n="clearBox">مسح المربع</span>
+                      </button>
+                    </div>
+                    <div id="importOk" class="success"></div>
+                    <div id="importErr" class="error"></div>
                   </div>
-                  <div class="tools-empty" style="margin-top: 12px">
-                    <div style="font-weight: 1000" data-i18n="privacyHead">الخصوصية</div>
-                    <div data-i18n="privacyBody" style="margin-top: 8px">
-                      الاستيراد والتصدير يتمان داخل المتصفح فقط. لا يوجد إرسال بيانات لخادم.
+                  <div>
+                    <label data-i18n="tipsLbl">ملاحظات</label>
+                    <div class="tools-empty">
+                      <div style="font-weight: 1000" data-i18n="tipsHead">كيف أرتّب الأدوات؟</div>
+                      <div data-i18n="tipsBody" style="margin-top: 8px">
+                        1) صنّف الأدوات حسب "المجال" (شبكات، ويب، جنائي، هندسة عكسية...). 2) استخدم
+                        <span class="mono">risk</span> لتفعيل وضع الأمان. 3) اجعل الوصف عاماً وغير إجرائي
+                        (بدون خطوات أو أوامر).
+                      </div>
+                    </div>
+                    <div class="tools-empty" style="margin-top: 12px">
+                      <div style="font-weight: 1000" data-i18n="privacyHead">الخصوصية</div>
+                      <div data-i18n="privacyBody" style="margin-top: 8px">
+                        الاستيراد والتصدير يتمان داخل المتصفح فقط. لا يوجد إرسال بيانات لخادم.
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
+            </details>
+          </div>
+        </section>
       </div>
     </header>
     <main>
       <div class="container">
-        <section class="panel" id="sectionsPanel" style="margin: 12px 0 16px">
-          <div class="panel-inner">
-            <div class="section-head" style="margin-top: 0">
-              <div>
-                <h2 data-i18n="sectionsTitle">أقسام الموقع</h2>
-                <p data-i18n="sectionsDesc">روابط سريعة وأقسام تساعدك توصل للمحتوى بسرعة.</p>
-              </div>
-            </div>
-            <div class="split">
-              <div>
-                <details class="more" open>
-                  <summary data-i18n="sectionsLinksHead">روابط سريعة</summary>
-                  <div class="toggle-row" style="margin-top: 10px">
-                    <a class="btn" href="#eduPanel"><span data-i18n="sectionsLinkEdu">الشرح التعليمي</span></a>
-                    <a class="btn" href="#jsonBox"><span data-i18n="sectionsLinkImport">الاستيراد</span></a>
-                    <a class="btn primary" href="#toolsWrap"><span data-i18n="sectionsLinkTools">الأدوات</span></a>
-                  </div>
-                </details>
-              </div>
-              <div>
-                <details class="more" open>
-                  <summary data-i18n="sectionsCatsHead">تصنيفات الأدوات</summary>
-                  <div class="hint" data-i18n="sectionsCatsDesc">اضغط على أي تصنيف لتطبيق فلتر سريع.</div>
-                  <div id="catChips" class="tags" style="margin-top: 10px"></div>
-                </details>
-              </div>
-            </div>
-          </div>
-        </section>
         <div class="section-head">
           <div>
             <h2 data-i18n="toolsTitle">الأدوات</h2>
@@ -1051,7 +1150,7 @@
               الاستيراد إذا بدك قائمة كاملة.
             </p>
           </div>
-          <div class="tag" style="border-color: rgba(255, 45, 122, 0.38); background: rgba(255, 45, 122, 0.12)">
+          <div class="tag tag-alt">
             <span id="activeFilters">—</span>
           </div>
         </div>
@@ -1249,6 +1348,7 @@ Report template:
         ar: {
           export: "تصدير JSON",
           reset: "إعادة ضبط",
+          optional: "اختياري",
           brandTitle: "موسوعة أدوات كالي",
           brandSub: "للأغراض التعليمية فقط (استخدام قانوني)",
           footerText: "موسوعة أدوات كالي (تعليمي)",
@@ -1420,6 +1520,7 @@ log(event)`,
         en: {
           export: "Export JSON",
           reset: "Reset",
+          optional: "Optional",
           brandTitle: "Kali Tools Encyclopedia",
           brandSub: "Educational index (Legal use only)",
           footerText: "Kali Tools Encyclopedia (Educational)",
@@ -4516,6 +4617,7 @@ log(event)`,
         countTotal: document.getElementById("countTotal"),
         countHidden: document.getElementById("countHidden"),
         jsonBox: document.getElementById("jsonBox"),
+        importPanel: document.getElementById("importPanel"),
         importBtn: document.getElementById("importBtn"),
         clearJsonBtn: document.getElementById("clearJsonBtn"),
         importOk: document.getElementById("importOk"),
@@ -4943,6 +5045,17 @@ log(event)`,
         applyViewPreset(v);
         return true;
       }
+      function maybeOpenImportFromHash() {
+        const h = String(location.hash || "")
+          .replace(/^#/, "")
+          .trim();
+        if (h !== "jsonBox" && h !== "importPanel") return false;
+        if (els.importPanel && els.importPanel.tagName === "DETAILS") {
+          els.importPanel.open = true;
+          return true;
+        }
+        return false;
+      }
       function updateViewUi() {
         const view = getViewFromSettings();
         const safety = Boolean(settings.safetyMode);
@@ -5258,6 +5371,7 @@ log(event)`,
         if (settings.onlyDef && settings.onlyDual) settings.onlyDual = false;
         settings.includeUser = safeBool(settings.includeUser, true);
         applyViewFromHash();
+        maybeOpenImportFromHash();
         els.safetyMode.checked = settings.safetyMode;
         els.onlyDef.checked = settings.onlyDef;
         els.onlyDual.checked = settings.onlyDual;
@@ -5286,13 +5400,16 @@ log(event)`,
           });
         }
         window.addEventListener("hashchange", () => {
-          if (!applyViewFromHash()) return;
-          render();
-          try {
-            els.toolsWrap.scrollIntoView({ behavior: "smooth", block: "start" });
-          } catch (_) {
-            // ignore
+          if (applyViewFromHash()) {
+            render();
+            try {
+              els.toolsWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+            } catch (_) {
+              // ignore
+            }
+            return;
           }
+          maybeOpenImportFromHash();
         });
         els.q.addEventListener("input", () => {
           settings.q = els.q.value || "";
