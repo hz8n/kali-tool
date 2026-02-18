@@ -122,6 +122,15 @@
       [data-density="compact"] .card {
         padding: 12px;
       }
+      [data-density="compact"] .section-head {
+        margin: 18px 0 10px;
+      }
+      [data-density="compact"] .card h3 {
+        font-size: 17px;
+      }
+      [data-density="compact"] .card p {
+        font-size: 13.5px;
+      }
       .nav {
         position: sticky;
         top: 0;
@@ -405,6 +414,13 @@
       .notice b {
         color: var(--warn);
       }
+      .notice.liability {
+        border-color: rgba(var(--bad-rgb), 0.28);
+        background: rgba(var(--bad-rgb), 0.1);
+      }
+      .notice.liability b {
+        color: var(--bad);
+      }
       .view-banner {
         margin: 10px 0 0;
         border-color: rgba(var(--accent-rgb), 0.24);
@@ -575,6 +591,7 @@
         z-index: 40;
         backdrop-filter: blur(18px) saturate(160%);
         background: rgba(6, 6, 16, 0.72);
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.45);
       }
       .tools-toolbar-left {
         display: flex;
@@ -1062,7 +1079,7 @@
             <div>
               <div data-i18n="brandTitle">موسوعة أدوات كالي</div>
               <small data-i18n="brandSub">للأغراض التعليمية فقط (استخدام قانوني)</small>
-              <small class="credit-top" data-i18n="credit">تصميم عبدالله خوالده</small>
+              <small class="credit-top" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده</small>
             </div>
           </div>
           <div class="nav-links" aria-label="Sections">
@@ -1104,6 +1121,14 @@
                   <span data-i18n="legalBody">
                     استخدم هذه المعلومات فقط على أنظمة تملكها أو لديك إذن صريح لاختبارها. أي
                     استخدام غير مصرح به قد يكون مخالفاً للقانون.
+                  </span>
+                </div>
+                <div class="notice liability" role="note">
+                  <b data-i18n="liabilityHead">إخلاء مسؤولية:</b>
+                  <span data-i18n="liabilityBody">
+                    استخدامك لهذه الصفحة ومحتواها على مسؤوليتك. لا نتحمل أي مسؤولية عن أي ضرر
+                    (مباشر أو غير مباشر) قد ينتج عن سوء الاستخدام أو تشغيل الأدوات خارج نطاقٍ
+                    مصرح به.
                   </span>
                 </div>
               </div>
@@ -1436,7 +1461,7 @@ Report template:
       <div class="container">
         <div style="margin-top: 8px">
           © <span id="year"></span> | <span data-i18n="footerText">Kali Tools Encyclopedia (Educational)</span>
-          <div class="credit" data-i18n="credit">تصميم عبدالله خوالده</div>
+          <div class="credit" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده</div>
         </div>
       </div>
     </footer>
@@ -1453,7 +1478,7 @@ Report template:
           brandTitle: "موسوعة أدوات كالي",
           brandSub: "للأغراض التعليمية فقط (استخدام قانوني)",
           footerText: "موسوعة أدوات كالي (تعليمي)",
-          credit: "تصميم عبدالله خوالده",
+          credit: "تم برمجته بواسطه عبدالله الخوالده",
           sectionsTitle: "أقسام الموقع",
           sectionsDesc: "روابط سريعة وأقسام تساعدك توصل للمحتوى بسرعة.",
           sectionsLinksHead: "روابط سريعة",
@@ -1469,6 +1494,9 @@ Report template:
           legalHead: "تنبيه قانوني:",
           legalBody:
             "استخدم هذه المعلومات فقط على أنظمة تملكها أو لديك إذن صريح لاختبارها. أي استخدام غير مصرح به قد يكون مخالفاً للقانون.",
+          liabilityHead: "إخلاء مسؤولية:",
+          liabilityBody:
+            "استخدامك لهذه الصفحة ومحتواها على مسؤوليتك. لا نتحمل أي مسؤولية عن أي ضرر (مباشر أو غير مباشر) قد ينتج عن سوء الاستخدام أو تشغيل الأدوات خارج نطاقٍ مصرح به.",
           searchLbl: "بحث",
           navAll: "الكل",
           navDefense: "الدفاع",
@@ -1615,10 +1643,11 @@ log(event)`,
            hiddenCount: (n) => `مخفي: ${n}`,
            empty:
              "لا يوجد نتائج حسب الفلاتر الحالية. جرّب تغيير التصنيف/الخطورة أو أوقف وضع الأمان مؤقتاً.",
-          importedOk: (n) => `تم استيراد ${n} أداة.`,
-          importedBad: "JSON غير صالح أو البيانات لا تطابق المخطط.",
-          resetConfirm: "هل تريد حذف الأدوات المستوردة وإعادة ضبط الإعدادات؟"
-        },
+           importedOk: (n) => `تم استيراد ${n} أداة.`,
+           importedNone: "لا يوجد أدوات جديدة للاستيراد (كلها موجودة بالفعل).",
+           importedBad: "JSON غير صالح أو البيانات لا تطابق المخطط.",
+           resetConfirm: "هل تريد حذف الأدوات المستوردة وإعادة ضبط الإعدادات؟"
+         },
         en: {
           export: "Export JSON",
           reset: "Reset",
@@ -1629,7 +1658,7 @@ log(event)`,
           brandTitle: "Kali Tools Encyclopedia",
           brandSub: "Educational index (Legal use only)",
           footerText: "Kali Tools Encyclopedia (Educational)",
-          credit: "Design: Abdullah Khawaldeh",
+          credit: "Programmed by Abdullah Khawaldeh",
           sectionsTitle: "Site Sections",
           sectionsDesc: "Quick links and sections to help you reach content faster.",
           sectionsLinksHead: "Quick Links",
@@ -1645,6 +1674,9 @@ log(event)`,
           legalHead: "Legal notice:",
           legalBody:
             "Use this information only on systems you own or where you have explicit permission. Unauthorized use may be illegal.",
+          liabilityHead: "Disclaimer:",
+          liabilityBody:
+            "Use this page and its content at your own risk. We accept no liability for any damage (direct or indirect) resulting from misuse or running tools outside an authorized scope.",
           searchLbl: "Search",
           navAll: "All",
           navDefense: "Defense",
@@ -1788,10 +1820,11 @@ log(event)`,
            filtersNone: "No filters",
            hiddenCount: (n) => `Hidden: ${n}`,
            empty: "No results for the current filters. Try changing category/risk or temporarily disabling Safety mode.",
-          importedOk: (n) => `Imported ${n} tools.`,
-          importedBad: "Invalid JSON or schema mismatch.",
-          resetConfirm: "Delete imported tools and reset settings?"
-        }
+           importedOk: (n) => `Imported ${n} tools.`,
+           importedNone: "No new tools to import (already present).",
+           importedBad: "Invalid JSON or schema mismatch.",
+           resetConfirm: "Delete imported tools and reset settings?"
+         }
       };
       const EDU100 = {
         ar: { defense: [], attack: [] },
@@ -4853,7 +4886,23 @@ log(event)`,
       }
       function getAllTools() {
         const include = Boolean(settings.includeUser);
-        const merged = include ? BUILTIN_TOOLS.concat(userTools) : BUILTIN_TOOLS.slice();
+        const merged = (() => {
+          const builtin = Array.isArray(BUILTIN_TOOLS) ? BUILTIN_TOOLS : [];
+          if (!include) return builtin.slice();
+          const byName = new Map();
+          for (const t of builtin) {
+            const key = normalizeText(t && t.name);
+            if (!key) continue;
+            byName.set(key, t);
+          }
+          for (const t of userTools) {
+            const key = normalizeText(t && t.name);
+            if (!key) continue;
+            // User tools override built-ins with same name
+            byName.set(key, t);
+          }
+          return Array.from(byName.values());
+        })();
         // Normalize tool objects defensively
         return merged
           .map((t) => ({
@@ -5225,6 +5274,16 @@ log(event)`,
         if (h !== "jsonBox" && h !== "importPanel") return false;
         if (els.importPanel && els.importPanel.tagName === "DETAILS") {
           els.importPanel.open = true;
+          const target = document.getElementById(h);
+          if (target) {
+            const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            const behavior = reduce ? "auto" : "smooth";
+            try {
+              target.scrollIntoView({ behavior, block: "start" });
+            } catch (_) {
+              // ignore
+            }
+          }
           return true;
         }
         return false;
@@ -5504,9 +5563,20 @@ log(event)`,
       }
       function parseUserToolsFromJson(raw) {
         const data = JSON.parse(raw);
-        const list = Array.isArray(data) ? data : Array.isArray(data && data.tools) ? data.tools : [];
-        if (!Array.isArray(list)) return [];
-        return list
+        let mode = "unknown";
+        let list = [];
+        if (Array.isArray(data)) {
+          mode = "array";
+          list = data;
+        } else if (data && typeof data === "object" && Array.isArray(data.userTools)) {
+          mode = "backup";
+          list = data.userTools;
+        } else if (data && typeof data === "object" && Array.isArray(data.tools)) {
+          mode = "snapshot";
+          list = data.tools;
+        }
+        if (!Array.isArray(list)) return { mode, tools: [] };
+        const tools = list
           .map((t) => ({
             name: String(t && t.name ? t.name : "").trim(),
             category: String(t && t.category ? t.category : "").trim(),
@@ -5521,6 +5591,44 @@ log(event)`,
             tags: Array.isArray(t && t.tags) ? t.tags.map((x) => String(x)).filter(Boolean).slice(0, 12) : []
           }))
           .filter((t) => t.name && t.category);
+        return { mode, tools };
+      }
+      let builtinFingerprints = null;
+      function toolFingerprint(t) {
+        const tags = Array.isArray(t && t.tags) ? t.tags.map((x) => String(x)).filter(Boolean).slice(0, 12).sort() : [];
+        return JSON.stringify({
+          category: String(t && t.category ? t.category : "").trim(),
+          risk: safeRisk(t && t.risk),
+          defensive: safeBool(t && t.defensive, false),
+          descAr: String(t && t.descAr ? t.descAr : "").trim(),
+          descEn: String(t && t.descEn ? t.descEn : "").trim(),
+          detailsAr: normalizeDetailList(t && t.detailsAr),
+          detailsEn: normalizeDetailList(t && t.detailsEn),
+          cmdAr: normalizeDetailList(t && t.cmdAr),
+          cmdEn: normalizeDetailList(t && t.cmdEn),
+          tags: tags
+        });
+      }
+      function getBuiltinFingerprints() {
+        if (builtinFingerprints) return builtinFingerprints;
+        builtinFingerprints = new Map();
+        if (!Array.isArray(BUILTIN_TOOLS)) return builtinFingerprints;
+        for (const t of BUILTIN_TOOLS) {
+          const key = normalizeText(t && t.name);
+          if (!key || builtinFingerprints.has(key)) continue;
+          builtinFingerprints.set(key, toolFingerprint(t));
+        }
+        return builtinFingerprints;
+      }
+      function filterRedundantImports(tools) {
+        const built = getBuiltinFingerprints();
+        return (Array.isArray(tools) ? tools : []).filter((t) => {
+          const key = normalizeText(t && t.name);
+          if (!key) return false;
+          const builtFp = built.get(key);
+          if (!builtFp) return true;
+          return toolFingerprint(t) !== builtFp;
+        });
       }
       function mergeUserTools(newOnes) {
         const existing = Array.isArray(userTools) ? userTools : [];
@@ -5537,15 +5645,20 @@ log(event)`,
         if (!text) return 0;
         try {
           const parsed = parseUserToolsFromJson(text);
-          if (!parsed.length) {
+          if (!parsed.tools.length) {
             showMsg(els.importErr, i18n("importedBad"));
             return 0;
           }
-          mergeUserTools(parsed);
-          showMsg(els.importOk, i18n("importedOk")(parsed.length));
+          const cleaned = filterRedundantImports(parsed.tools);
+          if (!cleaned.length) {
+            showMsg(els.importOk, i18n("importedNone"));
+            return 0;
+          }
+          mergeUserTools(cleaned);
+          showMsg(els.importOk, i18n("importedOk")(cleaned.length));
           rebuildSelects();
           render();
-          return parsed.length;
+          return cleaned.length;
         } catch (_) {
           showMsg(els.importErr, i18n("importedBad"));
           return 0;
@@ -5708,6 +5821,7 @@ log(event)`,
         }
         els.clearJsonBtn.addEventListener("click", () => {
           els.jsonBox.value = "";
+          if (els.jsonFile) els.jsonFile.value = "";
           showMsg(els.importOk, "");
           showMsg(els.importErr, "");
         });
