@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Warning icon">
+  <path
+    fill="#ffd166"
+    d="M256 44
+       L496 468
+       H16
+       L256 44
+       Z"
+  />
+  <rect x="236" y="182" width="40" height="168" rx="20" fill="#000000" />
+  <circle cx="256" cy="408" r="24" fill="#000000" />
+</svg>
+
