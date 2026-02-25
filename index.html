@@ -2503,6 +2503,20 @@
       .logo {
         background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.82), rgba(var(--accent2-rgb), 0.72)) !important;
       }
+      html[data-mobile-lite="1"] {
+        scroll-behavior: auto !important;
+      }
+      @media (max-width: 768px) {
+        html[data-mobile-lite="1"] .panel,
+        html[data-mobile-lite="1"] .card,
+        html[data-mobile-lite="1"] .catgroup,
+        html[data-mobile-lite="1"] .academy-link-card,
+        html[data-mobile-lite="1"] .basics-card {
+          contain: layout paint style;
+          content-visibility: auto;
+          contain-intrinsic-size: 1px 420px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -6504,7 +6518,7 @@ log(event)`,
         });
         roadmap.appendChild(frag);
 
-        const microTarget = IS_PHONE ? 80 : IS_LOW_POWER_DESKTOP ? 180 : 240;
+        const microTarget = IS_PHONE ? 24 : IS_LOW_POWER_DESKTOP ? 180 : 240;
         const microItems = buildBasicsMicroLibrary(lang, microTarget);
         microState.items = microItems;
         renderMicroBatch(false);
@@ -6550,7 +6564,7 @@ log(event)`,
           deep.forEach((x, i) => lines.push(`${i + 1}. ${x}`));
           lines.push("");
         });
-        const exportTarget = IS_PHONE ? 80 : IS_LOW_POWER_DESKTOP ? 180 : 240;
+        const exportTarget = IS_PHONE ? 24 : IS_LOW_POWER_DESKTOP ? 180 : 240;
         const micro = buildBasicsMicroLibrary(lang, exportTarget);
         lines.push(
           isEn
@@ -9343,6 +9357,17 @@ log(event)`,
           }
         });
       }
+      function applyMobileLiteMode() {
+        if (!IS_PHONE) return;
+        document.documentElement.setAttribute("data-mobile-lite", "1");
+        const openMore = Array.from(document.querySelectorAll("details.more[open]"));
+        openMore.forEach((d, idx) => {
+          // Keep very few sections open to reduce initial layout cost on phones.
+          d.open = idx < 2;
+        });
+        const importPanel = document.getElementById("importPanel");
+        if (importPanel) importPanel.open = false;
+      }
       function wire() {
         els.year.textContent = String(new Date().getFullYear());
         if (IS_PHONE) {
@@ -9350,6 +9375,7 @@ log(event)`,
           const bg2 = document.querySelector(".grain");
           if (bg1) bg1.remove();
           if (bg2) bg2.remove();
+          applyMobileLiteMode();
         }
         initNavHeight();
         if (!IS_PHONE) {
