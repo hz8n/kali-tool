@@ -2203,6 +2203,36 @@
         }
       }
       @media (max-width: 768px) {
+        body {
+          background: linear-gradient(180deg, #000, #010705 60%, #000101);
+        }
+        .bg-mark,
+        .grain {
+          display: none !important;
+        }
+        .panel::before,
+        .panel::after,
+        .card::after,
+        .nav::after {
+          display: none !important;
+        }
+        .panel,
+        .card,
+        .tools-toolbar,
+        .sidebar,
+        .back-to-top,
+        .logo {
+          box-shadow: none !important;
+          filter: none !important;
+        }
+        .btn,
+        .card,
+        .tagbtn,
+        .quick-link-btn,
+        .sidebar-link {
+          transition: none !important;
+          transform: none !important;
+        }
         .container {
           width: min(var(--container), 95vw);
         }
@@ -2255,6 +2285,52 @@
         .grid > .card:nth-child(-n + 10),
         .groups > .catgroup:nth-child(-n + 6) {
           animation: riseIn 0.38s ease both;
+        }
+      }
+      @media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+        .panel,
+        .section-head,
+        .tools-toolbar,
+        .grid > .card:nth-child(-n + 10),
+        .groups > .catgroup:nth-child(-n + 6) {
+          animation: none !important;
+        }
+      }
+      @media (max-width: 768px) {
+        body {
+          background: linear-gradient(180deg, #020705, #010302) !important;
+        }
+        .bg-mark,
+        .grain,
+        .panel::before,
+        .panel::after,
+        .card::after {
+          display: none !important;
+        }
+        .nav,
+        .sidebar,
+        #toolsToolbar.tools-toolbar {
+          backdrop-filter: none !important;
+        }
+        .panel,
+        .card,
+        .tools-toolbar,
+        .btn,
+        .back-to-top,
+        .logo {
+          box-shadow: none !important;
+        }
+        .logo img,
+        .bg-mark {
+          filter: none !important;
+        }
+        .btn,
+        .card,
+        .panel::after,
+        .card::after,
+        .tagbtn,
+        details.import-box > summary::after {
+          transition: none !important;
         }
       }
     </style>
