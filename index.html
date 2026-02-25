@@ -2352,6 +2352,35 @@
           contain-intrinsic-size: 1px 560px;
         }
       }
+      @media (min-width: 769px) {
+        .grain {
+          display: none !important;
+        }
+        .bg-mark {
+          opacity: 0.04 !important;
+          filter: none !important;
+        }
+        .panel::after,
+        .card::after {
+          display: none !important;
+        }
+        .panel,
+        .card,
+        .tools-toolbar,
+        .btn,
+        .back-to-top {
+          box-shadow: none !important;
+        }
+        .panel,
+        .catgroup,
+        .card,
+        .basics-card,
+        .micro-item,
+        .academy-link-card {
+          content-visibility: auto;
+          contain-intrinsic-size: 1px 620px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -5481,7 +5510,11 @@ log(event)`,
         };
       }
       const IS_PHONE = window.matchMedia("(max-width: 768px)").matches;
-      const MICRO_BATCH_SIZE = IS_PHONE ? 6 : 20;
+      const IS_LOW_POWER_DESKTOP =
+        !IS_PHONE &&
+        (((navigator && navigator.hardwareConcurrency) ? navigator.hardwareConcurrency : 8) <= 4 ||
+          ((navigator && navigator.deviceMemory) ? navigator.deviceMemory : 8) <= 4);
+      const MICRO_BATCH_SIZE = IS_PHONE ? 6 : IS_LOW_POWER_DESKTOP ? 10 : 16;
       let microState = { items: [], rendered: 0 };
       function renderMicroBatch(append) {
         const wrap = document.getElementById("basicsMicro");
@@ -5633,7 +5666,8 @@ log(event)`,
         });
         roadmap.appendChild(frag);
 
-        const microItems = buildBasicsMicroLibrary(lang, 480);
+        const microTarget = IS_PHONE ? 140 : IS_LOW_POWER_DESKTOP ? 180 : 240;
+        const microItems = buildBasicsMicroLibrary(lang, microTarget);
         microState.items = microItems;
         renderMicroBatch(false);
         const moreBtn = document.getElementById("basicsMicroMore");
@@ -5678,8 +5712,13 @@ log(event)`,
           deep.forEach((x, i) => lines.push(`${i + 1}. ${x}`));
           lines.push("");
         });
-        const micro = buildBasicsMicroLibrary(lang, 480);
-        lines.push(isEn ? "Massive Training Tasks (480):" : "مكتبة المهام التدريبية الضخمة (480):");
+        const exportTarget = IS_PHONE ? 140 : IS_LOW_POWER_DESKTOP ? 180 : 240;
+        const micro = buildBasicsMicroLibrary(lang, exportTarget);
+        lines.push(
+          isEn
+            ? `Massive Training Tasks (${exportTarget}):`
+            : `مكتبة المهام التدريبية الضخمة (${exportTarget}):`
+        );
         micro.forEach((m) => {
           lines.push(m.title);
           (m.paragraphs || []).forEach((p) => lines.push(`- ${p}`));
