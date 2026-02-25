@@ -3,10 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>موسوعة أدوات كالي لينكس | للاستخدام التعليمي والقانوني فقط</title>
+    <meta name="theme-color" content="#000201" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر" />
+    <title>تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر</title>
     <meta
       name="description"
-      content="صفحة تعليمية لفهرسة أشهر أدوات Kali Linux حسب التصنيف مع بحث وفلترة واستيراد قائمة أدوات بصيغة JSON. للاستخدام القانوني المصرّح به فقط."
+      content="تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,6 +19,9 @@
       href="https://fonts.googleapis.com/css2?family=Changa:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="warning.svg" />
+    <link rel="apple-touch-icon" href="warning.svg" />
     <style>
       :root {
         color-scheme: dark;
@@ -9060,6 +9068,12 @@ log(event)`,
       applyBrandAssets();
       applyI18n();
       wire();
+
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker.register("./service-worker.js").catch(() => {});
+        });
+      }
     </script>
   </body>
 </html>
