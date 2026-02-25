@@ -2300,6 +2300,9 @@
         body {
           background: linear-gradient(180deg, #020705, #010302) !important;
         }
+        html {
+          scroll-behavior: auto !important;
+        }
         .bg-mark,
         .grain,
         .panel::before,
@@ -2311,6 +2314,10 @@
         .sidebar,
         #toolsToolbar.tools-toolbar {
           backdrop-filter: none !important;
+        }
+        #toolsToolbar.tools-toolbar {
+          position: static !important;
+          top: auto !important;
         }
         .panel,
         .card,
@@ -2331,6 +2338,18 @@
         .tagbtn,
         details.import-box > summary::after {
           transition: none !important;
+        }
+        .back-to-top {
+          display: none !important;
+        }
+        .panel,
+        .catgroup,
+        .card,
+        .basics-card,
+        .micro-item,
+        .academy-link-card {
+          content-visibility: auto;
+          contain-intrinsic-size: 1px 560px;
         }
       }
     </style>
@@ -2491,7 +2510,7 @@
                 </div>
               </div>
               <div class="hero-controls">
-                <div class="controls" aria-label="Search and filters">
+                <div class="controls" id="searchFiltersBlock" aria-label="Search and filters" hidden>
                   <div class="field">
                     <label for="q" data-i18n="searchLbl">بحث</label>
                     <input id="q" type="search" placeholder="مثال: nmap, web, forensics..." />
@@ -2505,7 +2524,7 @@
                     <select id="risk"></select>
                   </div>
                 </div>
-                <div class="toggle-row">
+                <div class="toggle-row" id="togglesBlock" hidden>
                   <span class="chip good" title="Recommended default">
                     <input id="safetyMode" type="checkbox" />
                     <span data-i18n="safetyMode">وضع الأمان: إخفاء الأدوات عالية الخطورة</span>
@@ -2528,12 +2547,12 @@
                   <a class="btn" href="#eduPanel"><span aria-hidden="true">📚</span><span data-i18n="sectionsLinkEdu">الشرح التعليمي</span></a>
                   <a class="btn ghost" href="#jsonBox"><span aria-hidden="true">＋</span><span data-i18n="sectionsLinkImport">الاستيراد</span></a>
                 </div>
-                <div>
+                <div id="categoriesBlock" hidden>
                   <div class="minihead" style="margin: 0" data-i18n="sectionsCatsHead">تصنيفات الأدوات</div>
                   <div class="hint" style="margin-top: 6px" data-i18n="sectionsCatsDesc">اضغط على أي تصنيف لتطبيق فلتر سريع.</div>
                   <div id="catChips" class="tags" style="margin-top: 10px"></div>
                 </div>
-                <div class="stats" aria-label="Counts">
+                <div class="stats" id="statsBlock" aria-label="Counts" hidden>
                   <div class="stat">
                     <div id="countTools" class="num">0</div>
                     <div class="lbl" data-i18n="statTools">أداة معروضة</div>
@@ -5461,7 +5480,8 @@ log(event)`,
           quickQuiz
         };
       }
-      const MICRO_BATCH_SIZE = 20;
+      const IS_PHONE = window.matchMedia("(max-width: 768px)").matches;
+      const MICRO_BATCH_SIZE = IS_PHONE ? 6 : 20;
       let microState = { items: [], rendered: 0 };
       function renderMicroBatch(append) {
         const wrap = document.getElementById("basicsMicro");
@@ -5557,25 +5577,37 @@ log(event)`,
           dFrag.appendChild(card);
         });
         downloads.appendChild(dFrag);
+        const orderedPlans = plans
+          .map((p, i) => ({ p: String(p || ""), i }))
+          .sort((a, b) => {
+            const an = parseInt((a.p.match(/\d+/) || [])[0], 10);
+            const bn = parseInt((b.p.match(/\d+/) || [])[0], 10);
+            const av = Number.isFinite(an) ? an : a.i + 1;
+            const bv = Number.isFinite(bn) ? bn : b.i + 1;
+            return av - bv || a.i - b.i;
+          })
+          .map((x) => x.p);
         plans50.innerHTML = "";
         const pFrag = document.createDocumentFragment();
-        plans.forEach((p, idx) => {
+        orderedPlans.forEach((p, idx) => {
           const card = document.createElement("article");
           card.className = "basics-card";
           const detail = buildPlanDeepExplanation(String(p), idx, lang);
+          const planVideo = String(vids[idx % Math.max(1, vids.length)] || "https://www.youtube.com");
           const ulMistakes = detail.mistakes.map((x) => `<li>${x}</li>`).join("");
           const ulActions = detail.actions.map((x) => `<li>${x}</li>`).join("");
           const paras = detail.paragraphs.map((x) => `<p>${x}</p>`).join("");
           const metaLabels =
             lang === "en"
-              ? { quiz: "Quick test", duration: "Estimated duration", difficulty: "Difficulty level" }
-              : { quiz: "اختبار سريع", duration: "مدة تعلم متوقعة", difficulty: "مستوى الصعوبة" };
+              ? { quiz: "Quick test", duration: "Estimated duration", difficulty: "Difficulty level", video: "YouTube video" }
+              : { quiz: "اختبار سريع", duration: "مدة تعلم متوقعة", difficulty: "مستوى الصعوبة", video: "فيديو يوتيوب" };
           card.innerHTML = `<h4>${idx + 1}) ${String(p)}</h4>
             ${paras}
             <p><b>${lang === "en" ? "Real example:" : "مثال واقعي:"}</b> ${detail.example}</p>
             <p><b>${metaLabels.duration}:</b> ${detail.duration}</p>
             <p><b>${metaLabels.difficulty}:</b> ${detail.difficulty}</p>
             <p><b>${metaLabels.quiz}:</b> ${detail.quickQuiz}</p>
+            <p><b>${metaLabels.video}:</b> <a href="${planVideo}" target="_blank" rel="noopener noreferrer">${lang === "en" ? "Watch training video" : "مشاهدة فيديو تدريبي"}</a></p>
             <p><b>${lang === "en" ? "Common mistakes:" : "أخطاء شائعة:"}</b></p>
             <ul style="margin:8px 0 0;padding-inline-start:18px;line-height:1.9;font-weight:820;color:rgba(229,238,255,0.82)">${ulMistakes}</ul>
             <p><b>${lang === "en" ? "Practical steps:" : "خطوات عملية:"}</b></p>
@@ -5610,7 +5642,8 @@ log(event)`,
         }
         countEl.textContent = `${microItems.length}`;
       }
-      let academyCollapsed = false;
+      let academyCollapsed = IS_PHONE;
+      let academyNeedsRender = true;
       function updateAcademyToggleUi() {
         const body = document.getElementById("academyBody");
         const btn = document.getElementById("academyToggleBtn");
@@ -5670,6 +5703,10 @@ log(event)`,
           toggleBtn.addEventListener("click", () => {
             academyCollapsed = !academyCollapsed;
             updateAcademyToggleUi();
+            if (!academyCollapsed && academyNeedsRender) {
+              renderBasicsRoadmap();
+              academyNeedsRender = false;
+            }
           });
         }
         if (downloadBtn) {
@@ -7395,7 +7432,11 @@ log(event)`,
         rebuildSelects();
         rebuildSortSelect();
         renderEdu100();
-        renderBasicsRoadmap();
+        academyNeedsRender = true;
+        if (!(IS_PHONE && academyCollapsed)) {
+          renderBasicsRoadmap();
+          academyNeedsRender = false;
+        }
         updateAcademyToggleUi();
         render();
       }
