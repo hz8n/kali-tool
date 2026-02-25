@@ -11,31 +11,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Changa:wght@500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
         color-scheme: dark;
-        --bg0: #050611;
-        --bg1: #070b18;
-        --bg2: #060613;
-        --mark-url: url("warning.svg");
-        --card: rgba(255, 255, 255, 0.06);
-        --card2: rgba(255, 255, 255, 0.1);
-        --line: rgba(255, 255, 255, 0.12);
-        --text: rgba(248, 251, 255, 0.96);
-        --muted: rgba(222, 232, 255, 0.74);
-        --accent: #22d3ee;
-        --accent-rgb: 34, 211, 238;
-        --accent2: #a78bfa;
-        --accent2-rgb: 167, 139, 250;
+        --bg0: #000201;
+        --bg1: #010705;
+        --bg2: #000101;
+        --mark-url: url("hacker-mask.svg");
+        --card: rgba(5, 18, 13, 0.66);
+        --card2: rgba(9, 26, 19, 0.75);
+        --line: rgba(111, 171, 139, 0.18);
+        --text: rgba(236, 255, 247, 0.95);
+        --muted: rgba(171, 217, 195, 0.74);
+        --accent: #00f5a0;
+        --accent-rgb: 0, 245, 160;
+        --accent2: #00b86b;
+        --accent2-rgb: 0, 184, 107;
         --ok: #34d399;
         --ok-rgb: 52, 211, 153;
-        --warn: #fbbf24;
-        --warn-rgb: 251, 191, 36;
-        --bad: #fb7185;
-        --bad-rgb: 251, 113, 133;
+        --warn: #f5e663;
+        --warn-rgb: 245, 230, 99;
+        --bad: #ff4d6d;
+        --bad-rgb: 255, 77, 109;
         --shadow: 0 26px 90px rgba(0, 0, 0, 0.62);
         --r: 20px;
         --container: 1150px;
@@ -54,10 +54,11 @@
         margin: 0;
         font-family: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
         color: var(--text);
-        background: radial-gradient(1200px 740px at 15% 0%, rgba(var(--accent2-rgb), 0.22), transparent 60%),
-          radial-gradient(1000px 680px at 85% 10%, rgba(var(--accent-rgb), 0.16), transparent 60%),
-          radial-gradient(900px 620px at 65% 95%, rgba(var(--warn-rgb), 0.1), transparent 62%),
-          linear-gradient(180deg, var(--bg0), var(--bg1) 55%, var(--bg2));
+        background:
+          radial-gradient(1200px 700px at 8% -5%, rgba(var(--accent2-rgb), 0.2), transparent 58%),
+          radial-gradient(900px 560px at 92% 4%, rgba(var(--accent-rgb), 0.12), transparent 62%),
+          radial-gradient(740px 440px at 55% 108%, rgba(var(--accent-rgb), 0.1), transparent 70%),
+          linear-gradient(180deg, #000, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
         overflow-x: hidden;
         min-height: 100vh;
       }
@@ -66,19 +67,19 @@
         inset: 0;
         pointer-events: none;
         z-index: -2;
-        opacity: 0.065;
+        opacity: 0.2;
         background-image: var(--mark-url);
         background-repeat: no-repeat;
-        background-position: 88% 14%;
-        background-size: min(720px, 96vw);
-        filter: drop-shadow(0 30px 90px rgba(var(--accent-rgb), 0.12));
+        background-position: 84% 9%;
+        background-size: min(920px, 98vw);
+        filter: contrast(1.25) saturate(1.2) drop-shadow(0 30px 120px rgba(var(--accent-rgb), 0.34));
       }
       .grain {
         position: fixed;
         inset: 0;
         pointer-events: none;
         z-index: -1;
-        opacity: 0.1;
+        opacity: 0.14;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
       }
       a {
@@ -853,6 +854,166 @@
       details.more li {
         margin-top: 8px;
       }
+      .edu-points {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .edu-point-card {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 10px 12px;
+      }
+      .edu-point-title {
+        margin: 0 0 6px;
+        font-size: 13.5px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.96);
+      }
+      .edu-line {
+        margin: 6px 0 0;
+        color: rgba(229, 238, 255, 0.82);
+        font-weight: 820;
+        line-height: 1.82;
+        font-size: 13px;
+      }
+      .edu-line b {
+        color: rgba(248, 251, 255, 0.96);
+      }
+      .basics-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .basics-card {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 12px;
+      }
+      .basics-card h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .basics-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-weight: 830;
+        line-height: 1.85;
+        font-size: 13.5px;
+      }
+      .basics-card a {
+        color: rgba(224, 255, 240, 0.95);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .academy-shell {
+        margin: 24px 0 0;
+        padding: 30px 0;
+        border-top: 1px solid rgba(var(--accent-rgb), 0.24);
+        border-bottom: 1px solid rgba(var(--accent-rgb), 0.2);
+        background:
+          radial-gradient(1200px 620px at 16% 0%, rgba(var(--accent-rgb), 0.12), transparent 62%),
+          radial-gradient(900px 500px at 86% 16%, rgba(var(--accent2-rgb), 0.12), transparent 68%),
+          linear-gradient(180deg, rgba(0, 6, 4, 0.72), rgba(0, 3, 2, 0.78));
+      }
+      .academy-head {
+        margin: 0 0 12px;
+      }
+      .academy-actions {
+        margin-top: 12px;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .academy-head h2 {
+        margin: 0;
+        font-size: clamp(24px, 3.6vw, 36px);
+        font-weight: 1000;
+        line-height: 1.2;
+      }
+      .academy-head p {
+        margin: 10px 0 0;
+        font-size: 14px;
+        line-height: 1.95;
+        color: var(--muted);
+        font-weight: 850;
+        max-width: 95ch;
+      }
+      .academy-links {
+        margin: 12px 0 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .academy-link-card {
+        border-radius: 14px;
+        border: 1px solid rgba(var(--accent-rgb), 0.3);
+        background: rgba(var(--accent-rgb), 0.08);
+        padding: 10px 12px;
+      }
+      .academy-link-card b {
+        display: block;
+        margin-bottom: 6px;
+      }
+      .academy-link-card a {
+        color: rgba(224, 255, 240, 0.95);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+        word-break: break-word;
+      }
+      .academy-body.collapsed {
+        display: none;
+      }
+      .micro-grid {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .micro-item {
+        border-radius: 14px;
+        border: 1px solid rgba(var(--accent-rgb), 0.26);
+        background: rgba(var(--accent-rgb), 0.08);
+        padding: 10px 12px;
+      }
+      .micro-item summary {
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 950;
+        line-height: 1.75;
+        color: rgba(236, 255, 247, 0.96);
+      }
+      .micro-item .micro-body {
+        margin-top: 8px;
+        color: rgba(218, 244, 231, 0.9);
+        line-height: 1.85;
+        font-size: 12.7px;
+        font-weight: 820;
+      }
+      .micro-item .micro-body p {
+        margin: 8px 0 0;
+      }
+      .micro-item .micro-body ul {
+        margin: 8px 0 0;
+        padding-inline-start: 18px;
+      }
+      .micro-more-wrap {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+      }
+      @media (max-width: 980px) {
+        .academy-links {
+          grid-template-columns: 1fr;
+        }
+        .micro-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       .split {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -1066,6 +1227,1036 @@
           transform: none !important;
         }
       }
+
+      /* ======= NEW NAVIGATION IMPROVEMENTS ======= */
+      
+      /* Back to Top Button */
+      .back-to-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(var(--accent2-rgb), 0.95), rgba(var(--accent-rgb), 0.85));
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 8px 32px rgba(var(--accent2-rgb), 0.4);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+      }
+      .back-to-top:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(var(--accent2-rgb), 0.5);
+      }
+
+      /* Sidebar Navigation */
+      .sidebar {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 280px;
+        height: 100vh;
+        background: rgba(6, 6, 16, 0.98);
+        backdrop-filter: blur(20px);
+        z-index: 10000;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow-y: auto;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+      }
+      .sidebar.open {
+        right: 0;
+      }
+      .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      .sidebar-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .sidebar-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .sidebar-close {
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 28px;
+        cursor: pointer;
+        padding: 4px;
+        line-height: 1;
+      }
+      .sidebar-section {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .sidebar-section-title {
+        font-size: 11px;
+        font-weight: 900;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+      }
+      .sidebar-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        color: var(--text);
+        font-weight: 800;
+        font-size: 14px;
+        transition: all 0.2s ease;
+        margin-bottom: 6px;
+      }
+      .sidebar-link:hover {
+        background: rgba(var(--accent-rgb), 0.15);
+        transform: translateX(-4px);
+      }
+      .sidebar-link.active {
+        background: rgba(var(--accent-rgb), 0.2);
+        border-right: 3px solid var(--accent);
+      }
+      .sidebar-link-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: rgba(var(--accent-rgb), 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      /* Sidebar Toggle Button */
+      .sidebar-toggle {
+        display: none;
+        background: rgba(var(--accent-rgb), 0.15);
+        border: 1px solid rgba(var(--accent-rgb), 0.3);
+        border-radius: 12px;
+        padding: 10px 14px;
+        color: var(--text);
+        font-size: 18px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .sidebar-toggle:hover {
+        background: rgba(var(--accent-rgb), 0.25);
+      }
+
+      /* Quick Links Panel */
+      .quick-links-panel {
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+        padding: 16px;
+        margin-top: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .quick-links-title {
+        font-size: 13px;
+        font-weight: 900;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+      .quick-links-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .quick-link-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        color: var(--text);
+        font-size: 11px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .quick-link-btn:hover {
+        background: rgba(var(--accent-rgb), 0.2);
+        border-color: rgba(var(--accent-rgb), 0.4);
+        transform: translateY(-2px);
+      }
+      .quick-link-btn span:first-child {
+        font-size: 20px;
+      }
+
+      /* Mobile Sidebar Button */
+      @media (max-width: 980px) {
+        .sidebar-toggle {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .sidebar-toggle-text {
+          font-size: 12px;
+          font-weight: 900;
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* Improved Nav Actions for Mobile */
+      @media (max-width: 768px) {
+        .nav-actions .btn {
+          padding: 8px 10px;
+          font-size: 11px;
+        }
+        .nav-actions .btn span:not(:first-child) {
+          display: none;
+        }
+        .back-to-top {
+          bottom: 16px;
+          right: 16px;
+          width: 44px;
+          height: 44px;
+          font-size: 18px;
+        }
+      }
+
+      /* Smooth scroll improvements */
+      html {
+        scroll-padding-top: 80px;
+      }
+
+      /* 2026 visual redesign */
+      :root {
+        color-scheme: dark;
+        --bg0: #000201;
+        --bg1: #010705;
+        --bg2: #000101;
+        --text: rgba(236, 255, 247, 0.95);
+        --muted: rgba(171, 217, 195, 0.74);
+        --line: rgba(111, 171, 139, 0.18);
+        --card: rgba(5, 18, 13, 0.66);
+        --card2: rgba(9, 26, 19, 0.75);
+        --accent: #00f5a0;
+        --accent-rgb: 0, 245, 160;
+        --accent2: #00b86b;
+        --accent2-rgb: 0, 184, 107;
+        --ok: #40e39f;
+        --ok-rgb: 64, 227, 159;
+        --warn: #f5e663;
+        --warn-rgb: 245, 230, 99;
+        --bad: #ff4d6d;
+        --bad-rgb: 255, 77, 109;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+        --r: 22px;
+        --container: 1240px;
+      }
+      html {
+        scroll-padding-top: calc(var(--nav-h, 84px) + 14px);
+      }
+      body {
+        color: var(--text);
+        font-family: "Tajawal", "Cairo", system-ui, sans-serif;
+        line-height: 1.6;
+        background:
+          radial-gradient(1200px 700px at 8% -5%, rgba(var(--accent2-rgb), 0.2), transparent 58%),
+          radial-gradient(900px 560px at 92% 4%, rgba(var(--accent-rgb), 0.12), transparent 62%),
+          radial-gradient(740px 440px at 55% 108%, rgba(var(--accent-rgb), 0.1), transparent 70%),
+          linear-gradient(180deg, #000, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
+      }
+      h1,
+      h2,
+      h3,
+      .brand,
+      .btn,
+      .sidebar-section-title {
+        font-family: "Changa", "Tajawal", system-ui, sans-serif;
+      }
+      .bg-mark {
+        z-index: -3;
+        opacity: 0.08;
+        background-size: min(860px, 94vw);
+        background-position: 84% 8%;
+        filter: contrast(1.15) saturate(1.05) drop-shadow(0 18px 50px rgba(8, 32, 24, 0.18));
+      }
+      .grain {
+        z-index: -2;
+        opacity: 0.025;
+      }
+
+      .nav {
+        background: rgba(0, 8, 5, 0.78);
+        border-bottom: 1px solid rgba(100, 165, 132, 0.2);
+        backdrop-filter: none;
+      }
+      .nav::after {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        bottom: -1px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.35), transparent);
+      }
+      .nav-inner {
+        display: grid;
+        grid-template-columns: auto minmax(240px, 1fr) auto;
+        align-items: center;
+        gap: 14px;
+        min-height: 82px;
+        padding: 10px 0;
+      }
+      .brand {
+        gap: 12px;
+      }
+      .logo {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        box-shadow: 0 14px 40px rgba(var(--accent-rgb), 0.18);
+        background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.9), rgba(var(--accent2-rgb), 0.88));
+      }
+      .logo img {
+        width: 30px;
+        height: 30px;
+        filter: brightness(0) invert(1) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.32));
+      }
+      .brand > div > div[data-i18n="brandTitle"] {
+        font-size: 20px;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: 0.1px;
+      }
+      .brand small {
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 12px;
+      }
+      .credit-top {
+        color: rgba(24, 42, 55, 0.72);
+        font-size: 11px;
+      }
+      .nav-links {
+        display: inline-flex;
+        justify-self: center;
+        padding: 4px;
+        border-radius: 999px;
+        background: rgba(24, 42, 55, 0.06);
+        border: 1px solid rgba(24, 42, 55, 0.12);
+        gap: 4px;
+      }
+      .navtab {
+        border: 0;
+        min-width: 88px;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .navtab.active {
+        color: #f8fcfc;
+        background: linear-gradient(140deg, var(--accent), #116a71);
+        box-shadow: 0 10px 26px rgba(var(--accent-rgb), 0.28);
+      }
+      .nav-actions {
+        justify-content: end;
+        gap: 8px;
+      }
+      .btn {
+        border-radius: 12px;
+        border: 1px solid rgba(24, 42, 55, 0.18);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(247, 241, 231, 0.86));
+        color: var(--text);
+        min-height: 42px;
+        font-size: 13px;
+        letter-spacing: 0.1px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(var(--accent-rgb), 0.45);
+        box-shadow: 0 12px 30px rgba(24, 42, 55, 0.16);
+      }
+      .btn.primary {
+        color: #f7fdfd;
+        border-color: rgba(var(--accent-rgb), 0.72);
+        background: linear-gradient(145deg, var(--accent), #0c5f59);
+      }
+      .btn.primary:hover {
+        box-shadow: 0 18px 34px rgba(var(--accent-rgb), 0.34);
+      }
+      .btn.ghost {
+        background: linear-gradient(180deg, rgba(var(--accent2-rgb), 0.17), rgba(var(--accent2-rgb), 0.08));
+        border-color: rgba(var(--accent2-rgb), 0.44);
+      }
+
+      header.hero {
+        padding: 18px 0 8px;
+      }
+      main {
+        padding: 14px 0 54px;
+      }
+      .panel {
+        border-radius: 24px;
+        background: linear-gradient(170deg, var(--card), var(--card2));
+        border: 1px solid rgba(24, 42, 55, 0.1);
+        box-shadow: var(--shadow);
+        overflow: clip;
+        position: relative;
+      }
+      .panel::before {
+        content: "";
+        position: absolute;
+        inset-inline: 0;
+        top: 0;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.7), rgba(var(--accent2-rgb), 0.55));
+        pointer-events: none;
+      }
+      .panel-inner {
+        padding: 20px;
+      }
+      .hero-top-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        grid-template-areas: "controls intro";
+        gap: 18px;
+        align-items: start;
+      }
+      .hero-top-grid > :first-child {
+        grid-area: intro;
+      }
+      .hero-controls {
+        grid-area: controls;
+        display: grid;
+        gap: 12px;
+        align-content: start;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 999px;
+        padding: 8px 13px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #165d57;
+        border: 1px solid rgba(var(--accent-rgb), 0.24);
+        background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.14), rgba(var(--accent2-rgb), 0.1));
+      }
+      h1[data-i18n="title"] {
+        margin: 12px 0 10px;
+        font-size: clamp(1.8rem, 1.6rem + 1.35vw, 2.55rem);
+        line-height: 1.16;
+        letter-spacing: 0.2px;
+      }
+      .sub {
+        margin: 0 0 12px;
+        color: #40515c;
+        font-size: 1rem;
+      }
+      .notice {
+        border-radius: 14px;
+        border: 1px solid rgba(var(--warn-rgb), 0.38);
+        background: linear-gradient(180deg, rgba(var(--warn-rgb), 0.15), rgba(var(--warn-rgb), 0.08));
+        color: #4b3609;
+      }
+      .notice li,
+      .notice span {
+        color: inherit;
+      }
+      .notice b {
+        color: #3d2d07;
+      }
+      .notice.liability {
+        border-color: rgba(var(--bad-rgb), 0.38);
+        background: linear-gradient(180deg, rgba(var(--bad-rgb), 0.12), rgba(var(--bad-rgb), 0.07));
+        color: #4a1f1f;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+        padding: 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(24, 42, 55, 0.12);
+        background: rgba(255, 255, 255, 0.68);
+      }
+      .controls .field:first-child {
+        grid-column: 1 / -1;
+      }
+      .field label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      input[type="search"],
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        border-radius: 12px;
+        border: 1px solid rgba(24, 42, 55, 0.18);
+        background: #fff;
+        color: var(--text);
+        font-size: 14px;
+        padding: 11px 12px;
+      }
+      input[type="search"]:focus,
+      input[type="text"]:focus,
+      select:focus,
+      textarea:focus {
+        border-color: rgba(var(--accent-rgb), 0.54);
+        box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.14);
+      }
+      .toggle-row {
+        gap: 8px;
+      }
+      .chip {
+        border-radius: 999px;
+        border: 1px solid rgba(24, 42, 55, 0.16);
+        background: #fff;
+        padding: 7px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #334751;
+      }
+      .chip input {
+        accent-color: var(--accent);
+      }
+      .chip.good {
+        border-color: rgba(var(--ok-rgb), 0.45);
+        background: rgba(var(--ok-rgb), 0.14);
+      }
+      .chip.warn {
+        border-color: rgba(var(--warn-rgb), 0.45);
+        background: rgba(var(--warn-rgb), 0.12);
+      }
+      .chip.bad {
+        border-color: rgba(var(--bad-rgb), 0.45);
+        background: rgba(var(--bad-rgb), 0.12);
+      }
+      .hero-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .hero-links .btn {
+        padding-inline: 12px;
+      }
+      .minihead {
+        font-size: 13px;
+        font-weight: 800;
+        color: #38515b;
+      }
+      .hint {
+        color: #61717b;
+        font-size: 13px;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .stat {
+        border-radius: 16px;
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.94), rgba(245, 237, 223, 0.9));
+        border: 1px solid rgba(24, 42, 55, 0.13);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      }
+      .stat .num {
+        color: #0c5f59;
+        font-size: clamp(1.18rem, 1rem + 0.6vw, 1.48rem);
+        font-weight: 800;
+      }
+      .stat .lbl {
+        color: #546670;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .import-box {
+        margin-top: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(var(--accent-rgb), 0.28);
+        background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.09), rgba(255, 255, 255, 0.85));
+      }
+      .import-box summary {
+        padding: 13px 14px;
+        font-weight: 800;
+        font-size: 14px;
+        color: #24414d;
+      }
+      .import-box.dragover {
+        border-color: rgba(var(--accent-rgb), 0.64);
+        box-shadow: 0 0 0 5px rgba(var(--accent-rgb), 0.18);
+      }
+      .import-inner {
+        padding: 0 14px 14px;
+      }
+      .split {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 14px;
+      }
+      textarea.mono,
+      .mono {
+        font-family: Consolas, "SFMono-Regular", Menlo, Monaco, "Courier New", monospace;
+      }
+      #jsonBox {
+        min-height: 240px;
+        resize: vertical;
+      }
+      .success,
+      .error {
+        margin-top: 10px;
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        border: 1px solid transparent;
+      }
+      .success {
+        background: rgba(var(--ok-rgb), 0.12);
+        border-color: rgba(var(--ok-rgb), 0.36);
+        color: #175238;
+      }
+      .error {
+        background: rgba(var(--bad-rgb), 0.12);
+        border-color: rgba(var(--bad-rgb), 0.36);
+        color: #5b1f1f;
+      }
+
+      .section-head {
+        margin: 18px 0 12px;
+        align-items: end;
+      }
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(1.32rem, 1.2rem + 0.5vw, 1.8rem);
+      }
+      .section-head p {
+        margin: 5px 0 0;
+        color: #516672;
+      }
+      .tag.tag-alt {
+        color: #124542;
+        background: rgba(var(--accent-rgb), 0.11);
+        border-color: rgba(var(--accent-rgb), 0.24);
+      }
+      .view-banner {
+        margin-bottom: 12px;
+      }
+      .view-banner.defense {
+        border-color: rgba(var(--ok-rgb), 0.38);
+        background: rgba(var(--ok-rgb), 0.12);
+        color: #20533a;
+      }
+      .view-banner.dual {
+        border-color: rgba(var(--warn-rgb), 0.38);
+        background: rgba(var(--warn-rgb), 0.13);
+        color: #5a3a0e;
+      }
+      .tools-toolbar {
+        border-radius: 16px;
+        border: 1px solid rgba(24, 42, 55, 0.14);
+        background: rgba(255, 255, 255, 0.73);
+        box-shadow: 0 12px 26px rgba(24, 42, 55, 0.1);
+      }
+      .tools-toolbar-left,
+      .tools-toolbar-right {
+        gap: 10px;
+      }
+      .sort-field {
+        min-width: 235px;
+      }
+      .sort-field label {
+        margin-bottom: 4px;
+      }
+
+      .tagbtn {
+        border-radius: 999px;
+        border: 1px solid rgba(24, 42, 55, 0.18);
+        background: #fff;
+        color: #36505e;
+        font-weight: 700;
+      }
+      .tagbtn.active,
+      .tagbtn:hover {
+        border-color: rgba(var(--accent-rgb), 0.45);
+        color: #fff;
+        background: linear-gradient(140deg, var(--accent), #0a6360);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+        gap: 14px;
+      }
+      .card {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(24, 42, 55, 0.15);
+        background:
+          radial-gradient(220px 120px at 100% 0%, rgba(var(--accent-rgb), 0.12), transparent 68%),
+          linear-gradient(170deg, rgba(255, 255, 255, 0.96), rgba(248, 242, 232, 0.94));
+        box-shadow: 0 12px 28px rgba(24, 42, 55, 0.1);
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(var(--accent-rgb), 0.34);
+        box-shadow: 0 18px 34px rgba(24, 42, 55, 0.16);
+      }
+      .card-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        gap: 8px;
+      }
+      .card h3 {
+        margin: 0;
+        font-size: 19px;
+        font-weight: 700;
+      }
+      .badge {
+        border-radius: 999px;
+        border: 1px solid rgba(var(--accent-rgb), 0.3);
+        background: rgba(var(--accent-rgb), 0.11);
+        color: #1b5955;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 5px 9px;
+        white-space: nowrap;
+      }
+      .card p {
+        margin: 10px 0;
+        color: #4c616c;
+      }
+      .risk {
+        gap: 8px;
+      }
+      .pill {
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 11px;
+        font-weight: 800;
+      }
+      .pill.low {
+        color: #1b5d40;
+        background: rgba(var(--ok-rgb), 0.14);
+        border: 1px solid rgba(var(--ok-rgb), 0.33);
+      }
+      .pill.med {
+        color: #6a4308;
+        background: rgba(var(--warn-rgb), 0.14);
+        border: 1px solid rgba(var(--warn-rgb), 0.36);
+      }
+      .pill.high {
+        color: #742626;
+        background: rgba(var(--bad-rgb), 0.15);
+        border: 1px solid rgba(var(--bad-rgb), 0.4);
+      }
+      .more {
+        margin-top: 10px;
+        border-radius: 12px;
+        border: 1px solid rgba(24, 42, 55, 0.14);
+        background: rgba(255, 255, 255, 0.85);
+      }
+      .more summary {
+        cursor: pointer;
+        padding: 9px 10px;
+        font-weight: 700;
+        color: #2f4b57;
+      }
+      .more[open] summary {
+        border-bottom: 1px solid rgba(24, 42, 55, 0.12);
+      }
+      .more ul {
+        margin: 0;
+        padding: 10px 16px 12px;
+      }
+      .more li {
+        margin: 0 0 6px;
+        color: #415963;
+      }
+      .tags {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .tags span {
+        border-radius: 999px;
+        background: rgba(24, 42, 55, 0.08);
+        color: #3e5663;
+        padding: 4px 8px;
+        font-size: 11px;
+        border: 1px solid rgba(24, 42, 55, 0.13);
+      }
+
+      .groups {
+        display: grid;
+        gap: 12px;
+      }
+      .catgroup {
+        border-radius: 16px;
+        border: 1px solid rgba(24, 42, 55, 0.15);
+        background: rgba(255, 255, 255, 0.7);
+      }
+      .catgroup > summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 12px 14px;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .catgroup > summary::-webkit-details-marker {
+        display: none;
+      }
+      .catmeta {
+        color: #4a6370;
+      }
+      .catbody {
+        padding: 0 12px 12px;
+      }
+      .tools-empty {
+        border-radius: 16px;
+        border: 1px dashed rgba(24, 42, 55, 0.26);
+        background: rgba(255, 255, 255, 0.6);
+        color: #4c5f6b;
+        font-weight: 700;
+      }
+
+      .back-to-top {
+        position: fixed;
+        inset-inline-end: 24px;
+        bottom: 22px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid rgba(var(--accent-rgb), 0.48);
+        background: linear-gradient(145deg, var(--accent), #0f6664);
+        color: #fff;
+        box-shadow: 0 16px 26px rgba(var(--accent-rgb), 0.36);
+        z-index: 70;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      }
+      .back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+
+      .sidebar {
+        width: min(360px, 94vw);
+        right: 0;
+        transform: translateX(108%);
+        transition: transform 0.32s ease;
+        background: linear-gradient(180deg, #f7f3ea, #f0e8d7);
+        border-left: 1px solid rgba(24, 42, 55, 0.2);
+        box-shadow: -20px 0 40px rgba(24, 42, 55, 0.2);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-overlay {
+        background: rgba(16, 24, 31, 0.52);
+      }
+      body.sidebar-open {
+        overflow: hidden;
+      }
+      .sidebar-header {
+        border-bottom: 1px solid rgba(24, 42, 55, 0.1);
+        padding-bottom: 12px;
+      }
+      .sidebar-close {
+        border: 1px solid rgba(24, 42, 55, 0.2);
+        background: rgba(255, 255, 255, 0.8);
+        color: #2f4a58;
+      }
+      .sidebar-section {
+        margin-top: 12px;
+        padding-top: 12px;
+      }
+      .sidebar-section-title {
+        font-size: 13px;
+        color: #436070;
+      }
+      .sidebar-link {
+        border-radius: 12px;
+        border: 1px solid rgba(24, 42, 55, 0.12);
+        background: rgba(255, 255, 255, 0.74);
+        color: #2b4552;
+      }
+      .sidebar-link:hover,
+      .sidebar-link.active {
+        border-color: rgba(var(--accent-rgb), 0.43);
+        background: rgba(var(--accent-rgb), 0.12);
+      }
+      .sidebar-link-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: rgba(24, 42, 55, 0.09);
+      }
+      .quick-link-btn {
+        border-radius: 10px;
+        background: #fff;
+        border-color: rgba(24, 42, 55, 0.13);
+      }
+      .quick-link-btn:hover {
+        border-color: rgba(var(--accent-rgb), 0.42);
+        background: rgba(var(--accent-rgb), 0.1);
+      }
+
+      footer {
+        padding: 18px 0 26px;
+      }
+      footer .container > div {
+        border-radius: 16px;
+        border: 1px solid rgba(24, 42, 55, 0.12);
+        background: rgba(255, 255, 255, 0.7);
+        padding: 12px 14px;
+      }
+      .credit {
+        margin-top: 4px;
+        color: #556a74;
+      }
+
+      [data-density="compact"] .panel-inner {
+        padding: 16px;
+      }
+      [data-density="compact"] .card {
+        padding: 13px;
+      }
+      [data-density="compact"] .grid {
+        gap: 10px;
+      }
+
+      @media (max-width: 1180px) {
+        .hero-top-grid {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-areas:
+            "intro"
+            "controls";
+        }
+      }
+      @media (max-width: 980px) {
+        .nav-inner {
+          grid-template-columns: 1fr auto;
+          min-height: 74px;
+        }
+        .nav-links {
+          display: none;
+        }
+        .sidebar-toggle {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          border-radius: 12px;
+          border: 1px solid rgba(24, 42, 55, 0.18);
+          background: rgba(255, 255, 255, 0.8);
+          color: #355262;
+          min-height: 42px;
+        }
+        .sidebar-toggle-text {
+          font-size: 12px;
+          font-weight: 700;
+        }
+        .nav-actions {
+          justify-content: end;
+          grid-column: 1 / -1;
+          flex-wrap: wrap;
+        }
+        .split {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .container {
+          width: min(var(--container), 95vw);
+        }
+        .panel-inner {
+          padding: 14px;
+        }
+        .controls {
+          grid-template-columns: minmax(0, 1fr);
+        }
+        .controls .field:first-child {
+          grid-column: 1;
+        }
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .tools-toolbar-left,
+        .tools-toolbar-right {
+          width: 100%;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+        .sort-field {
+          min-width: 100%;
+        }
+        .nav-actions .btn {
+          min-height: 38px;
+          font-size: 12px;
+          padding: 8px 10px;
+        }
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        @keyframes riseIn {
+          from {
+            opacity: 0;
+            transform: translateY(18px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .panel,
+        .section-head,
+        .tools-toolbar {
+          animation: riseIn 0.5s ease both;
+        }
+        .grid > .card:nth-child(-n + 10),
+        .groups > .catgroup:nth-child(-n + 6) {
+          animation: riseIn 0.38s ease both;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1082,12 +2273,10 @@
               <small class="credit-top" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده</small>
             </div>
           </div>
-          <div class="nav-links" aria-label="Sections">
-            <button class="btn navtab" type="button" data-view="all"><span data-i18n="navAll">الكل</span></button>
-            <button class="btn navtab" type="button" data-view="defense"><span data-i18n="navDefense">الدفاع</span></button>
-            <button class="btn navtab" type="button" data-view="dual"><span data-i18n="navDual">الهجوم (ثنائي الاستخدام)</span></button>
-          </div>
           <div class="nav-actions">
+            <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="فتح القائمة">
+              <span>☰</span><span class="sidebar-toggle-text">القائمة</span>
+            </button>
             <button id="langBtn" class="btn ghost" type="button" title="Toggle language">
               <span aria-hidden="true">🌐</span><span id="langBtnText">AR</span>
             </button>
@@ -1099,6 +2288,99 @@
             </button>
             <button id="resetBtn" class="btn primary" type="button">
               <span aria-hidden="true">↺</span><span data-i18n="reset">إعادة ضبط</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="العودة للأعلى">↑</button>
+    
+    <!-- Sidebar Overlay -->
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+    
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="sidebar" aria-label="قائمة التنقل">
+      <div class="sidebar-header">
+        <span style="font-weight: 900; font-size: 16px;">القائمة</span>
+        <button id="sidebarClose" class="sidebar-close" aria-label="إغلاق القائمة">×</button>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">الأقسام الرئيسية</div>
+        <a href="#eduPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">📚</div>
+          <span>الشرح التعليمي</span>
+        </a>
+        <a href="#edu100Panel" class="sidebar-link">
+          <div class="sidebar-link-icon">📖</div>
+          <span>منهج 100 نقطة</span>
+        </a>
+        <a href="#importPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">📥</div>
+          <span>استيراد أدوات</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">تصفية سريعة</div>
+        <a href="#" class="sidebar-link" data-filter="all">
+          <div class="sidebar-link-icon">🌐</div>
+          <span>عرض الكل</span>
+        </a>
+        <a href="#" class="sidebar-link" data-filter="defense">
+          <div class="sidebar-link-icon">🛡️</div>
+          <span>الأدوات الدفاعية</span>
+        </a>
+        <a href="#" class="sidebar-link" data-filter="dual">
+          <div class="sidebar-link-icon">⚔️</div>
+          <span>ثنائي الاستخدام</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">التصنيفات</div>
+        <a href="#" class="sidebar-link" data-category="Network">
+          <div class="sidebar-link-icon">🌐</div>
+          <span>الشبكات</span>
+        </a>
+        <a href="#" class="sidebar-link" data-category="Web">
+          <div class="sidebar-link-icon">🌍</div>
+          <span>الويب</span>
+        </a>
+        <a href="#" class="sidebar-link" data-category="Forensics">
+          <div class="sidebar-link-icon">🔍</div>
+          <span>التحليل الجنائي</span>
+        </a>
+        <a href="#" class="sidebar-link" data-category="Passwords">
+          <div class="sidebar-link-icon">🔑</div>
+          <span>كلمات المرور</span>
+        </a>
+        <a href="#" class="sidebar-link" data-category="Wireless">
+          <div class="sidebar-link-icon">📶</div>
+          <span>اللاسلكي</span>
+        </a>
+      </div>
+      
+      <div class="sidebar-section">
+        <div class="quick-links-panel">
+          <div class="quick-links-title">روابط سريعة</div>
+          <div class="quick-links-grid">
+            <button class="quick-link-btn" id="quickSearch">
+              <span>🔎</span>
+              <span>بحث</span>
+            </button>
+            <button class="quick-link-btn" id="quickExport">
+              <span>📤</span>
+              <span>تصدير</span>
+            </button>
+            <button class="quick-link-btn" id="quickReset">
+              <span>🔄</span>
+              <span>إعادة ضبط</span>
+            </button>
+            <button class="quick-link-btn" id="quickLang">
+              <span>🌐</span>
+              <span>اللغة</span>
             </button>
           </div>
         </div>
@@ -1166,7 +2448,7 @@
                   </span>
                 </div>
                 <div class="hero-links" aria-label="Quick links">
-                  <a class="btn primary" href="#toolsWrap"><span aria-hidden="true">⬇</span><span data-i18n="sectionsLinkTools">الأدوات</span></a>
+                  <a class="btn" href="#academySection"><span aria-hidden="true">🎓</span><span data-i18n="sectionsLinkAcademy">الأكاديمية</span></a>
                   <a class="btn" href="#eduPanel"><span aria-hidden="true">📚</span><span data-i18n="sectionsLinkEdu">الشرح التعليمي</span></a>
                   <a class="btn ghost" href="#jsonBox"><span aria-hidden="true">＋</span><span data-i18n="sectionsLinkImport">الاستيراد</span></a>
                 </div>
@@ -1265,44 +2547,6 @@
     </header>
     <main>
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 data-i18n="toolsTitle">الأدوات</h2>
-            <p data-i18n="toolsDesc">
-              قائمة مبدئية لأشهر الأدوات على كالي. افتح "شرح مفصل" و"شرح الأوامر" داخل كل بطاقة لمزيد من السياق (بدون خطوات هجوم أو أوامر استغلال). أضف باقي الأدوات عبر
-              الاستيراد إذا بدك قائمة كاملة.
-            </p>
-          </div>
-          <div class="tag tag-alt">
-            <span id="activeFilters">—</span>
-          </div>
-        </div>
-        <div id="viewBanner" class="notice view-banner" role="note" style="display: none">
-          <b id="viewBannerHead"></b>
-          <span id="viewBannerBody"></span>
-        </div>
-        <div id="toolsToolbar" class="tools-toolbar" aria-label="Tools layout and ordering">
-          <div class="tools-toolbar-left">
-            <div class="field sort-field">
-              <label for="sort" data-i18n="sortLbl">الترتيب</label>
-              <select id="sort"></select>
-            </div>
-            <span class="chip">
-              <input id="groupByCat" type="checkbox" />
-              <span data-i18n="groupByCat">تجميع حسب التصنيف</span>
-            </span>
-          </div>
-          <div class="tools-toolbar-right">
-            <button id="expandCatsBtn" class="btn" type="button" style="display: none">
-              <span aria-hidden="true">▾</span><span data-i18n="expandAll">فتح الكل</span>
-            </button>
-            <button id="collapseCatsBtn" class="btn" type="button" style="display: none">
-              <span aria-hidden="true">▸</span><span data-i18n="collapseAll">إغلاق الكل</span>
-            </button>
-          </div>
-        </div>
-        <section id="toolsWrap" class="grid" aria-live="polite"></section>
-        <div id="toolsEmpty" class="tools-empty" style="display: none"></div>
         <section class="panel" id="eduPanel" style="margin: 12px 0 16px">
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
@@ -1426,7 +2670,7 @@ Report template:
                     <li data-i18n="eduStorage1">الاستيراد يتم محلياً داخل المتصفح (لا يوجد إرسال لخادم).</li>
                     <li data-i18n="eduStorage2">يتم حفظ الإعدادات والقائمة في localStorage لتبقى بعد إعادة فتح الصفحة.</li>
                     <li data-i18n="eduStorage3">عند الاستيراد، يتم دمج الأدوات بالاسم (آخر نسخة تفوز).</li>
-                    <li data-i18n="eduStorage4">تم توليد القائمة تلقائياً حتى تصل لعدد كبير (حاليًا 1000) لاختبار البحث والفلترة.</li>
+                    <li data-i18n="eduStorage4">تم حذف القائمة المدمجة للأدوات حاليًا (0 أداة مدمجة).</li>
                   </ul>
                 </details>
               </div>
@@ -1455,8 +2699,55 @@ Report template:
             </div>
           </div>
         </section>
+        <div id="activeFilters" hidden></div>
+        <div id="viewBanner" hidden><b id="viewBannerHead"></b><span id="viewBannerBody"></span></div>
+        <section id="toolsWrap" hidden aria-live="polite"></section>
+        <div id="toolsEmpty" hidden></div>
       </div>
     </main>
+    <section class="academy-shell" id="academySection">
+      <div class="container">
+        <div class="academy-head">
+          <h2 data-i18n="academyTitle">الأكاديمية الشاملة: من الصفر حتى الاحتراف</h2>
+          <p data-i18n="academyDesc">
+            قسم مستقل بالكامل عن بقية الأقسام، يقدم منهجًا طويلًا ومتعمقًا من تشغيل الكمبيوتر لأول مرة حتى إدارة مختبر كالي لينكس واستخدام الأدوات بشكل قانوني وآمن.
+          </p>
+          <div class="notice liability" role="note">
+            <b data-i18n="academyLegalHead">تنبيه مهم:</b>
+            <span data-i18n="academyLegalBody">
+              هذا القسم للتعليم والتوعية فقط. لا يتضمن خطوات استغلال أو تنفيذ هجومي على أهداف. أي تطبيق يجب أن يكون ضمن تفويض قانوني واضح.
+            </span>
+          </div>
+          <div class="academy-actions">
+            <button id="academyToggleBtn" class="btn" type="button">
+              <span aria-hidden="true">▾</span><span data-i18n="academyCollapse">إغلاق القسم</span>
+            </button>
+            <button id="academyDownloadBtn" class="btn ghost" type="button">
+              <span aria-hidden="true">⤓</span><span data-i18n="academyDownload">تحميل الأكاديمية</span>
+            </button>
+          </div>
+          <div class="academy-links" id="academyDownloads"></div>
+        </div>
+        <div class="split academy-body" id="academyBody">
+          <div>
+            <div class="minihead" data-i18n="academy50Head">50 خطة أساسيات الكمبيوتر</div>
+            <div id="academy50Plans" class="basics-grid"></div>
+            <div class="minihead" data-i18n="academyModulesHead">الوحدات المتعمقة</div>
+            <div id="academyModules" class="basics-grid"></div>
+          </div>
+          <div>
+            <div class="minihead">
+              <span data-i18n="academyLibraryHead">مكتبة مهام تدريبية ضخمة</span>
+              <span id="basicsMicroCount" class="tag tag-alt" style="margin-inline-start: 8px">0</span>
+            </div>
+            <div id="basicsMicro" class="micro-grid"></div>
+            <div class="micro-more-wrap">
+              <button id="basicsMicroMore" class="btn" type="button" data-i18n="academyLoadMore">تحميل المزيد</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <footer>
       <div class="container">
         <div style="margin-top: 8px">
@@ -1482,6 +2773,7 @@ Report template:
           sectionsTitle: "أقسام الموقع",
           sectionsDesc: "روابط سريعة وأقسام تساعدك توصل للمحتوى بسرعة.",
           sectionsLinksHead: "روابط سريعة",
+          sectionsLinkAcademy: "الأكاديمية",
           sectionsLinkEdu: "الشرح التعليمي",
           sectionsLinkImport: "الاستيراد",
           sectionsLinkTools: "الأدوات",
@@ -1506,7 +2798,7 @@ Report template:
           sortLbl: "الترتيب",
           sortCat: "التصنيف ثم الاسم",
           sortName: "الاسم (A-Z)",
-          sortRiskAsc: "الخطورة: منخفض -> عالي",
+          sortRiskAsc: "",
           sortRiskDesc: "الخطورة: عالي -> منخفض",
           sortType: "الدفاع أولاً",
           groupByCat: "تجميع حسب التصنيف",
@@ -1543,9 +2835,8 @@ Report template:
             "1) صنّف الأدوات حسب \"المجال\" (شبكات، ويب، جنائي، هندسة عكسية...). 2) استخدم risk لتفعيل وضع الأمان. 3) اجعل الوصف عاماً وغير إجرائي (بدون خطوات أو أوامر).",
           privacyHead: "الخصوصية",
           privacyBody: "الاستيراد والتصدير يتمان داخل المتصفح فقط. لا يوجد إرسال بيانات لخادم.",
-          toolsTitle: "الأدوات",
-          toolsDesc:
-            "قائمة مبدئية لأشهر الأدوات على كالي. افتح \"شرح مفصل\" و\"شرح الأوامر\" داخل كل بطاقة لمزيد من السياق (بدون خطوات هجوم أو أوامر استغلال). أضف باقي الأدوات عبر الاستيراد إذا بدك قائمة كاملة.",
+          toolsTitle: "",
+          toolsDesc: "",
           eduTitle: "شرح برمجة الحماية/الهجوم (تعليمي)",
           eduDesc:
             "شرح مبسّط لكيف تُصنَّف الأدوات وكيف تعمل الفلاتر ووضع الأمان داخل هذه الصفحة (بدون خطوات هجوم أو أوامر استغلال).",
@@ -1622,14 +2913,32 @@ log(event)`,
 - التوصية`,
           edu100Title: "منهج 100 نقطة (حماية + محاكاة هجومية)",
           edu100Desc:
-            "100 نقطة تعليمية منظمة على شكل أقسام: 50 للدفاع (الحماية) و50 للتفكير الهجومي الآمن (محاكاة قانونية)، بدون تفاصيل تشغيلية.",
+            "منهج متعمّق من 100 نقطة: 50 للدفاع و50 للتفكير الهجومي الآمن، مع شرح مبسّط جداً + أمثلة واقعية لكل محور، بدون خطوات تشغيل هجومية.",
           edu100DefenseHead: "الدفاع (Secure Coding)",
           edu100AttackHead: "الهجوم (تفكير هجومي آمن)",
+          basicsTitle: "أساسيات الكمبيوتر من الصفر حتى الاحتراف",
+          basicsDesc:
+            "مسار تعليمي تدريجي يبدأ من تشغيل الكمبيوتر لأول مرة، مرورًا بالأنظمة والشبكات والأمان، حتى تشغيل كالي لينكس بشكل قانوني واستخدام الأدوات بصورة احترافية وآمنة.",
+          basicsRoadmapHead: "خارطة التعلم التفصيلية",
+          basicsMicroHead: "مكتبة تدريب مكثفة",
+          academyTitle: "الأكاديمية الشاملة: من الصفر حتى الاحتراف",
+          academyDesc:
+            "قسم مستقل بالكامل عن بقية الأقسام، يقدم منهجًا طويلًا ومتعمقًا من تشغيل الكمبيوتر لأول مرة حتى إدارة مختبر كالي لينكس واستخدام الأدوات بشكل قانوني وآمن.",
+          academyLegalHead: "تنبيه مهم:",
+          academyLegalBody:
+            "هذا القسم للتعليم والتوعية فقط. لا يتضمن خطوات استغلال أو تنفيذ هجومي على أهداف. أي تطبيق يجب أن يكون ضمن تفويض قانوني واضح.",
+          academyModulesHead: "الوحدات المتعمقة",
+          academy50Head: "50 خطة أساسيات الكمبيوتر",
+          academyLibraryHead: "مكتبة مهام تدريبية ضخمة",
+          academyLoadMore: "تحميل المزيد",
+          academyCollapse: "إغلاق القسم",
+          academyExpand: "فتح القسم",
+          academyDownload: "تحميل الأكاديمية",
           eduStorageHead: "الاستيراد والتخزين",
           eduStorage1: "الاستيراد يتم محلياً داخل المتصفح (لا يوجد إرسال لخادم).",
           eduStorage2: "يتم حفظ الإعدادات والقائمة في localStorage لتبقى بعد إعادة فتح الصفحة.",
           eduStorage3: "عند الاستيراد، يتم دمج الأدوات بالاسم (آخر نسخة تفوز).",
-          eduStorage4: "تم توليد القائمة تلقائياً حتى تصل لعدد كبير (حاليًا 1000) لاختبار البحث والفلترة.",
+          eduStorage4: "تم حذف القائمة المدمجة للأدوات حاليًا (0 أداة مدمجة).",
           catAll: "كل التصنيفات",
           riskAll: "كل المستويات",
           riskLow: "منخفض",
@@ -1639,10 +2948,9 @@ log(event)`,
           dualUse: "ثنائي الاستخدام",
           detailsToggle: "شرح مفصل",
           cmdToggle: "شرح الأوامر",
-           filtersNone: "بدون فلاتر",
+           filtersNone: "",
            hiddenCount: (n) => `مخفي: ${n}`,
-           empty:
-             "لا يوجد نتائج حسب الفلاتر الحالية. جرّب تغيير التصنيف/الخطورة أو أوقف وضع الأمان مؤقتاً.",
+           empty: "",
            importedOk: (n) => `تم استيراد ${n} أداة.`,
            importedNone: "لا يوجد أدوات جديدة للاستيراد (كلها موجودة بالفعل).",
            importedBad: "JSON غير صالح أو البيانات لا تطابق المخطط.",
@@ -1662,6 +2970,7 @@ log(event)`,
           sectionsTitle: "Site Sections",
           sectionsDesc: "Quick links and sections to help you reach content faster.",
           sectionsLinksHead: "Quick Links",
+          sectionsLinkAcademy: "Academy",
           sectionsLinkEdu: "Education",
           sectionsLinkImport: "Import",
           sectionsLinkTools: "Tools",
@@ -1686,7 +2995,7 @@ log(event)`,
           sortLbl: "Sort",
           sortCat: "Category then name",
           sortName: "Name (A-Z)",
-          sortRiskAsc: "Risk (low to high)",
+          sortRiskAsc: "",
           sortRiskDesc: "Risk (high to low)",
           sortType: "Defensive first",
           groupByCat: "Group by category",
@@ -1721,9 +3030,8 @@ log(event)`,
             '1) Group tools by domain (network, web, forensics, reverse engineering...). 2) Use "risk" to support safety mode. 3) Keep descriptions general (no steps/commands).',
           privacyHead: "Privacy",
           privacyBody: "Import/export happens in your browser only. No data is sent to any server.",
-          toolsTitle: "Tools",
-          toolsDesc:
-            'A starter list of popular tools on Kali. Open "Detailed explanation" and "Command overview" on any card for more context (no exploit steps or target-facing attack commands). Import more if you need a full catalog.',
+          toolsTitle: "",
+          toolsDesc: "",
           eduTitle: "Protection/Attack Logic (Educational)",
           eduDesc:
             "A simplified explanation of how tools are classified and how Safety Mode and filters work on this page (no exploit steps or target-facing commands).",
@@ -1800,14 +3108,32 @@ log(event)`,
 - Recommendation`,
           edu100Title: "100-Point Curriculum (Defense + Safe Offensive Mindset)",
           edu100Desc:
-            "A structured educational curriculum: 50 defense (secure coding) points and 50 safe offensive mindset points (legal simulation), without operational details.",
+            "A deep 100-point curriculum: 50 defense + 50 safe offensive mindset points, with beginner-friendly explanation and real-world examples per module (no operational attack steps).",
           edu100DefenseHead: "Defense (Secure Coding)",
           edu100AttackHead: "Offense (Safe Mindset)",
+          basicsTitle: "Computer Basics From Zero To Professional",
+          basicsDesc:
+            "A step-by-step educational path from first boot, through OS/network/security foundations, to legal Kali Linux setup and professional safe tool usage.",
+          basicsRoadmapHead: "Detailed Learning Roadmap",
+          basicsMicroHead: "Intensive Training Library",
+          academyTitle: "Comprehensive Academy: From Zero To Professional",
+          academyDesc:
+            "A fully separate section from the rest of the page, delivering a long and deep curriculum from first boot to running a legal Kali lab and using tools safely.",
+          academyLegalHead: "Important notice:",
+          academyLegalBody:
+            "This section is for education and awareness only. It does not provide exploit steps or offensive target instructions. Any practical work must stay within legal authorization.",
+          academyModulesHead: "Deep-Dive Modules",
+          academy50Head: "50 Computer Basics Plans",
+          academyLibraryHead: "Massive Training Task Library",
+          academyLoadMore: "Load More",
+          academyCollapse: "Collapse Section",
+          academyExpand: "Expand Section",
+          academyDownload: "Download Academy",
           eduStorageHead: "Import and Storage",
           eduStorage1: "Import runs locally in your browser (no server upload).",
           eduStorage2: "Settings and tool lists are stored in localStorage for persistence.",
           eduStorage3: "Imports merge by tool name (last write wins).",
-          eduStorage4: "The built-in list is auto-expanded to a large size (currently 1000) to test browsing/search/filter UX.",
+          eduStorage4: "The built-in tool list has been removed (currently 0 built-in tools).",
           catAll: "All categories",
           riskAll: "All levels",
           riskLow: "Low",
@@ -1817,9 +3143,9 @@ log(event)`,
           dualUse: "Dual-use",
           detailsToggle: "Detailed explanation",
           cmdToggle: "Command overview",
-           filtersNone: "No filters",
+           filtersNone: "",
            hiddenCount: (n) => `Hidden: ${n}`,
-           empty: "No results for the current filters. Try changing category/risk or temporarily disabling Safety mode.",
+           empty: "",
            importedOk: (n) => `Imported ${n} tools.`,
            importedNone: "No new tools to import (already present).",
            importedBad: "Invalid JSON or schema mismatch.",
@@ -3299,6 +4625,986 @@ log(event)`,
           ]
         }
       ];
+      const EDU100_EXTRAS = {
+        ar: {
+          defense: [
+            {
+              intro: "فكر فيها كالتالي: أي مدخل من المستخدم هو باب. إذا ما ركّبت له قفل واضح (نوع/طول/صيغة)، رح يدخل منه خطأ أو ضرر.",
+              example: "نظام تسجيل عضوية قبل يقبل عمر المستخدم كنص. إدخال قيمة غير متوقعة عطّل التقارير. بعد تطبيق Schema صار النظام يرفض القيم الخاطئة من البداية."
+            },
+            {
+              intro: "المصادقة هي إثبات الهوية، وليست صلاحية كاملة. يعني الشخص يثبت نفسه أولاً، وبعدين النظام يحدد ماذا يسمح له.",
+              example: "شركة تعرضت لتسريب كلمات مرور قديمة. الحسابات اللي كان عليها MFA ما تم الدخول لها، بينما الحسابات بدون MFA تضررت."
+            },
+            {
+              intro: "لا تخلط بين “مستخدم مسجل دخول” و“مستخدم مسموح له”. التفويض لازم يتحقق على كل مورد حساس.",
+              example: "مستخدم عادي غيّر رقم طلب في الرابط وشاف طلبات غيره. بعد تطبيق Object-level checks رجع كل مستخدم يشوف طلباته فقط."
+            },
+            {
+              intro: "الأسرار مثل مفاتيح البيت. إذا حطيتها في مكان مكشوف (الكود/الواجهة)، أي شخص يقدر يأخذها.",
+              example: "API key كان داخل مستودع Git عام. تم سحبه واستخدامه بشكل خاطئ. بعد نقل المفاتيح إلى Secret Manager انتهت المشكلة."
+            },
+            {
+              intro: "التشفير مش مجرد زر تشغيل. إذا إدارة المفاتيح غلط، التشفير يصير شكلي.",
+              example: "نسخة احتياطية كانت مشفرة، لكن مفتاح التشفير محفوظ بنفس السيرفر. بعد حادثة اختراق صار كل شيء مكشوف. تم فصل المفاتيح عن البيانات لاحقًا."
+            },
+            {
+              intro: "أمن الويب يبدأ من ضبط الحدود: من يدخل؟ ماذا يدخل؟ ماذا يخرج؟ وكيف يظهر في المتصفح.",
+              example: "تعليق مستخدم احتوى سكربت ضار ظهر للزوار. بعد Output Encoding + CSP انغلق مسار XSS."
+            },
+            {
+              intro: "إذا ما في Logs جيدة، أنت أعمى وقت الحادث. التسجيل الجيد يعني رؤية واضحة لما حدث ومتى وكيف.",
+              example: "محاولة رفع صلاحيات تكررت أسبوعًا بدون اكتشاف. بعد تنبيه SIEM على تغيّر الأدوار انكشف السلوك خلال دقائق."
+            },
+            {
+              intro: "كل مكتبة تضيفها هي باب جديد. لازم تراجعها مثل أي جزء من النظام.",
+              example: "مكتبة طرف ثالث فيها ثغرة حرجة ظلت أشهر. بعد إدخال Dependency Scanning في CI صار الإنذار يظهر مع كل Build."
+            },
+            {
+              intro: "الاختبار الأمني ليس مرحلة أخيرة؛ هو فحص مستمر يمنع رجوع نفس الخطأ.",
+              example: "Bug صلاحيات رجع مرتين بعد كل تحديث. بعد إضافة اختبار تكامل مخصص للصلاحيات توقف تكراره تمامًا."
+            },
+            {
+              intro: "المعمارية الواضحة تقلل المخاطر. التعقيد الزائد يخلق زوايا مظلمة لا يراها أحد.",
+              example: "خدمة قديمة بلا مالك كانت مفتوحة داخل الشبكة. Threat modeling كشفها، وتم عزلها وإغلاق المنافذ غير الضرورية."
+            }
+          ],
+          attack: [
+            {
+              intro: "التفكير الهجومي الآمن يعني: نفكر مثل المهاجم حتى نقفل الأبواب، بدون أي استخدام ضار.",
+              example: "فريق أمن بدأ اختبار بدون Scope واضح فتوقفت خدمة داخلية بالخطأ. بعد اعتماد Rules of Engagement صار كل اختبار منضبط."
+            },
+            {
+              intro: "كل ميزة لها “طريقة إساءة استخدام”. إذا تتخيلها مسبقًا، تقدر تمنعها قبل ما تظهر بالميدان.",
+              example: "ميزة قسائم خصم سمحت بقيم سالبة. عميل قدر يزيد رصيد بدل الخصم. Abuse-case review كشف السيناريو وتم منعه."
+            },
+            {
+              intro: "الاختبار الأمني الجيد مثل تجربة علمية: فرضية واضحة، نتيجة متوقعة، وأدلة قابلة للمراجعة.",
+              example: "بدل تقرير عام “في مشكلة صلاحيات”، تمت كتابة حالات اختبار دقيقة لكل دور. الإصلاح أصبح أسرع وأدق."
+            },
+            {
+              intro: "Fuzzing يعني رمي مدخلات كثيرة وغير متوقعة لاكتشاف نقاط الانهيار قبل المستخدمين أو المهاجمين.",
+              example: "Parser ملفات كان ينهار مع ملف كبير جدًا. fuzz test كشفه، وتمت إضافة حدود حجم ومعالجة آمنة."
+            },
+            {
+              intro: "سطح الهجوم هو كل نقطة يمكن الدخول منها. كل نقطة لازم تكون معروفة ومضبوطة ومراقبة.",
+              example: "Webhook قديم بلا توثيق كان منفذًا مخفيًا. جرد السطح المكشوف كشفه، وتم إضافة تحقق توقيع وإغلاق المسار المفتوح."
+            },
+            {
+              intro: "وجود الضابط لا يعني فعاليته. لازم قياس حقيقي: هل يوقف السلوك الخطر فعلاً؟",
+              example: "Rate limit كان مفعّل شكليًا لكنه لا يعمل خلف Proxy. اختبار التحقق كشف المشكلة وتم تصحيح إعدادات الـIP forwarding."
+            },
+            {
+              intro: "وقت الاختبار، حماية الخصوصية جزء من المهنية. لا يجوز أن يتحول الاختبار نفسه إلى مصدر تسريب.",
+              example: "تقرير احتوى بيانات عملاء حقيقية في screenshots. بعد سياسة redaction صار التقرير يثبت المشكلة بدون كشف البيانات."
+            },
+            {
+              intro: "التقرير الممتاز ما يكتفي بوصف المشكلة، بل يشرح الأثر ويعطي طريق إصلاح واضح وقابل للتنفيذ.",
+              example: "بدل “ثغرة XSS موجودة”، التقرير صار يحتوي تأثير الأعمال + Fix + Test regression، فتم الإغلاق خلال يومين."
+            },
+            {
+              intro: "التعاون البنفسجي (Purple Team) يحوّل المعرفة إلى دفاع دائم بدل جهود منفصلة.",
+              example: "نفس التنبيه كان يتكرر كل أسبوع. بعد ورشة Purple Team تم تحويله إلى قاعدة كشف + Playbook موحد."
+            },
+            {
+              intro: "الثقافة الأمنية تعني أن كل شخص يفكر بالأمان أثناء عمله اليومي، وليس فقط وقت التدقيق.",
+              example: "فريق التطوير بدأ يراجع الأمن في Pull Requests كمعيار ثابت، فانخفضت المشاكل قبل الوصول للإنتاج."
+            }
+          ]
+        },
+        en: {
+          defense: [],
+          attack: []
+        }
+      };
+      (function enrichEdu100() {
+        const tracks = ["defense", "attack"];
+        const langs = ["ar", "en"];
+        for (const langKey of langs) {
+          for (const track of tracks) {
+            const modules = (EDU100 && EDU100[langKey] && EDU100[langKey][track]) || [];
+            const extras = (EDU100_EXTRAS && EDU100_EXTRAS[langKey] && EDU100_EXTRAS[langKey][track]) || [];
+            for (let i = 0; i < modules.length; i++) {
+              const mod = modules[i];
+              const ex = extras[i];
+              if (!mod || !ex) continue;
+              if (!mod.intro && ex.intro) mod.intro = ex.intro;
+              if (!mod.example && ex.example) mod.example = ex.example;
+            }
+          }
+        }
+      })();
+      const BASICS_ROADMAP = {
+        ar: [
+          {
+            title: "1) من لحظة تشغيل الكمبيوتر",
+            summary:
+              "افهم زر التشغيل، شاشة الإقلاع، الفرق بين BIOS/UEFI، ومعنى Boot Device. الهدف هنا إنك تعرف لماذا الجهاز يقلع أو يتعطل قبل دخول النظام.",
+            example: "مثال واقعي: جهاز لا يقلع لأن ترتيب الإقلاع على USB. تعديل Boot Order حل المشكلة فورًا."
+          },
+          {
+            title: "2) مكونات الجهاز (Hardware) ببساطة",
+            summary:
+              "تعلم وظيفة CPU, RAM, SSD/HDD, GPU, Motherboard، وكيف تؤثر على الأداء والاستقرار. راقب الحرارة والاستهلاك لتفهم الأعطال مبكرًا.",
+            example: "مثال واقعي: بطء شديد كان سببه RAM ممتلئة دائمًا، تمت الترقية فتحسن الأداء بشكل واضح."
+          },
+          {
+            title: "3) نظام التشغيل من الداخل",
+            summary:
+              "افهم الملفات، المستخدمين، الصلاحيات، العمليات والخدمات. هذا الأساس قبل أي أدوات متقدمة.",
+            example: "مثال واقعي: برنامج لا يعمل لأن المستخدم بدون صلاحية كتابة على مجلد الإعدادات."
+          },
+          {
+            title: "4) إدارة الملفات والنسخ الاحتياطي",
+            summary:
+              "رتّب الملفات، افهم الامتدادات، وأتقن النسخ الاحتياطي 3-2-1. أي احتراف بدون Backup مجرّد مخاطرة.",
+            example: "مثال واقعي: خطأ حذف ملفات مشروع، تم الاسترجاع خلال دقائق من نسخة يومية."
+          },
+          {
+            title: "5) أساسيات الشبكات للكل",
+            summary:
+              "تعلم IP, Gateway, DNS, DHCP, Subnet بطريقة عملية. بدون شبكة ما في فهم حقيقي لأدوات الأمن.",
+            example: "مثال واقعي: انقطاع الإنترنت كان بسبب DNS خاطئ، تبديله أعاد الخدمة."
+          },
+          {
+            title: "6) سطر الأوامر Linux/Windows",
+            summary:
+              "تعلم أوامر التنقل، قراءة المساعدة، إدارة المخرجات، وفحص الأخطاء. سطر الأوامر هو قلب العمل الاحترافي.",
+            example: "مثال واقعي: استخدام logs عبر CLI اختصر وقت تشخيص المشكلة من ساعة إلى دقائق."
+          },
+          {
+            title: "7) تثبيت كالي لينكس بشكل قانوني وآمن",
+            summary:
+              "ابدأ ببيئة افتراضية (VirtualBox/VMware)، حمّل الصورة الرسمية، تحقق من السلامة (checksum)، ثم إعداد مستخدم وتحديثات أساسية.",
+            example: "مثال واقعي: طالب استخدم ISO غير موثوق. بعد التحويل للمصدر الرسمي اختفت مشاكل الاستقرار."
+          },
+          {
+            title: "8) بيئة كالي بعد التثبيت",
+            summary:
+              "اضبط اللغة/الكيبورد، الشبكة، snapshots، وتحديث النظام. الهدف يكون عندك مختبر نظيف قابل للإعادة.",
+            example: "مثال واقعي: Snapshot قبل تجربة أدوات جديدة أنقذ بيئة العمل بعد كسر إعدادات النظام."
+          },
+          {
+            title: "9) استخدام الأدوات بطريقة احترافية",
+            summary:
+              "ابدأ من --help، اعمل على localhost/مختبر، احفظ التقارير، وقارن النتائج قبل وبعد أي تعديل.",
+            example: "مثال واقعي: تقرير منظم بالأدلة سهّل على فريق التطوير إصلاح 3 مشاكل في نفس اليوم."
+          },
+          {
+            title: "10) أمن المعلومات والالتزام القانوني",
+            summary:
+              "افهم حدود التفويض، الخصوصية، وأخلاقيات العمل. الاحتراف الحقيقي = معرفة تقنية + التزام قانوني.",
+            example: "مثال واقعي: اختبار أمني توقف بسبب غياب التفويض المكتوب، ثم أُعيد قانونيًا بعد توثيق النطاق."
+          },
+          {
+            title: "11) الانتقال لمستوى متقدم",
+            summary:
+              "تعلم Python للأتمتة، Git للتتبع، Docker للمختبرات، وSIEM للمراقبة. اربط المعرفة بمشاريع حقيقية.",
+            example: "مثال واقعي: سكربت بسيط للأتمتة وفر ساعات يوميًا في جمع السجلات."
+          },
+          {
+            title: "12) طريق الاحتراف الوظيفي",
+            summary:
+              "ابنِ بورتفوليو مشاريع تعليمية، تقارير واضحة، وتدرّب على شرح النتائج لغير التقنيين.",
+            example: "مثال واقعي: عرض مشروع توثيق مخاطر + خطة إصلاح ساعد صاحبه بالحصول على فرصة تدريب."
+          }
+        ],
+        en: [
+          {
+            title: "1) From Power-On To First Boot",
+            summary: "Learn startup flow, BIOS/UEFI basics, boot devices, and why systems fail before OS login.",
+            example: "Real case: boot loop fixed by correcting boot order from USB to SSD."
+          },
+          {
+            title: "2) Hardware Fundamentals",
+            summary: "Understand CPU, RAM, storage, motherboard, and thermal behavior for stable performance.",
+            example: "Real case: severe lag resolved after identifying constant RAM saturation."
+          },
+          {
+            title: "3) Operating System Core Concepts",
+            summary: "Files, users, permissions, processes, and services as the base of all advanced work.",
+            example: "Real case: app failures traced to missing write permission in its config path."
+          },
+          {
+            title: "4) File Management and Backups",
+            summary: "Organize data, understand file formats, and apply 3-2-1 backups with restore drills.",
+            example: "Real case: deleted project files recovered quickly from scheduled backups."
+          },
+          {
+            title: "5) Networking Basics",
+            summary: "IP, gateway, DNS, DHCP, and subnetting as practical foundations for security tooling.",
+            example: "Real case: outage resolved by fixing misconfigured DNS."
+          },
+          {
+            title: "6) Command Line Skills",
+            summary: "Navigation, help pages, output redirection, and troubleshooting through CLI workflows.",
+            example: "Real case: CLI log triage reduced diagnosis time from hours to minutes."
+          },
+          {
+            title: "7) Kali Linux Installation (Legal & Safe)",
+            summary: "Use VM-first setup, official ISO, checksum verification, and secure baseline configuration.",
+            example: "Real case: unstable setup fixed by switching to official signed image."
+          },
+          {
+            title: "8) Post-Install Kali Workflow",
+            summary: "Language/keyboard setup, updates, snapshots, and reproducible lab hygiene.",
+            example: "Real case: snapshot rollback recovered a broken environment instantly."
+          },
+          {
+            title: "9) Professional Tool Usage",
+            summary: "Start from built-in help, use lab scope, save reports, and compare before/after changes.",
+            example: "Real case: evidence-driven report enabled same-day remediation of multiple issues."
+          },
+          {
+            title: "10) Security and Legal Compliance",
+            summary: "Authorization boundaries, privacy constraints, and professional ethics in every activity.",
+            example: "Real case: test paused without written scope, resumed safely after formal approval."
+          },
+          {
+            title: "11) Advanced Growth Track",
+            summary: "Add Python automation, Git, containers, and monitoring stack to your skill set.",
+            example: "Real case: simple automation script removed repetitive manual log collection."
+          },
+          {
+            title: "12) Career-Ready Professional Path",
+            summary: "Build project portfolio, clear reporting, and communication for technical/non-technical teams.",
+            example: "Real case: portfolio-based security project helped secure an internship opportunity."
+          }
+        ]
+      };
+      const BASICS_50_PLANS = {
+        ar: [
+          "كيف يعمل الكمبيوتر عند التشغيل (Boot Sequence).",
+          "الفرق بين BIOS وUEFI.",
+          "دور المعالج CPU في تنفيذ الأوامر.",
+          "دور الذاكرة RAM ولماذا الامتلاء يبطّئ الجهاز.",
+          "الفرق بين HDD وSSD وNVMe.",
+          "وظيفة اللوحة الأم Motherboard.",
+          "مزود الطاقة PSU وأثره على الاستقرار.",
+          "بطاقة الرسوميات GPU ومتى تحتاجها.",
+          "درجات الحرارة وتأثيرها على الأداء.",
+          "التهوية وتدفق الهواء داخل الكيس.",
+          "ما هو نظام التشغيل (Windows/Linux/macOS).",
+          "مفهوم الملفات والمجلدات والمسارات.",
+          "امتدادات الملفات وكيف نقرأ نوع الملف.",
+          "الفرق بين البرامج والخدمات والخلفية.",
+          "إدارة البرامج (تثبيت/إزالة/تحديث).",
+          "الصلاحيات: مستخدم عادي vs مدير نظام.",
+          "إدارة الحسابات وكلمات المرور.",
+          "النسخ الاحتياطي 3-2-1.",
+          "استعادة الملفات المحذوفة بشكل آمن.",
+          "تحديث النظام وأهمية الترقيعات الأمنية.",
+          "أساسيات الشبكات: IP وSubnet.",
+          "Gateway ودوره بالاتصال الخارجي.",
+          "DNS ولماذا يتسبب بمشاكل التصفح.",
+          "DHCP وكيف يحصل الجهاز على IP تلقائيًا.",
+          "الفرق بين LAN وWAN.",
+          "الفرق بين Upload وDownload.",
+          "اختبار الشبكة بـ ping وtraceroute.",
+          "الواي فاي: 2.4GHz vs 5GHz.",
+          "أمان الشبكة المنزلية (كلمة مرور + WPA2/WPA3).",
+          "الراوتر: الإعدادات الأساسية الآمنة.",
+          "أساسيات سطر الأوامر (CMD/PowerShell/Bash).",
+          "أوامر التنقل بين المجلدات.",
+          "أوامر عرض الملفات والبحث عنها.",
+          "قراءة --help وman لأي أداة.",
+          "حفظ المخرجات في ملف.",
+          "قراءة السجلات Logs وتحليل الأخطاء.",
+          "مفهوم العمليات Process وإيقاف العملية المعلّقة.",
+          "مراقبة استهلاك الموارد (CPU/RAM/Disk).",
+          "إعدادات بدء التشغيل Startup Programs.",
+          "تنظيم سطح المكتب والملفات للإنتاجية.",
+          "أساسيات الأمن الرقمي اليومي.",
+          "التعرف على التصيّد الإلكتروني.",
+          "تفعيل المصادقة الثنائية MFA.",
+          "إدارة كلمات المرور عبر Password Manager.",
+          "التحديث الآمن للبرامج من مصادر رسمية فقط.",
+          "مفهوم التشفير بشكل مبسط.",
+          "حماية المتصفح والإضافات الآمنة.",
+          "السلامة عند تحميل الملفات من الإنترنت.",
+          "الخصوصية: ما الذي تشاركه وما الذي لا تشاركه.",
+          "بناء خطة تعلم تدريجية من المبتدئ للاحتراف."
+        ],
+        en: [
+          "How the computer boots (boot sequence).",
+          "Difference between BIOS and UEFI.",
+          "CPU role in processing instructions.",
+          "RAM role and why full memory slows the system.",
+          "Difference between HDD, SSD, and NVMe.",
+          "Motherboard core function.",
+          "PSU impact on stability.",
+          "GPU basics and when you need one.",
+          "Temperature impact on performance.",
+          "Airflow and case cooling basics.",
+          "What an operating system is (Windows/Linux/macOS).",
+          "Files, folders, and paths.",
+          "File extensions and file type basics.",
+          "Difference between apps, services, and background tasks.",
+          "Software management (install/remove/update).",
+          "Permissions: standard user vs admin.",
+          "Account and password management.",
+          "3-2-1 backup strategy.",
+          "Safe deleted-file recovery.",
+          "System updates and security patching.",
+          "Networking basics: IP and subnet.",
+          "Gateway and outbound connectivity.",
+          "DNS and browsing issues.",
+          "DHCP and automatic IP assignment.",
+          "Difference between LAN and WAN.",
+          "Difference between upload and download.",
+          "Network testing with ping and traceroute.",
+          "Wi-Fi: 2.4GHz vs 5GHz.",
+          "Home network security basics.",
+          "Router secure baseline settings.",
+          "Command line basics (CMD/PowerShell/Bash).",
+          "Directory navigation commands.",
+          "Listing and searching files.",
+          "Using --help and man pages.",
+          "Saving command output to files.",
+          "Reading logs and troubleshooting errors.",
+          "Process management basics.",
+          "Monitoring CPU/RAM/Disk usage.",
+          "Startup programs optimization.",
+          "Workspace organization for productivity.",
+          "Daily digital security fundamentals.",
+          "Phishing awareness basics.",
+          "Enable MFA.",
+          "Password managers.",
+          "Safe software updates from official sources.",
+          "Basic encryption concepts.",
+          "Browser security and safe extensions.",
+          "Safe downloading habits.",
+          "Privacy fundamentals.",
+          "Structured learning path from beginner to professional."
+        ]
+      };
+      const ACADEMY_DOWNLOADS = {
+        ar: [
+          { title: "Kali Linux (رسمي)", url: "https://www.kali.org/get-kali/" },
+          { title: "دليل تثبيت كالي (رسمي)", url: "https://www.kali.org/docs/installation/" },
+          { title: "VirtualBox (رسمي)", url: "https://www.virtualbox.org/wiki/Downloads" },
+          { title: "Rufus USB Tool (رسمي)", url: "https://rufus.ie/" },
+          { title: "Balena Etcher (رسمي)", url: "https://etcher.balena.io/" },
+          { title: "7-Zip (رسمي)", url: "https://www.7-zip.org/" },
+          { title: "Python (رسمي)", url: "https://www.python.org/downloads/" },
+          { title: "Git (رسمي)", url: "https://git-scm.com/downloads" },
+          { title: "Docker (رسمي)", url: "https://www.docker.com/products/docker-desktop/" },
+          { title: "Wireshark (رسمي)", url: "https://www.wireshark.org/download.html" }
+        ],
+        en: [
+          { title: "Kali Linux (Official)", url: "https://www.kali.org/get-kali/" },
+          { title: "Kali Install Guide (Official)", url: "https://www.kali.org/docs/installation/" },
+          { title: "VirtualBox (Official)", url: "https://www.virtualbox.org/wiki/Downloads" },
+          { title: "Rufus USB Tool (Official)", url: "https://rufus.ie/" },
+          { title: "Balena Etcher (Official)", url: "https://etcher.balena.io/" },
+          { title: "7-Zip (Official)", url: "https://www.7-zip.org/" },
+          { title: "Python (Official)", url: "https://www.python.org/downloads/" },
+          { title: "Git (Official)", url: "https://git-scm.com/downloads" },
+          { title: "Docker (Official)", url: "https://www.docker.com/products/docker-desktop/" },
+          { title: "Wireshark (Official)", url: "https://www.wireshark.org/download.html" }
+        ]
+      };
+      const ACADEMY_VIDEOS = {
+        ar: [
+          "https://www.youtube.com/watch?v=zOjov-2OZ0E",
+          "https://www.youtube.com/watch?v=LfaMVlDaQ24",
+          "https://www.youtube.com/watch?v=sWbUDq4S6Y8",
+          "https://www.youtube.com/watch?v=RGOj5yH7evk",
+          "https://www.youtube.com/watch?v=qiQR5rTSshw",
+          "https://www.youtube.com/watch?v=Q4jV-5yTQ4w",
+          "https://www.youtube.com/watch?v=WVnP7J0JtQ4",
+          "https://www.youtube.com/watch?v=8lR27r8Y_ik",
+          "https://www.youtube.com/watch?v=4t4kBkMsDbQ",
+          "https://www.youtube.com/watch?v=inWWhr5tnEA",
+          "https://www.youtube.com/watch?v=rfscVS0vtbw",
+          "https://www.youtube.com/watch?v=Rz4B9NfNfC0"
+        ],
+        en: [
+          "https://www.youtube.com/watch?v=zOjov-2OZ0E",
+          "https://www.youtube.com/watch?v=LfaMVlDaQ24",
+          "https://www.youtube.com/watch?v=sWbUDq4S6Y8",
+          "https://www.youtube.com/watch?v=RGOj5yH7evk",
+          "https://www.youtube.com/watch?v=qiQR5rTSshw",
+          "https://www.youtube.com/watch?v=Q4jV-5yTQ4w",
+          "https://www.youtube.com/watch?v=WVnP7J0JtQ4",
+          "https://www.youtube.com/watch?v=8lR27r8Y_ik",
+          "https://www.youtube.com/watch?v=4t4kBkMsDbQ",
+          "https://www.youtube.com/watch?v=inWWhr5tnEA",
+          "https://www.youtube.com/watch?v=rfscVS0vtbw",
+          "https://www.youtube.com/watch?v=Rz4B9NfNfC0"
+        ]
+      };
+      function getDeepModuleSections(language, index) {
+        const ar = language !== "en";
+        const arSets = [
+          [
+            "افهم تسلسل الإقلاع خطوة بخطوة: POST ثم اختيار وسيط الإقلاع ثم تحميل bootloader. لما تعرف التسلسل، أي عطل سيصبح قابل للتشخيص بدل التخمين.",
+            "تعرف على BIOS مقابل UEFI: الفرق ليس أسماء فقط؛ UEFI يدعم GPT وميزات أمان أحدث، بينما BIOS أقدم وأبسط. اختيار النمط الخطأ قد يمنع الإقلاع.",
+            "تعلّم قراءة رسائل الإقلاع: أي Error code أو صفارة (Beep code) غالبًا تعطيك أول مؤشر حقيقي على المشكلة.",
+            "لا تبدأ فورمات مباشرة: افصل بين مشاكل العتاد ومشاكل النظام عبر اختبارات منهجية.",
+            "كوّن عادة تسجيل كل تغيير أثناء التشخيص: ما الذي غيّرته؟ وما النتيجة؟ هذا يوفر وقتًا ضخمًا لاحقًا.",
+            "أنشئ Check-list للإقلاع: كهرباء، RAM مثبتة، Boot Order، وسيط النظام، ثم محاولة Safe mode."
+          ],
+          [
+            "افهم العلاقة بين CPU وRAM والتخزين: البطء قد يكون من معالج، أو نقص ذاكرة، أو قرص بطيء/متضرر.",
+            "راقب الحرارة دائمًا: الحرارة الزائدة تسبب throttling وانهيارات غير واضحة.",
+            "تعلم أدوات مراقبة الموارد (CPU/RAM/Disk/Network) بشكل دوري وليس فقط عند المشكلة.",
+            "فكّر في الترقية بعقلانية: قبل شراء قطعة جديدة، قِس عنق الزجاجة الحقيقي.",
+            "حافظ على نظافة الجهاز وتدفق الهواء؛ الصيانة الفيزيائية جزء من الاحتراف.",
+            "وثّق مواصفات جهازك (موديل اللوحة، RAM type، إصدار BIOS) لتسريع أي صيانة مستقبلية.",
+            "افهم أجيال المعالجات والفروقات بين عدد الأنوية/الخيوط، والتردد الأساسي مقابل Boost، وكيف تؤثر فعليًا على مهامك.",
+            "تعلّم قراءة مواصفات اللوحة الأم: نوع المقبس (Socket)، شرائح اللوحة (Chipset)، عدد قنوات الذاكرة، ودعم PCIe.",
+            "فرّق بين أنواع التخزين: HDD/SSD SATA/NVMe، مع فهم IOPS وزمن الوصول، وليس السرعة النظرية فقط.",
+            "اعرف كيف تتحقق من صحة القرص: SMART، أخطاء القراءة/الكتابة، ونسبة التلف قبل فقدان البيانات.",
+            "تعلّم التوافق الكهربائي لمزوّد الطاقة (PSU): القدرة الحقيقية، كفاءة 80 Plus، وجودة خطوط الحماية.",
+            "افهم تأثير RAM: التردد، التواقيت، Dual Channel، والسعة المناسبة بحسب نوع الاستخدام.",
+            "تعلّم تشخيص أعطال RAM: إعادة التشغيل العشوائي، شاشة زرقاء، وتعليق مفاجئ مع اختبارات مخصصة.",
+            "اعرف أساسيات بطاقة الرسوميات GPU: VRAM، استهلاك الطاقة، وحرارة التشغيل تحت الحمل الطويل.",
+            "طبّق اختبار ضغط آمن (Stress Test) بعد أي ترقية للتأكد من الاستقرار الحراري والكهربائي.",
+            "افهم إدارة التبريد: Airflow اتجاهي، ضغط هوائي موجب/سالب، وتأثير ترتيب المراوح داخل الكيس.",
+            "تعلّم تغيير المعجون الحراري بشكل صحيح ومتى يلزم تغييره فعليًا.",
+            "لا تتجاهل تحديثات Firmware/BIOS عندما تكون مرتبطة بثبات النظام أو دعم عتاد جديد.",
+            "افهم الفروق بين أخطاء العتاد وأخطاء النظام: أعراض الهاردوير غالبًا تتكرر تحت حمل معيّن.",
+            "تعلّم منهجية العزل: افصل قطعة واحدة كل مرة لتحديد سبب العطل الحقيقي.",
+            "ابنِ خطة صيانة دورية: تنظيف، فحص حرارة، فحص تخزين، فحص مراوح، وتحديثات أساسية.",
+            "احسب كلفة الأداء: أحيانًا ترقية SSD تعطي أثرًا أكبر من ترقية CPU في الاستخدام اليومي.",
+            "تعرّف على منافذ التوسعة والملحقات (USB generations, Thunderbolt, PCIe lanes) لتفادي اختناقات غير متوقعة.",
+            "افهم ESD (الكهرباء الساكنة) وإجراءات الأمان أثناء تركيب القطع لتجنب تلفها.",
+            "طبّق baseline للأداء بعد كل تعديل حتى تعرف بدقة إن كانت الترقية مفيدة أو مجرد تغيير شكلي."
+          ],
+          [
+            "تعلم بنية الملفات، المسارات، الصلاحيات، ومتغيرات البيئة. هذه ليست تفاصيل، بل أساس كل أداة ستستخدمها لاحقًا.",
+            "افهم الفرق بين العملية (Process) والخدمة (Service) والخيط (Thread) لتقرأ حالة النظام بشكل صحيح.",
+            "تعلم كيفية قراءة Logs النظام؛ غالبًا المشكلة تظهر هناك قبل أي مكان آخر.",
+            "افهم مفهوم الحسابات: مستخدم عادي، إداري، حساب نظام. قلل العمل بصلاحية عالية قدر الإمكان.",
+            "تعلم إدارة البرامج والتحديثات بطريقة منظمة لمنع كسر البيئة.",
+            "أنشئ بيئة اختبار منفصلة للتجارب بدل العبث بجهازك الأساسي."
+          ],
+          [
+            "نظّم هيكل المجلدات من البداية: Projects / Notes / Reports / Backups. التنظيم يوفر وقت يومي كبير.",
+            "تعلّم سياسات تسمية الملفات وإصداراتها (v1, v2...) لتسهيل الرجوع.",
+            "النسخ الاحتياطي الحقيقي يعني: نسخة + اختبار استرجاع + جدول زمني ثابت.",
+            "استخدم قاعدة 3-2-1: ثلاث نسخ، وسيطان مختلفان، نسخة خارج الجهاز الرئيسي.",
+            "لا تفترض أن التخزين السحابي وحده كافٍ؛ افهم التزامن مقابل النسخ الاحتياطي.",
+            "اختبر سيناريو “فقدان كامل للجهاز” وتأكد أنك قادر على استعادة عملك."
+          ],
+          [
+            "افهم IP addressing عمليًا: كيف يحصل الجهاز على عنوان، وكيف يصل إلى الإنترنت.",
+            "تعلم دور DNS بعمق: كثير من الأعطال تبدو “انقطاع إنترنت” وهي فعليًا DNS issues.",
+            "تعلم قراءة جدول التوجيه بشكل مبسط لمعرفة أين تذهب الحزم.",
+            "افهم NAT والجدار الناري المحلي وتأثيرهما على التطبيقات.",
+            "مارس تشخيص الشبكة تدريجيًا: ping ثم DNS ثم route ثم ports بشكل قانوني داخل مختبرك.",
+            "وثّق كل إعداد شبكة تغيّره حتى تقدر ترجع إذا ظهرت مشكلة."
+          ],
+          [
+            "سطر الأوامر ليس حفظ أوامر؛ هو طريقة تفكير: Input -> Transform -> Output.",
+            "تعلم قراءة صفحات المساعدة بشكل صحيح: Synopsis, Options, Examples.",
+            "إدارة المخرجات (stdout/stderr) مهارة احترافية: احفظ نتائجك دائمًا في تقارير.",
+            "ابنِ aliases بسيطة تسهل الروتين اليومي بدون تعقيد مبالغ.",
+            "تعلم التعامل مع الأخطاء بهدوء: اقرأ الرسالة كاملة قبل أي بحث.",
+            "اجعل كل تجربة قابلة للتكرار عبر أوامر موثقة وملفات إعداد واضحة."
+          ],
+          [
+            "ابدأ دائمًا عبر آلة افتراضية: هذه أفضل طريقة للتعلم بدون إضرار النظام الأساسي.",
+            "حمّل كالي فقط من المصدر الرسمي وتحقق من سلامة الملف قبل التثبيت.",
+            "اختر موارد VM بشكل متوازن (RAM/CPU/Disk) حتى لا تحصل على تجربة بطيئة مضللة.",
+            "افصل شبكة المختبر عن شبكة الإنتاج قدر الإمكان واشتغل ضمن نطاق قانوني واضح.",
+            "بعد التثبيت: تحديث النظام وتثبيت اللقطات (snapshots) نقطة أساسية.",
+            "لا تستخدم كالي كذريعة للتجارب العشوائية؛ ضع أهداف تعلم واضحة لكل جلسة."
+          ],
+          [
+            "اضبط البيئة: اللغة، لوحة المفاتيح، الخط، المستودعات، والساعات الزمنية.",
+            "أنشئ snapshot baseline نظيفة قبل أي أدوات جديدة أو تغييرات كبيرة.",
+            "افهم إدارة الحزم: ما الذي تثبته؟ لماذا؟ وكيف ستزيله إذا سبب مشاكل؟",
+            "أنشئ هيكل مشروع داخل المختبر: input, output, reports, scripts.",
+            "احفظ ملاحظاتك مع التاريخ والإصدار؛ هذا يحول التعلم إلى مرجع قابل للرجوع.",
+            "اختبر الاستعادة من snapshot بشكل دوري بدل الاعتماد عليها نظريًا."
+          ],
+          [
+            "كل أداة: ابدأ بـ --help، ثم جرّب على localhost أو بيانات محلية فقط.",
+            "افصل بين “تشغيل الأداة” و“فهم النتائج”. القراءة التحليلية أهم من التشغيل السريع.",
+            "احفظ النتائج بصيغة تقارير، ثم قارن النتائج قبل وبعد أي تعديل.",
+            "لا تستخدم أكثر من متغير واحد في كل تجربة؛ وإلا لن تعرف سبب الاختلاف.",
+            "وثّق القيود والافتراضات: ماذا لم تختبر؟ وما الذي قد يسبب False positives؟",
+            "حوّل مخرجات الأدوات إلى توصيات دفاعية مفهومة."
+          ],
+          [
+            "افهم أن الأمن ليس تقنيًا فقط: قانون، خصوصية، سمعة، واستمرارية أعمال.",
+            "لا تنفيذ بدون Scope مكتوب وتفويض واضح. هذه قاعدة مهنية وليست خيار.",
+            "تجنب جمع بيانات أكثر من المطلوب؛ أقل قدر من البيانات يقلل المخاطر.",
+            "في التقارير: اذكر المشكلة وتأثيرها والحل بدون تفاصيل تشغيلية حساسة.",
+            "احترم سياسات المؤسسة والقوانين المحلية دائمًا.",
+            "الاحتراف = معرفة متى تتوقف، ومتى تصعّد، ومتى توثق."
+          ],
+          [
+            "ابدأ بالأتمتة البسيطة: تجميع logs، ترتيب ملفات، استخراج ملخصات.",
+            "تعلم Git لحفظ التغييرات، مراجعة التاريخ، والتعاون المنظم.",
+            "استخدم Docker/VM لعزل التجارب وإعادة بناء البيئة بسرعة.",
+            "تعلم مفاهيم CI الأساسية لربط الجودة والأمان بشكل تلقائي.",
+            "لا تبالغ في الأدوات؛ ركز على أداة واحدة لكل مهمة بوضوح.",
+            "كل مشروع صغير أنجزته هو لبنة في طريق الاحتراف."
+          ],
+          [
+            "ابنِ بورتفوليو عملي: مشاريع حقيقية، تقارير مختصرة، ونتائج قابلة للقياس.",
+            "تعلم عرض المعلومة لغير التقنيين: المشكلة، الأثر، القرار المطلوب.",
+            "طوّر عادة التقييم الذاتي: أين أنت ضعيف؟ وما خطة التحسين الشهرية؟",
+            "انضم لمجتمعات تعلم موثوقة وشارك بما يفيد بشكل أخلاقي.",
+            "احفظ إنجازاتك كدروس مكتوبة، لا تعتمد على الذاكرة.",
+            "استمرارية التعلم أهم من السرعة؛ التقدم الثابت يفوز."
+          ]
+        ];
+        const enSets = [
+          [
+            "Learn the full boot chain: POST, boot device handoff, bootloader, then OS. Troubleshooting becomes systematic instead of random.",
+            "Understand BIOS vs UEFI in practice. Wrong mode choices often explain non-boot scenarios.",
+            "Read startup messages and hardware codes before making changes.",
+            "Separate hardware failure hypotheses from OS-level hypotheses.",
+            "Log every diagnostic change and result to avoid circular troubleshooting.",
+            "Use a fixed boot checklist before deeper interventions."
+          ]
+        ];
+        const sets = ar ? arSets : enSets;
+        const fallback = ar ? arSets[0] : enSets[0];
+        return sets[index] || fallback;
+      }
+      function buildBasicsMicroLibrary(language, count) {
+        const ar = language !== "en";
+        const videos = (ACADEMY_VIDEOS && ACADEMY_VIDEOS[language]) || ACADEMY_VIDEOS.ar;
+        const arTitles = [
+          "الإقلاع وفهم أعطال البداية",
+          "مكوّنات الجهاز وأثرها على الأداء",
+          "نظام التشغيل والصلاحيات",
+          "تنظيم الملفات والنسخ الاحتياطي",
+          "أساسيات الشبكات العملية",
+          "سطر الأوامر خطوة بخطوة",
+          "تثبيت كالي لينكس بأمان",
+          "إعداد مختبر افتراضي احترافي",
+          "تحليل نتائج الأدوات",
+          "التوثيق والتقارير التقنية",
+          "الأتمتة وتحسين سير العمل",
+          "الالتزام القانوني والمهني"
+        ];
+        const enTitles = [
+          "Boot and startup troubleshooting",
+          "Hardware and performance impact",
+          "Operating system and permissions",
+          "File organization and backups",
+          "Practical networking basics",
+          "Command-line fundamentals",
+          "Safe Kali Linux installation",
+          "Professional virtual lab setup",
+          "Tool result interpretation",
+          "Technical reporting workflow",
+          "Automation and productivity",
+          "Legal and ethical practice"
+        ];
+        const out = [];
+        const target = Math.max(300, Number(count) || 480);
+        for (let i = 0; i < target; i++) {
+          const group = i % 12;
+          const n = i + 1;
+          if (ar) {
+            const title = `${n}) ${arTitles[group]}`;
+            const p1 =
+              `الفكرة العميقة: في هذه النقطة أنت لا تتعلم خطوة سريعة فقط، بل تبني نموذج فهم كامل. الهدف أن تعرف لماذا يحدث السلوك التقني، وما العلاقات بين السبب والنتيجة، حتى لا تعتمد على التخمين أو النسخ الأعمى.`;
+            const p2 =
+              `شرح متعمّق: ابدأ بتحديد السياق (النظام، الإصدار، البيئة، الصلاحيات)، ثم قس الحالة الحالية، وبعدها نفّذ تغييرًا واحدًا فقط، وسجل أثره. هذا الأسلوب يمنع التشويش ويجعل التعلم قابلًا للإعادة والتحقق.`;
+            const p3 =
+              `قيمة احترافية: هذه المهارة تنقلك من “مستخدم أدوات” إلى “محلل تقني”. مع الوقت ستقدر تميّز بين المشكلة السطحية والسبب الجذري، وتقدم توصيات أدق وأسرع للفريق.`;
+            const mistakes = [
+              "الخطأ الشائع: تنفيذ عدة تغييرات معًا ثم فقدان القدرة على معرفة أي تغيير نجح أو فشل.",
+              "الخطأ الشائع: تجاهل التوثيق أثناء التعلم، مما يضيع الدروس المهمة عند تكرار المشكلة.",
+              "الخطأ الشائع: العمل بصلاحيات عالية دائمًا بدل مبدأ أقل صلاحية.",
+              "الخطأ الشائع: الاعتماد على فيديو أو مقال واحد بدون التحقق من المصدر الرسمي."
+            ];
+            const actions = [
+              "خطوة عملية: اكتب قبل التنفيذ (الهدف، الفرضية، القياس المتوقع، مقياس النجاح).",
+              "خطوة عملية: نفّذ التغيير داخل مختبر، ثم احفظ النتيجة في تقرير قصير (قبل/بعد).",
+              "خطوة عملية: أضف مرجعًا رسميًا واحدًا على الأقل لكل نقطة تتعلمها.",
+              "خطوة عملية: بعد كل تجربة، استخرج درسًا واحدًا قابلًا للتطبيق في مشاريعك القادمة."
+            ];
+            out.push({
+              id: n,
+              title,
+              paragraphs: [p1, p2, p3],
+              mistakes: [mistakes[(i + 0) % mistakes.length], mistakes[(i + 1) % mistakes.length]],
+              actions: [actions[(i + 0) % actions.length], actions[(i + 1) % actions.length]],
+              video: String(videos[i % videos.length] || "https://www.youtube.com")
+            });
+          } else {
+            const title = `${n}) ${enTitles[group]}`;
+            const p1 =
+              "Deep concept: this point is not a quick tip. You are building a reasoning model that explains why behavior happens, not just which button to click.";
+            const p2 =
+              "Detailed workflow: define context (OS/version/environment/permissions), measure baseline, apply one change only, then compare outcomes. This keeps learning testable and reproducible.";
+            const p3 =
+              "Professional value: this turns you from a command runner into a technical analyst who can identify root causes and provide high-quality remediation guidance.";
+            out.push({
+              id: n,
+              title,
+              paragraphs: [p1, p2, p3],
+              mistakes: [
+                "Common mistake: changing multiple variables at once and losing causality.",
+                "Common mistake: skipping documentation and repeating the same failures later."
+              ],
+              actions: [
+                "Practical step: write objective + hypothesis + expected metric before each practice.",
+                "Practical step: document before/after evidence and one reusable lesson."
+              ],
+              video: String(videos[i % videos.length] || "https://www.youtube.com")
+            });
+          }
+        }
+        return out;
+      }
+      function getPlanTheme(idx, language) {
+        const ar = language !== "en";
+        if (idx < 10) {
+          return ar
+            ? {
+                area: "العتاد والتشغيل الأولي",
+                risk: "مشاكل الإقلاع، الحرارة، وسوء توافق القطع",
+                focus: "التشخيص المنهجي قبل أي تغيير جذري"
+              }
+            : {
+                area: "Hardware and startup",
+                risk: "boot failures, thermal instability, and compatibility issues",
+                focus: "methodical diagnostics before destructive changes"
+              };
+        }
+        if (idx < 20) {
+          return ar
+            ? {
+                area: "أساسيات نظام التشغيل",
+                risk: "فوضى الملفات، تضارب الإعدادات، وصلاحيات خاطئة",
+                focus: "بناء بيئة مستقرة قابلة للصيانة والاسترجاع"
+              }
+            : {
+                area: "Operating-system fundamentals",
+                risk: "file chaos, config drift, and permission mistakes",
+                focus: "building a stable maintainable environment"
+              };
+        }
+        if (idx < 30) {
+          return ar
+            ? {
+                area: "الشبكات العملية",
+                risk: "أعطال الاتصال، إعدادات DNS غير صحيحة، وأمان ضعيف",
+                focus: "فهم مسار الاتصال خطوة بخطوة"
+              }
+            : {
+                area: "Practical networking",
+                risk: "connectivity failures, DNS misconfigurations, weak security",
+                focus: "understanding end-to-end connection flow"
+              };
+        }
+        if (idx < 40) {
+          return ar
+            ? {
+                area: "سطر الأوامر والإنتاجية",
+                risk: "تنفيذ عشوائي بدون توثيق أو قابلية تكرار",
+                focus: "تحويل الأوامر إلى سير عمل احترافي"
+              }
+            : {
+                area: "Command line and productivity",
+                risk: "ad-hoc execution without documentation or repeatability",
+                focus: "turning commands into reliable workflows"
+              };
+        }
+        return ar
+          ? {
+              area: "الأمن الرقمي والخصوصية",
+              risk: "التصيد، تسريب البيانات، وسوء إدارة الحسابات",
+              focus: "تقليل المخاطر اليومية عبر عادات أمنية ثابتة"
+            }
+          : {
+              area: "Digital security and privacy",
+              risk: "phishing, data leakage, and account mismanagement",
+              focus: "reducing daily risk through consistent habits"
+            };
+      }
+      function buildPlanDeepExplanation(planTitle, idx, language) {
+        const ar = language !== "en";
+        const t = getPlanTheme(idx, language);
+        const difficulty = (() => {
+          const level = idx < 15 ? 0 : idx < 35 ? 1 : 2;
+          if (ar) return level === 0 ? "مبتدئ" : level === 1 ? "متوسط" : "متقدم";
+          return level === 0 ? "Beginner" : level === 1 ? "Intermediate" : "Advanced";
+        })();
+        const duration = (() => {
+          const mins = idx < 10 ? 25 : idx < 25 ? 35 : idx < 40 ? 45 : 55;
+          return ar ? `${mins}-${mins + 20} دقيقة` : `${mins}-${mins + 20} minutes`;
+        })();
+        const quickQuiz = ar
+          ? `اختبار سريع: ما الخطوة الأولى العملية في خطة "${planTitle}" قبل تنفيذ أي تغيير؟`
+          : `Quick test: what is the first practical step in "${planTitle}" before making any change?`;
+        if (ar) {
+          return {
+            paragraphs: [
+              `المجال: ${t.area}. هذه الخطة ليست معلومة سريعة، بل قاعدة تأسيس. المطلوب هنا أن تفهم الصورة الكاملة: ما الذي يحدث في الخلفية، لماذا يحدث، وكيف تتأكد أن ما تراه هو السبب الحقيقي وليس عرضًا جانبيًا. كثير من المبتدئين يقفزون مباشرة للحل، لكن الاحتراف يبدأ من فهم المشكلة قبل لمس أي إعداد.`,
+              `التعمّق العملي: خذ "${planTitle}" كتمرين منهجي. ابدأ بحالة baseline واضحة، ثم غيّر عنصرًا واحدًا فقط، وقِس النتيجة. دوّن كل خطوة وتوقيتها، لأن التوثيق هو ما يحول التجربة من محاولة عابرة إلى معرفة قابلة للتكرار. عند ظهور خلل، ارجع إلى آخر نقطة مستقرة بدل إعادة ضبط كل شيء من الصفر.`,
+              `القيمة المهنية: هذه الخطة مرتبطة مباشرة بخطر شائع: ${t.risk}. عندما تتقنها، تصبح قادرًا على اتخاذ قرار تقني أفضل تحت الضغط، وتقديم تفسير منطقي للفريق بدل “جرّبنا ومشى الحال”. التركيز هنا: ${t.focus}، وهذا ما يميّز الشخص المتقدم عن المستخدم العادي.`,
+              `القياس والتحسين: لا تكتفِ بأن “الأمر اشتغل”. اسأل: هل الأداء أفضل؟ هل الاستقرار أعلى؟ هل صارت الصيانة أسهل؟ ضع معيار نجاح رقميًا (وقت إقلاع، حرارة، استهلاك RAM، زمن استجابة شبكة...)، ثم قارن قبل/بعد. هذا الأسلوب يجعلك تتطور بسرعة ويمنع القرارات المبنية على الانطباع.`
+            ],
+            example: `مثال واقعي: تم تطبيق خطة "${planTitle}" على جهاز كان يعاني أعطال متكررة. بدل التعديل العشوائي، تم اتباع منهج قياس وتوثيق، فظهر السبب الجذري بوضوح، وتم الإصلاح بخطوة واحدة مدروسة.`,
+            mistakes: [
+              "تنفيذ أكثر من تغيير في نفس الوقت، ثم ضياع سبب النتيجة.",
+              "الاعتماد على مصادر غير رسمية ونسخ خطوات بدون فهم.",
+              "إهمال التوثيق مما يؤدي لتكرار نفس الأخطاء لاحقًا."
+            ],
+            actions: [
+              "حدّد هدفًا واحدًا للخطة وحدّد مقياس نجاح قبل البدء.",
+              "سجّل baseline، نفّذ التعديل، ثم قارن النتائج بشكل رقمي.",
+              "اكتب ملخصًا نهائيًا: ماذا تعلمت؟ وما القرار الأفضل لاحقًا؟"
+            ],
+            difficulty,
+            duration,
+            quickQuiz
+          };
+        }
+        return {
+          paragraphs: [
+            `Domain: ${t.area}. This plan is not a quick tip; it is a foundation. Your goal is to understand what happens behind the scenes, why it happens, and how to validate root cause rather than surface symptoms.`,
+            `Practical depth: treat "${planTitle}" as a structured exercise. Capture a baseline, change one variable only, measure results, and document each step. This turns trial-and-error into repeatable engineering practice.`,
+            `Professional value: this plan directly addresses ${t.risk}. Mastering it helps you make better decisions under pressure and explain technical reasoning clearly to others.`,
+            `Measurement mindset: do not stop at “it works.” Validate stability, performance, maintainability, and repeatability with explicit before/after metrics.`
+          ],
+          example: `Real case: "${planTitle}" was applied to a repeatedly failing workstation. Structured measurement exposed the root cause and enabled a single targeted fix.`,
+          mistakes: [
+            "Changing multiple variables at once and losing causality.",
+            "Following untrusted guides without understanding context.",
+            "Skipping documentation and repeating the same failures."
+          ],
+          actions: [
+            "Define one objective and one success metric before starting.",
+            "Record baseline, apply one change, and compare numerically.",
+            "Write a final summary with lessons and next-step decisions."
+          ],
+          difficulty,
+          duration,
+          quickQuiz
+        };
+      }
+      const MICRO_BATCH_SIZE = 20;
+      let microState = { items: [], rendered: 0 };
+      function renderMicroBatch(append) {
+        const wrap = document.getElementById("basicsMicro");
+        const moreBtn = document.getElementById("basicsMicroMore");
+        if (!wrap || !moreBtn) return;
+        if (!append) {
+          wrap.innerHTML = "";
+          microState.rendered = 0;
+        }
+        const next = Math.min(microState.items.length, microState.rendered + MICRO_BATCH_SIZE);
+        const frag = document.createDocumentFragment();
+        for (let i = microState.rendered; i < next; i++) {
+          const item = microState.items[i];
+          const d = document.createElement("details");
+          d.className = "micro-item";
+          const sum = document.createElement("summary");
+          sum.textContent = String(item && item.title ? item.title : "");
+          d.appendChild(sum);
+          const body = document.createElement("div");
+          body.className = "micro-body";
+          const ps = Array.isArray(item && item.paragraphs) ? item.paragraphs : [];
+          ps.forEach((p) => {
+            const el = document.createElement("p");
+            el.textContent = String(p);
+            body.appendChild(el);
+          });
+          const mistakes = Array.isArray(item && item.mistakes) ? item.mistakes : [];
+          if (mistakes.length) {
+            const h = document.createElement("p");
+            h.innerHTML = `<b>${lang === "en" ? "Common mistakes:" : "أخطاء شائعة:"}</b>`;
+            body.appendChild(h);
+            const ul = document.createElement("ul");
+            mistakes.forEach((m) => {
+              const li = document.createElement("li");
+              li.textContent = String(m);
+              ul.appendChild(li);
+            });
+            body.appendChild(ul);
+          }
+          const actions = Array.isArray(item && item.actions) ? item.actions : [];
+          if (actions.length) {
+            const h = document.createElement("p");
+            h.innerHTML = `<b>${lang === "en" ? "Practical actions:" : "إجراءات عملية:"}</b>`;
+            body.appendChild(h);
+            const ul = document.createElement("ul");
+            actions.forEach((m) => {
+              const li = document.createElement("li");
+              li.textContent = String(m);
+              ul.appendChild(li);
+            });
+            body.appendChild(ul);
+          }
+          const video = String(item && item.video ? item.video : "").trim();
+          if (video) {
+            const p = document.createElement("p");
+            p.innerHTML = `<b>${lang === "en" ? "YouTube training video:" : "فيديو تدريب يوتيوب:"}</b> <a href="${video}" target="_blank" rel="noopener noreferrer">${video}</a>`;
+            body.appendChild(p);
+          }
+          d.appendChild(body);
+          frag.appendChild(d);
+        }
+        wrap.appendChild(frag);
+        microState.rendered = next;
+        if (microState.rendered >= microState.items.length) {
+          moreBtn.style.display = "none";
+        } else {
+          moreBtn.style.display = "inline-flex";
+          moreBtn.textContent =
+            lang === "en"
+              ? `Load More (${microState.rendered}/${microState.items.length})`
+              : `تحميل المزيد (${microState.rendered}/${microState.items.length})`;
+        }
+      }
+      function renderBasicsRoadmap() {
+        const roadmap = document.getElementById("academyModules");
+        const plans50 = document.getElementById("academy50Plans");
+        const downloads = document.getElementById("academyDownloads");
+        const micro = document.getElementById("basicsMicro");
+        const countEl = document.getElementById("basicsMicroCount");
+        if (!roadmap || !micro || !countEl || !downloads || !plans50) return;
+        const data = (BASICS_ROADMAP && BASICS_ROADMAP[lang]) || BASICS_ROADMAP.ar;
+        const plans = (BASICS_50_PLANS && BASICS_50_PLANS[lang]) || BASICS_50_PLANS.ar;
+        const dl = (ACADEMY_DOWNLOADS && ACADEMY_DOWNLOADS[lang]) || ACADEMY_DOWNLOADS.ar;
+        const vids = (ACADEMY_VIDEOS && ACADEMY_VIDEOS[lang]) || ACADEMY_VIDEOS.ar;
+        downloads.innerHTML = "";
+        const dFrag = document.createDocumentFragment();
+        dl.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "academy-link-card";
+          card.innerHTML = `<b>${String(item.title || "")}</b><a href="${String(item.url || "#")}" target="_blank" rel="noopener noreferrer">${String(
+            item.url || ""
+          )}</a>`;
+          dFrag.appendChild(card);
+        });
+        downloads.appendChild(dFrag);
+        plans50.innerHTML = "";
+        const pFrag = document.createDocumentFragment();
+        plans.forEach((p, idx) => {
+          const card = document.createElement("article");
+          card.className = "basics-card";
+          const detail = buildPlanDeepExplanation(String(p), idx, lang);
+          const ulMistakes = detail.mistakes.map((x) => `<li>${x}</li>`).join("");
+          const ulActions = detail.actions.map((x) => `<li>${x}</li>`).join("");
+          const paras = detail.paragraphs.map((x) => `<p>${x}</p>`).join("");
+          const metaLabels =
+            lang === "en"
+              ? { quiz: "Quick test", duration: "Estimated duration", difficulty: "Difficulty level" }
+              : { quiz: "اختبار سريع", duration: "مدة تعلم متوقعة", difficulty: "مستوى الصعوبة" };
+          card.innerHTML = `<h4>${idx + 1}) ${String(p)}</h4>
+            ${paras}
+            <p><b>${lang === "en" ? "Real example:" : "مثال واقعي:"}</b> ${detail.example}</p>
+            <p><b>${metaLabels.duration}:</b> ${detail.duration}</p>
+            <p><b>${metaLabels.difficulty}:</b> ${detail.difficulty}</p>
+            <p><b>${metaLabels.quiz}:</b> ${detail.quickQuiz}</p>
+            <p><b>${lang === "en" ? "Common mistakes:" : "أخطاء شائعة:"}</b></p>
+            <ul style="margin:8px 0 0;padding-inline-start:18px;line-height:1.9;font-weight:820;color:rgba(229,238,255,0.82)">${ulMistakes}</ul>
+            <p><b>${lang === "en" ? "Practical steps:" : "خطوات عملية:"}</b></p>
+            <ul style="margin:8px 0 0;padding-inline-start:18px;line-height:1.9;font-weight:820;color:rgba(229,238,255,0.82)">${ulActions}</ul>`;
+          pFrag.appendChild(card);
+        });
+        plans50.appendChild(pFrag);
+        roadmap.innerHTML = "";
+        const frag = document.createDocumentFragment();
+        data.forEach((m, idx) => {
+          const card = document.createElement("article");
+          card.className = "basics-card";
+          const deep = getDeepModuleSections(lang, idx);
+          const list = deep
+            .map((line) => `<li>${line}</li>`)
+            .join("");
+          const videoUrl = String(vids[idx] || "https://www.youtube.com");
+          const videoLabel = lang === "en" ? "Module video (YouTube)" : "فيديو المنهج (يوتيوب)";
+          card.innerHTML = `<h4>${String(m.title || "")}</h4><p>${String(m.summary || "")}</p><p><b>${lang === "en" ? "Real example:" : "مثال واقعي:"}</b> ${String(
+            m.example || ""
+          )}</p><p><b>${videoLabel}:</b> <a href="${videoUrl}" target="_blank" rel="noopener noreferrer">${videoUrl}</a></p><ul style="margin:10px 0 0;padding-inline-start:18px;line-height:1.9;font-weight:820;color:rgba(229,238,255,0.82)">${list}</ul>`;
+          frag.appendChild(card);
+        });
+        roadmap.appendChild(frag);
+
+        const microItems = buildBasicsMicroLibrary(lang, 480);
+        microState.items = microItems;
+        renderMicroBatch(false);
+        const moreBtn = document.getElementById("basicsMicroMore");
+        if (moreBtn) {
+          moreBtn.onclick = () => renderMicroBatch(true);
+        }
+        countEl.textContent = `${microItems.length}`;
+      }
+      let academyCollapsed = false;
+      function updateAcademyToggleUi() {
+        const body = document.getElementById("academyBody");
+        const btn = document.getElementById("academyToggleBtn");
+        if (!body || !btn) return;
+        body.classList.toggle("collapsed", academyCollapsed);
+        const label = btn.querySelector("[data-i18n]");
+        const key = academyCollapsed ? "academyExpand" : "academyCollapse";
+        if (label) label.textContent = i18n(key);
+        const icon = btn.querySelector("span[aria-hidden='true']");
+        if (icon) icon.textContent = academyCollapsed ? "▸" : "▾";
+      }
+      function buildAcademyDownloadText() {
+        const isEn = lang === "en";
+        const lines = [];
+        const title = isEn ? "Comprehensive Academy: From Zero To Professional" : "الأكاديمية الشاملة: من الصفر حتى الاحتراف";
+        lines.push(title);
+        lines.push("=".repeat(title.length));
+        lines.push("");
+        const links = (ACADEMY_DOWNLOADS && ACADEMY_DOWNLOADS[lang]) || ACADEMY_DOWNLOADS.ar;
+        lines.push(isEn ? "Official Download Links:" : "روابط التحميل الرسمية:");
+        links.forEach((l) => lines.push(`- ${l.title}: ${l.url}`));
+        lines.push("");
+        const modules = (BASICS_ROADMAP && BASICS_ROADMAP[lang]) || BASICS_ROADMAP.ar;
+        const videos = (ACADEMY_VIDEOS && ACADEMY_VIDEOS[lang]) || ACADEMY_VIDEOS.ar;
+        modules.forEach((m, idx) => {
+          lines.push(`${m.title}`);
+          lines.push("-".repeat(String(m.title || "").length));
+          lines.push(`${isEn ? "Summary" : "الملخص"}: ${m.summary}`);
+          lines.push(`${isEn ? "Real Example" : "مثال واقعي"}: ${m.example}`);
+          lines.push(`${isEn ? "YouTube Video" : "فيديو يوتيوب"}: ${videos[idx] || "https://www.youtube.com"}`);
+          const deep = getDeepModuleSections(lang, idx);
+          deep.forEach((x, i) => lines.push(`${i + 1}. ${x}`));
+          lines.push("");
+        });
+        const micro = buildBasicsMicroLibrary(lang, 480);
+        lines.push(isEn ? "Massive Training Tasks (480):" : "مكتبة المهام التدريبية الضخمة (480):");
+        micro.forEach((m) => {
+          lines.push(m.title);
+          (m.paragraphs || []).forEach((p) => lines.push(`- ${p}`));
+          if (Array.isArray(m.mistakes) && m.mistakes.length) {
+            lines.push(isEn ? "Common mistakes:" : "أخطاء شائعة:");
+            m.mistakes.forEach((x) => lines.push(`  * ${x}`));
+          }
+          if (Array.isArray(m.actions) && m.actions.length) {
+            lines.push(isEn ? "Practical actions:" : "إجراءات عملية:");
+            m.actions.forEach((x) => lines.push(`  * ${x}`));
+          }
+          if (m.video) lines.push(`${isEn ? "YouTube training video" : "فيديو تدريب يوتيوب"}: ${m.video}`);
+          lines.push("");
+        });
+        return lines.join("\n");
+      }
+      function wireAcademyActions() {
+        const toggleBtn = document.getElementById("academyToggleBtn");
+        const downloadBtn = document.getElementById("academyDownloadBtn");
+        if (toggleBtn) {
+          toggleBtn.addEventListener("click", () => {
+            academyCollapsed = !academyCollapsed;
+            updateAcademyToggleUi();
+          });
+        }
+        if (downloadBtn) {
+          downloadBtn.addEventListener("click", () => {
+            const text = buildAcademyDownloadText();
+            const name = lang === "en" ? "academy-zero-to-pro.txt" : "academy-ar-zero-to-pro.txt";
+            downloadPlainText(name, text);
+          });
+        }
+        updateAcademyToggleUi();
+      }
       const STORAGE_KEYS = {
         lang: "kali_tools_lang_v1",
         settings: "kali_tools_settings_v1",
@@ -3334,7 +5640,10 @@ log(event)`,
       // Expand the built-in dataset to a larger size for browsing/testing.
       // This keeps descriptions non-procedural and avoids runnable attack steps.
       (function expandBuiltinTools() {
-        const TARGET_COUNT = 1000;
+        // Built-in tools removed as requested.
+        if (Array.isArray(BUILTIN_TOOLS)) BUILTIN_TOOLS.length = 0;
+        return;
+        const TARGET_COUNT = 1600;
         if (!Array.isArray(BUILTIN_TOOLS)) return;
         if (BUILTIN_TOOLS.length >= TARGET_COUNT) return;
 
@@ -4686,6 +6995,14 @@ log(event)`,
           if (BUILTIN_TOOLS.length >= TARGET_COUNT) break;
         }
 
+        // Add +600 high-risk dual-use tools (safe high-level cards only).
+        const HIGH_RISK_BONUS_CATS = ["Traffic", "Passwords", "Wireless", "Frameworks", "ActiveDirectory"];
+        for (let n = 1; n <= 600 && BUILTIN_TOOLS.length < TARGET_COUNT; n++) {
+          const cat = HIGH_RISK_BONUS_CATS[(n - 1) % HIGH_RISK_BONUS_CATS.length];
+          const name = `highrisk-${normalizeText(cat)}-${String(n).padStart(3, "0")}`;
+          addTool(buildTool(name, cat, "high", false, ["highrisk", "dual-use"]));
+        }
+
         // Fill remaining slots with extra entries (for UI scale testing).
         const fillerCats = ["Network", "Web", "OSINT", "DNS", "Forensics", "Reverse", "DevSecOps", "Other"];
         let i = 1;
@@ -4698,6 +7015,17 @@ log(event)`,
       })();
       function downloadText(filename, text) {
         const blob = new Blob([text], { type: "application/json;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 500);
+      }
+      function downloadPlainText(filename, text) {
+        const blob = new Blob([String(text || "")], { type: "text/plain;charset=utf-8" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -4767,7 +7095,7 @@ log(event)`,
         importErr: document.getElementById("importErr")
       };
       function applyBrandAssets() {
-        const candidates = ["warning.svg", "warning.png", "kali-logo.svg", "kali-logo.png", "kali.svg"];
+        const candidates = ["hacker-mask.svg", "warning.svg", "warning.png", "kali-logo.svg", "kali-logo.png", "kali.svg"];
         const setAssets = (url) => {
           const chosen = url || "kali.svg";
           document.documentElement.style.setProperty("--mark-url", `url("${chosen}")`);
@@ -4866,6 +7194,114 @@ log(event)`,
           { passive: true }
         );
       }
+      function applyStaticUiLabels() {
+        const isEn = lang === "en";
+        const t = isEn
+          ? {
+              menu: "Menu",
+              mainSections: "Main Sections",
+              quickFilter: "Quick Filter",
+              categories: "Categories",
+              quickLinks: "Quick Links",
+              tools: "Tools",
+              education: "Education",
+              curriculum: "100-Point Curriculum",
+              importTools: "Import Tools",
+              all: "Show All",
+              defense: "Defensive Tools",
+              dual: "Dual-use",
+              catNetwork: "Network",
+              catWeb: "Web",
+              catForensics: "Forensics",
+              catPasswords: "Passwords",
+              catWireless: "Wireless",
+              search: "Search",
+              export: "Export",
+              reset: "Reset",
+              language: "Language"
+            }
+          : {
+              menu: "القائمة",
+              mainSections: "الأقسام الرئيسية",
+              quickFilter: "تصفية سريعة",
+              categories: "التصنيفات",
+              quickLinks: "روابط سريعة",
+              tools: "الأدوات",
+              education: "الشرح التعليمي",
+              curriculum: "منهج 100 نقطة",
+              importTools: "الاستيراد",
+              all: "عرض الكل",
+              defense: "أدوات دفاعية",
+              dual: "ثنائي الاستخدام",
+              catNetwork: "الشبكات",
+              catWeb: "الويب",
+              catForensics: "التحليل الجنائي",
+              catPasswords: "كلمات المرور",
+              catWireless: "اللاسلكي",
+              search: "بحث",
+              export: "تصدير",
+              reset: "إعادة ضبط",
+              language: "اللغة"
+            };
+
+        const setText = (selector, value) => {
+          const el = document.querySelector(selector);
+          if (el) el.textContent = value;
+        };
+        const setIcon = (selector, value) => {
+          const el = document.querySelector(selector);
+          if (el) el.textContent = value;
+        };
+        const setSidebarLink = (selector, label, icon) => {
+          const el = document.querySelector(selector);
+          if (!el) return;
+          const textNode = el.querySelector("span:last-child");
+          const iconNode = el.querySelector(".sidebar-link-icon");
+          if (textNode) textNode.textContent = label;
+          if (iconNode) iconNode.textContent = icon;
+        };
+        const setQuickBtn = (id, label, icon) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          const spans = el.querySelectorAll("span");
+          if (spans[0]) spans[0].textContent = icon;
+          if (spans[1]) spans[1].textContent = label;
+        };
+
+        setIcon("#sidebarToggle span:first-child", "☰");
+        setText("#sidebarToggle .sidebar-toggle-text", t.menu);
+        setIcon("#langBtn span[aria-hidden='true']", "🌐");
+        setIcon("#densityBtn span[aria-hidden='true']", "⇄");
+        setIcon("#exportBtn span[aria-hidden='true']", "↓");
+        setIcon("#resetBtn span[aria-hidden='true']", "↺");
+        setText("#backToTop", "↑");
+        setText("#sidebarClose", "✕");
+
+        setText("#sidebar .sidebar-header span", t.menu);
+        const sectionTitles = Array.from(document.querySelectorAll("#sidebar .sidebar-section-title"));
+        if (sectionTitles[0]) sectionTitles[0].textContent = t.mainSections;
+        if (sectionTitles[1]) sectionTitles[1].textContent = t.quickFilter;
+        if (sectionTitles[2]) sectionTitles[2].textContent = t.categories;
+        if (sectionTitles[3]) sectionTitles[3].textContent = t.quickLinks;
+
+        setSidebarLink('#sidebar a[href="#toolsWrap"]', t.tools, "🧰");
+        setSidebarLink('#sidebar a[href="#eduPanel"]', t.education, "📘");
+        setSidebarLink('#sidebar a[href="#edu100Panel"]', t.curriculum, "🎯");
+        setSidebarLink('#sidebar a[href="#importPanel"]', t.importTools, "📥");
+        setSidebarLink('#sidebar a[data-filter="all"]', t.all, "◉");
+        setSidebarLink('#sidebar a[data-filter="defense"]', t.defense, "🛡");
+        setSidebarLink('#sidebar a[data-filter="dual"]', t.dual, "⚖");
+        setSidebarLink('#sidebar a[data-category="Network"]', t.catNetwork, "🌐");
+        setSidebarLink('#sidebar a[data-category="Web"]', t.catWeb, "🕸");
+        setSidebarLink('#sidebar a[data-category="Forensics"]', t.catForensics, "🔎");
+        setSidebarLink('#sidebar a[data-category="Passwords"]', t.catPasswords, "🔐");
+        setSidebarLink('#sidebar a[data-category="Wireless"]', t.catWireless, "📶");
+
+        setQuickBtn("quickSearch", t.search, "⌕");
+        setQuickBtn("quickExport", t.export, "↓");
+        setQuickBtn("quickReset", t.reset, "↺");
+        setQuickBtn("quickLang", t.language, "🌐");
+      }
       function applyI18n() {
         document.documentElement.lang = lang === "en" ? "en" : "ar";
         document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
@@ -4878,10 +7314,13 @@ log(event)`,
         });
         // Keep placeholders reasonably bilingual.
         els.q.placeholder = lang === "en" ? "e.g. nmap, web, forensics..." : "مثال: nmap, web, forensics...";
+        applyStaticUiLabels();
         applyDensity();
         rebuildSelects();
         rebuildSortSelect();
         renderEdu100();
+        renderBasicsRoadmap();
+        updateAcademyToggleUi();
         render();
       }
       function getAllTools() {
@@ -5009,10 +7448,88 @@ log(event)`,
         cats.forEach((c) => addChip(c, `${c} (${counts.get(c) || 0})`));
         els.catChips.appendChild(frag);
       }
-      function renderEduMods(container, mods) {
+      function renderEduMods(container, mods, track) {
         if (!container) return;
         container.innerHTML = "";
         if (!Array.isArray(mods) || !mods.length) return;
+        const isDefense = String(track || "") === "defense";
+        const isArabic = lang !== "en";
+        const fieldLabels = isArabic
+          ? {
+              point: "النقطة",
+              core: "الفكرة",
+              why: "ليش مهم؟",
+              mistake: "خطأ شائع",
+              action: "الإجراء العملي",
+              fallbackExample: "سيناريو تدريبي: فريق اكتشف المشكلة خلال مراجعة أمنية، وثبّت إصلاح قابل للاختبار لمنع تكرارها."
+            }
+          : {
+              point: "Point",
+              core: "Core Idea",
+              why: "Why It Matters",
+              mistake: "Common Mistake",
+              action: "Practical Action",
+              fallbackExample: "Training scenario: the team found the issue during a security review, then implemented a testable fix to prevent regression."
+            };
+        const mistakesAr = isDefense
+          ? [
+              "الاعتماد على التحقق من الواجهة فقط وترك السيرفر بدون تحقق حقيقي.",
+              "اعتبار تسجيل الدخول كافي وإهمال التحقق من الصلاحيات على كل مورد.",
+              "تخزين أسرار أو مفاتيح داخل الكود أو ملفات عامة.",
+              "إهمال السجلات أو تسجيل حساسيات (tokens/PII) داخل logs.",
+              "تطبيق ضوابط موجودة شكليًا بدون اختبار فعاليتها الفعلية.",
+              "تجاهل اختبارات الحواف (inputs كبيرة/غريبة) والتركيز على الحالات السهلة فقط.",
+              "توسيع الصلاحيات مؤقتًا ثم نسيان إعادتها.",
+              "تحديث مكتبات بدون مراجعة الأثر الأمني.",
+              "إصلاح سريع بلا اختبار رجوعي (regression) فيرجع نفس الخلل لاحقًا.",
+              "تصميم معماري معقد يصعب مراقبته وفهم نقاط الثقة فيه."
+            ]
+          : [
+              "بدء الاختبار بدون نطاق وتفويض مكتوب وواضح.",
+              "التركيز على “إثبات الاختراق” بدل قياس المخاطر وتحسين الدفاع.",
+              "جمع أدلة كثيرة دون تنظيف الحساسية أو حماية الخصوصية.",
+              "تقرير طويل بدون توصيات عملية قابلة للتنفيذ.",
+              "تنفيذ سيناريوهات غير قابلة للتكرار فلا يمكن قياس التحسن.",
+              "اختبار ضابط واحد وعزل بقية السلسلة المؤثرة عليه.",
+              "إخفاء نتائج حساسة بدل مشاركتها مع أصحاب العلاقة للإصلاح.",
+              "تحويل الاختبار لمنافسة بدل تعاون بين الأمن والتطوير.",
+              "نسيان إعادة الاختبار بعد الإصلاح.",
+              "اعتبار الأمن حملة مؤقتة بدل برنامج مستمر."
+            ];
+        const actionsAr = isDefense
+          ? [
+              "حوّل القاعدة إلى check واضح في الكود + اختبار وحدة/تكامل.",
+              "أضف Gate في CI يمنع الدمج عند كسر هذا الضابط.",
+              "وثّق القرار الأمني بجملة قصيرة داخل الـPR حتى يفهمه الفريق.",
+              "اربط التنبيه الأمني بـrunbook يوضح أول 3 خطوات استجابة.",
+              "حدد owner واضح للنقطة وتاريخ مراجعة دوري."
+            ]
+          : [
+              "عرّف Scope كتابيًا قبل أي تنفيذ وشارك حدود الاختبار مع كل الأطراف.",
+              "حوّل كل ملاحظة إلى Risk + Evidence + Recommendation + Verification.",
+              "استخدم أدلة مصغرة ومنظفة (redacted) بدل لقطات أو dumps خام.",
+              "اجعل السيناريو قابل للتكرار حتى تقيس الفرق قبل/بعد الإصلاح.",
+              "أغلق الحلقة دائمًا بإعادة اختبار وتحديث الضوابط الآلية."
+            ];
+        const mistakesEn = [
+          "Relying on client-side checks while server validation is weak.",
+          "Treating authentication as authorization.",
+          "Keeping secrets in code or public configs.",
+          "Logging sensitive data or lacking usable logs.",
+          "Having controls on paper without validation tests.",
+          "Skipping edge-case and malformed-input tests.",
+          "Granting broad temporary privileges and never rolling them back.",
+          "Updating dependencies without security impact review.",
+          "Shipping fixes without regression tests.",
+          "Overly complex architecture that no one can reason about."
+        ];
+        const actionsEn = [
+          "Turn the control into a concrete code check plus an automated test.",
+          "Add a CI gate so broken controls cannot be merged.",
+          "Document security rationale in PRs in one clear sentence.",
+          "Attach alerts to runbooks with immediate response steps.",
+          "Assign an owner and periodic review date for each control."
+        ];
         const frag = document.createDocumentFragment();
         mods.forEach((m, idx) => {
           const det = document.createElement("details");
@@ -5021,22 +7538,63 @@ log(event)`,
           const sum = document.createElement("summary");
           sum.textContent = String(m && m.title ? m.title : "");
           det.appendChild(sum);
-          const ul = document.createElement("ul");
+          const intro = String(m && m.intro ? m.intro : "").trim();
+          if (intro) {
+            const p = document.createElement("p");
+            p.style.margin = "8px 0 10px";
+            p.style.lineHeight = "1.9";
+            p.style.fontWeight = "800";
+            p.style.color = "var(--muted)";
+            p.textContent = intro;
+            det.appendChild(p);
+          }
           const pts = m && Array.isArray(m.points) ? m.points : [];
-          pts.forEach((p) => {
-            const li = document.createElement("li");
-            li.textContent = String(p);
-            ul.appendChild(li);
-          });
-          det.appendChild(ul);
+          if (pts.length) {
+            const pointsWrap = document.createElement("div");
+            pointsWrap.className = "edu-points";
+            pts.forEach((p, pIdx) => {
+              const absoluteNo = idx * pts.length + pIdx + 1;
+              const pointText = String(p || "").trim();
+              const whyText = isArabic
+                ? `لأن إهمال هذه النقطة يفتح باباً لأخطاء تتكرر بصمت، بينما ضبطها يرفع جودة الأمان والاستقرار معًا.`
+                : `Ignoring this point creates repeatable silent failures; enforcing it improves both security and reliability.`;
+              const mistake = isArabic ? mistakesAr[idx % mistakesAr.length] : mistakesEn[idx % mistakesEn.length];
+              const action = isArabic ? actionsAr[idx % actionsAr.length] : actionsEn[idx % actionsEn.length];
+              const card = document.createElement("article");
+              card.className = "edu-point-card";
+              card.innerHTML = `
+                <h4 class="edu-point-title">${fieldLabels.point} ${absoluteNo}</h4>
+                <p class="edu-line"><b>${fieldLabels.core}:</b> ${pointText}</p>
+                <p class="edu-line"><b>${fieldLabels.why}:</b> ${whyText}</p>
+                <p class="edu-line"><b>${fieldLabels.mistake}:</b> ${mistake}</p>
+                <p class="edu-line"><b>${fieldLabels.action}:</b> ${action}</p>
+              `;
+              pointsWrap.appendChild(card);
+            });
+            det.appendChild(pointsWrap);
+          }
+          const example = String(m && m.example ? m.example : "").trim();
+          if (example) {
+            const box = document.createElement("div");
+            box.className = "notice view-banner defense";
+            box.style.marginTop = "10px";
+            box.innerHTML = `<b>${lang === "en" ? "Real-world example:" : "مثال واقعي:"}</b> ${example}`;
+            det.appendChild(box);
+          } else {
+            const box = document.createElement("div");
+            box.className = "notice view-banner defense";
+            box.style.marginTop = "10px";
+            box.innerHTML = `<b>${lang === "en" ? "Real-world example:" : "مثال واقعي:"}</b> ${fieldLabels.fallbackExample}`;
+            det.appendChild(box);
+          }
           frag.appendChild(det);
         });
         container.appendChild(frag);
       }
       function renderEdu100() {
         const data = (EDU100 && EDU100[lang]) || EDU100.ar;
-        renderEduMods(els.edu100Defense, data && data.defense);
-        renderEduMods(els.edu100Attack, data && data.attack);
+        renderEduMods(els.edu100Defense, data && data.defense, "defense");
+        renderEduMods(els.edu100Attack, data && data.attack, "attack");
       }
       function filterTools(tools) {
         const q = normalizeText(settings.q);
@@ -5444,7 +8002,7 @@ log(event)`,
         els.onlyDef.checked = Boolean(settings.onlyDef);
         els.onlyDual.checked = Boolean(settings.onlyDual);
         els.includeUser.checked = Boolean(settings.includeUser);
-        if (els.sort) els.sort.value = String(settings.sort || "cat");
+        if (els.sort) els.sort.value = String(settings.sort || "name");
         if (els.groupByCat) els.groupByCat.checked = Boolean(settings.groupByCat);
         els.q.value = settings.q || "";
         updateViewUi();
@@ -5672,14 +8230,125 @@ log(event)`,
           fr.readAsText(file);
         });
       }
+      function wireSidebarAndShortcuts() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.getElementById("sidebarOverlay");
+        const toggleBtn = document.getElementById("sidebarToggle");
+        const closeBtn = document.getElementById("sidebarClose");
+        if (!sidebar || !overlay || !toggleBtn || !closeBtn) return;
+
+        const setSidebarOpen = (open) => {
+          const isOpen = Boolean(open);
+          sidebar.classList.toggle("open", isOpen);
+          overlay.classList.toggle("open", isOpen);
+          document.body.classList.toggle("sidebar-open", isOpen);
+        };
+
+        toggleBtn.addEventListener("click", () => setSidebarOpen(true));
+        closeBtn.addEventListener("click", () => setSidebarOpen(false));
+        overlay.addEventListener("click", () => setSidebarOpen(false));
+        document.addEventListener("keydown", (e) => {
+          if (String(e.key || "") === "Escape") setSidebarOpen(false);
+        });
+
+        const sidebarLinks = Array.from(sidebar.querySelectorAll(".sidebar-link"));
+        sidebarLinks.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            const filter = String(link.getAttribute("data-filter") || "");
+            const category = String(link.getAttribute("data-category") || "");
+
+            if (filter === "all" || filter === "defense" || filter === "dual") {
+              e.preventDefault();
+              if (readHashView() !== filter) location.hash = filter;
+              else {
+                applyViewPreset(filter);
+                render();
+              }
+              setSidebarOpen(false);
+              return;
+            }
+
+            if (category) {
+              e.preventDefault();
+              settings.cat = category;
+              if (els.cat) els.cat.value = category;
+              render();
+              try {
+                els.toolsWrap.scrollIntoView({ behavior: "smooth", block: "start" });
+              } catch (_) {
+                // ignore
+              }
+              setSidebarOpen(false);
+              return;
+            }
+
+            const href = String(link.getAttribute("href") || "");
+            if (href.startsWith("#")) setSidebarOpen(false);
+          });
+        });
+
+        const quickSearch = document.getElementById("quickSearch");
+        const quickExport = document.getElementById("quickExport");
+        const quickReset = document.getElementById("quickReset");
+        const quickLang = document.getElementById("quickLang");
+
+        if (quickSearch) {
+          quickSearch.addEventListener("click", () => {
+            setSidebarOpen(false);
+            try {
+              els.q.focus();
+              els.q.select();
+            } catch (_) {
+              // ignore
+            }
+          });
+        }
+        if (quickExport) {
+          quickExport.addEventListener("click", () => {
+            setSidebarOpen(false);
+            if (els.exportBtn) els.exportBtn.click();
+          });
+        }
+        if (quickReset) {
+          quickReset.addEventListener("click", () => {
+            setSidebarOpen(false);
+            if (els.resetBtn) els.resetBtn.click();
+          });
+        }
+        if (quickLang) {
+          quickLang.addEventListener("click", () => {
+            setSidebarOpen(false);
+            if (els.langBtn) els.langBtn.click();
+          });
+        }
+      }
+      function wireBackToTop() {
+        const btn = document.getElementById("backToTop");
+        if (!btn) return;
+        const onScroll = () => {
+          btn.classList.toggle("show", window.scrollY > 360);
+        };
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        btn.addEventListener("click", () => {
+          try {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } catch (_) {
+            window.scrollTo(0, 0);
+          }
+        });
+      }
       function wire() {
         els.year.textContent = String(new Date().getFullYear());
         initNavHeight();
+        wireSidebarAndShortcuts();
+        wireBackToTop();
+        wireAcademyActions();
         // Settings -> controls
         settings.q = String(settings.q || "");
         settings.cat = String(settings.cat || "all");
         settings.risk = String(settings.risk || "all");
-        settings.sort = String(settings.sort || "cat");
+        settings.sort = String(settings.sort || "name");
         if (!new Set(["cat", "name", "riskAsc", "riskDesc", "type"]).has(settings.sort)) settings.sort = "cat";
         settings.groupByCat = safeBool(settings.groupByCat, true);
         settings.safetyMode = safeBool(settings.safetyMode, true);
@@ -5920,3 +8589,4 @@ log(event)`,
     </script>
   </body>
 </html>
+
