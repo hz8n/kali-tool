@@ -90,6 +90,11 @@
         width: min(var(--container), 94vw);
         margin-inline: auto;
       }
+      #searchFiltersBlock,
+      #categoriesBlock,
+      #statsBlock {
+        display: none !important;
+      }
       [data-density="compact"] {
         --container: 1040px;
       }
@@ -2179,6 +2184,11 @@
         .nav-links {
           display: none;
         }
+        #searchFiltersBlock,
+        #categoriesBlock,
+        #statsBlock {
+          display: none !important;
+        }
         .sidebar-toggle {
           display: inline-flex;
           align-items: center;
@@ -2200,6 +2210,13 @@
         }
         .split {
           grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      @media (max-width: 768px) {
+        .sidebar-toggle,
+        #sidebar,
+        #sidebarOverlay {
+          display: none !important;
         }
       }
       @media (max-width: 768px) {
@@ -2299,9 +2316,13 @@
       @media (max-width: 768px) {
         body {
           background: linear-gradient(180deg, #020705, #010302) !important;
+          font-family: system-ui, -apple-system, "Segoe UI", sans-serif !important;
         }
         html {
           scroll-behavior: auto !important;
+        }
+        * {
+          animation: none !important;
         }
         .bg-mark,
         .grain,
@@ -2350,6 +2371,7 @@
         .academy-link-card {
           content-visibility: auto;
           contain-intrinsic-size: 1px 560px;
+          contain: layout paint style;
         }
       }
       @media (min-width: 769px) {
@@ -8515,8 +8537,10 @@ log(event)`,
           if (bg2) bg2.remove();
         }
         initNavHeight();
-        wireSidebarAndShortcuts();
-        wireBackToTop();
+        if (!IS_PHONE) {
+          wireSidebarAndShortcuts();
+          wireBackToTop();
+        }
         wireAcademyActions();
         if (IS_PHONE && typeof IntersectionObserver === "function") {
           const eduPanel = document.getElementById("edu100Panel");
@@ -8768,7 +8792,7 @@ log(event)`,
           rebuildSelects();
           render();
         });
-        enableSpotlight();
+        if (!IS_PHONE) enableSpotlight();
         render();
       }
       applyViewFromHash();
