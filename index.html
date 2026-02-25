@@ -2941,6 +2941,186 @@ Report template:
             </div>
           </div>
         </section>
+        <section class="panel" id="osMasterPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>شرح أنظمة التشغيل بشكل أسطوري: من الصفر إلى الفهم العميق</h2>
+                <p>
+                  هذا القسم يعطيك فهمًا عميقًا جدًا لكيف يعمل نظام التشغيل فعليًا، من لحظة ضغط زر التشغيل حتى تشغيل البرامج وإدارة
+                  الذاكرة وحماية الجهاز.
+                </p>
+              </div>
+            </div>
+
+            <details class="more" open>
+              <summary>1) ما هو نظام التشغيل ولماذا هو أهم برنامج في الجهاز؟</summary>
+              <p class="edu-line">
+                نظام التشغيل هو المدير الأعلى للجهاز. هو الوسيط بين العتاد (المعالج، الذاكرة، القرص، كرت الشبكة) وبين البرامج التي
+                تستخدمها يوميًا. بدون نظام تشغيل، التطبيق لا يعرف كيف يصل للذاكرة أو يقرأ ملفًا أو يرسل طلب شبكة.
+              </p>
+              <p class="edu-line">
+                أي نظام تشغيل حديث يقوم على 5 مهام رئيسية: <b>إدارة العمليات</b>، <b>إدارة الذاكرة</b>، <b>إدارة الملفات</b>,
+                <b>إدارة الأجهزة</b>، <b>الأمان والصلاحيات</b>. إذا فهمت هذه الخماسية، فأنت فهمت قلب الأنظمة.
+              </p>
+            </details>
+
+            <details class="more" open>
+              <summary>2) رحلة الإقلاع: ماذا يحدث بعد تشغيل الجهاز؟</summary>
+              <ul>
+                <li>المرحلة 1: BIOS/UEFI يفحص العتاد الأساسي (POST) ويتأكد أن القطع تعمل.</li>
+                <li>المرحلة 2: Bootloader (مثل GRUB أو Windows Boot Manager) يحمّل نواة النظام.</li>
+                <li>المرحلة 3: Kernel تبدأ تشغيل الدرايفرات الأساسية وتجهز إدارة الذاكرة والعمليات.</li>
+                <li>المرحلة 4: تشغيل الخدمات الأساسية (network, logging, display, users).</li>
+                <li>المرحلة 5: الوصول إلى شاشة تسجيل الدخول ثم بيئة المستخدم الكاملة.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>3) النواة Kernel: الدماغ الحقيقي للنظام</summary>
+              <p class="edu-line">
+                النواة هي الجزء الأكثر حساسية في النظام. أي خطأ فيها قد يسبب انهيار كامل (Kernel Panic/BSOD). مهمتها إدارة الموارد:
+                تقرر من يأخذ وقت المعالج، من يحصل على مساحة ذاكرة، من يقرأ من القرص، ومن يملك صلاحيات الوصول.
+              </p>
+              <p class="edu-line">
+                الفرق بين User Mode وKernel Mode مهم جدًا: البرامج العادية تعمل بصلاحيات محدودة، أما النواة فتعمل بصلاحيات كاملة.
+                هذا الفصل يمنع التطبيق من تخريب النظام مباشرة.
+              </p>
+            </details>
+
+            <details class="more">
+              <summary>4) إدارة العمليات والمهام (Processes/Threads)</summary>
+              <ul>
+                <li>كل برنامج يعمل كـ Process له PID وموارد خاصة.</li>
+                <li>داخل كل Process يوجد Threads تنفذ التعليمات بشكل متوازي.</li>
+                <li>Scheduler في النظام يوزع وقت المعالج بعدالة وكفاءة بين العمليات.</li>
+                <li>Context Switch هو تبديل سريع بين المهام، وهو ضروري لتعدد المهام.</li>
+                <li>فهم حالات العملية (Running, Waiting, Sleeping, Zombie) مهم جدًا للتشخيص.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>5) إدارة الذاكرة: لماذا ينهار البرنامج أحيانًا؟</summary>
+              <ul>
+                <li>RAM هي ذاكرة العمل السريعة، والقرص للتخزين الدائم.</li>
+                <li>Virtual Memory تسمح لكل برنامج أن يشعر وكأنه يملك ذاكرة خاصة.</li>
+                <li>Paging ينقل صفحات غير مستخدمة من RAM إلى القرص عند الضغط العالي.</li>
+                <li>Memory Leak يعني أن البرنامج يحجز ذاكرة ولا يحررها، فيبطئ النظام مع الوقت.</li>
+                <li>OOM (Out Of Memory) يحدث عندما لا يوجد ذاكرة كافية لتشغيل المهام الجديدة.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>6) أنظمة الملفات: كيف يتم حفظ البيانات فعليًا؟</summary>
+              <ul>
+                <li>نظام الملفات يحدد طريقة تنظيم الملفات والمجلدات والصلاحيات.</li>
+                <li>Windows غالبًا يستخدم NTFS، وLinux يستخدم ext4/xfs/btrfs، وmacOS يستخدم APFS.</li>
+                <li>Metadata (الصلاحيات، المالك، التواريخ) لا تقل أهمية عن محتوى الملف نفسه.</li>
+                <li>Journaling يقلل فقدان البيانات عند انقطاع مفاجئ للكهرباء.</li>
+                <li>النسخ الاحتياطي المنتظم أهم من أي أداة استرجاع بعد الكارثة.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>7) الأمان في أنظمة التشغيل: خط الدفاع الأول</summary>
+              <ul>
+                <li>مبدأ أقل صلاحية: لا تعطي صلاحيات Admin/Root إلا عند الحاجة.</li>
+                <li>تحديثات النظام تسد ثغرات خطرة، وتأجيلها لفترة طويلة مخاطرة كبيرة.</li>
+                <li>الجدار الناري + مكافحة البرمجيات الضارة + التشفير = حماية أساسية.</li>
+                <li>Logs ضرورية لفهم الهجمات أو الأعطال بعد حدوثها.</li>
+                <li>حساب يومي عادي + حساب إداري منفصل يرفع أمان الجهاز بشكل ملحوظ.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>8) مقارنة سريعة: Windows vs Linux vs macOS</summary>
+              <ul>
+                <li><b>Windows:</b> ممتاز للتطبيقات العامة والألعاب والبيئات المكتبية، إدارة مركزية قوية عبر Active Directory.</li>
+                <li><b>Linux:</b> مرن جدًا، قوي في السيرفرات والأمن والبرمجة والبنية التحتية.</li>
+                <li><b>macOS:</b> تجربة سلسة للمطورين والمبدعين، مبني على Unix مع استقرار جيد.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>9) فيديوهات يوتيوب قوية لتعلم أنظمة التشغيل</summary>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Operating Systems - Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=26QPDBe-NB8" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=26QPDBe-NB8</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>How Operating Systems Work</b>
+                  <a href="https://www.youtube.com/watch?v=2hNdkYInj4g" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=2hNdkYInj4g</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Linux for Beginners</b>
+                  <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=sWbUDq4S6Y8</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Windows Internals Overview</b>
+                  <a href="https://www.youtube.com/watch?v=7z7M8Ff8x8M" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=7z7M8Ff8x8M</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>10) شرح مبسّط جدًا بمثال واقعي: تخيّل النظام كمدينة كاملة</summary>
+              <p class="edu-line">
+                لتفهم أنظمة التشغيل بسهولة، تخيّل جهازك مدينة كبيرة. <b>النواة</b> هي إدارة المدينة، <b>المعالج</b> هو العمال،
+                <b>الذاكرة</b> هي المكاتب المؤقتة، <b>القرص</b> هو المخازن، <b>البرامج</b> هي الشركات، و<b>الصلاحيات</b> هي بطاقات
+                الدخول. أي برنامج يطلب خدمة (ملف، شبكة، طباعة)، والنظام يقرر هل يسمح أو لا، ومتى يعطيه الموارد.
+              </p>
+              <p class="edu-line">
+                إذا شركة واحدة استهلكت موارد المدينة كلها، الإدارة (النظام) تتدخل وتوزع الموارد من جديد. لهذا ترى أحيانًا أن النظام
+                يغلق تطبيقًا ثقيلًا أو يبطئه، لحماية استقرار الجهاز كاملًا. هذه هي فكرة "الجدولة وإدارة الموارد" بشكل عملي.
+              </p>
+            </details>
+
+            <details class="more">
+              <summary>11) أكثر 15 مصطلح لازم تفهمه في أنظمة التشغيل</summary>
+              <ul>
+                <li><b>Kernel:</b> الجزء الأساسي المسؤول عن إدارة الموارد.</li>
+                <li><b>Process:</b> برنامج قيد التشغيل.</li>
+                <li><b>Thread:</b> مسار تنفيذ داخل البرنامج.</li>
+                <li><b>Scheduler:</b> منظم وقت المعالج بين البرامج.</li>
+                <li><b>Context Switch:</b> تبديل سريع بين المهام.</li>
+                <li><b>Virtual Memory:</b> ذاكرة منطقية أكبر من RAM الحقيقية.</li>
+                <li><b>Page/Swap:</b> نقل جزء من الذاكرة للقرص عند الضغط.</li>
+                <li><b>File System:</b> طريقة تنظيم الملفات على القرص.</li>
+                <li><b>Driver:</b> برنامج وسيط بين النظام وقطعة العتاد.</li>
+                <li><b>Permission:</b> صلاحيات الوصول (قراءة/كتابة/تنفيذ).</li>
+                <li><b>User Mode:</b> وضع برامج المستخدم بصلاحيات محدودة.</li>
+                <li><b>Kernel Mode:</b> وضع النواة بصلاحيات كاملة.</li>
+                <li><b>Daemon/Service:</b> خدمة تعمل بالخلفية.</li>
+                <li><b>Bootloader:</b> المسؤول عن تحميل النواة عند الإقلاع.</li>
+                <li><b>Log:</b> سجل الأحداث والأخطاء.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>12) كيف تتعلم أنظمة التشغيل بطريقة سهلة ومفهومة (خطة 6 مراحل)</summary>
+              <ul>
+                <li>المرحلة 1: افهم المفاهيم الأساسية (Process, Memory, File System) بدون تعقيد رياضي.</li>
+                <li>المرحلة 2: تدرب يوميًا على أوامر النظام الأساسية (ملفات، صلاحيات، مراقبة العمليات).</li>
+                <li>المرحلة 3: راقب النظام أثناء العمل (Task Manager / top / htop / logs).</li>
+                <li>المرحلة 4: تعلم استكشاف المشاكل (بطء الجهاز، امتلاء الذاكرة، مشاكل الإقلاع).</li>
+                <li>المرحلة 5: افهم الأمان العملي (حسابات، تحديثات، جدار ناري، صلاحيات).</li>
+                <li>المرحلة 6: نفذ مشاريع تطبيقية: إعداد نظام جديد، تحسين الأداء، توثيق خطواتك.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>13) أخطاء شائعة عند تعلم أنظمة التشغيل وكيف تتجنبها</summary>
+              <ul>
+                <li>الخطأ: حفظ أوامر بدون فهم. الحل: اربط كل أمر بهدف عملي واضح.</li>
+                <li>الخطأ: الخوف من الطرفية. الحل: استخدمها يوميًا في مهام بسيطة حتى تتعود.</li>
+                <li>الخطأ: تجاهل السجلات logs. الحل: أي مشكلة ابدأ تحليلها من السجل أولًا.</li>
+                <li>الخطأ: العمل كـ Admin/Root دائمًا. الحل: استخدم أقل صلاحية ممكنة.</li>
+                <li>الخطأ: عدم أخذ نسخ احتياطية. الحل: Backup دوري قبل أي تعديل مهم.</li>
+              </ul>
+            </details>
+          </div>
+        </section>
         <section class="panel" id="cyberMasterPanel" style="margin: 12px 0 16px">
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
