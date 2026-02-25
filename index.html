@@ -1481,7 +1481,7 @@
         --bad-rgb: 255, 77, 109;
         --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
         --r: 22px;
-        --container: 1240px;
+        --container: 980px;
       }
       html {
         scroll-padding-top: calc(var(--nav-h, 84px) + 14px);
@@ -1703,6 +1703,17 @@
         border-color: rgba(var(--bad-rgb), 0.38);
         background: linear-gradient(180deg, rgba(var(--bad-rgb), 0.12), rgba(var(--bad-rgb), 0.07));
         color: #4a1f1f;
+      }
+      .notice.learn {
+        border-color: rgba(var(--accent-rgb), 0.38);
+        background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.16), rgba(var(--accent2-rgb), 0.08));
+        color: #103c37;
+      }
+      .notice.learn a {
+        color: #0b5954;
+        font-weight: 900;
+        text-decoration: underline;
+        text-underline-offset: 2px;
       }
 
       .controls {
@@ -2563,6 +2574,29 @@
                     مصرح به.
                   </span>
                 </div>
+                <div class="notice learn" role="note">
+                  <b data-i18n="learnHead">شرح سريع:</b>
+                  <span data-i18n="learnBody">
+                    الأمن السيبراني يبدأ من الأساسيات: أنظمة التشغيل، الشبكات، البرمجة، ثم
+                    الدفاع والتحليل والممارسة داخل مختبر قانوني.
+                  </span>
+                  <br />
+                  <span data-i18n="learnBody2">
+                    للوصول للاحتراف: ابنِ أساس قوي في Linux وTCP/IP، تعلم Python وBash للأتمتة،
+                    طبّق أمن الويب وواجهات API عملياً، أتقن التحليل الجنائي والاستجابة للحوادث،
+                    وثّق كل تجربة بتقارير واضحة. ركّز على مشاريع حقيقية داخل بيئة مخبرية مصرح بها،
+                    واشتغل على خطة تعلم أسبوعية ثابتة (قراءة + تطبيق + مراجعة). بهذه الطريقة تنتقل
+                    من الفهم النظري إلى مستوى مهني فعلي.
+                  </span>
+                  <br />
+                  <a
+                    href="https://www.youtube.com/watch?v=RGOj5yH7evk"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-i18n="learnVideo"
+                    >فيديو يوتيوب شرح من الصفر</a
+                  >
+                </div>
               </div>
               <div class="hero-controls">
                 <div class="controls" id="searchFiltersBlock" aria-label="Search and filters" hidden>
@@ -2849,6 +2883,157 @@ Report template:
             </div>
           </div>
         </section>
+        <section class="panel" id="cyberRoadmapPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2 data-i18n="cyberRoadmapTitle">الأمن السيبراني من الصفر إلى الاحتراف</h2>
+                <p data-i18n="cyberRoadmapDesc">
+                  مسار تدريجي واضح يبدأ من الأساسيات وينتهي بمهارات مهنية قابلة للتطبيق في سوق العمل.
+                </p>
+              </div>
+            </div>
+            <div class="basics-grid">
+              <article class="basics-card">
+                <h4 data-i18n="cyberStage1Title">المرحلة 1: الأساس التقني</h4>
+                <p data-i18n="cyberStage1Body">
+                  ابدأ بفهم أنظمة التشغيل (خصوصاً Linux)، إدارة الملفات، العمليات، الشبكات الأساسية (IP, DNS, TCP/UDP)، ومبادئ البرمجة.
+                </p>
+              </article>
+              <article class="basics-card">
+                <h4 data-i18n="cyberStage2Title">المرحلة 2: أمن الشبكات والأنظمة</h4>
+                <p data-i18n="cyberStage2Body">
+                  تعلّم الجدران النارية، التقسيم الشبكي، المراقبة، تقوية الأنظمة (Hardening)، وإدارة الهوية والصلاحيات.
+                </p>
+              </article>
+              <article class="basics-card">
+                <h4 data-i18n="cyberStage3Title">المرحلة 3: أمن تطبيقات الويب وواجهات API</h4>
+                <p data-i18n="cyberStage3Body">
+                  ركز على OWASP Top 10، التحقق من المدخلات، إدارة الجلسات، المصادقة والتفويض، وحماية البيانات أثناء النقل والتخزين.
+                </p>
+              </article>
+              <article class="basics-card">
+                <h4 data-i18n="cyberStage4Title">المرحلة 4: التحليل والاستجابة للحوادث</h4>
+                <p data-i18n="cyberStage4Body">
+                  طوّر مهارات قراءة السجلات، التحليل الجنائي الرقمي، اكتشاف السلوك الشاذ، وبناء إجراءات استجابة عملية وسريعة.
+                </p>
+              </article>
+              <article class="basics-card">
+                <h4 data-i18n="cyberStage5Title">المرحلة 5: الأتمتة والاختبار العملي</h4>
+                <p data-i18n="cyberStage5Body">
+                  استخدم Python/Bash لأتمتة المهام الأمنية، وابنِ مختبرًا قانونيًا لتطبيق السيناريوهات وقياس فعالية الضوابط الأمنية.
+                </p>
+              </article>
+              <article class="basics-card">
+                <h4 data-i18n="cyberStage6Title">المرحلة 6: الاحتراف المهني</h4>
+                <p data-i18n="cyberStage6Body">
+                  ابنِ ملف أعمال قوي (تقارير، مشاريع، أدوات بسيطة)، وحسّن مهارات التواصل وكتابة التوصيات، واستمر بالتعلم الدوري.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="cyberMasterPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2 data-i18n="cyberMasterTitle">الدليل الشامل: الأمن السيبراني من الصفر للاحتراف</h2>
+                <p data-i18n="cyberMasterDesc">
+                  هذا القسم مصمم ليكون خطة تعلم متكاملة: ماذا تتعلم، كيف تتعلم، ماذا تطبق، وكيف تقيس تقدمك حتى تصل لمستوى مهني قوي.
+                </p>
+              </div>
+            </div>
+
+            <details class="more" open>
+              <summary data-i18n="cyberMasterTrackHead">1) المسار الكامل خطوة بخطوة</summary>
+              <ul>
+                <li>الخطوة 1: أساس الكمبيوتر وأنظمة التشغيل (Windows + Linux) مع إدارة الملفات، العمليات، والخدمات.</li>
+                <li>الخطوة 2: أساس الشبكات بعمق (IP, Subnet, Routing, DNS, HTTP/HTTPS, TCP/UDP, TLS).</li>
+                <li>الخطوة 3: أساس البرمجة والأتمتة (Python + Bash + Git + مفاهيم API/JSON).</li>
+                <li>الخطوة 4: أمن الشبكات والأنظمة (Hardening, Logging, IAM, Firewall, Monitoring).</li>
+                <li>الخطوة 5: أمن تطبيقات الويب وواجهات API (OWASP Top 10, Auth, Sessions, Input Validation).</li>
+                <li>الخطوة 6: التحليل والاستجابة للحوادث (SOC Basics, SIEM, Forensics, Incident Response).</li>
+                <li>الخطوة 7: بناء تخصص مهني (Blue Team أو AppSec أو DFIR أو Cloud Security).</li>
+                <li>الخطوة 8: ملف أعمال احترافي (تقارير، مشاريع، توثيق، وعرض مهني في GitHub/LinkedIn).</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary data-i18n="cyberMasterPlanHead">2) خطة تعلم عملية (12 شهر)</summary>
+              <ul>
+                <li>الشهور 1-2: Linux + Networking + أساس Python.</li>
+                <li>الشهور 3-4: Security Fundamentals + مبادئ الدفاع + بناء لاب منزلي قانوني.</li>
+                <li>الشهور 5-6: Web Security + API Security + كتابة ملاحظات وتقارير.</li>
+                <li>الشهور 7-8: SIEM + Log Analysis + Incident Response Exercises.</li>
+                <li>الشهور 9-10: Forensics Basics + Malware Analysis Basics (دفاعي وتعليمي).</li>
+                <li>الشهور 11-12: مشروع تخرج شخصي + Portfolio + تجهيز مقابلات العمل.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary data-i18n="cyberMasterHabitsHead">3) عادات يومية توصل للاحتراف</summary>
+              <ul>
+                <li>90 دقيقة تعلم نظري يوميًا + 90 دقيقة تطبيق عملي.</li>
+                <li>توثيق كل جلسة: ماذا تعلمت، ماذا طبقت، ما المشكلة، وكيف حلّيتها.</li>
+                <li>حلّ تحدي واحد على الأقل أسبوعيًا داخل مختبر قانوني.</li>
+                <li>كتابة تقرير بسيط أسبوعي يشرح تجربة أمنية أو مشكلة تقنية.</li>
+                <li>مراجعة أساسيات الشبكات والأنظمة باستمرار، لأنها جوهر كل تخصص.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary data-i18n="cyberMasterProjectsHead">4) مشاريع عملية مفيدة للمتعلم</summary>
+              <ul>
+                <li>مشروع 1: بناء مختبر منزلي قانوني باستخدام VMs (Kali + Ubuntu + Windows تقييمي).</li>
+                <li>مشروع 2: تصميم Dashboard بسيط لتحليل logs وقراءة مؤشرات مشبوهة.</li>
+                <li>مشروع 3: فحص تطبيق ويب تجريبي آمن وكتابة تقرير مخاطر + توصيات.</li>
+                <li>مشروع 4: تنفيذ خطة Incident Response صغيرة (اكتشاف، احتواء، تحليل، تعافي).</li>
+                <li>مشروع 5: Automation Script بلغة Python لجمع بيانات أمنية وإخراج تقرير.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary data-i18n="cyberMasterVideosHead">5) فيديوهات يوتيوب مفيدة للتعلم</summary>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>CS50 (Harvard)</b>
+                  <a href="https://www.youtube.com/watch?v=8mAITcNt710" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=8mAITcNt710</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Python for Beginners</b>
+                  <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=rfscVS0vtbw</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Networking Fundamentals</b>
+                  <a href="https://www.youtube.com/watch?v=qiQR5rTSshw" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=qiQR5rTSshw</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Linux Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=sWbUDq4S6Y8</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Cybersecurity Roadmap</b>
+                  <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=RGOj5yH7evk</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>OWASP Top 10 Overview</b>
+                  <a href="https://www.youtube.com/watch?v=zOjov-2OZ0E" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=zOjov-2OZ0E</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary data-i18n="cyberMasterTipsHead">6) أشياء مهمة جدًا تفيد المتعلم</summary>
+              <ul>
+                <li>لا تستعجل الأدوات قبل فهم الأساس؛ الفهم أهم من كثرة الأوامر.</li>
+                <li>اشتغل دائمًا ضمن بيئة قانونية ومصرح بها فقط.</li>
+                <li>ابنِ عادة كتابة تقارير واضحة؛ هذه مهارة توظيف قوية جدًا.</li>
+                <li>لا تتعلم بشكل عشوائي: اختر مسار واحد واضح والتزم فيه 6 أشهر على الأقل.</li>
+                <li>قياس التقدم يكون بالمشاريع والمخرجات، وليس بعدد الفيديوهات التي شاهدتها.</li>
+              </ul>
+            </details>
+          </div>
+        </section>
         <div id="activeFilters" hidden></div>
         <div id="viewBanner" hidden><b id="viewBannerHead"></b><span id="viewBannerBody"></span></div>
         <section id="toolsWrap" hidden aria-live="polite"></section>
@@ -2939,6 +3124,12 @@ Report template:
           liabilityHead: "إخلاء مسؤولية:",
           liabilityBody:
             "استخدامك لهذه الصفحة ومحتواها على مسؤوليتك. لا نتحمل أي مسؤولية عن أي ضرر (مباشر أو غير مباشر) قد ينتج عن سوء الاستخدام أو تشغيل الأدوات خارج نطاقٍ مصرح به.",
+          learnHead: "شرح سريع:",
+          learnBody:
+            "الأمن السيبراني يبدأ من الأساسيات: أنظمة التشغيل، الشبكات، البرمجة، ثم الدفاع والتحليل والممارسة داخل مختبر قانوني.",
+          learnBody2:
+            "للوصول للاحتراف: ابنِ أساس قوي في Linux وTCP/IP، تعلم Python وBash للأتمتة، طبّق أمن الويب وواجهات API عملياً، أتقن التحليل الجنائي والاستجابة للحوادث، وثّق كل تجربة بتقارير واضحة. ركّز على مشاريع حقيقية داخل بيئة مخبرية مصرح بها، واشتغل على خطة تعلم أسبوعية ثابتة (قراءة + تطبيق + مراجعة). بهذه الطريقة تنتقل من الفهم النظري إلى مستوى مهني فعلي.",
+          learnVideo: "فيديو يوتيوب شرح من الصفر",
           searchLbl: "بحث",
           navAll: "الكل",
           navDefense: "الدفاع",
@@ -3066,6 +3257,36 @@ log(event)`,
             "منهج متعمّق من 100 نقطة: 50 للدفاع و50 للتفكير الهجومي الآمن، مع شرح مبسّط جداً + أمثلة واقعية لكل محور، بدون خطوات تشغيل هجومية.",
           edu100DefenseHead: "الدفاع (Secure Coding)",
           edu100AttackHead: "الهجوم (تفكير هجومي آمن)",
+          cyberRoadmapTitle: "الأمن السيبراني من الصفر إلى الاحتراف",
+          cyberRoadmapDesc:
+            "مسار تدريجي واضح يبدأ من الأساسيات وينتهي بمهارات مهنية قابلة للتطبيق في سوق العمل.",
+          cyberStage1Title: "المرحلة 1: الأساس التقني",
+          cyberStage1Body:
+            "ابدأ بفهم أنظمة التشغيل (خصوصاً Linux)، إدارة الملفات، العمليات، الشبكات الأساسية (IP, DNS, TCP/UDP)، ومبادئ البرمجة.",
+          cyberStage2Title: "المرحلة 2: أمن الشبكات والأنظمة",
+          cyberStage2Body:
+            "تعلّم الجدران النارية، التقسيم الشبكي، المراقبة، تقوية الأنظمة (Hardening)، وإدارة الهوية والصلاحيات.",
+          cyberStage3Title: "المرحلة 3: أمن تطبيقات الويب وواجهات API",
+          cyberStage3Body:
+            "ركز على OWASP Top 10، التحقق من المدخلات، إدارة الجلسات، المصادقة والتفويض، وحماية البيانات أثناء النقل والتخزين.",
+          cyberStage4Title: "المرحلة 4: التحليل والاستجابة للحوادث",
+          cyberStage4Body:
+            "طوّر مهارات قراءة السجلات، التحليل الجنائي الرقمي، اكتشاف السلوك الشاذ، وبناء إجراءات استجابة عملية وسريعة.",
+          cyberStage5Title: "المرحلة 5: الأتمتة والاختبار العملي",
+          cyberStage5Body:
+            "استخدم Python/Bash لأتمتة المهام الأمنية، وابنِ مختبرًا قانونيًا لتطبيق السيناريوهات وقياس فعالية الضوابط الأمنية.",
+          cyberStage6Title: "المرحلة 6: الاحتراف المهني",
+          cyberStage6Body:
+            "ابنِ ملف أعمال قوي (تقارير، مشاريع، أدوات بسيطة)، وحسّن مهارات التواصل وكتابة التوصيات، واستمر بالتعلم الدوري.",
+          cyberMasterTitle: "الدليل الشامل: الأمن السيبراني من الصفر للاحتراف",
+          cyberMasterDesc:
+            "هذا القسم مصمم ليكون خطة تعلم متكاملة: ماذا تتعلم، كيف تتعلم، ماذا تطبق، وكيف تقيس تقدمك حتى تصل لمستوى مهني قوي.",
+          cyberMasterTrackHead: "1) المسار الكامل خطوة بخطوة",
+          cyberMasterPlanHead: "2) خطة تعلم عملية (12 شهر)",
+          cyberMasterHabitsHead: "3) عادات يومية توصل للاحتراف",
+          cyberMasterProjectsHead: "4) مشاريع عملية مفيدة للمتعلم",
+          cyberMasterVideosHead: "5) فيديوهات يوتيوب مفيدة للتعلم",
+          cyberMasterTipsHead: "6) أشياء مهمة جدًا تفيد المتعلم",
           basicsTitle: "أساسيات الكمبيوتر من الصفر حتى الاحتراف",
           basicsDesc:
             "مسار تعليمي تدريجي يبدأ من تشغيل الكمبيوتر لأول مرة، مرورًا بالأنظمة والشبكات والأمان، حتى تشغيل كالي لينكس بشكل قانوني واستخدام الأدوات بصورة احترافية وآمنة.",
@@ -3136,6 +3357,12 @@ log(event)`,
           liabilityHead: "Disclaimer:",
           liabilityBody:
             "Use this page and its content at your own risk. We accept no liability for any damage (direct or indirect) resulting from misuse or running tools outside an authorized scope.",
+          learnHead: "Quick Guide:",
+          learnBody:
+            "Cybersecurity starts with fundamentals: operating systems, networking, and programming, then moves to defense, analysis, and legal lab practice.",
+          learnBody2:
+            "To reach professional level: build strong Linux and TCP/IP fundamentals, learn Python and Bash for automation, practice web/API security hands-on, master forensics and incident response, and document every exercise with clear reports. Focus on real projects in authorized lab environments, and follow a consistent weekly plan (study + practice + review). This is how you move from theory to professional capability.",
+          learnVideo: "YouTube video: cybersecurity from zero",
           searchLbl: "Search",
           navAll: "All",
           navDefense: "Defense",
@@ -3261,6 +3488,36 @@ log(event)`,
             "A deep 100-point curriculum: 50 defense + 50 safe offensive mindset points, with beginner-friendly explanation and real-world examples per module (no operational attack steps).",
           edu100DefenseHead: "Defense (Secure Coding)",
           edu100AttackHead: "Offense (Safe Mindset)",
+          cyberRoadmapTitle: "Cybersecurity: From Zero to Professional",
+          cyberRoadmapDesc:
+            "A clear step-by-step path that starts from fundamentals and ends with practical, job-ready professional skills.",
+          cyberStage1Title: "Stage 1: Technical Foundations",
+          cyberStage1Body:
+            "Start with operating systems (especially Linux), file/process management, core networking (IP, DNS, TCP/UDP), and programming basics.",
+          cyberStage2Title: "Stage 2: Network and System Security",
+          cyberStage2Body:
+            "Learn firewalls, segmentation, monitoring, system hardening, and identity/access management.",
+          cyberStage3Title: "Stage 3: Web and API Security",
+          cyberStage3Body:
+            "Focus on OWASP Top 10, input validation, session management, authentication/authorization, and data protection in transit/at rest.",
+          cyberStage4Title: "Stage 4: Detection and Incident Response",
+          cyberStage4Body:
+            "Build skills in log analysis, digital forensics, anomaly detection, and practical incident response procedures.",
+          cyberStage5Title: "Stage 5: Automation and Hands-on Testing",
+          cyberStage5Body:
+            "Use Python/Bash to automate security tasks and build a legal lab to practice scenarios and validate controls.",
+          cyberStage6Title: "Stage 6: Professional Maturity",
+          cyberStage6Body:
+            "Build a strong portfolio (reports, projects, simple tools), improve communication and recommendation writing, and keep learning continuously.",
+          cyberMasterTitle: "Comprehensive Guide: Cybersecurity from Zero to Professional",
+          cyberMasterDesc:
+            "This section is built as a complete learning plan: what to learn, how to learn, what to practice, and how to measure progress until you reach a strong professional level.",
+          cyberMasterTrackHead: "1) Full Path Step by Step",
+          cyberMasterPlanHead: "2) Practical 12-Month Plan",
+          cyberMasterHabitsHead: "3) Daily Habits That Build Professional Skill",
+          cyberMasterProjectsHead: "4) Practical Projects for Learners",
+          cyberMasterVideosHead: "5) Useful YouTube Learning Videos",
+          cyberMasterTipsHead: "6) High-Value Tips for Learners",
           basicsTitle: "Computer Basics From Zero To Professional",
           basicsDesc:
             "A step-by-step educational path from first boot, through OS/network/security foundations, to legal Kali Linux setup and professional safe tool usage.",
