@@ -2426,6 +2426,83 @@
           contain-intrinsic-size: 1px 620px;
         }
       }
+
+      /* Mysterious cyber theme (Mr. Robot inspired) */
+      :root {
+        --bg0: #020403;
+        --bg1: #040a08;
+        --bg2: #010202;
+        --text: rgba(222, 255, 238, 0.94);
+        --muted: rgba(150, 201, 176, 0.78);
+        --line: rgba(74, 131, 108, 0.32);
+        --card: rgba(7, 20, 15, 0.86);
+        --card2: rgba(10, 26, 19, 0.9);
+        --accent: #3dff9c;
+        --accent-rgb: 61, 255, 156;
+        --accent2: #00a86b;
+        --accent2-rgb: 0, 168, 107;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+      }
+      body {
+        background:
+          radial-gradient(1200px 700px at 12% -8%, rgba(var(--accent2-rgb), 0.17), transparent 58%),
+          radial-gradient(1000px 600px at 88% 0%, rgba(var(--accent-rgb), 0.1), transparent 62%),
+          radial-gradient(860px 520px at 50% 110%, rgba(var(--accent-rgb), 0.08), transparent 70%),
+          linear-gradient(180deg, #000, var(--bg0) 20%, var(--bg1) 58%, var(--bg2));
+      }
+      .nav {
+        background: rgba(2, 10, 7, 0.9) !important;
+        border-bottom: 1px solid rgba(var(--accent-rgb), 0.22) !important;
+      }
+      .panel,
+      .card,
+      .tools-toolbar,
+      .catgroup,
+      details.more,
+      .import-box,
+      footer .container > div,
+      .quick-link-btn,
+      .sidebar-link {
+        background: linear-gradient(170deg, rgba(7, 20, 15, 0.9), rgba(10, 24, 18, 0.86)) !important;
+        border-color: rgba(var(--accent-rgb), 0.2) !important;
+        color: var(--text) !important;
+      }
+      .section-head p,
+      .sub,
+      .hint,
+      .card p,
+      .catmeta,
+      .stat .lbl,
+      .brand small,
+      .credit,
+      .credit-top {
+        color: var(--muted) !important;
+      }
+      .btn {
+        background: linear-gradient(180deg, rgba(20, 44, 34, 0.85), rgba(10, 25, 19, 0.9)) !important;
+        border-color: rgba(var(--accent-rgb), 0.32) !important;
+        color: #e9fff4 !important;
+      }
+      .btn.primary {
+        background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.38), rgba(var(--accent2-rgb), 0.34)) !important;
+      }
+      input,
+      select,
+      textarea {
+        background: rgba(4, 14, 10, 0.9) !important;
+        border-color: rgba(var(--accent-rgb), 0.24) !important;
+        color: var(--text) !important;
+      }
+      .badge,
+      .tag,
+      .tagbtn.active {
+        background: rgba(var(--accent-rgb), 0.15) !important;
+        border-color: rgba(var(--accent-rgb), 0.45) !important;
+        color: #d7ffea !important;
+      }
+      .logo {
+        background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.82), rgba(var(--accent2-rgb), 0.72)) !important;
+      }
     </style>
   </head>
   <body>
