@@ -5515,6 +5515,7 @@ log(event)`,
         (((navigator && navigator.hardwareConcurrency) ? navigator.hardwareConcurrency : 8) <= 4 ||
           ((navigator && navigator.deviceMemory) ? navigator.deviceMemory : 8) <= 4);
       const MICRO_BATCH_SIZE = IS_PHONE ? 6 : IS_LOW_POWER_DESKTOP ? 10 : 16;
+      let edu100NeedsRender = IS_PHONE;
       let microState = { items: [], rendered: 0 };
       function renderMicroBatch(append) {
         const wrap = document.getElementById("basicsMicro");
@@ -5666,7 +5667,7 @@ log(event)`,
         });
         roadmap.appendChild(frag);
 
-        const microTarget = IS_PHONE ? 140 : IS_LOW_POWER_DESKTOP ? 180 : 240;
+        const microTarget = IS_PHONE ? 80 : IS_LOW_POWER_DESKTOP ? 180 : 240;
         const microItems = buildBasicsMicroLibrary(lang, microTarget);
         microState.items = microItems;
         renderMicroBatch(false);
@@ -5712,7 +5713,7 @@ log(event)`,
           deep.forEach((x, i) => lines.push(`${i + 1}. ${x}`));
           lines.push("");
         });
-        const exportTarget = IS_PHONE ? 140 : IS_LOW_POWER_DESKTOP ? 180 : 240;
+        const exportTarget = IS_PHONE ? 80 : IS_LOW_POWER_DESKTOP ? 180 : 240;
         const micro = buildBasicsMicroLibrary(lang, exportTarget);
         lines.push(
           isEn
@@ -7470,7 +7471,13 @@ log(event)`,
         applyDensity();
         rebuildSelects();
         rebuildSortSelect();
-        renderEdu100();
+        if (IS_PHONE && edu100NeedsRender) {
+          if (els.edu100Defense) els.edu100Defense.innerHTML = "";
+          if (els.edu100Attack) els.edu100Attack.innerHTML = "";
+        } else {
+          renderEdu100();
+          edu100NeedsRender = false;
+        }
         academyNeedsRender = true;
         if (!(IS_PHONE && academyCollapsed)) {
           renderBasicsRoadmap();
@@ -7751,6 +7758,11 @@ log(event)`,
         const data = (EDU100 && EDU100[lang]) || EDU100.ar;
         renderEduMods(els.edu100Defense, data && data.defense, "defense");
         renderEduMods(els.edu100Attack, data && data.attack, "attack");
+      }
+      function ensureEdu100Rendered() {
+        if (!edu100NeedsRender) return;
+        renderEdu100();
+        edu100NeedsRender = false;
       }
       function filterTools(tools) {
         const q = normalizeText(settings.q);
@@ -8496,10 +8508,31 @@ log(event)`,
       }
       function wire() {
         els.year.textContent = String(new Date().getFullYear());
+        if (IS_PHONE) {
+          const bg1 = document.querySelector(".bg-mark");
+          const bg2 = document.querySelector(".grain");
+          if (bg1) bg1.remove();
+          if (bg2) bg2.remove();
+        }
         initNavHeight();
         wireSidebarAndShortcuts();
         wireBackToTop();
         wireAcademyActions();
+        if (IS_PHONE && typeof IntersectionObserver === "function") {
+          const eduPanel = document.getElementById("edu100Panel");
+          if (eduPanel) {
+            const io = new IntersectionObserver(
+              (entries, obs) => {
+                if (entries.some((e) => e.isIntersecting)) {
+                  ensureEdu100Rendered();
+                  obs.disconnect();
+                }
+              },
+              { rootMargin: "200px 0px" }
+            );
+            io.observe(eduPanel);
+          }
+        }
         // Settings -> controls
         settings.q = String(settings.q || "");
         settings.cat = String(settings.cat || "all");
