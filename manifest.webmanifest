@@ -1,0 +1,21 @@
+﻿{
+  "name": "تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر",
+  "short_name": "تعلم الكومبيوتر",
+  "description": "تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#000201",
+  "theme_color": "#000201",
+  "icons": [
+    {
+      "src": "warning.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
