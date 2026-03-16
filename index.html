@@ -25,26 +25,26 @@
     <style>
       :root {
         color-scheme: dark;
-        --bg0: #000201;
-        --bg1: #010705;
-        --bg2: #000101;
-        --mark-url: url("hacker-mask.svg");
-        --card: rgba(5, 18, 13, 0.66);
-        --card2: rgba(9, 26, 19, 0.75);
-        --line: rgba(111, 171, 139, 0.18);
-        --text: rgba(236, 255, 247, 0.95);
-        --muted: rgba(171, 217, 195, 0.74);
-        --accent: #00f5a0;
-        --accent-rgb: 0, 245, 160;
-        --accent2: #00b86b;
-        --accent2-rgb: 0, 184, 107;
-        --ok: #34d399;
-        --ok-rgb: 52, 211, 153;
-        --warn: #f5e663;
-        --warn-rgb: 245, 230, 99;
+        --bg0: #000508;
+        --bg1: #020a10;
+        --bg2: #000308;
+        --mark-url: url("anonymous.jpg");
+        --card: rgba(5, 15, 25, 0.72);
+        --card2: rgba(8, 22, 36, 0.78);
+        --line: rgba(0, 180, 220, 0.15);
+        --text: rgba(220, 240, 255, 0.95);
+        --muted: rgba(150, 200, 230, 0.72);
+        --accent: #00e5ff;
+        --accent-rgb: 0, 229, 255;
+        --accent2: #0099bb;
+        --accent2-rgb: 0, 153, 187;
+        --ok: #22d3ee;
+        --ok-rgb: 34, 211, 238;
+        --warn: #f5c842;
+        --warn-rgb: 245, 200, 66;
         --bad: #ff4d6d;
         --bad-rgb: 255, 77, 109;
-        --shadow: 0 26px 90px rgba(0, 0, 0, 0.62);
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.75);
         --r: 20px;
         --container: 1150px;
       }
@@ -63,9 +63,9 @@
         font-family: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(1200px 700px at 8% -5%, rgba(var(--accent2-rgb), 0.2), transparent 58%),
-          radial-gradient(900px 560px at 92% 4%, rgba(var(--accent-rgb), 0.12), transparent 62%),
-          radial-gradient(740px 440px at 55% 108%, rgba(var(--accent-rgb), 0.1), transparent 70%),
+          radial-gradient(1200px 700px at 8% -5%, rgba(0, 100, 160, 0.22), transparent 58%),
+          radial-gradient(900px 560px at 92% 4%, rgba(0, 180, 220, 0.1), transparent 62%),
+          radial-gradient(740px 440px at 55% 108%, rgba(0, 140, 200, 0.08), transparent 70%),
           linear-gradient(180deg, #000, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
         overflow-x: hidden;
         min-height: 100vh;
@@ -75,12 +75,51 @@
         inset: 0;
         pointer-events: none;
         z-index: -2;
-        opacity: 0.2;
+        opacity: 0.07;
         background-image: var(--mark-url);
         background-repeat: no-repeat;
-        background-position: 84% 9%;
-        background-size: min(920px, 98vw);
+        background-position: center center;
+        background-size: cover;
         filter: contrast(1.25) saturate(1.2) drop-shadow(0 30px 120px rgba(var(--accent-rgb), 0.34));
+      }
+      .hero-anon-wrap {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.08), 0 8px 40px rgba(0,0,0,0.5), 0 0 80px rgba(var(--accent-rgb), 0.12);
+        animation: anon-glow 4s ease-in-out infinite;
+      }
+      .hero-anon-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.7) 100%);
+        z-index: 1;
+        pointer-events: none;
+      }
+      .hero-anon-wrap img {
+        width: 100%;
+        display: block;
+        filter: brightness(0.88) contrast(1.08);
+      }
+      .hero-anon-label {
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: rgba(var(--accent-rgb), 0.85);
+        text-transform: uppercase;
+        white-space: nowrap;
+        text-shadow: 0 0 18px rgba(var(--accent-rgb), 0.6);
+      }
+      @keyframes anon-glow {
+        0%, 100% { box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.08), 0 8px 40px rgba(0,0,0,0.5), 0 0 80px rgba(var(--accent-rgb), 0.12); }
+        50%       { box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.22), 0 8px 40px rgba(0,0,0,0.5), 0 0 140px rgba(var(--accent-rgb), 0.28); }
       }
       .grain {
         position: fixed;
@@ -2698,6 +2737,10 @@
                 </div>
               </div>
               <div class="hero-controls">
+                <div class="hero-anon-wrap">
+                  <img src="anonymous.jpg" alt="Anonymous" />
+                  <div class="hero-anon-label">We Are Anonymous · We Do Not Forget</div>
+                </div>
                 <div class="controls" id="searchFiltersBlock" aria-label="Search and filters" hidden>
                   <div class="field">
                     <label for="q" data-i18n="searchLbl">بحث</label>
