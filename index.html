@@ -3128,11 +3128,10 @@
           <div class="panel-inner">
             <div class="hero-top-grid">
               <div>
-                <span class="tag" data-i18n="tag">موسوعة تعليمية لأدوات Kali Linux</span>
-                <h1 data-i18n="title">منصة تعليم تقنية ممتازة: مرتبة، واضحة، وسهلة التطور</h1>
+                <span class="tag" data-i18n="tag">منهج أكاديمي شامل — Cybersecurity &amp; Computer Science</span>
+                <h1 data-i18n="title">المنصة الأكاديمية الشاملة للأمن السيبراني وعلوم الحاسوب</h1>
                 <p class="sub" data-i18n="subtitle">
-                  هذه الصفحة لا تعطي خطوات هجوم ولا أوامر تشغيل. الهدف: تنظيم الأدوات وفهم
-                  استخداماتها بشكل عام، ضمن تدريب قانوني مصرح به.
+                  منهج أكاديمي متكامل يغطي: أنظمة التشغيل، الشبكات، البرمجة، الأمن السيبراني، التحليل الجنائي الرقمي، وبناء المسار المهني. كل المحتوى تعليمي وتوثيقي فقط — بدون خطوات هجوم أو أوامر استغلال. مصمّم للطالب، المتدرب، والمحترف الذي يبني مساره من الصفر للاحتراف ضمن إطار قانوني مصرح به.
                 </p>
                 <div class="notice" role="note">
                   <div class="notice-title">
@@ -3354,7 +3353,7 @@
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
               <div>
-                <h2 data-i18n="eduTitle">شرح برمجة الحماية/الهجوم (تعليمي)</h2>
+                <h2 data-i18n="eduTitle">الشرح الأكاديمي: بنية أدوات الأمن السيبراني — الفلاتر، المنطق الدفاعي، وأوامر CLI</h2>
                 <p data-i18n="eduDesc">
                   شرح مبسّط لكيف تُصنَّف الأدوات وكيف تعمل الفلاتر ووضع الأمان داخل هذه الصفحة (بدون خطوات هجوم أو أوامر استغلال).
                 </p>
@@ -3486,7 +3485,7 @@ Report template:
               <div>
                 <h2 data-i18n="edu100Title">منهج 100 نقطة (حماية + محاكاة هجومية)</h2>
                 <p data-i18n="edu100Desc">
-                  100 نقطة تعليمية منظمة على شكل أقسام: 50 للدفاع (الحماية) و50 للتفكير الهجومي الآمن (محاكاة قانونية)، بدون تفاصيل تشغيلية.
+                  منهج أكاديمي شامل يتضمن 100 نقطة تعليمية مقسمة بعناية: 50 نقطة للدفاع والحماية (Secure Coding) تغطي التحقق من المدخلات والمصادقة والتشفير والمراقبة، و50 نقطة للتفكير الهجومي الآمن (Ethical Hacking Mindset) تشمل المحاكاة القانونية وتحليل السطح المكشوف وكتابة التقارير. كل قسم يتضمن شرحاً أكاديمياً مفصلاً مع رابط فيديو يوتيوب تعليمي.
                 </p>
               </div>
             </div>
@@ -5751,6 +5750,9 @@ log(event)`,
       EDU100.ar.defense = [
         {
           title: "1) التحقق من المدخلات والتحويل (Parsing)",
+          intro: "التحقق من المدخلات هو خط الدفاع الأول في أي نظام برمجي. كل بيانات تأتي من المستخدم أو من مصدر خارجي يجب أن تُعامل كبيانات غير موثوقة حتى يُثبت العكس. بدون تحقق صارم، يمكن للمهاجم حقن أوامر SQL أو JavaScript أو تعطيل النظام بمدخلات غير متوقعة.",
+          youtube: "https://www.youtube.com/watch?v=bY6m6_IIN94",
+          youtubeTitle: "Input Validation Security",
           points: [
             "عرّف مخطط بيانات (Schema) واضح: أنواع الحقول، الحدود، والقيم المسموحة (Allow-list) بدل الاعتماد على “الحظر”.",
             "اعتبر التحقق متعدد الطبقات: تحقق واجهة المستخدم لتحسين التجربة، وتحقق السيرفر للحماية الفعلية.",
@@ -5761,6 +5763,9 @@ log(event)`,
         },
         {
           title: "2) المصادقة (Authentication)",
+          intro: "المصادقة هي العملية التي تُثبت هوية المستخدم. إذا كانت ضعيفة، فكل ما يأتي بعدها يصبح مكشوفاً. تطور أساليب الهجوم مثل Credential Stuffing وPhishing جعل المصادقة متعددة العوامل ضرورة وليست خياراً.",
+          youtube: "https://www.youtube.com/watch?v=996OiexHze0",
+          youtubeTitle: "Authentication Best Practices",
           points: [
             "لا تخزن كلمات المرور كنص صريح: استخدم hashing قوي مع salt (Argon2/bcrypt) عبر مكتبة موثوقة.",
             "فعّل MFA خصوصاً للحسابات الحساسة، واعتبر طرق استرجاع الحساب جزءاً من نموذج التهديد.",
@@ -5771,6 +5776,9 @@ log(event)`,
         },
         {
           title: "3) التفويض والصلاحيات (Authorization)",
+          intro: "التفويض يحدد ما يمكن للمستخدم فعله بعد إثبات هويته. الخطأ الأكثر شيوعاً هو الخلط بين المصادقة والتفويض. ثغرات IDOR وBroken Access Control تتصدر قائمة OWASP Top 10 لأنها الأكثر انتشاراً.",
+          youtube: "https://www.youtube.com/watch?v=I0pogrwuEJk",
+          youtubeTitle: "Authorization & Access Control",
           points: [
             "افصل بين AuthN وAuthZ: تحقق من الهوية شيء، والتحقق من الصلاحية على المورد شيء آخر.",
             "طبّق مبدأ أقل صلاحيات (Least privilege) على كل طبقة: DB، خدمات، ومستخدمين.",
@@ -5781,6 +5789,9 @@ log(event)`,
         },
         {
           title: "4) حماية البيانات والأسرار (Secrets)",
+          intro: "الأسرار (مفاتيح API، كلمات المرور، توكنات الوصول) هي أهداف رئيسية للمهاجمين. تسريب سر واحد يمكن أن يعطي المهاجم وصولاً كاملاً للنظام. إدارة الأسرار نظام متكامل من التخزين الآمن والتدوير الدوري والمراقبة.",
+          youtube: "https://www.youtube.com/watch?v=DJBcoGh5sQA",
+          youtubeTitle: "Secrets Management & Data Protection",
           points: [
             "لا تضع أسرار داخل repo أو داخل الواجهة الأمامية. استخدم متغيرات بيئة/secret manager.",
             "قلّل البيانات المخزنة (Data minimization) واحتفظ فقط بما تحتاجه فعلاً.",
@@ -5791,6 +5802,9 @@ log(event)`,
         },
         {
           title: "5) التشفير والنقل (Crypto & TLS)",
+          intro: "التشفير هو الأساس الرياضي لأمن المعلومات. بدونه كل بياناتك مكشوفة أثناء النقل والتخزين. لكن استخدامه بشكل خاطئ يعطي إحساساً زائفاً بالأمان.",
+          youtube: "https://www.youtube.com/watch?v=jhXCTbFnK8o",
+          youtubeTitle: "Cryptography & TLS Explained",
           points: [
             "لا “تخترع” تشفيرك: استخدم مكتبات قياسية وخوارزميات موصى بها.",
             "افهم الهدف: سرّية (confidentiality)، سلامة (integrity)، مصادقة (authenticity) ثم اختر المناسب.",
@@ -5801,6 +5815,9 @@ log(event)`,
         },
         {
           title: "6) أمن الويب وواجهات API",
+          intro: "تطبيقات الويب وواجهات API هي نقاط الاتصال الأكثر تعرضاً للهجمات لأنها مكشوفة للإنترنت بالكامل. ثغرات مثل XSS وCSRF وCORS المفتوح يمكن أن تُستغل لسرقة جلسات المستخدمين.",
+          youtube: "https://www.youtube.com/watch?v=zOjov-2OZ0E",
+          youtubeTitle: "Web Security & API Protection",
           points: [
             "طبّق CSRF protection حيث توجد جلسات بالكوكيز، وفعّل SameSite/HttpOnly/Secure.",
             "استخدم headers دفاعية (مثل CSP) لتقليل XSS ومخاطر تحميل سكربتات غير موثوقة.",
@@ -5811,6 +5828,9 @@ log(event)`,
         },
         {
           title: "7) التسجيل والمراقبة والاستجابة",
+          intro: "بدون مراقبة فعّالة قد يكون نظامك مخترقاً لأشهر دون أن تعلم. السجلات هي الكاميرات الأمنية لنظامك — يجب أن تسجل الأحداث الصحيحة وتُراقب بتنبيهات ذكية.",
+          youtube: "https://www.youtube.com/watch?v=uHy3oM7NnoU",
+          youtubeTitle: "Security Monitoring & Incident Response",
           points: [
             "سجل أحداث الأمن المهمة: تسجيل الدخول، تغيير صلاحيات، وعمليات إدارية.",
             "حافظ على جودة logs: صيغة موحدة (JSON)، timestamps، وارتباط عبر correlation id.",
@@ -5821,6 +5841,9 @@ log(event)`,
         },
         {
           title: "8) الاعتماديات وسلسلة التوريد",
+          intro: "أكثر من 80% من الكود في المشاريع الحديثة يأتي من مكتبات خارجية. هجمات سلسلة التوريد مثل حادثة SolarWinds أثبتت أن ثغرة في مكتبة واحدة يمكن أن تخترق آلاف المؤسسات.",
+          youtube: "https://www.youtube.com/watch?v=GnPOdbfU1jU",
+          youtubeTitle: "Supply Chain Security",
           points: [
             "ثبت الإصدارات باستخدام lockfiles وراجع تحديثات التبعيات بشكل دوري.",
             "افحص الثغرات في التبعيات ضمن CI، وتعامل مع النتائج كأعمال إصلاح قابلة للتتبع.",
@@ -5831,6 +5854,9 @@ log(event)`,
         },
         {
           title: "9) الاختبار والجودة الأمنية",
+          intro: "الاختبار الأمني ليس مرحلة أخيرة بل يجب أن يكون جزءاً من كل مرحلة تطوير. اختبارات الوحدات تحمي المنطق الحساس واختبارات التكامل تكشف ثغرات الحدود بين الخدمات.",
+          youtube: "https://www.youtube.com/watch?v=3EQOYyShLBs",
+          youtubeTitle: "Security Testing Fundamentals",
           points: [
             "اكتب اختبارات وحدات للمنطق الحساس (auth, parsing, permissions) قبل أي refactor كبير.",
             "استخدم اختبارات تكامل للتحقق من الحدود بين الخدمات (API, DB, cache) مع بيانات اختبارية.",
@@ -5841,6 +5867,9 @@ log(event)`,
         },
         {
           title: "10) المعمارية ونمذجة التهديد",
+          intro: "نمذجة التهديد هي فن التفكير كمهاجم قبل كتابة سطر كود واحد. بدلاً من إصلاح الثغرات بعد اكتشافها تحدد مسارات الهجوم المحتملة وتبني دفاعات مسبقة.",
+          youtube: "https://www.youtube.com/watch?v=GqmQg-cszw4",
+          youtubeTitle: "Threat Modeling & Secure Architecture",
           points: [
             "ارسم حدود الثقة (Trust boundaries) وحدد أين تنتقل البيانات بين مكونات مختلفة.",
             "استخدم Threat modeling لاكتشاف مسارات إساءة الاستخدام قبل كتابة الكود.",
@@ -5853,6 +5882,9 @@ log(event)`,
       EDU100.ar.attack = [
         {
           title: "1) أساسيات المحاكاة القانونية (Rules of Engagement)",
+          intro: "أي اختبار اختراق بدون إذن مكتوب هو جريمة إلكترونية. قواعد الاشتباك تحدد النطاق والحدود والإجراءات المسموحة، وتحمي الفاحص والمؤسسة على حد سواء من المسؤولية القانونية.",
+          youtube: "https://www.youtube.com/watch?v=3Kq1MIfTWCE",
+          youtubeTitle: "Penetration Testing Rules of Engagement",
           points: [
             "أي اختبار هجومي يبدأ بإذن مكتوب ونطاق واضح (Scope) وحدود ما هو مسموح.",
             "عرّف أهداف الاختبار: قياس ضوابط؟ اختبار كشف؟ تقييم مخاطر تصميم؟ وليس “إثبات اختراق”.",
@@ -5863,6 +5895,9 @@ log(event)`,
         },
         {
           title: "2) عقلية المهاجم داخل الكود (Abuse cases)",
+          intro: "التفكير الهجومي لا يعني تنفيذ هجمات بل فهم كيف يفكر المهاجم. كتابة قصص إساءة الاستخدام لكل ميزة يكشف نقاط الضعف التي لا تظهر في الاختبار العادي.",
+          youtube: "https://www.youtube.com/watch?v=ySvVb2pOHvQ",
+          youtubeTitle: "Thinking Like an Attacker",
           points: [
             "لكل ميزة: اكتب “قصة إساءة استخدام” (Abuse story) ثم صمّم ضوابط تمنعها.",
             "فكّر في تجاوزات بسيطة: قيم سالبة، overflow، حقول مفقودة، وترميزات مختلفة.",
@@ -5873,6 +5908,9 @@ log(event)`,
         },
         {
           title: "3) تصميم حالات اختبار أمنية (Security Test Cases)",
+          intro: "حالات الاختبار الأمنية تختلف عن الاختبارات الوظيفية — الهدف ليس إثبات أن الميزة تعمل بل إثبات أن الضوابط الأمنية تمنع الإساءة فعلاً.",
+          youtube: "https://www.youtube.com/watch?v=YEBfamv-_do",
+          youtubeTitle: "Security Test Case Design",
           points: [
             "حوّل الضوابط إلى حالات قابلة للاختبار: authz يجب أن يفشل، rate limit يجب أن يعمل، إلخ.",
             "استخدم نهج الفرضيات: إذا كان هناك حد X، جرّب inputs حوله (قبل/عند/بعد).",
@@ -5883,6 +5921,9 @@ log(event)`,
         },
         {
           title: "4) Fuzzing واختبار المتانة (Robustness)",
+          intro: "الـ Fuzzing هو إرسال بيانات عشوائية أو مشوهة للبرنامج لاكتشاف أعطال غير متوقعة. هذه التقنية اكتشفت آلاف الثغرات في برامج كبرى مثل Chrome وLinux Kernel.",
+          youtube: "https://www.youtube.com/watch?v=lK1vPNj0RGk",
+          youtubeTitle: "Fuzzing & Robustness Testing",
           points: [
             "هدف fuzzing الدفاعي: كشف crash/hang/timeout وحالات الحواف في parsers.",
             "استخدم حدوداً واضحة (max size/time) لمنع استهلاك الموارد داخل مختبرك.",
@@ -5893,6 +5934,9 @@ log(event)`,
         },
         {
           title: "5) تحليل السطح المكشوف (Attack Surface) بشكل آمن",
+          intro: "سطح الهجوم هو مجموع كل نقاط الدخول التي يمكن للمهاجم استغلالها. تقليله يعني تقليل الفرص المتاحة للمهاجم — كل خدمة مفتوحة وكل API مكشوف هو باب محتمل.",
+          youtube: "https://www.youtube.com/watch?v=9x0Zb7C0iKs",
+          youtubeTitle: "Attack Surface Analysis",
           points: [
             "احصر نقاط الدخول: APIs، رفع ملفات، webhooks، وواجهات admin.",
             "ارسم تدفق البيانات: أين تدخل؟ أين تُحوّل؟ أين تُخزن؟ أين تُعرض؟",
@@ -5903,6 +5947,9 @@ log(event)`,
         },
         {
           title: "6) قياس فعالية الضوابط (Controls Validation)",
+          intro: "وجود ضابط أمني لا يعني أنه يعمل. كثير من المؤسسات تملك جدران نارية وأنظمة كشف لكنها لم تُختبر فعلياً. التحقق من فعالية الضوابط يكشف الفجوة بين ما هو مكتوب وما هو مطبق.",
+          youtube: "https://www.youtube.com/watch?v=Yjz8RS2P-V0",
+          youtubeTitle: "Security Controls Validation",
           points: [
             "اختبر أن الضوابط تعمل فعلاً: rate limiting، MFA، قواعد WAF، وليس فقط أنها “موجودة”.",
             "تحقق من التسجيل: هل الأحداث المهمة تظهر في logs مع تفاصيل كافية للتحقيق؟",
@@ -5913,6 +5960,9 @@ log(event)`,
         },
         {
           title: "7) الخصوصية وأمن العمليات أثناء الاختبار",
+          intro: "الفاحص الأمني يتعامل مع بيانات حساسة أثناء الاختبار. حماية هذه البيانات والتقارير والأدلة هي مسؤولية أخلاقية وقانونية. تسريب تقرير اختبار اختراق قد يكون أخطر من الثغرة نفسها.",
+          youtube: "https://www.youtube.com/watch?v=OLCL6OYbSTw",
+          youtubeTitle: "OpSec During Security Testing",
           points: [
             "لا تخزن بيانات حساسة في ملاحظاتك/تقاريرك؛ استخدم redaction وأقل قدر لازم من الأدلة.",
             "قسّم الصلاحيات وقيّد الوصول للبيانات والـ artifacts حتى داخل المختبر.",
@@ -5923,6 +5973,9 @@ log(event)`,
         },
         {
           title: "8) كتابة تقارير مفيدة (Reporting)",
+          intro: "تقرير الاختبار الأمني هو المنتج النهائي لعملك. تقرير ضعيف يُهمل حتى لو اكتشفت ثغرات خطيرة. التقرير الجيد يشرح المخاطر بلغة الأعمال ويقدم توصيات عملية قابلة للتنفيذ.",
+          youtube: "https://www.youtube.com/watch?v=EOoBAq6z4Zk",
+          youtubeTitle: "Writing Effective Security Reports",
           points: [
             "اكتب المشكلة بلغة المنتج: الخطر، الأثر، الاحتمال، والتوصية.",
             "قدّم إعادة إنتاج آمنة داخل المختبر فقط، بدون تفاصيل تشغيلية خطرة.",
@@ -5933,6 +5986,9 @@ log(event)`,
         },
         {
           title: "9) التعاون (Purple Team)",
+          intro: "Purple Team يجمع بين الفريق الهجومي (Red) والدفاعي (Blue) للعمل معاً. بدل المنافسة، يتعاون الفريقان لتحسين قدرات الكشف والاستجابة بشكل مستمر.",
+          youtube: "https://www.youtube.com/watch?v=fNzpcB7ODxQ",
+          youtubeTitle: "Purple Team Collaboration",
           points: [
             "شارك النتائج لتحسين الكشف والتنبيهات وليس لإحراج أحد.",
             "حوّل كل نمط ضعف إلى check آلي (test/lint/policy) لمنع تكراره.",
@@ -5943,6 +5999,9 @@ log(event)`,
         },
         {
           title: "10) بناء ثقافة أمنية مستمرة",
+          intro: "الأمن ليس منتج تشتريه بل ثقافة تبنيها. دمج الأمن في دورة حياة التطوير (SDLC) يجعله جزءاً طبيعياً من العمل اليومي بدل أن يكون عبئاً إضافياً.",
+          youtube: "https://www.youtube.com/watch?v=8mAITcNt710",
+          youtubeTitle: "Building Security Culture",
           points: [
             "اجعل الأمن جزءاً من SDLC: تصميم، تنفيذ، مراجعة، نشر، ومراقبة.",
             "درّب الفريق على أنماط شائعة (OWASP Top 10) وطبّقها على سياقكم.",
@@ -9156,6 +9215,12 @@ log(event)`,
             box.style.marginTop = "10px";
             box.innerHTML = `<b>${lang === "en" ? "Real-world example:" : "مثال واقعي:"}</b> ${fieldLabels.fallbackExample}`;
             det.appendChild(box);
+          }
+          if (m.youtube) {
+            const ytLink = document.createElement("p");
+            ytLink.style.marginTop = "10px";
+            ytLink.innerHTML = `<a href="${m.youtube}" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900; font-size: 1.05em;">📺 ${m.youtubeTitle || (lang === "en" ? "Watch on YouTube" : "شاهد على يوتيوب")}</a>`;
+            det.appendChild(ytLink);
           }
           frag.appendChild(det);
         });
