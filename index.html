@@ -25,26 +25,26 @@
     <style>
       :root {
         color-scheme: dark;
-        --bg0: #000508;
-        --bg1: #020a10;
-        --bg2: #000308;
+        --bg0: #0d1b2a;
+        --bg1: #112236;
+        --bg2: #0a1628;
         --mark-url: url("anonymous.jpg");
-        --card: rgba(5, 15, 25, 0.72);
-        --card2: rgba(8, 22, 36, 0.78);
-        --line: rgba(0, 180, 220, 0.15);
-        --text: rgba(220, 240, 255, 0.95);
-        --muted: rgba(150, 200, 230, 0.72);
-        --accent: #00e5ff;
-        --accent-rgb: 0, 229, 255;
-        --accent2: #0099bb;
-        --accent2-rgb: 0, 153, 187;
-        --ok: #22d3ee;
-        --ok-rgb: 34, 211, 238;
-        --warn: #f5c842;
-        --warn-rgb: 245, 200, 66;
-        --bad: #ff4d6d;
-        --bad-rgb: 255, 77, 109;
-        --shadow: 0 26px 90px rgba(0, 0, 0, 0.75);
+        --card: rgba(20, 50, 80, 0.55);
+        --card2: rgba(25, 60, 95, 0.65);
+        --line: rgba(100, 200, 255, 0.2);
+        --text: rgba(230, 245, 255, 0.97);
+        --muted: rgba(170, 215, 245, 0.78);
+        --accent: #38bdf8;
+        --accent-rgb: 56, 189, 248;
+        --accent2: #0ea5e9;
+        --accent2-rgb: 14, 165, 233;
+        --ok: #4ade80;
+        --ok-rgb: 74, 222, 128;
+        --warn: #fbbf24;
+        --warn-rgb: 251, 191, 36;
+        --bad: #f87171;
+        --bad-rgb: 248, 113, 113;
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.55);
         --r: 20px;
         --container: 1150px;
       }
@@ -63,10 +63,10 @@
         font-family: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(1200px 700px at 8% -5%, rgba(0, 100, 160, 0.22), transparent 58%),
-          radial-gradient(900px 560px at 92% 4%, rgba(0, 180, 220, 0.1), transparent 62%),
-          radial-gradient(740px 440px at 55% 108%, rgba(0, 140, 200, 0.08), transparent 70%),
-          linear-gradient(180deg, #000, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
+          radial-gradient(1200px 700px at 8% -5%, rgba(14, 165, 233, 0.18), transparent 58%),
+          radial-gradient(900px 560px at 92% 4%, rgba(56, 189, 248, 0.13), transparent 62%),
+          radial-gradient(740px 440px at 55% 108%, rgba(56, 189, 248, 0.1), transparent 70%),
+          linear-gradient(180deg, #060e1a, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
         overflow-x: hidden;
         min-height: 100vh;
       }
@@ -9683,7 +9683,6 @@ log(event)`,
       applyBrandAssets();
       applyI18n();
       wire();
-
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker.register("./service-worker.js").catch(() => {});
