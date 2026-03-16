@@ -25,26 +25,26 @@
     <style>
       :root {
         color-scheme: dark;
-        --bg0: #0d1b2a;
-        --bg1: #112236;
-        --bg2: #0a1628;
+        --bg0: #030d03;
+        --bg1: #071507;
+        --bg2: #020a02;
         --mark-url: url("anonymous.jpg");
-        --card: rgba(20, 50, 80, 0.55);
-        --card2: rgba(25, 60, 95, 0.65);
-        --line: rgba(100, 200, 255, 0.2);
-        --text: rgba(230, 245, 255, 0.97);
-        --muted: rgba(170, 215, 245, 0.78);
-        --accent: #38bdf8;
-        --accent-rgb: 56, 189, 248;
-        --accent2: #0ea5e9;
-        --accent2-rgb: 14, 165, 233;
-        --ok: #4ade80;
-        --ok-rgb: 74, 222, 128;
-        --warn: #fbbf24;
-        --warn-rgb: 251, 191, 36;
-        --bad: #f87171;
-        --bad-rgb: 248, 113, 113;
-        --shadow: 0 26px 90px rgba(0, 0, 0, 0.55);
+        --card: rgba(0, 30, 5, 0.60);
+        --card2: rgba(0, 42, 10, 0.70);
+        --line: rgba(0, 255, 65, 0.18);
+        --text: rgba(200, 255, 210, 0.97);
+        --muted: rgba(100, 220, 130, 0.80);
+        --accent: #00ff41;
+        --accent-rgb: 0, 255, 65;
+        --accent2: #00cc33;
+        --accent2-rgb: 0, 204, 51;
+        --ok: #00ff88;
+        --ok-rgb: 0, 255, 136;
+        --warn: #ffd700;
+        --warn-rgb: 255, 215, 0;
+        --bad: #ff2244;
+        --bad-rgb: 255, 34, 68;
+        --shadow: 0 26px 90px rgba(0, 0, 0, 0.70);
         --r: 20px;
         --container: 1150px;
       }
@@ -63,10 +63,10 @@
         font-family: "Cairo", system-ui, -apple-system, "Segoe UI", sans-serif;
         color: var(--text);
         background:
-          radial-gradient(1200px 700px at 8% -5%, rgba(14, 165, 233, 0.18), transparent 58%),
-          radial-gradient(900px 560px at 92% 4%, rgba(56, 189, 248, 0.13), transparent 62%),
-          radial-gradient(740px 440px at 55% 108%, rgba(56, 189, 248, 0.1), transparent 70%),
-          linear-gradient(180deg, #060e1a, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
+          radial-gradient(1200px 700px at 8% -5%, rgba(0, 255, 65, 0.12), transparent 58%),
+          radial-gradient(900px 560px at 92% 4%, rgba(0, 204, 51, 0.09), transparent 62%),
+          radial-gradient(740px 440px at 55% 108%, rgba(0, 255, 65, 0.07), transparent 70%),
+          linear-gradient(180deg, #010601, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
         overflow-x: hidden;
         min-height: 100vh;
       }
@@ -193,7 +193,7 @@
         top: 0;
         z-index: 50;
         backdrop-filter: blur(18px) saturate(160%);
-        background: rgba(6, 6, 16, 0.74);
+        background: rgba(1, 8, 1, 0.82);
         border-bottom: 1px solid rgba(255, 255, 255, 0.09);
       }
       .nav-inner {
@@ -458,25 +458,97 @@
         max-width: 68ch;
       }
       .notice {
-        margin-top: 14px;
-        border-radius: 16px;
-        border: 1px solid rgba(var(--warn-rgb), 0.3);
-        background: rgba(var(--warn-rgb), 0.12);
-        padding: 12px;
-        color: rgba(255, 255, 255, 0.92);
-        font-weight: 850;
-        line-height: 1.85;
-        font-size: 14px;
+        margin-top: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(var(--warn-rgb), 0.35);
+        background: rgba(var(--warn-rgb), 0.08);
+        padding: 20px 22px;
+        color: rgba(215, 255, 225, 0.96);
+        font-weight: 800;
+        line-height: 2.1;
+        font-size: 15px;
       }
-      .notice b {
+      .notice-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 17px;
+        font-weight: 1000;
         color: var(--warn);
+        margin-bottom: 12px;
+        letter-spacing: 0.3px;
+      }
+      .notice-title .notice-icon {
+        font-size: 20px;
+        line-height: 1;
+        flex-shrink: 0;
+      }
+      .notice.liability .notice-title {
+        color: var(--bad);
+      }
+      .notice.learn .notice-title {
+        color: var(--accent);
+      }
+      .notice ul {
+        margin: 10px 0 6px 0;
+        padding-inline-start: 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .notice ul li {
+        line-height: 1.9;
+      }
+      .notice ul li::marker {
+        color: var(--accent);
+      }
+      .notice .notice-block {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(var(--accent-rgb), 0.15);
+      }
+      .notice .notice-block-title {
+        font-weight: 1000;
+        color: var(--accent);
+        font-size: 14px;
+        margin-bottom: 6px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+      .notice .phase {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 8px;
+      }
+      .notice .phase-item {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        line-height: 1.85;
+        font-size: 14.5px;
+      }
+      .notice .phase-num {
+        background: rgba(var(--accent-rgb), 0.18);
+        border: 1px solid rgba(var(--accent-rgb), 0.35);
+        color: var(--accent);
+        font-weight: 1000;
+        font-size: 12px;
+        border-radius: 999px;
+        padding: 3px 9px;
+        flex-shrink: 0;
+        margin-top: 2px;
       }
       .notice.liability {
-        border-color: rgba(var(--bad-rgb), 0.28);
-        background: rgba(var(--bad-rgb), 0.1);
+        border-color: rgba(var(--bad-rgb), 0.32);
+        background: rgba(var(--bad-rgb), 0.08);
       }
-      .notice.liability b {
+      .notice.liability ul li::marker {
         color: var(--bad);
+      }
+      .notice.learn {
+        border-color: rgba(var(--accent-rgb), 0.28);
+        background: rgba(var(--accent-rgb), 0.06);
       }
       .view-banner {
         margin: 10px 0 0;
@@ -1508,24 +1580,24 @@
       /* 2026 visual redesign */
       :root {
         color-scheme: dark;
-        --bg0: #000201;
-        --bg1: #010705;
-        --bg2: #000101;
-        --text: rgba(236, 255, 247, 0.95);
-        --muted: rgba(171, 217, 195, 0.74);
-        --line: rgba(111, 171, 139, 0.18);
-        --card: rgba(5, 18, 13, 0.66);
-        --card2: rgba(9, 26, 19, 0.75);
-        --accent: #00f5a0;
-        --accent-rgb: 0, 245, 160;
-        --accent2: #00b86b;
-        --accent2-rgb: 0, 184, 107;
-        --ok: #40e39f;
-        --ok-rgb: 64, 227, 159;
-        --warn: #f5e663;
-        --warn-rgb: 245, 230, 99;
-        --bad: #ff4d6d;
-        --bad-rgb: 255, 77, 109;
+        --bg0: #0f2237;
+        --bg1: #142d47;
+        --bg2: #0c1e30;
+        --text: rgba(225, 242, 255, 0.97);
+        --muted: rgba(160, 210, 240, 0.78);
+        --line: rgba(80, 180, 230, 0.22);
+        --card: rgba(18, 50, 82, 0.62);
+        --card2: rgba(22, 60, 98, 0.72);
+        --accent: #38bdf8;
+        --accent-rgb: 56, 189, 248;
+        --accent2: #0ea5e9;
+        --accent2-rgb: 14, 165, 233;
+        --ok: #4ade80;
+        --ok-rgb: 74, 222, 128;
+        --warn: #fbbf24;
+        --warn-rgb: 251, 191, 36;
+        --bad: #f87171;
+        --bad-rgb: 248, 113, 113;
         --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
         --r: 22px;
         --container: 980px;
@@ -2468,29 +2540,29 @@
 
       /* Mysterious cyber theme (Mr. Robot inspired) */
       :root {
-        --bg0: #020403;
-        --bg1: #040a08;
-        --bg2: #010202;
-        --text: rgba(222, 255, 238, 0.94);
-        --muted: rgba(150, 201, 176, 0.78);
-        --line: rgba(74, 131, 108, 0.32);
-        --card: rgba(7, 20, 15, 0.86);
-        --card2: rgba(10, 26, 19, 0.9);
-        --accent: #3dff9c;
-        --accent-rgb: 61, 255, 156;
-        --accent2: #00a86b;
-        --accent2-rgb: 0, 168, 107;
-        --shadow: 0 24px 70px rgba(0, 0, 0, 0.6);
+        --bg0: #0f2237;
+        --bg1: #142d47;
+        --bg2: #0c1e30;
+        --text: rgba(225, 242, 255, 0.97);
+        --muted: rgba(160, 210, 240, 0.78);
+        --line: rgba(80, 180, 230, 0.22);
+        --card: rgba(18, 50, 82, 0.62);
+        --card2: rgba(22, 60, 98, 0.72);
+        --accent: #38bdf8;
+        --accent-rgb: 56, 189, 248;
+        --accent2: #0ea5e9;
+        --accent2-rgb: 14, 165, 233;
+        --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
       }
       body {
         background:
-          radial-gradient(1200px 700px at 12% -8%, rgba(var(--accent2-rgb), 0.17), transparent 58%),
-          radial-gradient(1000px 600px at 88% 0%, rgba(var(--accent-rgb), 0.1), transparent 62%),
-          radial-gradient(860px 520px at 50% 110%, rgba(var(--accent-rgb), 0.08), transparent 70%),
-          linear-gradient(180deg, #000, var(--bg0) 20%, var(--bg1) 58%, var(--bg2));
+          radial-gradient(1200px 700px at 12% -8%, rgba(14, 100, 180, 0.22), transparent 58%),
+          radial-gradient(1000px 600px at 88% 0%, rgba(56, 189, 248, 0.13), transparent 62%),
+          radial-gradient(860px 520px at 50% 110%, rgba(56, 189, 248, 0.1), transparent 70%),
+          linear-gradient(180deg, #060f1c, var(--bg0) 20%, var(--bg1) 58%, var(--bg2));
       }
       .nav {
-        background: rgba(2, 10, 7, 0.9) !important;
+        background: rgba(10, 28, 48, 0.88) !important;
         border-bottom: 1px solid rgba(var(--accent-rgb), 0.22) !important;
       }
       .panel,
@@ -2502,7 +2574,7 @@
       footer .container > div,
       .quick-link-btn,
       .sidebar-link {
-        background: linear-gradient(170deg, rgba(7, 20, 15, 0.9), rgba(10, 24, 18, 0.86)) !important;
+        background: linear-gradient(170deg, rgba(18, 50, 82, 0.82), rgba(14, 40, 68, 0.78)) !important;
         border-color: rgba(var(--accent-rgb), 0.2) !important;
         color: var(--text) !important;
       }
@@ -2518,17 +2590,17 @@
         color: var(--muted) !important;
       }
       .btn {
-        background: linear-gradient(180deg, rgba(20, 44, 34, 0.85), rgba(10, 25, 19, 0.9)) !important;
+        background: linear-gradient(180deg, rgba(20, 60, 100, 0.85), rgba(12, 38, 68, 0.9)) !important;
         border-color: rgba(var(--accent-rgb), 0.32) !important;
-        color: #e9fff4 !important;
+        color: rgba(225, 242, 255, 0.97) !important;
       }
       .btn.primary {
-        background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.38), rgba(var(--accent2-rgb), 0.34)) !important;
+        background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.4), rgba(var(--accent2-rgb), 0.36)) !important;
       }
       input,
       select,
       textarea {
-        background: rgba(4, 14, 10, 0.9) !important;
+        background: rgba(12, 36, 62, 0.88) !important;
         border-color: rgba(var(--accent-rgb), 0.24) !important;
         color: var(--text) !important;
       }
@@ -2537,7 +2609,7 @@
       .tagbtn.active {
         background: rgba(var(--accent-rgb), 0.15) !important;
         border-color: rgba(var(--accent-rgb), 0.45) !important;
-        color: #d7ffea !important;
+        color: #cceeff !important;
       }
       .logo {
         background: linear-gradient(145deg, rgba(var(--accent-rgb), 0.82), rgba(var(--accent2-rgb), 0.72)) !important;
@@ -2556,6 +2628,371 @@
           contain-intrinsic-size: 1px 420px;
         }
       }
+
+      /* ═══════════════════════════════════════════════════
+         HACKER DARK THEME — FINAL OVERRIDE (DO NOT TOUCH)
+         كل شيء تحت هذا السطر يكسب على ما فوقه
+         ═══════════════════════════════════════════════════ */
+      :root {
+        color-scheme: dark;
+        --bg0: #030d03;
+        --bg1: #071507;
+        --bg2: #020a02;
+        --text: #c8f7d5;
+        --muted: rgba(120, 210, 150, 0.82);
+        --line: rgba(0, 255, 65, 0.15);
+        --card: rgba(0, 22, 5, 0.72);
+        --card2: rgba(0, 32, 8, 0.82);
+        --accent: #00ff41;
+        --accent-rgb: 0, 255, 65;
+        --accent2: #00cc33;
+        --accent2-rgb: 0, 204, 51;
+        --ok: #00ff88;
+        --ok-rgb: 0, 255, 136;
+        --warn: #ffd700;
+        --warn-rgb: 255, 215, 0;
+        --bad: #ff2244;
+        --bad-rgb: 255, 34, 68;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.72);
+        --r: 18px;
+        --container: 1150px;
+      }
+      body {
+        background:
+          radial-gradient(1200px 700px at 8% -5%, rgba(0, 255, 65, 0.07), transparent 55%),
+          radial-gradient(900px 560px at 92% 4%, rgba(0, 204, 51, 0.05), transparent 60%),
+          radial-gradient(740px 440px at 50% 110%, rgba(0, 255, 65, 0.04), transparent 68%),
+          linear-gradient(180deg, #010601, #030d03 18%, #071507 56%, #020a02) !important;
+        color: var(--text) !important;
+        font-family: "Tajawal", "Cairo", system-ui, sans-serif;
+      }
+      /* ── NAV ── */
+      .nav {
+        background: rgba(1, 6, 1, 0.92) !important;
+        border-bottom: 1px solid rgba(0, 255, 65, 0.16) !important;
+      }
+      .nav::after {
+        background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.28), transparent) !important;
+      }
+      .credit-top { color: rgba(0, 255, 65, 0.50) !important; }
+      .brand small { color: var(--muted) !important; }
+      /* ── BUTTONS ── */
+      .btn {
+        background: linear-gradient(170deg, rgba(0, 30, 6, 0.92), rgba(0, 16, 3, 0.96)) !important;
+        border: 1px solid rgba(0, 255, 65, 0.22) !important;
+        color: var(--text) !important;
+      }
+      .btn:hover {
+        border-color: rgba(0, 255, 65, 0.50) !important;
+        background: linear-gradient(170deg, rgba(0, 42, 10, 0.96), rgba(0, 26, 6, 0.98)) !important;
+        box-shadow: 0 8px 24px rgba(0, 255, 65, 0.12) !important;
+      }
+      .btn.primary {
+        background: linear-gradient(145deg, rgba(0, 210, 55, 0.88), rgba(0, 148, 38, 0.82)) !important;
+        border-color: rgba(0, 255, 65, 0.60) !important;
+        color: #001804 !important;
+        font-weight: 900 !important;
+      }
+      .btn.primary:hover { box-shadow: 0 12px 30px rgba(0, 255, 65, 0.28) !important; }
+      .btn.ghost {
+        background: rgba(0, 255, 65, 0.07) !important;
+        border-color: rgba(0, 255, 65, 0.24) !important;
+        color: var(--accent) !important;
+      }
+      /* ── PANELS ── */
+      .panel {
+        background: linear-gradient(168deg, rgba(0, 24, 6, 0.90), rgba(0, 14, 3, 0.94)) !important;
+        border: 1px solid rgba(0, 255, 65, 0.13) !important;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(0, 255, 65, 0.05) !important;
+      }
+      .panel::before {
+        background: linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.55) 40%, rgba(0, 204, 51, 0.40) 60%, transparent 100%) !important;
+        height: 2px !important;
+      }
+      /* ── CARDS ── */
+      .card {
+        background: linear-gradient(158deg, rgba(0, 24, 6, 0.88), rgba(0, 14, 3, 0.92)) !important;
+        border: 1px solid rgba(0, 255, 65, 0.11) !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.50) !important;
+        color: var(--text) !important;
+      }
+      .card:hover {
+        border-color: rgba(0, 255, 65, 0.30) !important;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.60), 0 0 24px rgba(0, 255, 65, 0.09) !important;
+        background: linear-gradient(158deg, rgba(0, 30, 8, 0.92), rgba(0, 18, 4, 0.96)) !important;
+        transform: translateY(-4px) !important;
+      }
+      .card h3 { color: var(--text) !important; }
+      .card p { color: var(--muted) !important; }
+      /* ── TEXT ── */
+      h1, h2, h3, h4 { color: var(--text) !important; }
+      .sub { color: var(--muted) !important; font-size: 15px !important; line-height: 2 !important; }
+      .section-head p { color: var(--muted) !important; }
+      .hint { color: rgba(0, 200, 50, 0.60) !important; }
+      .minihead { color: var(--text) !important; }
+      .catmeta { color: var(--muted) !important; }
+      label { color: var(--muted) !important; }
+      /* ── TAG / BADGE ── */
+      .tag {
+        color: var(--accent) !important;
+        background: rgba(0, 255, 65, 0.09) !important;
+        border-color: rgba(0, 255, 65, 0.26) !important;
+      }
+      .badge {
+        background: rgba(0, 255, 65, 0.09) !important;
+        border-color: rgba(0, 255, 65, 0.26) !important;
+        color: var(--accent) !important;
+      }
+      /* ── NAV TABS ── */
+      .navtab { color: var(--muted) !important; background: transparent !important; border: none !important; }
+      .navtab.active {
+        color: #001804 !important;
+        background: linear-gradient(140deg, var(--accent), #00a028) !important;
+        box-shadow: 0 8px 22px rgba(0, 255, 65, 0.25) !important;
+      }
+      /* ── NOTICES ── */
+      .notice {
+        background: rgba(255, 215, 0, 0.07) !important;
+        border: 1px solid rgba(255, 215, 0, 0.30) !important;
+        color: rgba(255, 240, 180, 0.97) !important;
+        padding: 20px 22px !important;
+        font-size: 15px !important;
+        line-height: 2.1 !important;
+      }
+      .notice li, .notice span, .notice p { color: inherit !important; }
+      .notice b { color: var(--warn) !important; }
+      .notice .notice-title { color: var(--warn) !important; font-size: 17px !important; }
+      .notice .notice-block-title { color: var(--accent) !important; }
+      .notice .phase-num {
+        background: rgba(0, 255, 65, 0.14) !important;
+        border-color: rgba(0, 255, 65, 0.32) !important;
+        color: var(--accent) !important;
+      }
+      .notice ul li::marker { color: var(--warn) !important; }
+      .notice.liability {
+        background: rgba(255, 34, 68, 0.07) !important;
+        border-color: rgba(255, 34, 68, 0.30) !important;
+        color: rgba(255, 200, 200, 0.97) !important;
+      }
+      .notice.liability .notice-title { color: var(--bad) !important; }
+      .notice.liability b { color: var(--bad) !important; }
+      .notice.liability ul li::marker { color: var(--bad) !important; }
+      .notice.learn {
+        background: rgba(0, 255, 65, 0.06) !important;
+        border-color: rgba(0, 255, 65, 0.22) !important;
+        color: rgba(200, 255, 215, 0.97) !important;
+      }
+      .notice.learn .notice-title { color: var(--accent) !important; }
+      .notice.learn b { color: var(--accent) !important; }
+      .notice.learn ul li::marker { color: var(--accent) !important; }
+      .notice.learn a { color: var(--accent) !important; text-decoration: underline !important; }
+      .notice .notice-block { border-top: 1px solid rgba(0, 255, 65, 0.13) !important; }
+      /* ── INPUTS ── */
+      input, select, textarea {
+        background: rgba(0, 12, 2, 0.92) !important;
+        border-color: rgba(0, 255, 65, 0.18) !important;
+        color: var(--text) !important;
+      }
+      input::placeholder, textarea::placeholder { color: rgba(0, 200, 50, 0.38) !important; }
+      input:focus, select:focus, textarea:focus {
+        border-color: rgba(0, 255, 65, 0.55) !important;
+        box-shadow: 0 0 0 3px rgba(0, 255, 65, 0.10) !important;
+      }
+      select option { background: #030d03 !important; color: var(--text) !important; }
+      /* ── STATS ── */
+      .stat {
+        background: rgba(0, 22, 5, 0.68) !important;
+        border: 1px solid rgba(0, 255, 65, 0.14) !important;
+        box-shadow: none !important;
+      }
+      .stat .num { color: var(--accent) !important; font-size: clamp(1.3rem, 1.1rem + 0.8vw, 1.9rem) !important; }
+      .stat .lbl { color: var(--muted) !important; }
+      /* ── PILLS ── */
+      .pill.low { color: var(--ok) !important; background: rgba(0, 255, 136, 0.10) !important; border-color: rgba(0, 255, 136, 0.28) !important; }
+      .pill.med { color: var(--warn) !important; background: rgba(255, 215, 0, 0.10) !important; border-color: rgba(255, 215, 0, 0.28) !important; }
+      .pill.high { color: var(--bad) !important; background: rgba(255, 34, 68, 0.10) !important; border-color: rgba(255, 34, 68, 0.28) !important; }
+      /* ── TAGS SPANS ── */
+      .tags span {
+        background: rgba(0, 18, 4, 0.68) !important;
+        color: var(--muted) !important;
+        border-color: rgba(0, 255, 65, 0.14) !important;
+      }
+      .tagbtn {
+        background: rgba(0, 18, 4, 0.68) !important;
+        border-color: rgba(0, 255, 65, 0.16) !important;
+        color: var(--muted) !important;
+      }
+      .tagbtn.active, .tagbtn:hover {
+        background: rgba(0, 255, 65, 0.11) !important;
+        border-color: rgba(0, 255, 65, 0.44) !important;
+        color: var(--accent) !important;
+      }
+      /* ── CHIPS ── */
+      .chip {
+        background: rgba(0, 20, 5, 0.80) !important;
+        border-color: rgba(0, 255, 65, 0.16) !important;
+        color: var(--text) !important;
+      }
+      .chip.good { border-color: rgba(0, 255, 136, 0.30) !important; background: rgba(0, 255, 136, 0.08) !important; }
+      .chip.warn { border-color: rgba(255, 215, 0, 0.30) !important; background: rgba(255, 215, 0, 0.08) !important; }
+      .chip.bad { border-color: rgba(255, 34, 68, 0.30) !important; background: rgba(255, 34, 68, 0.08) !important; }
+      /* ── TOOLBAR ── */
+      .tools-toolbar {
+        background: rgba(1, 8, 1, 0.88) !important;
+        border-color: rgba(0, 255, 65, 0.13) !important;
+      }
+      #toolsToolbar { background: rgba(1, 5, 1, 0.92) !important; }
+      /* ── CATEGORY GROUPS ── */
+      .catgroup {
+        background: rgba(0, 18, 4, 0.78) !important;
+        border-color: rgba(0, 255, 65, 0.12) !important;
+      }
+      .catgroup > summary { color: var(--text) !important; }
+      .catgroup[open] { background: rgba(0, 24, 6, 0.82) !important; }
+      .catgroup > summary::after {
+        border-color: rgba(0, 255, 65, 0.25) !important;
+        background: rgba(0, 255, 65, 0.07) !important;
+        color: var(--accent) !important;
+      }
+      /* ── MORE DETAILS ── */
+      .more {
+        background: rgba(0, 14, 3, 0.82) !important;
+        border-color: rgba(0, 255, 65, 0.13) !important;
+      }
+      .more summary { color: var(--text) !important; }
+      .more li { color: var(--muted) !important; }
+      .more summary::after {
+        border-color: rgba(0, 255, 65, 0.25) !important;
+        background: rgba(0, 255, 65, 0.07) !important;
+        color: var(--accent) !important;
+      }
+      /* ── IMPORT BOX ── */
+      .import-box {
+        background: rgba(0, 14, 3, 0.78) !important;
+        border-color: rgba(0, 255, 65, 0.18) !important;
+      }
+      .import-box summary { color: var(--text) !important; }
+      .import-box summary::after {
+        border-color: rgba(0, 255, 65, 0.25) !important;
+        background: rgba(0, 255, 65, 0.07) !important;
+        color: var(--accent) !important;
+      }
+      /* ── TOOLS EMPTY ── */
+      .tools-empty {
+        background: rgba(0, 14, 3, 0.68) !important;
+        border-color: rgba(0, 255, 65, 0.14) !important;
+        color: var(--muted) !important;
+      }
+      /* ── SIDEBAR ── */
+      .sidebar {
+        background: linear-gradient(180deg, #010b01, #020e02) !important;
+        border-left: 1px solid rgba(0, 255, 65, 0.16) !important;
+        box-shadow: -20px 0 60px rgba(0, 0, 0, 0.72) !important;
+      }
+      .sidebar-header { border-bottom-color: rgba(0, 255, 65, 0.12) !important; padding: 20px; }
+      .sidebar-header span { color: var(--text) !important; }
+      .sidebar-section { border-bottom-color: rgba(0, 255, 65, 0.07) !important; }
+      .sidebar-section-title { color: var(--muted) !important; }
+      .sidebar-link {
+        background: rgba(0, 18, 4, 0.55) !important;
+        border-color: rgba(0, 255, 65, 0.09) !important;
+        color: var(--text) !important;
+      }
+      .sidebar-link:hover, .sidebar-link.active {
+        background: rgba(0, 255, 65, 0.10) !important;
+        border-color: rgba(0, 255, 65, 0.34) !important;
+        color: var(--accent) !important;
+      }
+      .sidebar-link-icon { background: rgba(0, 255, 65, 0.09) !important; }
+      .sidebar-close { color: var(--text) !important; background: transparent !important; border: none !important; }
+      /* ── QUICK LINKS ── */
+      .quick-link-btn {
+        background: rgba(0, 18, 4, 0.65) !important;
+        border-color: rgba(0, 255, 65, 0.11) !important;
+        color: var(--text) !important;
+      }
+      .quick-link-btn:hover {
+        background: rgba(0, 255, 65, 0.10) !important;
+        border-color: rgba(0, 255, 65, 0.38) !important;
+        color: var(--accent) !important;
+      }
+      /* ── LOGO ── */
+      .logo {
+        background: linear-gradient(145deg, rgba(0, 210, 55, 0.88), rgba(0, 150, 38, 0.82)) !important;
+        box-shadow: 0 10px 28px rgba(0, 200, 50, 0.20) !important;
+      }
+      /* ── ACADEMY ── */
+      .academy-shell {
+        border-top-color: rgba(0, 255, 65, 0.18) !important;
+        border-bottom-color: rgba(0, 255, 65, 0.14) !important;
+        background:
+          radial-gradient(1200px 620px at 16% 0%, rgba(0, 255, 65, 0.07), transparent 62%),
+          radial-gradient(900px 500px at 86% 16%, rgba(0, 204, 51, 0.07), transparent 68%),
+          linear-gradient(180deg, rgba(0, 6, 1, 0.80), rgba(0, 3, 1, 0.85)) !important;
+      }
+      .academy-head h2 { color: var(--text) !important; }
+      .academy-head p { color: var(--muted) !important; }
+      .academy-link-card {
+        background: rgba(0, 18, 4, 0.70) !important;
+        border-color: rgba(0, 255, 65, 0.20) !important;
+      }
+      .academy-link-card a { color: var(--accent) !important; }
+      /* ── EDU / BASICS CARDS ── */
+      .edu-point-card, .basics-card, .micro-item {
+        background: rgba(0, 18, 4, 0.68) !important;
+        border-color: rgba(0, 255, 65, 0.13) !important;
+      }
+      .edu-point-title { color: var(--text) !important; }
+      .edu-line { color: var(--muted) !important; }
+      .edu-line b { color: var(--text) !important; }
+      .basics-card h4 { color: var(--text) !important; }
+      .basics-card p { color: var(--muted) !important; }
+      .basics-card a { color: var(--accent) !important; }
+      .micro-item summary { color: var(--text) !important; }
+      .micro-item .micro-body { color: var(--muted) !important; }
+      /* ── VIEW BANNERS ── */
+      .view-banner {
+        color: rgba(255, 240, 180, 0.96) !important;
+        border-color: rgba(255, 215, 0, 0.28) !important;
+        background: rgba(255, 215, 0, 0.07) !important;
+      }
+      .view-banner b { color: var(--warn) !important; }
+      .view-banner.defense {
+        color: rgba(180, 255, 205, 0.96) !important;
+        border-color: rgba(0, 255, 136, 0.26) !important;
+        background: rgba(0, 255, 136, 0.06) !important;
+      }
+      .view-banner.defense b { color: var(--ok) !important; }
+      .view-banner.dual {
+        color: rgba(255, 220, 130, 0.96) !important;
+        border-color: rgba(255, 165, 0, 0.26) !important;
+        background: rgba(255, 165, 0, 0.06) !important;
+      }
+      /* ── SUCCESS / ERROR ── */
+      .success { color: rgba(150, 255, 185, 0.96) !important; background: rgba(0, 255, 136, 0.08) !important; border-color: rgba(0, 255, 136, 0.30) !important; }
+      .error { color: rgba(255, 160, 170, 0.96) !important; background: rgba(255, 34, 68, 0.08) !important; border-color: rgba(255, 34, 68, 0.30) !important; }
+      /* ── FOOTER ── */
+      footer { color: var(--muted) !important; }
+      footer .container > div {
+        background: rgba(0, 16, 4, 0.60) !important;
+        border-color: rgba(0, 255, 65, 0.11) !important;
+      }
+      .credit { color: rgba(0, 255, 65, 0.50) !important; }
+      /* ── BACK TO TOP ── */
+      .back-to-top {
+        background: linear-gradient(145deg, #00cc33, #009922) !important;
+        border: 1px solid rgba(0, 255, 65, 0.50) !important;
+        box-shadow: 0 12px 28px rgba(0, 200, 50, 0.30) !important;
+        color: #001804 !important;
+      }
+      /* ── PRE / MONO ── */
+      pre.mono {
+        background: rgba(0, 10, 2, 0.88) !important;
+        border-color: rgba(0, 255, 65, 0.14) !important;
+        color: var(--accent) !important;
+      }
+      /* ── HERO IMAGE ── */
+      .hero-anon-label { color: rgba(0, 255, 65, 0.85) !important; text-shadow: 0 0 18px rgba(0, 255, 65, 0.55) !important; }
     </style>
   </head>
   <body>
@@ -2698,42 +3135,82 @@
                   استخداماتها بشكل عام، ضمن تدريب قانوني مصرح به.
                 </p>
                 <div class="notice" role="note">
-                  <b data-i18n="legalHead">تنبيه قانوني:</b>
-                  <span data-i18n="legalBody">
-                    استخدم هذه المعلومات فقط على أنظمة تملكها أو لديك إذن صريح لاختبارها. أي
-                    استخدام غير مصرح به قد يكون مخالفاً للقانون.
-                  </span>
+                  <div class="notice-title">
+                    <span class="notice-icon">⚠️</span>
+                    <span>تنبيه قانوني مهم — اقرأه قبل أي شيء</span>
+                  </div>
+                  كل الأدوات والمعلومات الموجودة في هذه الصفحة هي <b>لأغراض تعليمية بحتة</b> ضمن إطار قانوني واضح. استخدام هذه المعلومات خارج النطاق المسموح به يُعدّ جريمة في معظم دول العالم.
+                  <ul>
+                    <li><b>مسموح ✔</b> — اختبار أجهزتك الشخصية أو الخوادم التي تملكها بالكامل.</li>
+                    <li><b>مسموح ✔</b> — العمل داخل بيئات تدريبية معزولة (VMs، TryHackMe، HackTheBox، CTF).</li>
+                    <li><b>مسموح ✔</b> — برامج Bug Bounty الرسمية بالتقيّد الصارم بنطاق الاختبار المحدد.</li>
+                    <li><b>مسموح ✔</b> — اختبار اختراق مُعيَّن بعقد مكتوب وإذن صريح من صاحب النظام.</li>
+                    <li><b>ممنوع تماماً ✘</b> — أي جهاز أو شبكة أو موقع لا تملك إذناً خطياً صريحاً باختباره.</li>
+                    <li><b>ممنوع تماماً ✘</b> — الاطلاع على بيانات أشخاص آخرين أو التلاعب بها حتى لو كان "بقصد التعلم".</li>
+                  </ul>
                 </div>
+
                 <div class="notice liability" role="note">
-                  <b data-i18n="liabilityHead">إخلاء مسؤولية:</b>
-                  <span data-i18n="liabilityBody">
-                    استخدامك لهذه الصفحة ومحتواها على مسؤوليتك. لا نتحمل أي مسؤولية عن أي ضرر
-                    (مباشر أو غير مباشر) قد ينتج عن سوء الاستخدام أو تشغيل الأدوات خارج نطاقٍ
-                    مصرح به.
-                  </span>
+                  <div class="notice-title">
+                    <span class="notice-icon">🛑</span>
+                    <span>إخلاء مسؤولية كامل</span>
+                  </div>
+                  هذه الصفحة أداةٌ تعليمية توثيقية فقط. <b>لا تقدّم خطوات هجوم، ولا أوامر استغلال، ولا شرحاً إجرائياً لأي عملية غير قانونية.</b>
+                  <ul>
+                    <li>أنت المسؤول الوحيد عن كيفية استخدامك لهذه المعلومات، وأي عواقب قانونية أو تقنية تنتج عن ذلك.</li>
+                    <li>صاحب الموقع لا يتحمل أي مسؤولية عن أضرار مباشرة أو غير مباشرة ناتجة عن سوء الاستخدام.</li>
+                    <li>الوصف العام لوظيفة الأداة لا يعني تشجيعاً أو تعليماً لاستخدامها بشكل مسيء.</li>
+                    <li>في حال الشك — لا تفعل. استشر متخصصاً قانونياً في مجال الأمن السيبراني في بلدك.</li>
+                  </ul>
                 </div>
+
                 <div class="notice learn" role="note">
-                  <b data-i18n="learnHead">شرح سريع:</b>
-                  <span data-i18n="learnBody">
-                    الأمن السيبراني يبدأ من الأساسيات: أنظمة التشغيل، الشبكات، البرمجة، ثم
-                    الدفاع والتحليل والممارسة داخل مختبر قانوني.
-                  </span>
-                  <br />
-                  <span data-i18n="learnBody2">
-                    للوصول للاحتراف: ابنِ أساس قوي في Linux وTCP/IP، تعلم Python وBash للأتمتة،
-                    طبّق أمن الويب وواجهات API عملياً، أتقن التحليل الجنائي والاستجابة للحوادث،
-                    وثّق كل تجربة بتقارير واضحة. ركّز على مشاريع حقيقية داخل بيئة مخبرية مصرح بها،
-                    واشتغل على خطة تعلم أسبوعية ثابتة (قراءة + تطبيق + مراجعة). بهذه الطريقة تنتقل
-                    من الفهم النظري إلى مستوى مهني فعلي.
-                  </span>
-                  <br />
-                  <a
-                    href="https://www.youtube.com/watch?v=RGOj5yH7evk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-i18n="learnVideo"
-                    >فيديو يوتيوب شرح من الصفر</a
-                  >
+                  <div class="notice-title">
+                    <span class="notice-icon">🖥️</span>
+                    <span>خارطة طريق الأمن السيبراني — من الصفر للاحتراف</span>
+                  </div>
+
+                  الأمن السيبراني ليس مجرد "تشغيل أدوات" — هو <b>منهجية تفكير وحل مشكلات</b> تبنيها طبقة فوق طبقة. إليك الطريق الصحيح:
+
+                  <div class="notice-block">
+                    <div class="notice-block-title">▸ المرحلة الأولى — الأساسيات (3-6 أشهر)</div>
+                    <div class="phase">
+                      <div class="phase-item"><span class="phase-num">01</span><span><b>Linux بعمق:</b> تعلّم الملفات والمجلدات، الصلاحيات (chmod/chown)، العمليات (ps/kill)، الشبكات الأساسية، والـ Shell scripting. Kali Linux أفضل بيئة للبداية.</span></div>
+                      <div class="phase-item"><span class="phase-num">02</span><span><b>الشبكات (TCP/IP):</b> افهم كيف تسافر البيانات — OSI Model، TCP vs UDP، DNS، HTTP/HTTPS، الـ Subnetting، وكيف يعمل الـ Firewall.</span></div>
+                      <div class="phase-item"><span class="phase-num">03</span><span><b>البرمجة الأساسية:</b> Python للأتمتة وبناء السكريبتات، Bash للعمل في Terminal، وأساسيات HTML/JS لفهم ثغرات الويب لاحقاً.</span></div>
+                    </div>
+                  </div>
+
+                  <div class="notice-block">
+                    <div class="notice-block-title">▸ المرحلة الثانية — مفاهيم الأمن (3-4 أشهر)</div>
+                    <div class="phase">
+                      <div class="phase-item"><span class="phase-num">04</span><span><b>أمن الشبكات:</b> تعلّم تحليل الحزم مع Wireshark، فهم هجمات MITM، ARP Poisoning، وكيف تعمل الـ IDS/IPS.</span></div>
+                      <div class="phase-item"><span class="phase-num">05</span><span><b>أمن الويب:</b> أتقن OWASP Top 10 — SQL Injection، XSS، CSRF، IDOR، وغيرها. استخدم Burp Suite لتحليل الطلبات والردود.</span></div>
+                      <div class="phase-item"><span class="phase-num">06</span><span><b>التشفير والمصادقة:</b> افهم الفرق بين Symmetric وAsymmetric Encryption، كيف تعمل TLS/SSL، وضعف كلمات المرور وكيفية كسرها قانونياً في CTF.</span></div>
+                    </div>
+                  </div>
+
+                  <div class="notice-block">
+                    <div class="notice-block-title">▸ المرحلة الثالثة — التطبيق العملي (مستمر)</div>
+                    <div class="phase">
+                      <div class="phase-item"><span class="phase-num">07</span><span><b>المختبرات والـ CTF:</b> ابدأ بـ TryHackMe (مسارات موجهة)، ثم انتقل لـ HackTheBox. حلّ تحديات CTF أسبوعياً لبناء العضلة التقنية.</span></div>
+                      <div class="phase-item"><span class="phase-num">08</span><span><b>التوثيق والتقارير:</b> اكتب تقريراً لكل تحدٍّ تحلّه. مهارة التقرير شرط أساسي في سوق العمل — تصف الثغرة، أثرها، وطريقة الإصلاح.</span></div>
+                      <div class="phase-item"><span class="phase-num">09</span><span><b>التخصص:</b> اختر مساراً — Penetration Testing، Digital Forensics، Cloud Security، Malware Analysis، أو Red/Blue Team. لا تحاول تتقن كل شيء مرة واحدة.</span></div>
+                    </div>
+                  </div>
+
+                  <div class="notice-block">
+                    <div class="notice-block-title">▸ الشهادات الموصى بها للبدء</div>
+                    <ul style="margin-top: 6px">
+                      <li><b>CompTIA Security+</b> — الأكثر طلباً للوظائف المبتدئة، أساس نظري قوي.</li>
+                      <li><b>eJPT (eLearnSecurity)</b> — أول شهادة اختبار اختراق عملية للمبتدئين.</li>
+                      <li><b>CEH أو OSCP</b> — للمستوى المتوسط والمتقدم (OSCP هي الأصعب والأكثر احتراماً في السوق).</li>
+                    </ul>
+                  </div>
+
+                  <div style="margin-top: 16px; font-size: 14px; color: var(--muted);">
+                    📺 <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">فيديو يوتيوب — شرح الأمن السيبراني من الصفر</a>
+                  </div>
                 </div>
               </div>
               <div class="hero-controls">
@@ -3029,50 +3506,86 @@ Report template:
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
               <div>
-                <h2 data-i18n="cyberRoadmapTitle">الأمن السيبراني من الصفر إلى الاحتراف</h2>
-                <p data-i18n="cyberRoadmapDesc">
-                  مسار تدريجي واضح يبدأ من الأساسيات وينتهي بمهارات مهنية قابلة للتطبيق في سوق العمل.
+                <h2>الأمن السيبراني من الصفر إلى الاحتراف — المنهج الأكاديمي الكامل</h2>
+                <p>
+                  هذا ليس مجرد قائمة مواضيع. هذا منهج أكاديمي مبني على منهجيات التعليم الاحترافي في مراكز التدريب العالمية مثل SANS وOffensive Security. كل مرحلة تتضمن شرحاً مفصلاً لما ستتعلمه ولماذا هو مهم، مع فيديو يوتيوب مرجعي لكل مرحلة.
                 </p>
               </div>
             </div>
-            <div class="basics-grid">
-              <article class="basics-card">
-                <h4 data-i18n="cyberStage1Title">المرحلة 1: الأساس التقني</h4>
-                <p data-i18n="cyberStage1Body">
-                  ابدأ بفهم أنظمة التشغيل (خصوصاً Linux)، إدارة الملفات، العمليات، الشبكات الأساسية (IP, DNS, TCP/UDP)، ومبادئ البرمجة.
-                </p>
-              </article>
-              <article class="basics-card">
-                <h4 data-i18n="cyberStage2Title">المرحلة 2: أمن الشبكات والأنظمة</h4>
-                <p data-i18n="cyberStage2Body">
-                  تعلّم الجدران النارية، التقسيم الشبكي، المراقبة، تقوية الأنظمة (Hardening)، وإدارة الهوية والصلاحيات.
-                </p>
-              </article>
-              <article class="basics-card">
-                <h4 data-i18n="cyberStage3Title">المرحلة 3: أمن تطبيقات الويب وواجهات API</h4>
-                <p data-i18n="cyberStage3Body">
-                  ركز على OWASP Top 10، التحقق من المدخلات، إدارة الجلسات، المصادقة والتفويض، وحماية البيانات أثناء النقل والتخزين.
-                </p>
-              </article>
-              <article class="basics-card">
-                <h4 data-i18n="cyberStage4Title">المرحلة 4: التحليل والاستجابة للحوادث</h4>
-                <p data-i18n="cyberStage4Body">
-                  طوّر مهارات قراءة السجلات، التحليل الجنائي الرقمي، اكتشاف السلوك الشاذ، وبناء إجراءات استجابة عملية وسريعة.
-                </p>
-              </article>
-              <article class="basics-card">
-                <h4 data-i18n="cyberStage5Title">المرحلة 5: الأتمتة والاختبار العملي</h4>
-                <p data-i18n="cyberStage5Body">
-                  استخدم Python/Bash لأتمتة المهام الأمنية، وابنِ مختبرًا قانونيًا لتطبيق السيناريوهات وقياس فعالية الضوابط الأمنية.
-                </p>
-              </article>
-              <article class="basics-card">
-                <h4 data-i18n="cyberStage6Title">المرحلة 6: الاحتراف المهني</h4>
-                <p data-i18n="cyberStage6Body">
-                  ابنِ ملف أعمال قوي (تقارير، مشاريع، أدوات بسيطة)، وحسّن مهارات التواصل وكتابة التوصيات، واستمر بالتعلم الدوري.
-                </p>
-              </article>
-            </div>
+
+            <article class="basics-card" style="margin-bottom: 14px">
+              <h4>المرحلة 1: الأساس التقني — البنية التحتية لكل شيء (شهران)</h4>
+              <p>
+                قبل أن تلمس أي أداة أمنية، يجب أن تفهم كيف يعمل الكمبيوتر فعلياً. نظام التشغيل (خصوصاً Linux) هو بيئة عملك الأساسية. تعلّم كيف يدير النظام الملفات (File System Hierarchy)، كيف تعمل الصلاحيات (chmod, chown, SUID/SGID)، كيف تتعامل مع العمليات (ps, kill, systemctl)، وكيف تتنقل في Terminal بسرعة. بالتوازي، افهم الشبكات: نموذج OSI ونموذج TCP/IP ليسا مجرد نظريات — هما خريطة لفهم كيف تسافر البيانات بين الأجهزة. تعلّم عملياً: IP Addressing, Subnetting, DNS Resolution, HTTP/HTTPS Handshake, TCP 3-Way Handshake. وأخيراً، ابدأ بالبرمجة: Python للأتمتة وكتابة السكريبتات، Bash للتحكم بالنظام. لا تحتاج أن تصبح مطوّراً محترفاً، لكن يجب أن تقدر تقرأ كود وتكتب أدوات بسيطة.
+              </p>
+              <p style="margin-top: 10px">
+                <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Linux Full Course for Beginners</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=qiQR5rTSshw" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Networking Fundamentals</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=rfscVS0vtbw" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Python Full Course</a>
+              </p>
+            </article>
+
+            <article class="basics-card" style="margin-bottom: 14px">
+              <h4>المرحلة 2: أمن الشبكات والأنظمة — خط الدفاع الأول (شهران)</h4>
+              <p>
+                بعد أن فهمت كيف تعمل الشبكات، حان الوقت لتفهم كيف تُحمى. الجدار الناري (Firewall) ليس مجرد زر on/off — هو نظام قواعد يحدد أي حركة مرور مسموحة وأيها ممنوعة. تعلّم iptables/nftables في Linux وWindows Firewall. افهم مفهوم Network Segmentation (لماذا نفصل شبكة الموظفين عن شبكة السيرفرات). تعلّم IDS/IPS — كيف تكتشف أنظمة مثل Snort أو Suricata الأنماط المشبوهة في حركة المرور. افهم تقوية الأنظمة (Hardening): إغلاق الخدمات غير الضرورية، تحديث النظام، تقليل سطح الهجوم. وأخيراً، إدارة الهوية والصلاحيات (IAM): مبدأ أقل صلاحية، المصادقة متعددة العوامل (MFA)، وكيف تعمل Active Directory.
+              </p>
+              <p style="margin-top: 10px">
+                <a href="https://www.youtube.com/watch?v=9x0Zb7C0iKs" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Network Security Full Course</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Firewalls Explained</a>
+              </p>
+            </article>
+
+            <article class="basics-card" style="margin-bottom: 14px">
+              <h4>المرحلة 3: أمن تطبيقات الويب وواجهات API — حيث تحدث أغلب الاختراقات (شهران)</h4>
+              <p>
+                أكثر من 70% من الاختراقات في العالم الحقيقي تستهدف تطبيقات الويب. لذلك هذه المرحلة حاسمة. ابدأ بفهم OWASP Top 10 بعمق — ليس مجرد حفظ الأسماء، بل فهم كيف تحدث كل ثغرة ولماذا. SQL Injection: كيف يستغل المهاجم مدخلات غير معقّمة لتنفيذ استعلامات على قاعدة البيانات. XSS (Cross-Site Scripting): كيف يُحقن كود JavaScript خبيث في صفحة يراها مستخدم آخر. CSRF: كيف يتم خداع المتصفح لتنفيذ إجراء بدون علم المستخدم. IDOR: كيف يصل المهاجم لبيانات مستخدم آخر عبر تعديل معرّف في الرابط. تعلّم استخدام Burp Suite لتحليل HTTP Requests وResponses. افهم كيف تعمل الجلسات (Sessions)، التوكنات (JWT)، وكيف تحمي واجهات API.
+              </p>
+              <p style="margin-top: 10px">
+                <a href="https://www.youtube.com/watch?v=zOjov-2OZ0E" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 OWASP Top 10 Explained</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=ySvVb2pOHvQ" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Burp Suite Tutorial</a>
+              </p>
+            </article>
+
+            <article class="basics-card" style="margin-bottom: 14px">
+              <h4>المرحلة 4: التحليل الجنائي والاستجابة للحوادث — ماذا تفعل بعد الاختراق (شهران)</h4>
+              <p>
+                في الواقع المهني، معظم وقت فريق الأمن لا يُقضى في "منع الاختراق" بل في "اكتشافه والاستجابة له". هنا تتعلم كيف تقرأ السجلات (Logs) وتفهم ماذا حدث. تعلّم أدوات SIEM مثل Splunk أو ELK Stack لتجميع وتحليل الأحداث من مصادر متعددة. افهم مفهوم Indicators of Compromise (IoC): ملفات مشبوهة، اتصالات غريبة، تغييرات غير مبررة في النظام. تعلّم أساسيات Digital Forensics: كيف تأخذ صورة من القرص (Disk Image)، كيف تحلل الذاكرة (Memory Forensics)، كيف تتبع أثر المهاجم. وأخيراً، ابنِ إجراء استجابة منظم: Detection → Containment → Eradication → Recovery → Lessons Learned.
+              </p>
+              <p style="margin-top: 10px">
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Incident Response Process</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Digital Forensics Introduction</a>
+              </p>
+            </article>
+
+            <article class="basics-card" style="margin-bottom: 14px">
+              <h4>المرحلة 5: الأتمتة والاختبار العملي — من النظرية إلى الممارسة (شهر)</h4>
+              <p>
+                المحترف الحقيقي لا يكرر المهام يدوياً. تعلّم كتابة سكريبتات Python وBash لأتمتة المهام الأمنية: فحص الشبكة تلقائياً، تحليل الـ Logs بشكل آلي، إنشاء تقارير دورية. ابنِ مختبراً قانونياً (Home Lab) باستخدام VirtualBox أو VMware: Kali Linux كبيئة اختبار، Ubuntu Server كهدف، Windows Server للتدريب على Active Directory. طبّق سيناريوهات واقعية: اكتشف ثغرة، وثّقها، اكتب تقريراً، واقترح الإصلاح. منصات مثل TryHackMe وHackTheBox توفر بيئات جاهزة وآمنة للتدريب العملي.
+              </p>
+              <p style="margin-top: 10px">
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Build Your Hacking Lab</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 Cybersecurity Roadmap</a>
+              </p>
+            </article>
+
+            <article class="basics-card">
+              <h4>المرحلة 6: الاحتراف المهني — جاهز لسوق العمل (مستمر)</h4>
+              <p>
+                الآن أنت تملك أساساً قوياً. حان وقت البناء المهني. اختر تخصصاً واحداً وركّز عليه: Penetration Testing، SOC Analyst، Digital Forensics، Cloud Security، أو Application Security. ابنِ ملف أعمال (Portfolio) يحتوي تقارير حقيقية كتبتها، مشاريع بنيتها، أدوات صغيرة طوّرتها. جهّز حساب LinkedIn وGitHub احترافيين. ابدأ بالشهادات المهنية: CompTIA Security+ للبداية، ثم eJPT أو CEH للمتوسط، وOSCP للمتقدم. الأهم: لا تتوقف عن التعلم أبداً. الأمن السيبراني مجال يتطور يومياً — المحترف هو من يتعلم باستمرار ويوثّق ما يتعلمه ويشاركه مع المجتمع.
+              </p>
+              <p style="margin-top: 10px">
+                <a href="https://www.youtube.com/watch?v=8mAITcNt710" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 CS50 Harvard (Computer Science Foundation)</a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 900;">📺 How to Get Into Cybersecurity</a>
+              </p>
+            </article>
           </div>
         </section>
         <section class="panel" id="osMasterPanel" style="margin: 12px 0 16px">
