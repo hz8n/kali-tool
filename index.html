@@ -7,11 +7,11 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر" />
-    <title>تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر</title>
+    <meta name="apple-mobile-web-app-title" content="أطلس الأمن السيبراني" />
+    <title>أطلس الأمن السيبراني</title>
     <meta
       name="description"
-      content="تعلم كل مايخص من كومبيتر من الامن السيراني و البرمجيات الخبيثه و اساسيات الكومبيوتر."
+      content="أطلس الأمن السيبراني: منصة عربية تعليمية منظمة للأمن السيبراني وعلوم الحاسوب والمسارات التقنية."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -136,15 +136,6 @@
       .container {
         width: min(var(--container), 94vw);
         margin-inline: auto;
-      }
-      #searchFiltersBlock,
-      #categoriesBlock,
-      #statsBlock {
-        display: none !important;
-      }
-      #togglesBlock,
-      .hero-links {
-        display: none !important;
       }
       [data-density="compact"] {
         --container: 1040px;
@@ -372,6 +363,39 @@
       .hero-links .btn {
         border-radius: 999px;
         padding: 9px 12px;
+      }
+      .hero-quick-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 12px;
+        margin: 18px 0 0;
+      }
+      .hero-quick-card {
+        display: block;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.18));
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+      .hero-quick-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(var(--accent-rgb), 0.3);
+        background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.1), rgba(0, 0, 0, 0.24));
+      }
+      .hero-quick-card strong {
+        display: block;
+        font-size: 16px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.96);
+      }
+      .hero-quick-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+        font-weight: 800;
       }
       details.import-box {
         margin-top: 14px;
@@ -934,6 +958,80 @@
         font-weight: 900;
         line-height: 1.9;
       }
+      .explorer-shell {
+        margin: 12px 0 18px;
+      }
+      .page-map {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+      .page-map-card {
+        display: block;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          radial-gradient(220px 120px at 100% 0%, rgba(var(--accent-rgb), 0.12), transparent 60%),
+          rgba(255, 255, 255, 0.04);
+        min-height: 150px;
+      }
+      .page-map-card b {
+        display: block;
+        font-size: 15px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.95);
+      }
+      .page-map-card p {
+        margin: 8px 0 12px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.85;
+        font-weight: 800;
+      }
+      .page-map-card .meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 6px 10px;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(var(--accent-rgb), 0.16);
+        color: rgba(248, 251, 255, 0.9);
+        font-size: 11px;
+        font-weight: 1000;
+      }
+      .tools-hub {
+        margin: 14px 0 16px;
+      }
+      .tools-lead {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .tools-lead p {
+        margin: 8px 0 0;
+        max-width: 75ch;
+      }
+      .toolbar-stack {
+        display: grid;
+        gap: 12px;
+      }
+      #activeFilters {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px 14px;
+        color: rgba(248, 251, 255, 0.9);
+        font-size: 13px;
+        font-weight: 900;
+      }
+      #viewBanner {
+        margin-top: 12px;
+      }
       details.more {
         margin-top: 10px;
         border-radius: 16px;
@@ -1032,6 +1130,235 @@
         font-weight: 830;
         line-height: 1.85;
         font-size: 13.5px;
+      }
+      .idea-list {
+        margin: 12px 0 0;
+        padding-inline-start: 20px;
+        color: rgba(229, 238, 255, 0.84);
+      }
+      .idea-list li {
+        margin-top: 8px;
+        line-height: 1.8;
+        font-size: 13.2px;
+        font-weight: 820;
+      }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .feature-card {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(0, 0, 0, 0.22);
+        padding: 14px;
+      }
+      .feature-card h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .feature-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+        font-weight: 800;
+      }
+      .start-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .start-card {
+        display: block;
+        padding: 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(var(--accent-rgb), 0.14);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.14));
+      }
+      .start-card strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .start-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+        font-weight: 800;
+      }
+      .progress-bar {
+        margin-top: 12px;
+        height: 12px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .progress-bar > span {
+        display: block;
+        height: 100%;
+        width: 0;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.7), rgba(var(--ok-rgb), 0.85));
+      }
+      .progress-meta {
+        margin-top: 10px;
+        color: rgba(248, 251, 255, 0.9);
+        font-size: 13px;
+        font-weight: 900;
+      }
+      .progress-list {
+        margin: 12px 0 0;
+        display: grid;
+        gap: 8px;
+      }
+      .progress-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .progress-item input {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+      }
+      .fav-actions {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+      .fav-btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 11px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        font-weight: 900;
+      }
+      .fav-btn.active {
+        border-color: rgba(var(--accent-rgb), 0.32);
+        background: rgba(var(--accent-rgb), 0.1);
+      }
+      .mini-list {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+      .mini-list a,
+      .mini-list div {
+        display: block;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(248, 251, 255, 0.9);
+        font-size: 13px;
+        font-weight: 850;
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .info-card {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.22);
+        padding: 14px;
+      }
+      .info-card h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .info-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .term-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .term-card {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px;
+      }
+      .term-card strong {
+        display: block;
+        font-size: 14px;
+        font-weight: 1000;
+      }
+      .term-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 12.8px;
+        line-height: 1.75;
+        font-weight: 800;
+      }
+      .quiz-shell {
+        display: grid;
+        gap: 12px;
+      }
+      .quiz-question {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 14px;
+      }
+      .quiz-question h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .quiz-options {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+      .quiz-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        font-weight: 850;
+      }
+      .quiz-option input {
+        width: 18px;
+        height: 18px;
+        margin: 0;
+      }
+      .quiz-result {
+        border-radius: 16px;
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        background: rgba(var(--accent-rgb), 0.08);
+        padding: 12px 14px;
+        font-weight: 900;
+        color: rgba(248, 251, 255, 0.95);
       }
       .basics-card a {
         color: rgba(224, 255, 240, 0.95);
@@ -1168,6 +1495,16 @@
         font-size: 12.5px;
         line-height: 1.8;
         margin-top: 8px;
+      }
+      @media (max-width: 980px) {
+        .hero-quick-grid,
+        .page-map,
+        .feature-grid,
+        .start-grid,
+        .info-grid,
+        .term-grid {
+          grid-template-columns: 1fr;
+        }
       }
       .error {
         margin-top: 10px;
@@ -1695,6 +2032,71 @@
         border: 1px solid rgba(24, 42, 55, 0.12);
         gap: 4px;
       }
+      .nav-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+        transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+      }
+      .nav-links a:hover {
+        color: #f8fcfc;
+        background: rgba(var(--accent-rgb), 0.16);
+        transform: translateY(-1px);
+      }
+      .nav-links a.active {
+        color: #f8fcfc;
+        background: linear-gradient(140deg, rgba(var(--accent-rgb), 0.9), rgba(var(--accent2-rgb), 0.72));
+        box-shadow: 0 10px 26px rgba(var(--accent-rgb), 0.24);
+      }
+      .section-indicator {
+        position: sticky;
+        top: calc(var(--nav-h, 72px) + 6px);
+        z-index: 39;
+        margin: 8px auto 0;
+        width: min(var(--container), 94vw);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 10px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(3, 14, 4, 0.82);
+        backdrop-filter: blur(16px) saturate(160%);
+      }
+      .section-indicator-label {
+        color: rgba(204, 236, 210, 0.74);
+        font-size: 11px;
+        font-weight: 1000;
+        letter-spacing: 0.3px;
+      }
+      .section-indicator-name {
+        margin-top: 4px;
+        color: rgba(248, 251, 255, 0.96);
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .section-indicator-progress {
+        min-width: 130px;
+        height: 8px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .section-indicator-progress > span {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.7), rgba(var(--ok-rgb), 0.8));
+      }
       .navtab {
         border: 0;
         min-width: 88px;
@@ -1865,6 +2267,104 @@
         color: var(--text);
         font-size: 14px;
         padding: 11px 12px;
+      }
+      #searchFiltersBlock.controls {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        padding: 16px;
+        border-radius: 24px;
+        border: 1px solid rgba(var(--accent-rgb), 0.16);
+        background:
+          radial-gradient(260px 140px at 100% 0%, rgba(var(--accent-rgb), 0.08), transparent 60%),
+          linear-gradient(180deg, rgba(248, 252, 249, 0.96), rgba(235, 243, 237, 0.92));
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.18);
+      }
+      #searchFiltersBlock .nav-hub {
+        grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(8, 31, 15, 0.98), rgba(14, 49, 23, 0.94));
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+      }
+      #searchFiltersBlock .nav-copy {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      #searchFiltersBlock .nav-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 7px 11px;
+        background: rgba(var(--accent-rgb), 0.12);
+        color: rgba(var(--accent-rgb), 0.94);
+        font-size: 11px;
+        font-weight: 1000;
+        letter-spacing: 0.3px;
+      }
+      #searchFiltersBlock .nav-title {
+        display: block;
+        margin: 0;
+        color: #eef7ef;
+        font-size: 18px;
+        font-weight: 1000;
+      }
+      #searchFiltersBlock .nav-sub {
+        margin: 6px 0 0;
+        color: rgba(219, 237, 223, 0.78);
+        font-size: 13px;
+        line-height: 1.8;
+        font-weight: 800;
+      }
+      #searchFiltersBlock .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      #searchFiltersBlock .nav-option {
+        display: block;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(var(--accent-rgb), 0.14);
+        background: linear-gradient(180deg, rgba(241, 248, 243, 0.98), rgba(227, 239, 230, 0.94));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+      #searchFiltersBlock .nav-option:hover {
+        transform: translateY(-3px);
+        border-color: rgba(var(--accent-rgb), 0.32);
+        background: linear-gradient(180deg, rgba(245, 251, 246, 1), rgba(232, 245, 235, 0.98));
+      }
+      #searchFiltersBlock .nav-option strong {
+        display: block;
+        color: #173521;
+        font-size: 16px;
+        font-weight: 1000;
+      }
+      #searchFiltersBlock .nav-option span {
+        display: block;
+        margin-top: 8px;
+        color: #507060;
+        font-size: 13px;
+        line-height: 1.75;
+        font-weight: 800;
+      }
+      #searchFiltersBlock .hidden-filter-controls {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
       }
       input[type="search"]:focus,
       input[type="text"]:focus,
@@ -2318,10 +2818,8 @@
         .nav-links {
           display: none;
         }
-        #searchFiltersBlock,
-        #categoriesBlock,
-        #statsBlock {
-          display: none !important;
+        .section-indicator {
+          display: none;
         }
         .sidebar-toggle {
           display: inline-flex;
@@ -2393,8 +2891,21 @@
         .controls {
           grid-template-columns: minmax(0, 1fr);
         }
+        #searchFiltersBlock.controls {
+          grid-template-columns: 1fr;
+          padding: 14px;
+        }
         .controls .field:first-child {
           grid-column: 1;
+        }
+        #searchFiltersBlock .nav-hub {
+          padding: 14px;
+        }
+        #searchFiltersBlock .nav-copy {
+          align-items: flex-start;
+        }
+        #searchFiltersBlock .nav-grid {
+          grid-template-columns: 1fr;
         }
         .stats {
           grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3004,10 +3515,20 @@
           <div class="brand">
             <div class="logo" aria-hidden="true"><img id="brandLogo" src="warning.svg" alt="Warning" /></div>
             <div>
-              <div data-i18n="brandTitle">موسوعة أدوات كالي</div>
+              <div data-i18n="brandTitle">أطلس الأمن السيبراني</div>
               <small data-i18n="brandSub">للأغراض التعليمية فقط (استخدام قانوني)</small>
               <small class="credit-top" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده | Instagram: bqq7k | اذا واجهت اي مشاكل: 0779122780</small>
             </div>
+          </div>
+          <div class="nav-links" aria-label="أقسام الموقع">
+            <a href="#beginnerPanel">ابدأ من هنا</a>
+            <a href="#toolsHub">الأدوات</a>
+            <a href="#phishingDefensePanel">Phishing</a>
+            <a href="#cyberDomainsPanel">المجالات</a>
+            <a href="#researcherPathPanel">الباحث الأمني</a>
+            <a href="#academySection">الأكاديمية</a>
+            <a href="#quizPanel">الاختبار</a>
+            <a href="#aboutSitePanel">عن الموقع</a>
           </div>
           <div class="nav-actions">
             <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="فتح القائمة">
@@ -3029,6 +3550,13 @@
         </div>
       </div>
     </nav>
+    <div class="section-indicator" id="sectionIndicator" aria-live="polite">
+      <div>
+        <div class="section-indicator-label">أنت الآن داخل</div>
+        <div class="section-indicator-name" id="sectionIndicatorName">ابدأ من هنا</div>
+      </div>
+      <div class="section-indicator-progress" aria-hidden="true"><span id="sectionIndicatorFill"></span></div>
+    </div>
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top" aria-label="العودة للأعلى">↑</button>
     
@@ -3044,6 +3572,34 @@
       
       <div class="sidebar-section">
         <div class="sidebar-section-title">الأقسام الرئيسية</div>
+        <a href="#beginnerPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🚀</div>
+          <span>ابدأ من هنا</span>
+        </a>
+        <a href="#referencesPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">📘</div>
+          <span>المراجع والشهادات</span>
+        </a>
+        <a href="#glossaryPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🧠</div>
+          <span>قاموس المصطلحات</span>
+        </a>
+        <a href="#phishingDefensePanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🛡️</div>
+          <span>Phishing على Kali</span>
+        </a>
+        <a href="#cyberDomainsPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🧭</div>
+          <span>المجالات السيبرانية</span>
+        </a>
+        <a href="#researcherPathPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🎯</div>
+          <span>الباحث الأمني المحترف</span>
+        </a>
+        <a href="#quizPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">📝</div>
+          <span>اختبار سريع</span>
+        </a>
         <a href="#eduPanel" class="sidebar-link">
           <div class="sidebar-link-icon">📚</div>
           <span>الشرح التعليمي</span>
@@ -3133,6 +3689,24 @@
                 <p class="sub" data-i18n="subtitle">
                   منهج أكاديمي متكامل يغطي: أنظمة التشغيل، الشبكات، البرمجة، الأمن السيبراني، التحليل الجنائي الرقمي، وبناء المسار المهني. كل المحتوى تعليمي وتوثيقي فقط — بدون خطوات هجوم أو أوامر استغلال. مصمّم للطالب، المتدرب، والمحترف الذي يبني مساره من الصفر للاحتراف ضمن إطار قانوني مصرح به.
                 </p>
+                <div class="hero-quick-grid">
+                  <a class="hero-quick-card" href="#toolsHub">
+                    <strong>مركز الأدوات والبحث</strong>
+                    <span>واجهة مرتبة للبحث، التصفية، الترتيب، والوصول السريع إلى التصنيفات.</span>
+                  </a>
+                  <a class="hero-quick-card" href="#academySection">
+                    <strong>الأكاديمية</strong>
+                    <span>قسم طويل ومنظم للمسارات التعليمية من البداية حتى المستوى المتقدم.</span>
+                  </a>
+                  <a class="hero-quick-card" href="#eduPanel">
+                    <strong>الشرح التعليمي</strong>
+                    <span>فهم طريقة التصنيف، الفلاتر، وكيفية قراءة الأدوات بشكل تعليمي وآمن.</span>
+                  </a>
+                  <a class="hero-quick-card" href="#importPanel">
+                    <strong>الاستيراد والأقسام</strong>
+                    <span>إضافة أدوات JSON ثم تصفحها داخل بنية أوضح وأسهل.</span>
+                  </a>
+                </div>
                 <div class="notice" role="note">
                   <div class="notice-title">
                     <span class="notice-icon">⚠️</span>
@@ -3217,21 +3791,43 @@
                   <img src="anonymous.jpg" alt="Anonymous" />
                   <div class="hero-anon-label">We Are Anonymous · We Do Not Forget</div>
                 </div>
-                <div class="controls" id="searchFiltersBlock" aria-label="Search and filters" hidden>
-                  <div class="field">
-                    <label for="q" data-i18n="searchLbl">بحث</label>
-                    <input id="q" type="search" placeholder="مثال: nmap, web, forensics..." />
+                <div class="controls" id="searchFiltersBlock" aria-label="Search and filters">
+                  <div class="nav-hub">
+                    <div class="nav-copy">
+                      <span class="nav-kicker">خيارات التنقل</span>
+                      <div>
+                        <label class="nav-title">انتقل بسرعة داخل الموقع</label>
+                        <p class="nav-sub">روابط مباشرة لأهم الأقسام حتى تتنقل بين المحتوى بشكل أسرع وأرتب بدل صندوق البحث السابق.</p>
+                      </div>
+                    </div>
+                    <div class="nav-grid">
+                      <a class="nav-option" href="#toolsHub">
+                        <strong>مركز الأدوات</strong>
+                        <span>الوصول إلى الأدوات، البطاقات، والتجميع حسب التصنيفات.</span>
+                      </a>
+                      <a class="nav-option" href="#eduPanel">
+                        <strong>الشرح التعليمي</strong>
+                        <span>شرح مبسط ومنظم لطريقة العرض، الفلاتر، وبنية المحتوى.</span>
+                      </a>
+                      <a class="nav-option" href="#academySection">
+                        <strong>الأكاديمية</strong>
+                        <span>مسارات طويلة ومنهجية من البداية حتى المستوى المتقدم.</span>
+                      </a>
+                      <a class="nav-option" href="#importPanel">
+                        <strong>الاستيراد</strong>
+                        <span>إضافة أدواتك بصيغة JSON وعرضها داخل الموقع.</span>
+                      </a>
+                    </div>
                   </div>
-                  <div class="field">
+                  <div class="hidden-filter-controls" aria-hidden="true">
+                      <input id="q" type="search" placeholder="مثال: nmap, web, forensics..." />
                     <label for="cat" data-i18n="catLbl">التصنيف</label>
                     <select id="cat"></select>
-                  </div>
-                  <div class="field">
                     <label for="risk" data-i18n="riskLbl">الخطورة</label>
                     <select id="risk"></select>
                   </div>
                 </div>
-                <div class="toggle-row" id="togglesBlock" hidden>
+                <div class="toggle-row" id="togglesBlock">
                   <span class="chip good" title="Recommended default">
                     <input id="safetyMode" type="checkbox" />
                     <span data-i18n="safetyMode">وضع الأمان: إخفاء الأدوات عالية الخطورة</span>
@@ -3252,14 +3848,15 @@
                 <div class="hero-links" aria-label="Quick links">
                   <a class="btn" href="#academySection"><span aria-hidden="true">🎓</span><span data-i18n="sectionsLinkAcademy">الأكاديمية</span></a>
                   <a class="btn" href="#eduPanel"><span aria-hidden="true">📚</span><span data-i18n="sectionsLinkEdu">الشرح التعليمي</span></a>
+                  <a class="btn" href="#toolsHub"><span aria-hidden="true">🧰</span><span>الأدوات</span></a>
                   <a class="btn ghost" href="#jsonBox"><span aria-hidden="true">＋</span><span data-i18n="sectionsLinkImport">الاستيراد</span></a>
                 </div>
-                <div id="categoriesBlock" hidden>
+                <div id="categoriesBlock">
                   <div class="minihead" style="margin: 0" data-i18n="sectionsCatsHead">تصنيفات الأدوات</div>
                   <div class="hint" style="margin-top: 6px" data-i18n="sectionsCatsDesc">اضغط على أي تصنيف لتطبيق فلتر سريع.</div>
                   <div id="catChips" class="tags" style="margin-top: 10px"></div>
                 </div>
-                <div class="stats" id="statsBlock" aria-label="Counts" hidden>
+                <div class="stats" id="statsBlock" aria-label="Counts">
                   <div class="stat">
                     <div id="countTools" class="num">0</div>
                     <div class="lbl" data-i18n="statTools">أداة معروضة</div>
@@ -4157,10 +4754,590 @@ Report template:
             </details>
           </div>
         </section>
-        <div id="activeFilters" hidden></div>
-        <div id="viewBanner" hidden><b id="viewBannerHead"></b><span id="viewBannerBody"></span></div>
-        <section id="toolsWrap" hidden aria-live="polite"></section>
-        <div id="toolsEmpty" hidden></div>
+        <section class="panel explorer-shell" id="toolsHub">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>خريطة الموقع ومركز التصفح</h2>
+                <p>ترتيب جديد يسهّل الوصول: صفحات واضحة، أقسام رئيسية، ومساحة أدوات مخصصة للبحث والتصفية والاستكشاف السريع.</p>
+              </div>
+            </div>
+            <div class="page-map">
+              <a class="page-map-card" href="#toolsToolbar">
+                <b>البحث الذكي</b>
+                <p>ابدأ من شريط البحث والفلاتر للوصول إلى الأدوات حسب الاسم أو التصنيف أو مستوى الخطورة.</p>
+                <span class="meta">بحث + فلاتر + فرز</span>
+              </a>
+              <a class="page-map-card" href="#toolsWrap">
+                <b>قسم الأدوات</b>
+                <p>عرض مرتب للأدوات داخل مجموعات، مع بطاقات واضحة وسهلة القراءة بدل التكدس داخل الصفحة.</p>
+                <span class="meta">بطاقات + مجموعات</span>
+              </a>
+              <a class="page-map-card" href="#eduPanel">
+                <b>المحتوى التعليمي</b>
+                <p>شروحات تفصيلية تشرح آلية العمل والمنطق العام بدون خطوات تشغيل هجومية أو تفاصيل حساسة.</p>
+                <span class="meta">تعلم منظم</span>
+              </a>
+              <a class="page-map-card" href="#academySection">
+                <b>المسارات الطويلة</b>
+                <p>منهج كبير ومنفصل للمبتدئ والمتوسط يربط بين أنظمة التشغيل والشبكات والبرمجة والأمن.</p>
+                <span class="meta">أكاديمية كاملة</span>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section class="tools-hub">
+          <div class="tools-lead">
+            <div>
+              <h2 style="margin: 0; font-size: 24px; font-weight: 1000;">مركز الأدوات</h2>
+              <p>هنا صار عندك قسم مستقل للأدوات: تبويب سريع، فرز، فتح وإغلاق المجموعات، ثم نتائج مرتبة بأسلوب أقرب للمواقع الكبيرة المنظمة.</p>
+            </div>
+          </div>
+          <div class="toolbar-stack">
+            <div class="tools-toolbar" id="toolsToolbar">
+              <div class="tools-toolbar-left">
+                <button class="navtab active" type="button" data-view="all">الكل</button>
+                <button class="navtab" type="button" data-view="defense">الدفاع</button>
+                <button class="navtab" type="button" data-view="dual">ثنائي الاستخدام</button>
+                <div class="field sort-field">
+                  <label for="sort">الترتيب</label>
+                  <select id="sort"></select>
+                </div>
+              </div>
+              <div class="tools-toolbar-right">
+                <label class="chip">
+                  <input id="groupByCat" type="checkbox" />
+                  <span>تجميع حسب التصنيف</span>
+                </label>
+                <button id="expandCatsBtn" class="btn" type="button">فتح الكل</button>
+                <button id="collapseCatsBtn" class="btn ghost" type="button">إغلاق الكل</button>
+              </div>
+            </div>
+            <div id="activeFilters" style="display: none"></div>
+            <div id="viewBanner" style="display: none"><b id="viewBannerHead"></b><span id="viewBannerBody"></span></div>
+            <section id="toolsWrap" aria-live="polite"></section>
+            <div id="toolsEmpty" style="display: none"></div>
+          </div>
+        </section>
+        <section class="panel" id="implementationPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>تطبيق فعلي داخل الموقع</h2>
+                <p>هذه ليست أفكارًا فقط. هنا بدأت بتطبيق مجموعة ملموسة داخل الموقع: بداية سريعة، متابعة تقدم، مفضلة، آخر تنقلات، مراجع، وسياسات واضحة.</p>
+              </div>
+            </div>
+            <div class="feature-grid">
+              <article class="feature-card">
+                <h4>ابدأ من هنا</h4>
+                <p>مدخل سريع للمستخدم الجديد حتى يعرف من أين يبدأ حسب هدفه داخل أطلس الأمن السيبراني.</p>
+                <div class="start-grid">
+                  <a class="start-card" href="#eduPanel" data-track-section="الشرح التعليمي">
+                    <strong>تعلم الأساس</strong>
+                    <span>ابدأ بالشرح التعليمي لتفهم بنية المحتوى، الفلاتر، وطريقة استخدام الموقع.</span>
+                  </a>
+                  <a class="start-card" href="#implementationPanel" data-track-section="التطبيق الفعلي">
+                    <strong>التطبيق الفعلي</strong>
+                    <span>شاهد الميزات التي تم تنفيذها فعليًا داخل الموقع بدل الأقسام النظرية.</span>
+                  </a>
+                  <a class="start-card" href="#toolsHub" data-track-section="مركز الأدوات">
+                    <strong>استكشف الأدوات</strong>
+                    <span>ادخل إلى مركز الأدوات لمشاهدة البطاقات، المجموعات، والتصنيفات.</span>
+                  </a>
+                  <a class="start-card" href="#academySection" data-track-section="الأكاديمية">
+                    <strong>امشِ على مسار كامل</strong>
+                    <span>انتقل للأكاديمية إذا كنت تريد منهجًا طويلًا من البداية حتى التقدم.</span>
+                  </a>
+                </div>
+              </article>
+              <article class="feature-card">
+                <h4>متابعة التقدم</h4>
+                <p>سجل إنجازك داخل المتصفح نفسه. كل عنصر تكمله يُحفظ محليًا ويحدّث نسبة التقدم.</p>
+                <div class="progress-bar"><span id="progressBarFill"></span></div>
+                <div class="progress-meta"><span id="progressText">0%</span> مكتمل</div>
+                <div class="progress-list" id="progressChecklist">
+                  <label class="progress-item"><input type="checkbox" data-progress="linux" /> <span>أنهيت أساسيات Linux</span></label>
+                  <label class="progress-item"><input type="checkbox" data-progress="network" /> <span>راجعت أساسيات الشبكات</span></label>
+                  <label class="progress-item"><input type="checkbox" data-progress="programming" /> <span>بدأت تعلم البرمجة</span></label>
+                  <label class="progress-item"><input type="checkbox" data-progress="websec" /> <span>درست أمن الويب</span></label>
+                  <label class="progress-item"><input type="checkbox" data-progress="forensics" /> <span>مررت على التحليل الجنائي</span></label>
+                  <label class="progress-item"><input type="checkbox" data-progress="lab" /> <span>جهزت مختبرًا تدريبيًا بسيطًا</span></label>
+                </div>
+              </article>
+              <article class="feature-card">
+                <h4>المفضلة وآخر التنقلات</h4>
+                <p>اختر الأقسام التي تهمك واحتفظ بها، وشاهد آخر الأماكن التي فتحتها داخل الموقع.</p>
+                <div class="fav-actions">
+                  <button class="fav-btn" type="button" data-fav-target="#toolsHub" data-fav-name="مركز الأدوات"><span>مركز الأدوات</span><span>☆</span></button>
+                  <button class="fav-btn" type="button" data-fav-target="#eduPanel" data-fav-name="الشرح التعليمي"><span>الشرح التعليمي</span><span>☆</span></button>
+                  <button class="fav-btn" type="button" data-fav-target="#academySection" data-fav-name="الأكاديمية"><span>الأكاديمية</span><span>☆</span></button>
+                  <button class="fav-btn" type="button" data-fav-target="#implementationPanel" data-fav-name="التطبيق الفعلي"><span>التطبيق الفعلي</span><span>☆</span></button>
+                </div>
+                <div class="minihead" style="margin-top: 14px">أقسامك المفضلة</div>
+                <div class="mini-list" id="favoritesList"><div>لا توجد عناصر محفوظة بعد.</div></div>
+                <div class="minihead" style="margin-top: 14px">آخر ما زرته</div>
+                <div class="mini-list" id="recentList"><div>لم يتم تسجيل أي تنقل بعد.</div></div>
+              </article>
+              <article class="feature-card">
+                <h4>المراجع والشهادات</h4>
+                <p>قسم مطبق يجمع أهم المسارات المرجعية التي يمكن البناء عليها داخل الموقع لاحقًا.</p>
+                <ul class="idea-list">
+                  <li>Security+ كبداية نظرية قوية.</li>
+                  <li>eJPT كبداية عملية للمختبرات.</li>
+                  <li>OSCP كخيار متقدم للمسار العملي.</li>
+                  <li>CS50 وLinux Full Course وNetworking Fundamentals كمراجع تأسيسية.</li>
+                  <li>بناء صفحة لاحقة للكتب، الكورسات، والشهادات بشكل أوسع.</li>
+                </ul>
+              </article>
+              <article class="feature-card">
+                <h4>الأسئلة الشائعة</h4>
+                <details class="more" open>
+                  <summary>من أين أبدأ إذا كنت جديدًا بالكامل؟</summary>
+                  <p class="edu-line">ابدأ من Linux ثم الشبكات ثم البرمجة الأساسية، وبعدها انتقل للأمن السيبراني والويب والتحليل.</p>
+                </details>
+                <details class="more">
+                  <summary>هل الموقع للتعلم أم للتشغيل المباشر؟</summary>
+                  <p class="edu-line">الموقع تعليمي ومنظم للمحتوى والمسارات، وليس منصة تشغيل هجومي أو تنفيذ أوامر على أهداف.</p>
+                </details>
+                <details class="more">
+                  <summary>هل يتم حفظ تقدمي؟</summary>
+                  <p class="edu-line">نعم، التقدم والمفضلة وآخر التنقلات تُحفظ محليًا في متصفحك فقط.</p>
+                </details>
+              </article>
+              <article class="feature-card">
+                <h4>نماذج وتقارير وقوائم فحص</h4>
+                <ul class="idea-list">
+                  <li>نموذج تقرير أساسي: Scope، Observation، Risk، Recommendation.</li>
+                  <li>قائمة فحص بداية المختبر: نظام، شبكات، حسابات، لقطات VM.</li>
+                  <li>قائمة فحص تعلم أسبوعية: قراءة، تطبيق، تلخيص، ومراجعة.</li>
+                  <li>قائمة فحص مشروع: فكرة، متطلبات، تنفيذ، اختبار، توثيق.</li>
+                  <li>قائمة فحص قبل النشر: وصف، صور، روابط، وتحذير قانوني واضح.</li>
+                </ul>
+              </article>
+              <article class="feature-card">
+                <h4>عن الموقع والسياسات والتواصل</h4>
+                <ul class="idea-list">
+                  <li>عن الموقع: أطلس الأمن السيبراني منصة عربية تعليمية منظمة للمسارات والأدوات والمعرفة التقنية.</li>
+                  <li>سياسة الاستخدام: أي تطبيق عملي يجب أن يكون ضمن تفويض قانوني واضح ومختبرات مصرح بها.</li>
+                  <li>إخلاء المسؤولية: المحتوى تعليمي ولا يقدم خطوات تشغيل غير قانونية.</li>
+                  <li>التواصل: يمكن لاحقًا إضافة نموذج اقتراحات أو صفحة رسائل مباشرة داخل الموقع.</li>
+                  <li>اقتراحات المستخدمين: هذا القسم جاهز ليصبح لاحقًا نموذجًا تفاعليًا فعليًا.</li>
+                </ul>
+              </article>
+              <article class="feature-card">
+                <h4>خطة التنفيذ القادمة</h4>
+                <p>الدفعة الحالية طبقت أقسامًا ووظائف حقيقية، والخطوة التالية المنطقية هي تحويل الباقي إلى صفحات فعلية مترابطة واحدة واحدة.</p>
+                <ul class="idea-list">
+                  <li>تحويل الشهادات والمراجع إلى صفحة مستقلة.</li>
+                  <li>بناء صفحة مقالات وقاموس مصطلحات.</li>
+                  <li>إضافة اختبارات Quiz حقيقية داخل الموقع.</li>
+                  <li>بناء صفحة مفضلة كاملة وصفحة آخر ما تمت قراءته.</li>
+                  <li>إضافة نظام تحديثات وإحصائيات أوسع للمحتوى.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="beginnerPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>ابدأ من هنا</h2>
+                <p>هذا القسم يطبّق فكرة البداية السريعة داخل الموقع، ويعطي المستخدم أول خطواته بشكل مرتب بدل التشتت.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>الأسبوع 1</h4>
+                <p>تعرّف على Linux، الملفات، الصلاحيات، والتنقل في الطرفية، ثم اقرأ شرح الأدوات داخل الموقع.</p>
+              </article>
+              <article class="info-card">
+                <h4>الأسبوع 2</h4>
+                <p>افهم الشبكات الأساسية: IP وDNS وHTTP وTCP/UDP، ثم انتقل لمسار الأدوات المرتبط بالشبكات.</p>
+              </article>
+              <article class="info-card">
+                <h4>الأسبوع 3</h4>
+                <p>ابدأ بالبرمجة الأساسية عبر Python وBash، وراجع الأقسام التعليمية الخاصة بالمسارات التقنية.</p>
+              </article>
+              <article class="info-card">
+                <h4>الأسبوع 4</h4>
+                <p>ادخل إلى أمن الويب، التحليل الجنائي، والمختبرات القانونية، وابدأ بتوثيق ما تتعلمه.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="referencesPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>المراجع والشهادات</h2>
+                <p>تطبيق فعلي لفكرة المكتبة المرجعية: شهادات، كورسات، كتب، ومسارات موصى بها.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>شهادات للبدء</h4>
+                <ul class="idea-list">
+                  <li>CompTIA Security+</li>
+                  <li>eJPT</li>
+                  <li>PNPT</li>
+                  <li>OSCP للمستوى المتقدم</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كورسات تأسيسية</h4>
+                <ul class="idea-list">
+                  <li>Linux Full Course</li>
+                  <li>Networking Fundamentals</li>
+                  <li>Python Full Course</li>
+                  <li>CS50 Introduction to Computer Science</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كتب ومراجع</h4>
+                <ul class="idea-list">
+                  <li>Computer Networking: A Top-Down Approach</li>
+                  <li>Linux Basics for Hackers</li>
+                  <li>The Web Application Hacker's Handbook</li>
+                  <li>Practical Malware Analysis</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>منصات تدريب</h4>
+                <ul class="idea-list">
+                  <li>TryHackMe</li>
+                  <li>Hack The Box</li>
+                  <li>PortSwigger Web Security Academy</li>
+                  <li>OverTheWire</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="glossaryPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>قاموس مصطلحات سيبرانية</h2>
+                <p>تطبيق فعلي لفكرة القاموس والمصطلحات لتقليل الغموض على المبتدئ.</p>
+              </div>
+            </div>
+            <div class="term-grid">
+              <div class="term-card"><strong>OSI</strong><span>نموذج يشرح كيف تنتقل البيانات بين طبقات الشبكة.</span></div>
+              <div class="term-card"><strong>TCP</strong><span>بروتوكول اتصال موثوق يعتمد الترتيب والتأكيد.</span></div>
+              <div class="term-card"><strong>UDP</strong><span>بروتوكول أخف وأسرع لكنه لا يضمن الترتيب أو التسليم.</span></div>
+              <div class="term-card"><strong>DNS</strong><span>خدمة تحويل أسماء النطاقات إلى عناوين IP.</span></div>
+              <div class="term-card"><strong>HTTP</strong><span>بروتوكول تبادل بيانات الويب بين المتصفح والخادم.</span></div>
+              <div class="term-card"><strong>MFA</strong><span>مصادقة متعددة العوامل لرفع مستوى الأمان.</span></div>
+              <div class="term-card"><strong>SIEM</strong><span>منصة تجمع السجلات وتحللها لإعطاء تنبيهات أمنية.</span></div>
+              <div class="term-card"><strong>OSINT</strong><span>جمع معلومات من مصادر مفتوحة وبشكل قانوني.</span></div>
+              <div class="term-card"><strong>Forensics</strong><span>تحليل الأدلة الرقمية بعد الحوادث أو أثناء التحقيق.</span></div>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="phishingDefensePanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>Phishing على Kali Linux: فهم وتحليل ووقاية</h2>
+                <p>هذا القسم تعليمي دفاعي فقط. يشرح كيف يعمل التصيد بشكل عام، وكيف تحلله على Kali Linux، وكيف تحمي نفسك ومؤسستك منه بدون أي خطوات هجومية أو استهداف خارجي.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>كيف يعمل التصيد بشكل عام</h4>
+                <ul class="idea-list">
+                  <li>ينتحل المهاجم صفة جهة موثوقة مثل بريد شركة أو صفحة تسجيل دخول.</li>
+                  <li>يُرسل رابطًا أو رسالة تضغط على عامل الاستعجال أو الخوف أو الفضول.</li>
+                  <li>يدخل المستخدم إلى صفحة مزيفة تشبه الأصلية.</li>
+                  <li>تُسرق بيانات مثل كلمة المرور أو رمز التحقق أو معلومات حساسة.</li>
+                  <li>تُستخدم هذه البيانات لاحقًا لاختراق الحسابات أو انتحال الهوية.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>أدوات Kali المفيدة للتحليل الدفاعي</h4>
+                <ul class="idea-list">
+                  <li><span class="mono">whois</span> لمعرفة معلومات الدومين.</li>
+                  <li><span class="mono">dig</span> و<span class="mono">host</span> و<span class="mono">nslookup</span> لتحليل DNS.</li>
+                  <li><span class="mono">curl</span> و<span class="mono">wget</span> لفحص الاستجابات والرؤوس بشكل آمن.</li>
+                  <li><span class="mono">wireshark</span> و<span class="mono">tcpdump</span> لمراقبة الترافيك في مختبر محلي.</li>
+                  <li><span class="mono">burpsuite</span> لتحليل الطلبات والردود داخل بيئة اختبار مصرح بها.</li>
+                  <li><span class="mono">urlcrazy</span> لفهم تشابه الدومينات بشكل توعوي ودفاعي.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كيف تكتشف رابطًا أو صفحة مشبوهة</h4>
+                <ul class="idea-list">
+                  <li>افحص الدومين كاملًا وليس الاسم الظاهر فقط.</li>
+                  <li>راقب الأخطاء الإملائية أو الدومينات المتشابهة جدًا مع الأصل.</li>
+                  <li>تحقق من شهادة TLS واسم الجهة المالكة عند الحاجة.</li>
+                  <li>افحص رؤوس HTTP والـ redirects بدل فتح الصفحة بشكل عشوائي.</li>
+                  <li>حلل طلبات الصفحة داخل مختبر محلي لتعرف إلى أين تُرسل البيانات.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>تحليل البريد المشبوه على Kali</h4>
+                <ul class="idea-list">
+                  <li>اقرأ <span class="mono">email headers</span> وحدد المرسل الفعلي.</li>
+                  <li>تحقق من نتائج <span class="mono">SPF</span> و<span class="mono">DKIM</span> و<span class="mono">DMARC</span>.</li>
+                  <li>قارن الدومين المرسل مع الروابط داخل الرسالة.</li>
+                  <li>ابحث عن لغة ضغط نفسي مثل التهديد أو الاستعجال أو الجوائز الوهمية.</li>
+                  <li>لا تفتح المرفقات المشبوهة إلا داخل مختبر معزول ومصرح.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>مختبر تعليمي آمن على Kali</h4>
+                <p>البديل الآمن للتعلم هو مختبر محلي فقط. استخدم جهازًا افتراضيًا، وصفحات اختبار محلية، وترافيك داخلي بين آلاتك أنت فقط، حتى تتعلم التحليل والوقاية بدون استهداف أي IP خارجي أو جهة حقيقية.</p>
+                <ul class="idea-list">
+                  <li>آلة Kali للتحليل والمراقبة.</li>
+                  <li>آلة متصفح تجريبية لزيارة صفحات محلية داخل المختبر.</li>
+                  <li>التقاط الترافيك وتحليل الطلبات والردود داخل نفس الشبكة المحلية.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>الوقاية الشخصية والمؤسسية</h4>
+                <ul class="idea-list">
+                  <li>استخدم مدير كلمات مرور لتمييز الصفحات الأصلية من المزيفة.</li>
+                  <li>فعّل MFA ولا تشارك رموز التحقق أبدًا.</li>
+                  <li>افتح المواقع الحساسة يدويًا بدل الاعتماد على الروابط الواردة.</li>
+                  <li>فعّل <span class="mono">SPF/DKIM/DMARC</span> للبريد.</li>
+                  <li>درّب المستخدمين على التحقق من الدومينات والرؤوس والروابط.</li>
+                  <li>طبّق بوابات فلترة البريد والتنبيهات على محاولات الدخول غير المعتادة.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>ماذا تفعل إذا وقعت ضحية</h4>
+                <ul class="idea-list">
+                  <li>غيّر كلمة المرور فورًا.</li>
+                  <li>أنهِ كل الجلسات المفتوحة من الحساب.</li>
+                  <li>أعد ضبط MFA إذا لزم.</li>
+                  <li>افحص قواعد التحويل التلقائي في البريد.</li>
+                  <li>راجع الأجهزة والجلسات الحديثة وأبلغ فريق الأمن بسرعة.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>حدود هذا القسم</h4>
+                <p>هذا القسم لا يقدم تعليمات تنفيذ هجوم phishing، ولا طريقة استهداف IP خارجي أو بناء صفحات احتيالية فعلية. الهدف هنا هو الفهم الدفاعي، التحليل، والكشف والوقاية فقط.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="researcherPathPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>كيف تصبح باحثًا أمنيًا محترفًا</h2>
+                <p>هذا المسار يعطيك عقلية هجومية منضبطة ومهنية، لكن داخل إطار قانوني واضح: مختبرات، Bug Bounty، تحليل، تقارير، وتخصص حقيقي بدل العشوائية.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>العقلية الصحيحة</h4>
+                <ul class="idea-list">
+                  <li>فكّر كمن يبحث عن السبب الجذري لا كمن يطارد نتائج سريعة.</li>
+                  <li>ابنِ ملاحظات دقيقة، وسجّل كل ملاحظة ونتيجة.</li>
+                  <li>تعلّم قراءة السطح المكشوف ثم تقييم الخطر ثم كتابة التوصية.</li>
+                  <li>القوة الحقيقية تأتي من الفهم، لا من تشغيل الأدوات فقط.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>أين تتدرب</h4>
+                <ul class="idea-list">
+                  <li>مختبر محلي على VMs.</li>
+                  <li>TryHackMe وHack The Box.</li>
+                  <li>PortSwigger Web Security Academy.</li>
+                  <li>برامج Bug Bounty ذات النطاق الواضح فقط.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>المهارات الأساسية</h4>
+                <ul class="idea-list">
+                  <li>Linux والشبكات والويب والـ HTTP.</li>
+                  <li>قراءة JavaScript وPython وBash.</li>
+                  <li>فهم الجلسات، المصادقة، التخزين، وواجهة API.</li>
+                  <li>التحليل، إعادة الإنتاج الآمن، وكتابة التقرير.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>ما الذي يميز المحترف</h4>
+                <ul class="idea-list">
+                  <li>يعرف متى يتوقف ومتى يرفع ملاحظة للمراجعة.</li>
+                  <li>يحترم النطاق القانوني دائمًا.</li>
+                  <li>يكتب تقريرًا واضحًا يمكن للفريق العمل عليه.</li>
+                  <li>يركّز على الأثر والإصلاح، لا على الاستعراض.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="cyberDomainsPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>المجالات السيبرانية الأساسية والمتقدمة</h2>
+                <p>هذا القسم يوسّع الموقع ليغطي أكبر قدر عملي من مجالات الأمن السيبراني الناقصة، مع شرح واضح وروابط يوتيوب تعليمية لكل محور حتى يكون المرجع أقرب لمنهج متكامل.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>Cloud Security</h4>
+                <p>يركز على حماية الخدمات السحابية، الصلاحيات، التخزين، الشبكات، ومراقبة البيئة السحابية في AWS وAzure وGCP.</p>
+                <a href="https://www.youtube.com/watch?v=jI8IKpjiCSM" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Mobile Security</h4>
+                <p>يهتم بأمن تطبيقات Android وiOS، التخزين المحلي، الصلاحيات، الاتصالات، والتحليل الساكن والديناميكي للتطبيقات.</p>
+                <a href="https://www.youtube.com/watch?v=8mAITcNt710" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>DevSecOps</h4>
+                <p>يدمج الأمن داخل دورة التطوير والنشر، من فحص الكود والأسرار إلى CI/CD والسياسات والبنية ككود.</p>
+                <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>API Security</h4>
+                <p>يهتم بحماية REST وGraphQL وواجهات الخدمات من مشاكل المصادقة والتفويض وتسريب البيانات ومعدلات الطلبات.</p>
+                <a href="https://www.youtube.com/watch?v=zOjov-2OZ0E" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>SOC Analyst</h4>
+                <p>يتعامل مع التنبيهات، السجلات، الربط بين الأحداث، التحقيق الأولي، ورفع الحوادث داخل مراكز العمليات الأمنية.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Threat Hunting</h4>
+                <p>هو البحث الاستباقي عن مؤشرات الهجوم داخل السجلات والنقاط الطرفية بدل انتظار التنبيه الجاهز فقط.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Malware Analysis</h4>
+                <p>يركز على فهم الملفات الضارة، السلوك، الـ strings، الاستدعاءات، والعزل داخل بيئات آمنة للتحليل.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Incident Response</h4>
+                <p>يشمل الاكتشاف والاحتواء والمعالجة والاستعادة ثم استخلاص الدروس وتحسين الضوابط بعد كل حادثة.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Digital Privacy & OPSEC</h4>
+                <p>يهتم بتقليل البصمة الرقمية، إدارة الهوية، حماية البيانات الشخصية، وفصل البيئات الحساسة عن الاستخدام اليومي.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Identity & Access Management</h4>
+                <p>يدور حول الحسابات، الصلاحيات، MFA، الدوريات، ومبدأ أقل صلاحية داخل الأنظمة المحلية والسحابية.</p>
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Logging, SIEM & Detection</h4>
+                <p>هو جمع السجلات وتطبيعها وتحليلها وصناعة قواعد كشف عملية تساعد على اكتشاف النشاط غير الطبيعي بسرعة.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Bug Bounty & Security Research</h4>
+                <p>مسار قانوني لبناء عقلية فحص عميقة عبر برامج واضحة النطاق، مع التركيز على الملاحظة، التحقق، والتقرير الاحترافي.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="quizPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>اختبار سريع</h2>
+                <p>تطبيق عملي لفكرة الاختبارات القصيرة داخل الموقع مع حفظ آخر نتيجة محليًا.</p>
+              </div>
+            </div>
+            <div class="quiz-shell" id="quizShell">
+              <div class="quiz-question" data-quiz-question="q1" data-correct="b">
+                <h4>1. ما البروتوكول المستخدم غالبًا لتصفح المواقع؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q1" value="a" /> DNS</label>
+                  <label class="quiz-option"><input type="radio" name="q1" value="b" /> HTTP/HTTPS</label>
+                  <label class="quiz-option"><input type="radio" name="q1" value="c" /> SMTP</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-question="q2" data-correct="c">
+                <h4>2. ما فائدة MFA؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q2" value="a" /> زيادة سرعة الشبكة</label>
+                  <label class="quiz-option"><input type="radio" name="q2" value="b" /> حذف السجلات</label>
+                  <label class="quiz-option"><input type="radio" name="q2" value="c" /> إضافة طبقة تحقق إضافية</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-question="q3" data-correct="a">
+                <h4>3. ما المجال الذي يهتم بتحليل الأدلة الرقمية؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q3" value="a" /> Forensics</label>
+                  <label class="quiz-option"><input type="radio" name="q3" value="b" /> DNS</label>
+                  <label class="quiz-option"><input type="radio" name="q3" value="c" /> UI Design</label>
+                </div>
+              </div>
+              <button id="quizSubmitBtn" class="btn primary" type="button">احسب النتيجة</button>
+              <div class="quiz-result" id="quizResult">آخر نتيجة: لا يوجد بعد.</div>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="updatesPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>تحديثات الموقع</h2>
+                <p>قسم مطبق لفكرة التحديثات وآخر الإضافات حتى يعرف المستخدم ما الذي تغيّر.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>آخر ما أُضيف</h4>
+                <ul class="idea-list">
+                  <li>مركز الأدوات بترتيب أوضح.</li>
+                  <li>لوحة التطبيق الفعلي.</li>
+                  <li>متابعة التقدم والمفضلة.</li>
+                  <li>المراجع والشهادات.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>ما الذي سيأتي لاحقًا</h4>
+                <ul class="idea-list">
+                  <li>اختبارات أكبر.</li>
+                  <li>صفحات مفصلة للكتب والكورسات.</li>
+                  <li>صفحة مقالات مصغرة.</li>
+                  <li>قسم مصطلحات أوسع.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="aboutSitePanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>عن الموقع والسياسات والتواصل</h2>
+                <p>تطبيق عملي لفكرة عن الموقع، إخلاء المسؤولية، وسياسة الاستخدام والتواصل.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>عن أطلس الأمن السيبراني</h4>
+                <p>منصة عربية تعليمية منظمة تجمع الأدوات، المسارات، والمفاهيم الأساسية للأمن السيبراني وعلوم الحاسوب في مكان واحد.</p>
+              </article>
+              <article class="info-card">
+                <h4>سياسة الاستخدام</h4>
+                <p>كل تطبيق عملي يجب أن يكون داخل مختبر أو ضمن تفويض قانوني واضح. المحتوى هنا للتعلم والتنظيم والتوثيق.</p>
+              </article>
+              <article class="info-card">
+                <h4>إخلاء المسؤولية</h4>
+                <p>الموقع لا يقدم خطوات هجومية تنفيذية، ولا يتحمل مسؤولية أي استخدام خارج النطاق القانوني أو التعليمي.</p>
+              </article>
+              <article class="info-card">
+                <h4>التواصل والاقتراحات</h4>
+                <p>يمكن تحويل هذا القسم لاحقًا إلى نموذج اقتراحات حيّ، لكن حاليًا هو مساحة مخصصة لتجميع الملاحظات والتطوير القادم.</p>
+              </article>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
     <section class="academy-shell" id="academySection">
@@ -4209,7 +5386,7 @@ Report template:
     <footer>
       <div class="container">
         <div style="margin-top: 8px">
-          © <span id="year"></span> | <span data-i18n="footerText">Kali Tools Encyclopedia (Educational)</span>
+          © <span id="year"></span> | <span data-i18n="footerText">Cybersecurity Atlas (Educational)</span>
           <div class="credit" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده | Instagram: bqq7k | اذا واجهت اي مشاكل: 0779122780</div>
         </div>
       </div>
@@ -4224,9 +5401,9 @@ Report template:
           densityCozy: "مريح",
           densityCompact: "مضغوط",
           densityTip: "تبديل كثافة التصميم",
-          brandTitle: "موسوعة أدوات كالي",
+          brandTitle: "أطلس الأمن السيبراني",
           brandSub: "للأغراض التعليمية فقط (استخدام قانوني)",
-          footerText: "موسوعة أدوات كالي (تعليمي)",
+          footerText: "أطلس الأمن السيبراني (تعليمي)",
           credit: "تم برمجته بواسطه عبدالله الخوالده | Instagram: bqq7k | اذا واجهت اي مشاكل: 0779122780",
           sectionsTitle: "أقسام الموقع",
           sectionsDesc: "روابط سريعة وأقسام تساعدك توصل للمحتوى بسرعة.",
@@ -4457,9 +5634,9 @@ log(event)`,
           densityCozy: "Cozy",
           densityCompact: "Compact",
           densityTip: "Toggle layout density",
-          brandTitle: "Kali Tools Encyclopedia",
+          brandTitle: "Cybersecurity Atlas",
           brandSub: "Educational index (Legal use only)",
-          footerText: "Kali Tools Encyclopedia (Educational)",
+          footerText: "Cybersecurity Atlas (Educational)",
           credit: "Programmed by Abdullah Khawaldeh | Instagram: bqq7k | If you face any issues: 0779122780",
           sectionsTitle: "Site Sections",
           sectionsDesc: "Quick links and sections to help you reach content faster.",
@@ -7227,7 +8404,11 @@ log(event)`,
       const STORAGE_KEYS = {
         lang: "kali_tools_lang_v1",
         settings: "kali_tools_settings_v1",
-        userTools: "kali_tools_user_tools_v1"
+        userTools: "kali_tools_user_tools_v1",
+        progress: "kali_tools_progress_v1",
+        favorites: "kali_tools_favorites_v1",
+        recentSections: "kali_tools_recent_sections_v1",
+        quizScore: "kali_tools_quiz_score_v1"
       };
       function normalizeText(s) {
         return String(s || "")
@@ -9660,6 +10841,7 @@ log(event)`,
         if (settings.onlyDual) active.push(i18n("dualUse"));
         if (settings.safetyMode) active.push(i18n("hiddenCount")(hiddenBySafety));
         els.activeFilters.textContent = active.length ? active.join(" | ") : i18n("filtersNone");
+        els.activeFilters.style.display = active.length ? "block" : "none";
 
         const useGroups = Boolean(settings.groupByCat);
         const prevGroups = useGroups ? Array.from(els.toolsWrap.querySelectorAll("details.catgroup")) : [];
@@ -9978,6 +11160,185 @@ log(event)`,
           }
         });
       }
+      function wireImplementationWidgets() {
+        const checklist = Array.from(document.querySelectorAll("#progressChecklist input[data-progress]"));
+        const progressFill = document.getElementById("progressBarFill");
+        const progressText = document.getElementById("progressText");
+        const favButtons = Array.from(document.querySelectorAll("[data-fav-target][data-fav-name]"));
+        const favoritesList = document.getElementById("favoritesList");
+        const recentList = document.getElementById("recentList");
+        const trackedLinks = Array.from(document.querySelectorAll("[data-track-section]"));
+
+        const progressState = readJsonStorage(STORAGE_KEYS.progress, {});
+        let favorites = readJsonStorage(STORAGE_KEYS.favorites, []);
+        let recent = readJsonStorage(STORAGE_KEYS.recentSections, []);
+
+        const saveFavorites = () => writeJsonStorage(STORAGE_KEYS.favorites, favorites);
+        const saveRecent = () => writeJsonStorage(STORAGE_KEYS.recentSections, recent);
+        const saveProgress = () => writeJsonStorage(STORAGE_KEYS.progress, progressState);
+
+        const renderProgress = () => {
+          if (!checklist.length || !progressFill || !progressText) return;
+          let done = 0;
+          checklist.forEach((input) => {
+            const key = String(input.getAttribute("data-progress") || "");
+            const checked = Boolean(progressState[key]);
+            input.checked = checked;
+            if (checked) done++;
+          });
+          const ratio = checklist.length ? Math.round((done / checklist.length) * 100) : 0;
+          progressFill.style.width = `${ratio}%`;
+          progressText.textContent = `${ratio}%`;
+        };
+
+        const renderFavorites = () => {
+          if (favoritesList) {
+            if (!favorites.length) {
+              favoritesList.innerHTML = "<div>لا توجد عناصر محفوظة بعد.</div>";
+            } else {
+              favoritesList.innerHTML = favorites
+                .map((item) => `<a href="${item.target}" data-track-section="${item.name}">${item.name}</a>`)
+                .join("");
+            }
+          }
+          favButtons.forEach((btn) => {
+            const target = String(btn.getAttribute("data-fav-target") || "");
+            const active = favorites.some((item) => item.target === target);
+            btn.classList.toggle("active", active);
+            const marker = btn.querySelector("span:last-child");
+            if (marker) marker.textContent = active ? "★" : "☆";
+          });
+        };
+
+        const renderRecent = () => {
+          if (!recentList) return;
+          if (!recent.length) {
+            recentList.innerHTML = "<div>لم يتم تسجيل أي تنقل بعد.</div>";
+            return;
+          }
+          recentList.innerHTML = recent.map((item) => `<a href="${item.target}" data-track-section="${item.name}">${item.name}</a>`).join("");
+        };
+
+        const trackVisit = (name, target) => {
+          if (!name || !target) return;
+          recent = recent.filter((item) => item.target !== target);
+          recent.unshift({ name, target });
+          recent = recent.slice(0, 6);
+          saveRecent();
+          renderRecent();
+        };
+
+        checklist.forEach((input) => {
+          input.addEventListener("change", () => {
+            const key = String(input.getAttribute("data-progress") || "");
+            progressState[key] = Boolean(input.checked);
+            saveProgress();
+            renderProgress();
+          });
+        });
+
+        favButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const target = String(btn.getAttribute("data-fav-target") || "");
+            const name = String(btn.getAttribute("data-fav-name") || "");
+            const exists = favorites.some((item) => item.target === target);
+            if (exists) favorites = favorites.filter((item) => item.target !== target);
+            else favorites.unshift({ name, target });
+            favorites = favorites.slice(0, 8);
+            saveFavorites();
+            renderFavorites();
+          });
+        });
+
+        trackedLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            const name = String(link.getAttribute("data-track-section") || "").trim();
+            const target = String(link.getAttribute("href") || "").trim();
+            trackVisit(name, target);
+          });
+        });
+
+        [favoritesList, recentList].forEach((container) => {
+          if (!container) return;
+          container.addEventListener("click", (e) => {
+            const link = e.target && e.target.closest ? e.target.closest("a[data-track-section]") : null;
+            if (!link) return;
+            const name = String(link.getAttribute("data-track-section") || "").trim();
+            const target = String(link.getAttribute("href") || "").trim();
+            trackVisit(name, target);
+          });
+        });
+
+        renderProgress();
+        renderFavorites();
+        renderRecent();
+      }
+      function wireMiniQuiz() {
+        const shell = document.getElementById("quizShell");
+        const submitBtn = document.getElementById("quizSubmitBtn");
+        const result = document.getElementById("quizResult");
+        if (!shell || !submitBtn || !result) return;
+
+        const lastScore = readJsonStorage(STORAGE_KEYS.quizScore, null);
+        if (lastScore && typeof lastScore.score === "number" && typeof lastScore.total === "number") {
+          result.textContent = `آخر نتيجة: ${lastScore.score}/${lastScore.total}`;
+        }
+
+        submitBtn.addEventListener("click", () => {
+          const questions = Array.from(shell.querySelectorAll("[data-quiz-question][data-correct]"));
+          let score = 0;
+          questions.forEach((q) => {
+            const name = String(q.getAttribute("data-quiz-question") || "");
+            const correct = String(q.getAttribute("data-correct") || "");
+            const selected = shell.querySelector(`input[name="${name}"]:checked`);
+            if (selected && String(selected.value || "") === correct) score++;
+          });
+          const payload = { score, total: questions.length };
+          writeJsonStorage(STORAGE_KEYS.quizScore, payload);
+          result.textContent = `آخر نتيجة: ${score}/${questions.length}`;
+        });
+      }
+      function wireProfessionalNavigation() {
+        const navLinks = Array.from(document.querySelectorAll(".nav-links a[href^='#']"));
+        const indicator = document.getElementById("sectionIndicator");
+        const indicatorName = document.getElementById("sectionIndicatorName");
+        const indicatorFill = document.getElementById("sectionIndicatorFill");
+        if (!navLinks.length || !indicator || !indicatorName || !indicatorFill) return;
+
+        const sections = navLinks
+          .map((link) => {
+            const href = String(link.getAttribute("href") || "").trim();
+            const section = href ? document.querySelector(href) : null;
+            return section ? { link, href, section, name: String(link.textContent || "").trim() } : null;
+          })
+          .filter(Boolean);
+        if (!sections.length) return;
+
+        const setActive = (href, ratio) => {
+          sections.forEach((item) => item.link.classList.toggle("active", item.href === href));
+          const current = sections.find((item) => item.href === href) || sections[0];
+          indicatorName.textContent = current.name;
+          indicatorFill.style.width = `${Math.max(8, Math.min(100, ratio))}%`;
+        };
+
+        const update = () => {
+          const scrollTop = window.scrollY || window.pageYOffset || 0;
+          const doc = document.documentElement;
+          const full = Math.max(1, (doc.scrollHeight || 1) - window.innerHeight);
+          const ratio = Math.round((scrollTop / full) * 100);
+
+          let current = sections[0];
+          sections.forEach((item) => {
+            const top = item.section.getBoundingClientRect().top;
+            if (top <= 180) current = item;
+          });
+          setActive(current.href, ratio);
+        };
+
+        update();
+        window.addEventListener("scroll", update, { passive: true });
+        window.addEventListener("resize", update, { passive: true });
+      }
       function applyMobileLiteMode() {
         if (!IS_PHONE) return;
         document.documentElement.setAttribute("data-mobile-lite", "1");
@@ -9999,6 +11360,9 @@ log(event)`,
           applyMobileLiteMode();
         }
         initNavHeight();
+        wireImplementationWidgets();
+        wireMiniQuiz();
+        wireProfessionalNavigation();
         if (!IS_PHONE) {
           wireSidebarAndShortcuts();
           wireBackToTop();
