@@ -1292,6 +1292,444 @@
         font-size: 13px;
         font-weight: 800;
       }
+      .domain-page-shell {
+        display: grid;
+        gap: 16px;
+      }
+      .portal-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 14px;
+      }
+      .portal-hero-card,
+      .portal-side-card,
+      .portal-collection {
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          radial-gradient(280px 140px at 100% 0%, rgba(var(--accent-rgb), 0.11), transparent 62%),
+          rgba(0, 0, 0, 0.2);
+      }
+      .portal-hero-card,
+      .portal-side-card,
+      .portal-collection {
+        padding: 16px;
+      }
+      .portal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        background: rgba(var(--accent-rgb), 0.1);
+        color: rgba(248, 251, 255, 0.94);
+        font-size: 12px;
+        font-weight: 1000;
+      }
+      .portal-hero-card h3,
+      .portal-side-card h3,
+      .portal-collection h3 {
+        margin: 12px 0 0;
+        font-size: 21px;
+        font-weight: 1000;
+      }
+      .portal-hero-card p,
+      .portal-side-card p,
+      .portal-collection p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.9;
+        font-size: 13.5px;
+        font-weight: 830;
+      }
+      .portal-stats {
+        margin-top: 14px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .portal-stat {
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px;
+      }
+      .portal-stat strong {
+        display: block;
+        font-size: 18px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.96);
+      }
+      .portal-stat span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 850;
+      }
+      .portal-layout {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.34fr) minmax(0, 0.66fr);
+        gap: 16px;
+        align-items: start;
+      }
+      .portal-sidebar {
+        display: grid;
+        gap: 14px;
+        position: sticky;
+        top: 132px;
+      }
+      .portal-link-list,
+      .portal-mini-list {
+        display: grid;
+        gap: 8px;
+        margin-top: 12px;
+      }
+      .portal-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(248, 251, 255, 0.92);
+        font-size: 13px;
+        font-weight: 930;
+      }
+      .portal-link:hover {
+        border-color: rgba(var(--accent-rgb), 0.28);
+        background: rgba(var(--accent-rgb), 0.08);
+      }
+      .portal-mini-list div {
+        padding: 11px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(248, 251, 255, 0.88);
+        font-size: 12.8px;
+        line-height: 1.8;
+        font-weight: 820;
+      }
+      .portal-main {
+        display: grid;
+        gap: 14px;
+      }
+      .portal-collections {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .site-map-shell {
+        display: grid;
+        gap: 16px;
+      }
+      .site-map-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 14px;
+      }
+      .site-map-card,
+      .site-map-side,
+      .site-map-group {
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          radial-gradient(260px 120px at 100% 0%, rgba(var(--accent-rgb), 0.1), transparent 62%),
+          rgba(0, 0, 0, 0.2);
+        padding: 16px;
+      }
+      .site-map-card h3,
+      .site-map-side h3,
+      .site-map-group h3 {
+        margin: 12px 0 0;
+        font-size: 20px;
+        font-weight: 1000;
+      }
+      .site-map-card p,
+      .site-map-side p,
+      .site-map-group p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.9;
+        font-size: 13.5px;
+        font-weight: 830;
+      }
+      .site-map-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .site-map-links {
+        margin-top: 14px;
+        display: grid;
+        gap: 8px;
+      }
+      .site-map-links a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(248, 251, 255, 0.92);
+        font-size: 13px;
+        font-weight: 930;
+      }
+      .site-map-links a:hover {
+        border-color: rgba(var(--accent-rgb), 0.28);
+        background: rgba(var(--accent-rgb), 0.08);
+      }
+      .site-map-mini {
+        margin-top: 14px;
+        display: grid;
+        gap: 8px;
+      }
+      .site-map-mini div {
+        padding: 11px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(248, 251, 255, 0.88);
+        font-size: 12.8px;
+        line-height: 1.8;
+        font-weight: 820;
+      }
+      .hero-action-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 16px 0 0;
+      }
+      .hero-action-row .btn {
+        min-width: 160px;
+        justify-content: center;
+      }
+      .site-audience-grid,
+      .site-goal-grid,
+      .site-spotlight-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .site-audience-card,
+      .site-goal-card,
+      .site-spotlight-card {
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 14px;
+      }
+      .site-audience-card h4,
+      .site-goal-card h4,
+      .site-spotlight-card h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 1000;
+      }
+      .site-audience-card p,
+      .site-goal-card p,
+      .site-spotlight-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.8;
+        font-size: 13px;
+        font-weight: 820;
+      }
+      .site-audience-card a,
+      .site-goal-card a,
+      .site-spotlight-card a {
+        display: inline-flex;
+        margin-top: 12px;
+        align-items: center;
+        gap: 8px;
+        color: rgba(248, 251, 255, 0.94);
+        font-size: 12px;
+        font-weight: 950;
+      }
+      .footer-shell {
+        margin-top: 8px;
+        padding: 16px;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background:
+          radial-gradient(240px 120px at 100% 0%, rgba(var(--accent-rgb), 0.08), transparent 62%),
+          rgba(0, 16, 4, 0.6);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr 0.9fr;
+        gap: 14px;
+      }
+      .footer-col h4 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.94);
+      }
+      .footer-col p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.85;
+        font-size: 12.8px;
+        font-weight: 820;
+      }
+      .footer-links {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+      .footer-links a,
+      .footer-links div {
+        color: rgba(248, 251, 255, 0.88);
+        font-size: 12.8px;
+        font-weight: 860;
+      }
+      .footer-bottom {
+        margin-top: 14px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 860;
+      }
+      .portal-collection .meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 12px;
+        padding: 7px 11px;
+        border-radius: 999px;
+        border: 1px solid rgba(var(--accent-rgb), 0.16);
+        background: rgba(255, 255, 255, 0.05);
+        font-size: 11px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.9);
+      }
+      .domain-overview {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 14px;
+      }
+      .domain-overview-card,
+      .domain-page-nav,
+      .domain-group {
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background:
+          radial-gradient(220px 120px at 100% 0%, rgba(var(--accent-rgb), 0.1), transparent 62%),
+          rgba(0, 0, 0, 0.2);
+      }
+      .domain-overview-card {
+        padding: 16px;
+      }
+      .domain-overview-card h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 1000;
+      }
+      .domain-overview-card p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.9;
+        font-size: 13.5px;
+        font-weight: 830;
+      }
+      .domain-overview-card ul {
+        margin: 12px 0 0;
+        padding-inline-start: 18px;
+        color: rgba(229, 238, 255, 0.84);
+      }
+      .domain-overview-card li {
+        margin-top: 8px;
+        line-height: 1.8;
+        font-size: 13px;
+        font-weight: 820;
+      }
+      .domain-page-nav {
+        padding: 16px;
+      }
+      .domain-page-nav strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-weight: 1000;
+        color: rgba(248, 251, 255, 0.94);
+      }
+      .domain-chip-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .domain-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border-radius: 999px;
+        padding: 10px 14px;
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        background: rgba(var(--accent-rgb), 0.08);
+        color: rgba(248, 251, 255, 0.94);
+        font-size: 12.6px;
+        font-weight: 950;
+        transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      }
+      .domain-chip:hover {
+        transform: translateY(-2px);
+        border-color: rgba(var(--accent-rgb), 0.36);
+        background: rgba(var(--accent-rgb), 0.14);
+      }
+      .domain-groups {
+        display: grid;
+        gap: 14px;
+      }
+      .domain-group {
+        padding: 16px;
+        scroll-margin-top: 150px;
+      }
+      .domain-group-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .domain-group-head h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 1000;
+      }
+      .domain-group-head p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.85;
+        font-size: 13px;
+        font-weight: 830;
+        max-width: 72ch;
+      }
+      .domain-group-head .meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 7px 11px;
+        border: 1px solid rgba(var(--accent-rgb), 0.16);
+        background: rgba(255, 255, 255, 0.05);
+        color: rgba(248, 251, 255, 0.9);
+        font-size: 11px;
+        font-weight: 1000;
+      }
+      .domain-group-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
       .term-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1502,6 +1940,18 @@
         .feature-grid,
         .start-grid,
         .info-grid,
+        .portal-hero,
+        .portal-layout,
+        .portal-collections,
+        .portal-stats,
+        .site-map-hero,
+        .site-map-grid,
+        .site-audience-grid,
+        .site-goal-grid,
+        .site-spotlight-grid,
+        .footer-grid,
+        .domain-overview,
+        .domain-group-grid,
         .term-grid {
           grid-template-columns: 1fr;
         }
@@ -3521,6 +3971,7 @@
             </div>
           </div>
           <div class="nav-links" aria-label="أقسام الموقع">
+            <a href="#siteMapPanel">البوابة</a>
             <a href="#beginnerPanel">ابدأ من هنا</a>
             <a href="#toolsHub">الأدوات</a>
             <a href="#phishingDefensePanel">Phishing</a>
@@ -3572,6 +4023,10 @@
       
       <div class="sidebar-section">
         <div class="sidebar-section-title">الأقسام الرئيسية</div>
+        <a href="#siteMapPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🏛️</div>
+          <span>بوابة الموقع</span>
+        </a>
         <a href="#beginnerPanel" class="sidebar-link">
           <div class="sidebar-link-icon">🚀</div>
           <span>ابدأ من هنا</span>
@@ -3689,6 +4144,11 @@
                 <p class="sub" data-i18n="subtitle">
                   منهج أكاديمي متكامل يغطي: أنظمة التشغيل، الشبكات، البرمجة، الأمن السيبراني، التحليل الجنائي الرقمي، وبناء المسار المهني. كل المحتوى تعليمي وتوثيقي فقط — بدون خطوات هجوم أو أوامر استغلال. مصمّم للطالب، المتدرب، والمحترف الذي يبني مساره من الصفر للاحتراف ضمن إطار قانوني مصرح به.
                 </p>
+                <div class="hero-action-row">
+                  <a class="btn primary" href="#siteMapPanel">ادخل إلى البوابة</a>
+                  <a class="btn ghost" href="#toolsHub">تصفح الأدوات</a>
+                  <a class="btn" href="#academySection">افتح الأكاديمية</a>
+                </div>
                 <div class="hero-quick-grid">
                   <a class="hero-quick-card" href="#toolsHub">
                     <strong>مركز الأدوات والبحث</strong>
@@ -3946,6 +4406,158 @@
     </header>
     <main>
       <div class="container">
+        <section class="panel" id="siteMapPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>بوابة أطلس الأمن السيبراني</h2>
+                <p>هذه البوابة ترتّب الموقع كله بأسلوب أقرب للمنصات الكبيرة: تبدأ من هنا، ثم تختار نوع المحتوى الذي تريد الوصول إليه بدل التنقل العشوائي بين الأقسام.</p>
+              </div>
+            </div>
+            <div class="site-map-shell">
+              <div class="site-map-hero">
+                <article class="site-map-card">
+                  <span class="portal-badge">Portal Overview</span>
+                  <h3>الموقع الآن منظم كمنصة محتوى كبيرة</h3>
+                  <p>قسمت تجربة التصفح إلى أربع طبقات واضحة: دخول سريع، أقسام عملية، موسوعة تعليمية، وأكاديمية طويلة. هذا يجعل المستخدم يعرف أين يذهب من أول نظرة بدل ما يضيع داخل صفحة طويلة.</p>
+                  <div class="portal-stats">
+                    <div class="portal-stat">
+                      <strong>4</strong>
+                      <span>مسارات رئيسية</span>
+                    </div>
+                    <div class="portal-stat">
+                      <strong>10+</strong>
+                      <span>أقسام كبيرة</span>
+                    </div>
+                    <div class="portal-stat">
+                      <strong>تعليمي</strong>
+                      <span>من البداية للاحتراف</span>
+                    </div>
+                  </div>
+                </article>
+                <aside class="site-map-side">
+                  <span class="portal-badge">أفضل نقطة بداية</span>
+                  <h3>كيف تتصفح الموقع؟</h3>
+                  <p>إذا كنت جديدًا ابدأ من لوحة البداية والمسارات. إذا كنت تريد شيئًا عمليًا استخدم الأدوات والتطبيقات. وإذا كنت تريد دراسة أعمق ادخل إلى الأكاديمية والمناهج.</p>
+                  <div class="site-map-mini">
+                    <div>ابدأ من `ابدأ من هنا` إذا أردت خطة دخول سريعة.</div>
+                    <div>ادخل `مركز الأدوات` إذا أردت تصفحًا عمليًا منظمًا.</div>
+                    <div>استخدم `المجالات السيبرانية` إذا أردت موسوعة حسب التخصص.</div>
+                    <div>انتقل إلى `الأكاديمية` إذا أردت منهجًا طويلًا ومنظمًا.</div>
+                  </div>
+                </aside>
+              </div>
+              <div class="site-map-group">
+                <span class="portal-badge">حسب نوع الزائر</span>
+                <h3>ادخل من الباب الذي يناسبك</h3>
+                <p>المواقع الكبيرة ترتب المحتوى حسب نوع المستخدم أولًا، لذلك أضفت لك مسارات مباشرة للمبتدئ، المتعلم العملي، والباحث الأمني.</p>
+                <div class="site-audience-grid">
+                  <article class="site-audience-card">
+                    <h4>للمبتدئ</h4>
+                    <p>ابدأ من المسارات الأساسية، المصطلحات، والشهادات حتى تبني أساسًا مرتبًا.</p>
+                    <a href="#beginnerPanel">ادخل إلى البداية ←</a>
+                  </article>
+                  <article class="site-audience-card">
+                    <h4>للمتعلم العملي</h4>
+                    <p>اذهب مباشرة إلى الأدوات، التصفية، التطبيق الفعلي، والاختبار السريع.</p>
+                    <a href="#toolsHub">ادخل إلى التطبيق ←</a>
+                  </article>
+                  <article class="site-audience-card">
+                    <h4>للباحث الأمني</h4>
+                    <p>ركز على المجالات، التحليل، المسارات المهنية، وأبحاث المختبرات.</p>
+                    <a href="#researcherPathPanel">ادخل إلى المسار ←</a>
+                  </article>
+                </div>
+              </div>
+              <div class="site-map-group">
+                <span class="portal-badge">حسب الهدف</span>
+                <h3>ما الذي تريد الوصول إليه اليوم؟</h3>
+                <p>هذا التقسيم يجعل المستخدم يصل مباشرة إلى غايته بدل التمرير الطويل داخل الصفحة.</p>
+                <div class="site-goal-grid">
+                  <article class="site-goal-card">
+                    <h4>أريد أن أتعلم</h4>
+                    <p>ابدأ من الشرح التعليمي، منهج 100 نقطة، ثم الأكاديمية.</p>
+                    <a href="#eduPanel">افتح الشرح ←</a>
+                  </article>
+                  <article class="site-goal-card">
+                    <h4>أريد أدوات مرتبة</h4>
+                    <p>ادخل إلى مركز الأدوات والبحث والتصفية حسب النوع والتصنيف.</p>
+                    <a href="#toolsHub">افتح مركز الأدوات ←</a>
+                  </article>
+                  <article class="site-goal-card">
+                    <h4>أريد تخصصًا معينًا</h4>
+                    <p>استكشف المجالات السيبرانية ثم اختر التخصص الأقرب لك.</p>
+                    <a href="#cyberDomainsPanel">افتح المجالات ←</a>
+                  </article>
+                </div>
+              </div>
+              <div class="site-map-grid">
+                <article class="site-map-group">
+                  <span class="portal-badge">المسار 01</span>
+                  <h3>البداية والتوجيه</h3>
+                  <p>للمستخدم الذي يريد يعرف من أين يبدأ، ما الذي يتعلمه أولًا، وكيف يبني أساسًا حقيقيًا.</p>
+                  <div class="site-map-links">
+                    <a href="#beginnerPanel"><span>ابدأ من هنا</span><span>→</span></a>
+                    <a href="#referencesPanel"><span>المراجع والشهادات</span><span>→</span></a>
+                    <a href="#glossaryPanel"><span>قاموس المصطلحات</span><span>→</span></a>
+                  </div>
+                </article>
+                <article class="site-map-group">
+                  <span class="portal-badge">المسار 02</span>
+                  <h3>العمل والتطبيق</h3>
+                  <p>للوصول السريع إلى الأدوات، الترتيب العملي، التقدم الشخصي، والتنقل اليومي داخل الموقع.</p>
+                  <div class="site-map-links">
+                    <a href="#toolsHub"><span>مركز الأدوات</span><span>→</span></a>
+                    <a href="#implementationPanel"><span>التطبيق الفعلي</span><span>→</span></a>
+                    <a href="#quizPanel"><span>الاختبار السريع</span><span>→</span></a>
+                  </div>
+                </article>
+                <article class="site-map-group">
+                  <span class="portal-badge">المسار 03</span>
+                  <h3>الموسوعة السيبرانية</h3>
+                  <p>مسار يشمل المحتوى الدفاعي، المجالات السيبرانية، والتحليل المهني والبحث الأمني.</p>
+                  <div class="site-map-links">
+                    <a href="#phishingDefensePanel"><span>Phishing على Kali</span><span>→</span></a>
+                    <a href="#cyberDomainsPanel"><span>المجالات السيبرانية</span><span>→</span></a>
+                    <a href="#researcherPathPanel"><span>الباحث الأمني المحترف</span><span>→</span></a>
+                  </div>
+                </article>
+                <article class="site-map-group">
+                  <span class="portal-badge">المسار 04</span>
+                  <h3>الدراسة العميقة والأكاديمية</h3>
+                  <p>لمن يريد الشرح المطول، المنهج الكبير، والتوسع الأكاديمي الكامل داخل الموقع.</p>
+                  <div class="site-map-links">
+                    <a href="#eduPanel"><span>الشرح التعليمي</span><span>→</span></a>
+                    <a href="#edu100Panel"><span>منهج 100 نقطة</span><span>→</span></a>
+                    <a href="#academySection"><span>الأكاديمية الشاملة</span><span>→</span></a>
+                  </div>
+                </article>
+              </div>
+              <div class="site-map-group">
+                <span class="portal-badge">Spotlight</span>
+                <h3>الأحدث والأكثر زيارة</h3>
+                <p>أضفت طبقة Spotlight حتى يبدو الموقع حيًا مثل المنصات الكبيرة: جزء يبرز ما يجب أن يراه المستخدم أولًا.</p>
+                <div class="site-spotlight-grid">
+                  <article class="site-spotlight-card">
+                    <h4>أحدث ما يجب رؤيته</h4>
+                    <p>بوابة الموقع الجديدة، ترتيب المجالات على شكل مجموعات، وتصفح أقرب للمنصات الكبيرة.</p>
+                    <a href="#siteMapPanel">افتح البوابة ←</a>
+                  </article>
+                  <article class="site-spotlight-card">
+                    <h4>الأكثر أهمية</h4>
+                    <p>ابدأ من هنا، مركز الأدوات، والمجالات السيبرانية لأنها تشكل العمود الفقري للموقع.</p>
+                    <a href="#beginnerPanel">ابدأ الآن ←</a>
+                  </article>
+                  <article class="site-spotlight-card">
+                    <h4>للمراجعة السريعة</h4>
+                    <p>اختبار سريع، تحديثات الموقع، وعن الموقع لتعرف أين وصلت المنصة الآن.</p>
+                    <a href="#quizPanel">افتح الاختبار ←</a>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <section class="panel" id="eduPanel" style="margin: 12px 0 16px">
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
@@ -5175,10 +5787,101 @@ Report template:
             <div class="section-head" style="margin-top: 0">
               <div>
                 <h2>المجالات السيبرانية الأساسية والمتقدمة</h2>
-                <p>هذا القسم يوسّع الموقع ليغطي أكبر قدر عملي من مجالات الأمن السيبراني الناقصة، مع شرح واضح وروابط يوتيوب تعليمية لكل محور حتى يكون المرجع أقرب لمنهج متكامل.</p>
+                <p>هذا القسم صار أقرب لمركز صفحات تنقل: تدخل على مجموعة واضحة أولًا، ثم تتصفح البطاقات التعليمية داخلها بدل مشاهدة كل المواضيع دفعة واحدة.</p>
               </div>
             </div>
-            <div class="info-grid">
+            <div class="domain-page-shell">
+              <div class="portal-hero">
+                <article class="portal-hero-card">
+                  <span class="portal-badge">مركز المجالات السيبرانية</span>
+                  <h3>واجهة مرتبة بأسلوب أقرب للمواقع الكبيرة</h3>
+                  <p>رتبت هذا الجزء ليشبه بوابات المحتوى الكبيرة: مدخل واضح، مجموعات رئيسية، عمود جانبي للتنقل، وبطاقات Collection تختصر لك أين تبدأ قبل الدخول في التفاصيل التعليمية.</p>
+                  <div class="portal-stats">
+                    <div class="portal-stat">
+                      <strong>4</strong>
+                      <span>مجموعات رئيسية</span>
+                    </div>
+                    <div class="portal-stat">
+                      <strong>80+</strong>
+                      <span>محورًا تعليميًا</span>
+                    </div>
+                    <div class="portal-stat">
+                      <strong>YouTube</strong>
+                      <span>رابط مع كل بطاقة</span>
+                    </div>
+                  </div>
+                </article>
+                <aside class="portal-side-card">
+                  <span class="portal-badge">ابدأ بسرعة</span>
+                  <h3>طريقة التصفح المقترحة</h3>
+                  <p>ابدأ بالأساسيات أولًا، ثم انتقل إلى الحماية والتشغيل، وبعدها الحوكمة أو التحليل بحسب المسار الذي تريد بناءه.</p>
+                  <div class="domain-chip-grid" style="margin-top: 12px">
+                    <a class="domain-chip" href="#domainInfra">الأساسيات والبنية</a>
+                    <a class="domain-chip" href="#domainDefense">الحماية والتشغيل</a>
+                    <a class="domain-chip" href="#domainGovernance">الحوكمة والاستمرارية</a>
+                    <a class="domain-chip" href="#domainResearch">التحليل والأبحاث</a>
+                  </div>
+                </aside>
+              </div>
+              <div class="portal-layout">
+                <aside class="portal-sidebar">
+                  <div class="portal-side-card">
+                    <span class="portal-badge">فهرس القسم</span>
+                    <h3>تنقل سريع</h3>
+                    <div class="portal-link-list">
+                      <a class="portal-link" href="#domainInfra"><span>الأساسيات والبنية</span><span>01</span></a>
+                      <a class="portal-link" href="#domainDefense"><span>الحماية والتشغيل</span><span>02</span></a>
+                      <a class="portal-link" href="#domainGovernance"><span>الحوكمة والاستمرارية</span><span>03</span></a>
+                      <a class="portal-link" href="#domainResearch"><span>التحليل والأبحاث</span><span>04</span></a>
+                    </div>
+                  </div>
+                  <div class="portal-side-card">
+                    <span class="portal-badge">مسارات شائعة</span>
+                    <h3>كيف تتعامل مع المحتوى</h3>
+                    <div class="portal-mini-list">
+                      <div>للمبتدئ: ابدأ من البنية ثم الحماية ثم الاستمرارية.</div>
+                      <div>لمن يريد وظيفة SOC: ركز على الحماية والتشغيل ثم التحليل.</div>
+                      <div>للباحث الأمني: راجع الأساسيات ثم انتقل مباشرة إلى قسم التحليل والأبحاث.</div>
+                    </div>
+                  </div>
+                </aside>
+                <div class="portal-main">
+                  <div class="portal-collections">
+                    <article class="portal-collection">
+                      <span class="portal-badge">Collection 01</span>
+                      <h3>الأساسيات والبنية</h3>
+                      <p>سحابة، أنظمة، تشفير، نمذجة، وهندسة أساسية تبني الفهم العميق قبل التخصص.</p>
+                      <a class="meta" href="#domainInfra">ادخل إلى المجموعة</a>
+                    </article>
+                    <article class="portal-collection">
+                      <span class="portal-badge">Collection 02</span>
+                      <h3>الحماية والتشغيل</h3>
+                      <p>بريد، متصفح، أجهزة، سجلات، WAF، كلمات مرور وأسرار تشغيلية يومية.</p>
+                      <a class="meta" href="#domainDefense">ادخل إلى المجموعة</a>
+                    </article>
+                    <article class="portal-collection">
+                      <span class="portal-badge">Collection 03</span>
+                      <h3>الحوكمة والاستمرارية</h3>
+                      <p>مخاطر، استمرارية، SaaS، IoT، SDLC، وقياس النضج والتحسين المستمر.</p>
+                      <a class="meta" href="#domainGovernance">ادخل إلى المجموعة</a>
+                    </article>
+                    <article class="portal-collection">
+                      <span class="portal-badge">Collection 04</span>
+                      <h3>التحليل والأبحاث</h3>
+                      <p>تحليل جنائي، Threat Profiling، Malware، Detection، وأعمال المختبر والبحث.</p>
+                      <a class="meta" href="#domainResearch">ادخل إلى المجموعة</a>
+                    </article>
+                  </div>
+                  <div class="domain-groups">
+                <section class="domain-group" id="domainInfra">
+                  <div class="domain-group-head">
+                    <div>
+                      <h3>الأساسيات والبنية والمجالات الجوهرية</h3>
+                      <p>هذه الصفحة الأولى تجمع النظرة الشاملة للمجالات الجوهرية: السحابة، الأنظمة، التشفير، النمذجة، والهندسة الأساسية التي تبني فهمك للمشهد السيبراني كله.</p>
+                    </div>
+                    <span class="meta">24 موضوعًا</span>
+                  </div>
+                  <div class="domain-group-grid">
               <article class="info-card">
                 <h4>Cloud Security</h4>
                 <p>يركز على حماية الخدمات السحابية، الصلاحيات، التخزين، الشبكات، ومراقبة البيئة السحابية في AWS وAzure وGCP.</p>
@@ -5239,6 +5942,404 @@ Report template:
                 <p>مسار قانوني لبناء عقلية فحص عميقة عبر برامج واضحة النطاق، مع التركيز على الملاحظة، التحقق، والتقرير الاحترافي.</p>
                 <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
               </article>
+              <article class="info-card">
+                <h4>Cryptography</h4>
+                <p>يتناول المفاهيم الأساسية للتشفير، إدارة المفاتيح، التواقيع الرقمية، TLS، ومتى نستخدم كل نوع من الخوارزميات.</p>
+                <a href="https://www.youtube.com/watch?v=jhXCTbFnK8o" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Threat Intelligence</h4>
+                <p>يهتم بجمع وتحليل مؤشرات التهديد وربطها بالسياق لتكوين فهم عملي للمهاجمين والتقنيات والاتجاهات.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Zero Trust</h4>
+                <p>فلسفة أمنية تعتبر أن الثقة لا تُمنح افتراضياً، بل يتم التحقق المستمر من الهوية والجهاز والسياق.</p>
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Secure Coding</h4>
+                <p>يركز على كتابة كود أكثر أمانًا عبر التحقق من المدخلات، إدارة الأسرار، المصادقة، والسجلات والمعالجة الصحيحة للأخطاء.</p>
+                <a href="https://www.youtube.com/watch?v=bY6m6_IIN94" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Supply Chain Security</h4>
+                <p>يحمي التبعيات والمكتبات وخطوط البناء من التلاعب، ويقلل مخاطر الحزم الخبيثة والتوقيعات غير الموثوقة.</p>
+                <a href="https://www.youtube.com/watch?v=GnPOdbfU1jU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Container & Kubernetes Security</h4>
+                <p>يتناول أمن الصور، الصلاحيات، الأسرار، العزل، وسياسات الحاويات وبيئات Kubernetes الحديثة.</p>
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Wireless Security</h4>
+                <p>يركز على مفاهيم حماية الشبكات اللاسلكية، التشفير، نقاط الوصول، والهندسة الصحيحة للشبكات Wi‑Fi.</p>
+                <a href="https://www.youtube.com/watch?v=9x0Zb7C0iKs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Windows Security & Internals</h4>
+                <p>يهتم ببنية ويندوز، الخدمات، التسجيل، الهوية، Active Directory، وآليات الرصد والتحصين على بيئات مايكروسوفت.</p>
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Linux Hardening</h4>
+                <p>يشمل تقوية إعدادات لينكس، تقليل الصلاحيات، ضبط الخدمات، مراقبة السجلات، وتحصين النظام بشكل عملي.</p>
+                <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Active Directory Defense</h4>
+                <p>يركز على حماية الهويات الإدارية، تقسيم الصلاحيات، السياسات، السجلات، والحركة الجانبية داخل بيئات المؤسسة.</p>
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Vulnerability Management</h4>
+                <p>هو عملية اكتشاف الثغرات وترتيب أولوياتها ومعالجتها وإعادة التحقق منها بدل الاكتفاء بإظهارها فقط.</p>
+                <a href="https://www.youtube.com/watch?v=3EQOYyShLBs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Threat Modeling</h4>
+                <p>يساعد على توقع المخاطر قبل وقوعها عبر فهم الأصول، المسارات، الاحتمالات، والضوابط المقترحة أثناء التصميم.</p>
+                <a href="https://www.youtube.com/watch?v=GqmQg-cszw4" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+                  </div>
+                </section>
+                <section class="domain-group" id="domainDefense">
+                  <div class="domain-group-head">
+                    <div>
+                      <h3>الحماية والتشغيل والضوابط اليومية</h3>
+                      <p>هذه الصفحة الثانية تجمع ما تحتاجه في العمل اليومي: حماية البريد والمتصفح والأجهزة، إدارة الأسرار وكلمات المرور، السجلات، والجدران النارية والـ WAF.</p>
+                    </div>
+                    <span class="meta">24 موضوعًا</span>
+                  </div>
+                  <div class="domain-group-grid">
+              <article class="info-card">
+                <h4>Email Security</h4>
+                <p>يهتم بحماية البريد من الانتحال والتصيد والروابط الخبيثة عبر الرؤوس والسياسات وفلترة الرسائل.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Browser Security</h4>
+                <p>يركز على أمان المتصفح، العزل، الإضافات، ملفات الارتباط، الجلسات، وتقليل المخاطر أثناء التصفح اليومي.</p>
+                <a href="https://www.youtube.com/watch?v=zOjov-2OZ0E" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Endpoint Security</h4>
+                <p>يحمي الأجهزة الطرفية مثل الحواسيب واللابتوبات عبر المراقبة، العزل، التحديث، واكتشاف السلوك الشاذ.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Data Loss Prevention</h4>
+                <p>يركز على منع تسرب البيانات الحساسة عبر البريد والأجهزة والتخزين السحابي والقنوات غير المصرح بها.</p>
+                <a href="https://www.youtube.com/watch?v=DJBcoGh5sQA" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Security Governance & GRC</h4>
+                <p>يهتم بالسياسات والضوابط وإدارة المخاطر والحوكمة والامتثال وربط الأمن بأهداف المؤسسة.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Compliance</h4>
+                <p>يركز على الالتزام بالأطر والمعايير مثل ISO 27001 وNIST والضوابط التنظيمية الخاصة بكل قطاع.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Advanced OSINT</h4>
+                <p>يتوسع في جمع وتحليل المعلومات المفتوحة وربط المصادر والتحقق من الموثوقية والزمن والسياق.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Red Team vs Blue Team</h4>
+                <p>يشرح الفرق بين المحاكاة الهجومية والدفاع العملي، وكيف يستفيد كل طرف من الآخر لتحسين النضج الأمني.</p>
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Purple Team</h4>
+                <p>يمزج بين الرؤية الهجومية والدفاعية بهدف تحسين الضوابط والكشف والتحقق من الفعالية بشكل مشترك.</p>
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Reverse Engineering للمبتدئين</h4>
+                <p>مدخل لفهم الملفات التنفيذية والبنية الداخلية والـ strings والسلوك الأولي داخل بيئة معزولة وآمنة.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Network Monitoring</h4>
+                <p>يركز على مراقبة الترافيك، مؤشرات الأداء، الأنماط الشاذة، وربط السلوك الشبكي بالأحداث الأمنية.</p>
+                <a href="https://www.youtube.com/watch?v=9x0Zb7C0iKs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Web Application Defense</h4>
+                <p>يهتم بتحصين التطبيقات ضد XSS وSQLi وCSRF وIDOR عبر التحقق والضوابط والرصد والتصميم الصحيح.</p>
+                <a href="https://www.youtube.com/watch?v=zOjov-2OZ0E" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Password Security</h4>
+                <p>يركز على سياسات كلمات المرور، التخزين الآمن، التجزئة، التدوير، والمديرّات الآمنة بدل إعادة الاستخدام.</p>
+                <a href="https://www.youtube.com/watch?v=996OiexHze0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Secrets Management</h4>
+                <p>يهتم بإدارة المفاتيح والرموز وبيانات الاعتماد داخل الأنظمة وخطوط النشر بدون كشفها في الكود أو السجلات.</p>
+                <a href="https://www.youtube.com/watch?v=DJBcoGh5sQA" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Backup & Recovery</h4>
+                <p>يشمل النسخ الاحتياطي، اختبار الاستعادة، سيناريوهات الطوارئ، وتقليل أثر الهجمات مثل الفدية أو الأعطال.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>PKI & Certificates</h4>
+                <p>يركز على الشهادات الرقمية، الثقة، التواقيع، سلاسل الشهادات، وتجديدها وإدارتها بالشكل الصحيح.</p>
+                <a href="https://www.youtube.com/watch?v=jhXCTbFnK8o" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Secure Architecture</h4>
+                <p>يتناول تصميم الأنظمة بشكل يقلل المخاطر منذ البداية عبر الفصل، الدفاع بالعمق، وتقليل الأسطح المكشوفة.</p>
+                <a href="https://www.youtube.com/watch?v=GqmQg-cszw4" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Windows Logging</h4>
+                <p>يهتم بسجلات ويندوز، مصدر الأحداث، تتبع الهوية، والخدمات والنشاط غير المعتاد لتحسين الرؤية والتحقيق.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Linux Logging</h4>
+                <p>يركز على syslog وjournald وسجلات الخدمات والأنظمة وتطبيعها وربطها بالتحليل الأمني.</p>
+                <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Firewall Engineering</h4>
+                <p>يشمل تصميم القواعد، التقسيم الشبكي، الفهم الصحيح للمنافذ والخدمات، وتقليل الوصول غير الضروري.</p>
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Proxy & WAF</h4>
+                <p>يهتم بعكس الطلبات، تصفية الحركة، الحماية من الهجمات على التطبيقات، وفهم الطبقة السابعة.</p>
+                <a href="https://www.youtube.com/watch?v=ySvVb2pOHvQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Detection Engineering</h4>
+                <p>هو بناء قواعد كشف عملية وواقعية انطلاقًا من السجلات والسلوكيات بدل الاعتماد على تنبيهات عامة فقط.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Asset Management</h4>
+                <p>يركز على معرفة ما تملكه المؤسسة فعلًا من أجهزة وخدمات وتطبيقات لأنك لا تستطيع حماية ما لا تعرفه.</p>
+                <a href="https://www.youtube.com/watch?v=9x0Zb7C0iKs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Security Awareness</h4>
+                <p>يبني وعي المستخدمين بالمخاطر مثل التصيد، الروابط، كلمات المرور، والسياسات اليومية التي تقلل الحوادث.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+                  </div>
+                </section>
+                <section class="domain-group" id="domainGovernance">
+                  <div class="domain-group-head">
+                    <div>
+                      <h3>الحوكمة والاستمرارية والمنصات الحديثة</h3>
+                      <p>هذه الصفحة الثالثة تركز على ما يربط الأمن بالقرار المؤسسي والبيئات الحديثة: الهوية السحابية، SaaS، IoT، المخاطر، الاستمرارية، والقياس والتحسين.</p>
+                    </div>
+                    <span class="meta">16 موضوعًا</span>
+                  </div>
+                  <div class="domain-group-grid">
+              <article class="info-card">
+                <h4>Cloud IAM</h4>
+                <p>يركز على إدارة الهويات والصلاحيات داخل البيئات السحابية، وربط الأدوار بالحد الأدنى من الامتيازات.</p>
+                <a href="https://www.youtube.com/watch?v=Yjz8RS2P-V0" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>SaaS Security</h4>
+                <p>يهتم بحماية التطبيقات السحابية الجاهزة، إدارة الوصول، مشاركة البيانات، والتكاملات الخارجية.</p>
+                <a href="https://www.youtube.com/watch?v=jI8IKpjiCSM" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>IoT Security</h4>
+                <p>يتناول أمن الأجهزة الذكية، البروتوكولات الخفيفة، التحديثات، والتحكم في الأجهزة ذات الموارد المحدودة.</p>
+                <a href="https://www.youtube.com/watch?v=9x0Zb7C0iKs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>ICS / SCADA Security</h4>
+                <p>يركز على حماية البيئات الصناعية وأنظمة التحكم، مع فهم الحساسية التشغيلية والبروتوكولات الخاصة بها.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Ransomware Defense</h4>
+                <p>يهتم بمنع هجمات الفدية عبر النسخ الاحتياطي، الفصل، المراقبة، وتقليل انتشار البرمجيات داخل البيئة.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Threat Emulation</h4>
+                <p>محاكاة سلوك التهديدات داخل مختبرات أو بيئات مصرح بها بهدف اختبار الضوابط وتحسين الكشف والاستجابة.</p>
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Risk Assessment</h4>
+                <p>يشمل تحديد الأصول والتهديدات والاحتمالات والأثر، ثم ترتيب الأولويات لتوجيه القرارات الأمنية بوضوح.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Business Continuity</h4>
+                <p>يركز على استمرار الأعمال أثناء الحوادث عبر الخطط البديلة، الاستعادة، وتحديد الخدمات الحرجة والزمن المقبول للتوقف.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Digital Evidence Handling</h4>
+                <p>يهتم بجمع الأدلة الرقمية وحفظها وتوثيقها والتحقق من سلامتها لضمان القيمة التحليلية والقانونية.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Secure SDLC</h4>
+                <p>يدمج الأمن في كل مرحلة من دورة حياة التطوير، من التحليل والتصميم حتى الاختبار والنشر والصيانة.</p>
+                <a href="https://www.youtube.com/watch?v=bY6m6_IIN94" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Attack Surface Management</h4>
+                <p>يركز على فهم ما هو مكشوف خارجيًا من أصول المؤسسة ومتابعة التغييرات والتعرضات غير المقصودة.</p>
+                <a href="https://www.youtube.com/watch?v=9x0Zb7C0iKs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Security Metrics & KPIs</h4>
+                <p>يهتم بقياس فعالية الضوابط الأمنية عبر مؤشرات واضحة تساعد على التقييم والتحسين المستمر.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+                  </div>
+                </section>
+                <section class="domain-group" id="domainResearch">
+                  <div class="domain-group-head">
+                    <div>
+                      <h3>التحليل العميق والأبحاث والمختبرات</h3>
+                      <p>هذه الصفحة الأخيرة مخصصة للتحليل الجنائي، تتبع المهاجمين، الاستجابة المتقدمة، المختبرات المعزولة، وأعمال الباحث الأمني العملية.</p>
+                    </div>
+                    <span class="meta">18 موضوعًا</span>
+                  </div>
+                  <div class="domain-group-grid">
+              <article class="info-card">
+                <h4>Cloud Detection</h4>
+                <p>يركز على اكتشاف الأنشطة المشبوهة داخل البيئات السحابية عبر السجلات والأحداث وربطها بالسياق التشغيلي.</p>
+                <a href="https://www.youtube.com/watch?v=jI8IKpjiCSM" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Memory Forensics</h4>
+                <p>يهتم بتحليل الذاكرة الحية لاستخراج العمليات والاتصالات والآثار التي قد لا تظهر في القرص أو السجلات التقليدية.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Malware Triage</h4>
+                <p>هو الفرز الأولي للملفات المشبوهة لتحديد الأولوية والخطورة والسلوك قبل الدخول في تحليل أعمق.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Threat Actor Profiling</h4>
+                <p>يركز على فهم أنماط المهاجمين وأهدافهم وتقنياتهم وربط النشاط بمجموعات أو دوافع محتملة بشكل تحليلي.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Secure Email Gateway</h4>
+                <p>يهتم بفلترة البريد، حظر المحتوى الخبيث، فحص الروابط والمرفقات، وتقليل وصول الرسائل المشبوهة للمستخدم.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>DMARC / SPF / DKIM</h4>
+                <p>هي ضوابط أساسية لحماية البريد من الانتحال وتحسين موثوقية الرسائل والتحقق من الجهة المرسلة.</p>
+                <a href="https://www.youtube.com/watch?v=jhXCTbFnK8o" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Sandboxing</h4>
+                <p>يعزل الملفات أو البرمجيات في بيئة محكومة للمراقبة والتحليل دون المخاطرة بالنظام الأساسي أو البيئة الحقيقية.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>WAF Tuning</h4>
+                <p>يركز على ضبط قواعد WAF لتقليل الإيجابيات الكاذبة وتحسين الحماية ضد الهجمات الشائعة على تطبيقات الويب.</p>
+                <a href="https://www.youtube.com/watch?v=ySvVb2pOHvQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Vulnerability Disclosure</h4>
+                <p>يهتم بالإفصاح المسؤول عن الثغرات، التنسيق مع الجهة المعنية، والتوثيق المهني قبل النشر أو الإعلان.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Breach Analysis</h4>
+                <p>تحليل ما بعد الاختراق لفهم نقطة الدخول، مدى الانتشار، الأثر، والفجوات التي سمحت بالحادث.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Security Baselines</h4>
+                <p>يركز على وضع إعدادات أمنية قياسية للأجهزة والأنظمة لضمان حد أدنى موحد من الحماية عبر البيئة كلها.</p>
+                <a href="https://www.youtube.com/watch?v=sWbUDq4S6Y8" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Patch Management</h4>
+                <p>يهتم بإدارة التحديثات الأمنية، ترتيب الأولويات، اختبارها، ونشرها بشكل منظم لتقليل نافذة التعرض.</p>
+                <a href="https://www.youtube.com/watch?v=3EQOYyShLBs" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Application Security</h4>
+                <p>يركز على حماية التطبيقات عبر التصميم الآمن، مراجعة الكود، الاختبار، والمراقبة بعد النشر.</p>
+                <a href="https://www.youtube.com/watch?v=zOjov-2OZ0E" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Network Forensics</h4>
+                <p>يهتم بتحليل الترافيك والأحداث الشبكية بعد الحوادث لفهم التسلسل الزمني ومصدر الاتصال والانتشار.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>EDR / XDR</h4>
+                <p>يركز على الرؤية والتحليل والاستجابة على الأجهزة الطرفية وربطها بمصادر أخرى لرفع القدرة على الكشف.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>SOAR</h4>
+                <p>يهتم بأتمتة مهام الاستجابة والتحقيق وربط الأدوات الأمنية لتقليل الوقت اليدوي وتحسين الاتساق.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Insider Threat</h4>
+                <p>يتناول المخاطر القادمة من الداخل، سواء كانت متعمدة أو غير متعمدة، وكيفية كشفها وتقليل أثرها.</p>
+                <a href="https://www.youtube.com/watch?v=3Kq1MIfTWCE" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Fraud Detection</h4>
+                <p>يركز على اكتشاف السلوك المالي أو السلوكي غير الطبيعي وربطه بالهوية والأنماط والوقت والسياق.</p>
+                <a href="https://www.youtube.com/watch?v=uHy3oM7NnoU" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Cloud Incident Response</h4>
+                <p>يهتم بالاستجابة للحوادث داخل البيئات السحابية عبر السجلات والهويات والموارد والتكاملات.</p>
+                <a href="https://www.youtube.com/watch?v=jI8IKpjiCSM" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Container Forensics</h4>
+                <p>يهتم بتحليل الحاويات والصور والسجلات والأحداث لفهم السلوك والحوادث داخل البيئات الحديثة.</p>
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Kubernetes Hardening</h4>
+                <p>يركز على سياسات العزل والصلاحيات والأسرار والتكوينات الآمنة داخل بيئات Kubernetes.</p>
+                <a href="https://www.youtube.com/watch?v=fNzpcB7ODxQ" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Secure Code Review</h4>
+                <p>هو قراءة الكود بعين أمنية لاكتشاف الأنماط الخطرة وسوء التعامل مع البيانات والصلاحيات والمنطق.</p>
+                <a href="https://www.youtube.com/watch?v=bY6m6_IIN94" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Static / Dynamic Analysis</h4>
+                <p>يجمع بين فحص الكود أو الملفات دون تشغيلها، ومراقبة سلوكها أثناء التنفيذ داخل بيئات معزولة.</p>
+                <a href="https://www.youtube.com/watch?v=OLCL6OYbSTw" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+              <article class="info-card">
+                <h4>Fuzzing</h4>
+                <p>يركز على اختبار البرامج بمدخلات كثيرة وغير متوقعة لاكتشاف الأعطال ونقاط الضعف المنطقية والبرمجية.</p>
+                <a href="https://www.youtube.com/watch?v=lK1vPNj0RGk" target="_blank" rel="noopener noreferrer">فيديو يوتيوب تعليمي</a>
+              </article>
+                  </div>
+                </section>
+              </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -5385,9 +6486,35 @@ Report template:
     </section>
     <footer>
       <div class="container">
-        <div style="margin-top: 8px">
-          © <span id="year"></span> | <span data-i18n="footerText">Cybersecurity Atlas (Educational)</span>
-          <div class="credit" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده | Instagram: bqq7k | اذا واجهت اي مشاكل: 0779122780</div>
+        <div class="footer-shell">
+          <div class="footer-grid">
+            <div class="footer-col">
+              <h4>أطلس الأمن السيبراني</h4>
+              <p>منصة عربية تعليمية مرتبة تجمع المسارات، الأدوات، التخصصات، والشرح الأكاديمي في مكان واحد ضمن إطار قانوني وتعليمي واضح.</p>
+            </div>
+            <div class="footer-col">
+              <h4>روابط أساسية</h4>
+              <div class="footer-links">
+                <a href="#siteMapPanel">بوابة الموقع</a>
+                <a href="#toolsHub">مركز الأدوات</a>
+                <a href="#cyberDomainsPanel">المجالات السيبرانية</a>
+                <a href="#academySection">الأكاديمية الشاملة</a>
+              </div>
+            </div>
+            <div class="footer-col">
+              <h4>روابط داعمة</h4>
+              <div class="footer-links">
+                <a href="#beginnerPanel">ابدأ من هنا</a>
+                <a href="#quizPanel">الاختبار السريع</a>
+                <a href="#updatesPanel">تحديثات الموقع</a>
+                <a href="#aboutSitePanel">عن الموقع والسياسات</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            © <span id="year"></span> | <span data-i18n="footerText">Cybersecurity Atlas (Educational)</span>
+            <div class="credit" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده | Instagram: bqq7k | اذا واجهت اي مشاكل: 0779122780</div>
+          </div>
         </div>
       </div>
     </footer>
