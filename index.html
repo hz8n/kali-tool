@@ -13,6 +13,10 @@
       name="description"
       content="أطلس الأمن السيبراني: منصة عربية تعليمية منظمة للأمن السيبراني وعلوم الحاسوب والمسارات التقنية."
     />
+    <meta
+      name="keywords"
+      content="الأمن السيبراني, تعلم الأمن السيبراني, tools, cybersecurity, ethical hacking, Linux, networking, frontend, full stack, web security"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -69,6 +73,71 @@
           linear-gradient(180deg, #010601, var(--bg0) 18%, var(--bg1) 56%, var(--bg2));
         overflow-x: hidden;
         min-height: 100vh;
+        cursor: crosshair;
+      }
+      .loading-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 120;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(circle at 50% 40%, rgba(var(--accent-rgb), 0.08), transparent 20%),
+          linear-gradient(180deg, rgba(0, 4, 1, 0.98), rgba(0, 1, 0, 1));
+        transition: opacity 0.45s ease, visibility 0.45s ease;
+      }
+      .loading-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .loading-box {
+        width: min(520px, 92vw);
+        border-radius: 20px;
+        border: 1px solid rgba(var(--accent-rgb), 0.18);
+        background: rgba(0, 10, 2, 0.9);
+        padding: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      .loading-box strong {
+        display: block;
+        font-size: 18px;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+      .loading-steps {
+        display: grid;
+        gap: 8px;
+        color: rgba(170, 255, 195, 0.78);
+        font-size: 13px;
+      }
+      .loading-bar {
+        margin-top: 14px;
+        height: 8px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .loading-bar span {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.08), rgba(var(--accent-rgb), 0.94));
+        transform-origin: left center;
+        animation: loading-progress 2.2s ease-out forwards;
+      }
+      .global-scanline {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: -16%;
+        height: 18%;
+        z-index: 6;
+        pointer-events: none;
+        background: linear-gradient(180deg, transparent, rgba(var(--accent-rgb), 0.08), transparent);
+        mix-blend-mode: screen;
+        opacity: 0.35;
+        animation: global-scan-pass 7s linear infinite;
       }
       .bg-mark {
         position: fixed;
@@ -86,40 +155,339 @@
         position: relative;
         border-radius: 20px;
         overflow: hidden;
+        padding: 32px 24px 52px;
         border: 1px solid rgba(var(--accent-rgb), 0.18);
-        box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.08), 0 8px 40px rgba(0,0,0,0.5), 0 0 80px rgba(var(--accent-rgb), 0.12);
+        background:
+          radial-gradient(circle at 72% 34%, rgba(0, 28, 8, 0.34), transparent 18%),
+          linear-gradient(135deg, rgba(0, 2, 1, 0.98), rgba(0, 8, 3, 0.98) 44%, rgba(0, 3, 1, 0.99));
+        box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.08), 0 10px 48px rgba(0,0,0,0.56), 0 0 64px rgba(var(--accent-rgb), 0.08);
         animation: anon-glow 4s ease-in-out infinite;
       }
       .hero-anon-wrap::before {
         content: "";
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.7) 100%);
+        background:
+          radial-gradient(circle at 72% 34%, rgba(var(--accent-rgb), 0.16), transparent 13%),
+          radial-gradient(circle at 74% 44%, rgba(var(--accent-rgb), 0.08), transparent 24%),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.26) 34%, transparent 62%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.08) 26%, rgba(0,0,0,0.9) 100%);
         z-index: 1;
         pointer-events: none;
       }
+      .hero-anon-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgba(255, 30, 64, 0.09), transparent 28%, transparent 76%, rgba(0, 180, 255, 0.08)),
+          repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.012) 0px, rgba(255, 255, 255, 0.012) 1px, transparent 1px, transparent 11px);
+        opacity: 0.22;
+        mix-blend-mode: screen;
+        animation: hero-glitch-scan 3.8s linear infinite;
+        z-index: 2;
+        pointer-events: none;
+      }
       .hero-anon-wrap img {
-        width: 100%;
+        width: 74%;
+        margin: 0 0 0 auto;
         display: block;
-        filter: brightness(0.88) contrast(1.08);
+        filter: brightness(0.36) contrast(1.46) saturate(0.8);
+        transform: translateX(-1%) scale(0.84) rotate(-2.8deg);
+        transform-origin: center center;
+      }
+      .system-shell {
+        display: grid;
+        gap: 12px;
+      }
+      .terminal-card,
+      .log-card,
+      .contact-card,
+      .hidden-console {
+        border-radius: 18px;
+        border: 1px solid rgba(var(--accent-rgb), 0.14);
+        background: rgba(0, 8, 2, 0.82);
+        padding: 14px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      .terminal-head,
+      .system-mini-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .terminal-head strong,
+      .system-mini-head strong {
+        font-size: 13px;
+        letter-spacing: 1.6px;
+        text-transform: uppercase;
+      }
+      .terminal-body,
+      .log-list {
+        display: grid;
+        gap: 8px;
+        color: rgba(170, 255, 195, 0.82);
+        font-size: 13px;
+        line-height: 1.8;
+      }
+      .terminal-line {
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+      }
+      .terminal-line b {
+        color: var(--accent);
+      }
+      .typing-line::after {
+        content: "_";
+        margin-inline-start: 4px;
+        animation: typing-caret 1s step-end infinite;
+      }
+      .system-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .info-matrix {
+        display: grid;
+        gap: 8px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px dashed rgba(var(--accent-rgb), 0.12);
+        padding-bottom: 6px;
+        color: rgba(170, 255, 195, 0.7);
+        font-size: 12px;
+      }
+      .info-row b {
+        color: rgba(170, 255, 195, 0.96);
+      }
+      .log-list div,
+      .ops-list div {
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .ops-list {
+        display: grid;
+        gap: 10px;
+      }
+      .signal-btn {
+        font-family: inherit;
+        text-transform: uppercase;
+        letter-spacing: 1.6px;
+      }
+      .hidden-console[hidden] {
+        display: none;
+      }
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border-radius: 999px;
+        padding: 6px 10px;
+        background: rgba(var(--accent-rgb), 0.08);
+        border: 1px solid rgba(var(--accent-rgb), 0.14);
+        color: rgba(170, 255, 195, 0.86);
+        font-size: 11px;
+        font-weight: 900;
       }
       .hero-anon-label {
         position: absolute;
-        bottom: 14px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 2;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        color: rgba(var(--accent-rgb), 0.85);
+        bottom: 18px;
+        left: 24px;
+        transform: none;
+        z-index: 5;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 4px;
+        color: rgba(var(--accent-rgb), 0.2);
         text-transform: uppercase;
         white-space: nowrap;
-        text-shadow: 0 0 18px rgba(var(--accent-rgb), 0.6);
+        text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.12);
+      }
+      .hero-identity,
+      .hero-system-panel,
+      .hero-status-line,
+      .hero-cut,
+      .hero-shadow,
+      .hero-code-rain,
+      .hero-smoke,
+      .hero-eye {
+        position: absolute;
+        pointer-events: none;
+      }
+      .hero-identity {
+        left: 22px;
+        bottom: 36px;
+        z-index: 5;
+        text-align: start;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: 4px;
+        color: rgba(170, 255, 195, 0.18);
+        text-shadow: 0 0 8px rgba(var(--accent-rgb), 0.12), 1px 0 0 rgba(255, 30, 64, 0.06), -1px 0 0 rgba(0, 180, 255, 0.06);
+        mix-blend-mode: screen;
+        animation: hero-identity-glitch 5.8s infinite steps(1);
+      }
+      .hero-system-panel {
+        top: 28px;
+        right: 18px;
+        z-index: 5;
+        display: grid;
+        gap: 4px;
+        width: 132px;
+        color: rgba(170, 255, 195, 0.2);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 9px;
+        line-height: 1.5;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-shadow: 0 0 6px rgba(var(--accent-rgb), 0.1);
+      }
+      .hero-system-panel span {
+        display: block;
+        border-left: 1px solid rgba(var(--accent-rgb), 0.1);
+        padding-left: 6px;
+      }
+      .hero-status-line {
+        left: 22px;
+        top: 26px;
+        z-index: 5;
+        color: rgba(170, 255, 195, 0.18);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 9px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .hero-cut {
+        inset: 0;
+        z-index: 3;
+        background:
+          linear-gradient(118deg, transparent 0 46%, rgba(0, 0, 0, 0.72) 49%, transparent 54%),
+          linear-gradient(180deg, transparent 0 58%, rgba(0, 0, 0, 0.36) 72%, transparent 100%);
+        opacity: 0.46;
+        mix-blend-mode: multiply;
+        animation: hero-cut-glitch 6.5s infinite steps(1);
+      }
+      .hero-shadow {
+        inset: auto 20% 8% 28%;
+        height: 14%;
+        z-index: 2;
+        background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0) 70%);
+        filter: blur(20px);
+        opacity: 0.76;
+      }
+      .hero-code-rain {
+        top: 30px;
+        left: 10px;
+        right: auto;
+        bottom: 60px;
+        width: 28px;
+        z-index: 3;
+        font-size: 8px;
+        line-height: 1.45;
+        color: rgba(var(--accent-rgb), 0.06);
+        display: block;
+        mix-blend-mode: screen;
+        filter: blur(0.3px);
+      }
+      .hero-code-rain span {
+        display: block;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        animation: hero-code-fall 12s linear infinite;
+      }
+      .hero-code-rain span:nth-child(2) {
+        display: none;
+      }
+      .hero-code-rain span:nth-child(3) {
+        display: none;
+      }
+      .hero-smoke {
+        inset: auto -10% -6% -10%;
+        height: 16%;
+        z-index: 4;
+        background:
+          radial-gradient(circle at 8% 50%, rgba(var(--accent-rgb), 0.05), transparent 18%),
+          radial-gradient(circle at 92% 56%, rgba(var(--accent-rgb), 0.05), transparent 18%);
+        filter: blur(34px);
+        opacity: 0.18;
+        animation: hero-smoke-drift 12s ease-in-out infinite;
+      }
+      .hero-eye {
+        top: 39%;
+        left: 55.2%;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        z-index: 5;
+        background: rgba(180, 255, 205, 0.34);
+        box-shadow: 0 0 5px rgba(var(--accent-rgb), 0.24), 0 0 10px rgba(var(--accent-rgb), 0.12);
+        filter: blur(0.6px);
+        animation: hero-eye-pulse 3.4s ease-in-out infinite;
       }
       @keyframes anon-glow {
         0%, 100% { box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.08), 0 8px 40px rgba(0,0,0,0.5), 0 0 80px rgba(var(--accent-rgb), 0.12); }
         50%       { box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.22), 0 8px 40px rgba(0,0,0,0.5), 0 0 140px rgba(var(--accent-rgb), 0.28); }
+      }
+      @keyframes loading-progress {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+      @keyframes global-scan-pass {
+        0% { transform: translateY(-120%); }
+        100% { transform: translateY(720%); }
+      }
+      @keyframes typing-caret {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      @keyframes hero-glitch-scan {
+        0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.12; clip-path: inset(0 0 0 0); }
+        8% { transform: translate3d(-4px, 0, 0); clip-path: inset(16% 18% 68% 38%); opacity: 0.32; }
+        10% { transform: translate3d(5px, 0, 0); clip-path: inset(38% 14% 40% 34%); opacity: 0.42; }
+        12% { transform: translate3d(-3px, 0, 0); clip-path: inset(58% 10% 18% 30%); }
+        18% { transform: translate3d(0, -2px, 0); opacity: 0.1; clip-path: inset(0 0 0 0); }
+        72% { transform: translate3d(-2px, 0, 0); clip-path: inset(28% 16% 52% 34%); opacity: 0.24; }
+      }
+      @keyframes hero-identity-glitch {
+        0%, 84%, 100% { transform: translateX(0); opacity: 0.06; }
+        12% { transform: translateX(-2px); opacity: 0.22; }
+        13% { transform: translateX(2px); opacity: 0.28; }
+        14% { transform: translateX(0); opacity: 0.08; }
+        86% { opacity: 0.22; }
+        88% { opacity: 0.04; }
+      }
+      @keyframes hero-cut-glitch {
+        0%, 100% { transform: translateX(0); opacity: 0.3; }
+        8% { transform: translateX(-8px); opacity: 0.52; }
+        9% { transform: translateX(7px); }
+        10% { transform: translateX(0); opacity: 0.3; }
+        62% { transform: translateY(-2px); }
+      }
+      @keyframes hero-code-fall {
+        0% { transform: translateY(-10px); opacity: 0.2; }
+        50% { opacity: 0.55; }
+        100% { transform: translateY(14px); opacity: 0.16; }
+      }
+      @keyframes hero-smoke-drift {
+        0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(0, -8px, 0) scale(1.05); }
+      }
+      @keyframes hero-eye-pulse {
+        0%, 100% { opacity: 0.08; transform: scale(1); }
+        45% { opacity: 0.16; transform: scale(1.05); }
+        50% { opacity: 0.22; transform: scale(1.08); }
       }
       .grain {
         position: fixed;
@@ -311,6 +679,12 @@
       .btn.ghost:hover {
         border-color: rgba(var(--accent-rgb), 0.48);
       }
+      .btn.install-ready {
+        display: none;
+      }
+      .btn.install-ready.show {
+        display: inline-flex;
+      }
       header.hero {
         padding: 20px 0 14px;
       }
@@ -319,6 +693,84 @@
         grid-template-columns: 0.95fr 1.05fr;
         gap: 14px;
         align-items: start;
+      }
+      .hero-intro-card {
+        margin-bottom: 14px;
+        border-radius: 22px;
+        border: 1px solid rgba(0, 255, 65, 0.16);
+        background: linear-gradient(145deg, rgba(0, 28, 8, 0.92), rgba(0, 16, 4, 0.76));
+        box-shadow: 0 22px 56px rgba(0, 0, 0, 0.28);
+        padding: 18px;
+      }
+      .hero-intro-card h3 {
+        margin: 0 0 8px;
+        font-size: 24px;
+        line-height: 1.35;
+      }
+      .hero-intro-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.9;
+        font-weight: 820;
+      }
+      .hero-purpose-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .hero-purpose-item {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px;
+      }
+      .hero-purpose-item strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+      .hero-purpose-item span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.75;
+        font-weight: 760;
+      }
+      .trust-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .trust-chip {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.035);
+        padding: 12px;
+      }
+      .trust-chip strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 13.5px;
+      }
+      .trust-chip span {
+        color: var(--muted);
+        font-size: 12.8px;
+        line-height: 1.7;
+        font-weight: 780;
+      }
+      [data-performance="lite"] .bg-mark,
+      [data-performance="lite"] .grain,
+      [data-performance="lite"] .panel,
+      [data-performance="lite"] .hero-intro-card,
+      [data-performance="lite"] .nav-links,
+      [data-performance="lite"] .section-indicator {
+        backdrop-filter: none !important;
+        box-shadow: none !important;
+      }
+      [data-performance="lite"] * {
+        animation: none !important;
+        transition: none !important;
       }
       .panel {
         border-radius: var(--r);
@@ -2012,6 +2464,8 @@
         margin-top: 8px;
       }
       @media (max-width: 980px) {
+        .hero-purpose-grid,
+        .trust-strip,
         .hero-quick-grid,
         .page-map,
         .feature-grid,
@@ -4034,6 +4488,18 @@
     </style>
   </head>
   <body>
+    <div class="loading-screen" id="loadingScreen" aria-live="polite">
+      <div class="loading-box">
+        <strong>INITIALIZING SYSTEM...</strong>
+        <div class="loading-steps">
+          <div>> LOADING MODULES</div>
+          <div>> VERIFYING SIGNAL</div>
+          <div>> RESOLVING BLACK_REAPER</div>
+        </div>
+        <div class="loading-bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+    <div class="global-scanline" aria-hidden="true"></div>
     <div class="bg-mark" aria-hidden="true"></div>
     <div class="grain" aria-hidden="true"></div>
     <nav class="nav">
@@ -4048,22 +4514,21 @@
             </div>
           </div>
           <div class="nav-links" id="topNavLinks" aria-label="أقسام الموقع">
-            <a href="#siteMapPanel">البوابة</a>
-            <a href="#beginnerPanel">ابدأ من هنا</a>
-            <a href="#frontendMasterPanel">Frontend</a>
+            <a href="#siteMapPanel">الرئيسية</a>
+            <a href="#academySection">التعلّم</a>
             <a href="#toolsHub">الأدوات</a>
-            <a href="#ideasAtlasPanel">الأفكار</a>
-            <a href="#miniArticlesPanel">المقالات</a>
-            <a href="#phishingDefensePanel">Phishing</a>
-            <a href="#cyberDomainsPanel">المجالات</a>
-            <a href="#researcherPathPanel">الباحث الأمني</a>
-            <a href="#academySection">الأكاديمية</a>
-            <a href="#quizPanel">الاختبار</a>
+            <a href="#quizPanel">الاختبارات</a>
             <a href="#aboutSitePanel">عن الموقع</a>
           </div>
           <div class="nav-actions">
             <button id="navSectionsToggle" class="btn ghost nav-sections-toggle" type="button" aria-expanded="false" aria-controls="topNavLinks">
               <span aria-hidden="true">▤</span><span>أقسام الموقع</span>
+            </button>
+            <button id="installAppBtn" class="btn ghost install-ready" type="button">
+              <span aria-hidden="true">⬇</span><span>تثبيت التطبيق</span>
+            </button>
+            <button id="performanceBtn" class="btn ghost" type="button" title="تبديل وضع الأداء">
+              <span aria-hidden="true">⚡</span><span id="performanceBtnText">وضع الأداء</span>
             </button>
             <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="فتح القائمة">
               <span>☰</span><span class="sidebar-toggle-text">القائمة</span>
@@ -4239,10 +4704,42 @@
                 <p class="sub" data-i18n="subtitle">
                   منهج أكاديمي متكامل يغطي: أنظمة التشغيل، الشبكات، البرمجة، الأمن السيبراني، التحليل الجنائي الرقمي، وبناء المسار المهني. كل المحتوى تعليمي وتوثيقي فقط — بدون خطوات هجوم أو أوامر استغلال. مصمّم للطالب، المتدرب، والمحترف الذي يبني مساره من الصفر للاحتراف ضمن إطار قانوني مصرح به.
                 </p>
+                <div class="hero-intro-card">
+                  <h3>منصة عربية لتعلم الأمن السيبراني من الصفر حتى الاحتراف</h3>
+                  <p>إذا دخلت الموقع لأول مرة، فهذه هي الفكرة الأساسية: تعلّم منظم، أدوات مرتبة، مسارات واضحة، ومحتوى دفاعي وتعليمي يساعدك تبدأ بسرعة بدل الضياع بين عشرات المصادر.</p>
+                  <div class="hero-purpose-grid">
+                    <div class="hero-purpose-item">
+                      <strong>تعلم واضح</strong>
+                      <span>مسارات تبدأ من الأساسيات ثم تنتقل بك إلى التطبيق والاحتراف.</span>
+                    </div>
+                    <div class="hero-purpose-item">
+                      <strong>أدوات مرتبة</strong>
+                      <span>بحث وتصنيفات وفلاتر حتى تصل لما تريده بسرعة.</span>
+                    </div>
+                    <div class="hero-purpose-item">
+                      <strong>محتوى موثوق</strong>
+                      <span>شرح عربي دفاعي مع مراجع، اختبارات، وقواميس مصطلحات.</span>
+                    </div>
+                  </div>
+                  <div class="trust-strip">
+                    <div class="trust-chip">
+                      <strong>تعليمي ودفاعي</strong>
+                      <span>الموقع مخصص للتعلم القانوني وبناء الفهم وليس للهجوم أو الإساءة.</span>
+                    </div>
+                    <div class="trust-chip">
+                      <strong>مناسب للمبتدئ</strong>
+                      <span>ستجد بداية واضحة، كتبًا، كورسات، ومقالات قصيرة تساعدك تبدأ صح.</span>
+                    </div>
+                    <div class="trust-chip">
+                      <strong>مبني كمنصة</strong>
+                      <span>أكاديمية، أدوات، اختبارات، وتتبع تقدم في مكان واحد.</span>
+                    </div>
+                  </div>
+                </div>
                 <div class="hero-action-row">
-                  <a class="btn primary" href="#siteMapPanel">ادخل إلى البوابة</a>
-                  <a class="btn ghost" href="#toolsHub">تصفح الأدوات</a>
-                  <a class="btn" href="#academySection">افتح الأكاديمية</a>
+                  <a class="btn primary" href="#academySection">ابدأ التعلم الآن</a>
+                  <a class="btn ghost" href="#toolsHub">استكشف الأدوات</a>
+                  <a class="btn" href="#quizPanel">اختبر مستواك</a>
                 </div>
                 <div class="hero-quick-grid">
                   <a class="hero-quick-card" href="#toolsHub">
@@ -4343,8 +4840,25 @@
               </div>
               <div class="hero-controls">
                 <div class="hero-anon-wrap">
-                  <img src="anonymous.jpg" alt="Anonymous" />
-                  <div class="hero-anon-label">We Are Anonymous · We Do Not Forget</div>
+                  <img src="black.png" alt="Black Reaper" />
+                  <div class="hero-status-line">STATUS: UNKNOWN</div>
+                  <div class="hero-system-panel" aria-hidden="true">
+                    <span>ID: BR-001</span>
+                    <span>TIME: 03:17:09</span>
+                    <span>31.9539 N / 35.9106 E</span>
+                    <span>ROOT@SYSTEM // TRACKING...</span>
+                  </div>
+                  <div class="hero-shadow" aria-hidden="true"></div>
+                  <div class="hero-cut" aria-hidden="true"></div>
+                  <div class="hero-code-rain" aria-hidden="true">
+                    <span>ACCESS GRANTED // 192.168.0.13 // BL_K R_AP_R</span>
+                    <span>SCAN GHOST NODE SIGNAL DARK STACK</span>
+                    <span>AUTH NULL SHADOW KERNEL LAYER</span>
+                  </div>
+                  <div class="hero-smoke" aria-hidden="true"></div>
+                  <div class="hero-eye" aria-hidden="true"></div>
+                  <div class="hero-identity">BL_K R_AP_R</div>
+                  <div class="hero-anon-label">ATLAS OVERRIDE</div>
                 </div>
                 <div class="controls" id="searchFiltersBlock" aria-label="Search and filters">
                   <div class="nav-hub">
@@ -4501,6 +5015,158 @@
     </header>
     <main>
       <div class="container">
+        <section class="panel" id="missionPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>ماذا يقدم لك الموقع؟</h2>
+                <p>هذا القسم يجيب بسرعة على أهم 3 أسئلة عند أول زيارة: ماذا ستتعلم، لمن صُمم الموقع، وكيف تبدأ بدون تشتت.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>ماذا ستجد هنا؟</h4>
+                <ul class="idea-list">
+                  <li>مسارات تعلم من الصفر في الأمن السيبراني والويب.</li>
+                  <li>مكتبة أدوات مرتبة مع بحث وفلاتر.</li>
+                  <li>اختبارات، قاموس مصطلحات، ومراجع عملية.</li>
+                  <li>أكاديمية طويلة للمحتوى المتدرج.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>لمن هذا الموقع؟</h4>
+                <ul class="idea-list">
+                  <li>للمبتدئ الذي يريد بداية واضحة.</li>
+                  <li>للمطور الذي يريد فهم الأمن والويب بعمق.</li>
+                  <li>للمهتم بالمسارات المهنية والاختبارات والمراجع.</li>
+                  <li>لمن يريد منصة عربية مرتبة بدل المحتوى المبعثر.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كيف تبدأ خلال دقيقة؟</h4>
+                <ul class="idea-list">
+                  <li>ابدأ من قسم `ابدأ من هنا` إذا كنت جديدًا.</li>
+                  <li>اذهب إلى `التعلّم` إذا تريد منهجًا طويلًا.</li>
+                  <li>افتح `الأدوات` إذا تريد الاستكشاف والبحث.</li>
+                  <li>جرّب `الاختبارات` لمعرفة مستواك الحالي.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="blackReaperSystemPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>Black Reaper System</h2>
+                <p>نسخة موقع قائمة على هوية نظامية: هبوط أول، معلومات نظام، سجل نشاط، قدرات، عمليات، قسم مخفي، واتصال بصيغة إشارة.</p>
+              </div>
+            </div>
+            <div class="system-shell">
+              <div class="terminal-card">
+                <div class="terminal-head">
+                  <strong>Landing Interface</strong>
+                  <span class="status-pill">STATUS: WATCHING...</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="terminal-line"><b>&gt;</b><span class="typing-line" data-typing-text="ACCESSING SYSTEM..."></span></div>
+                  <div class="terminal-line"><b>&gt;</b><span class="typing-line" data-typing-text="IDENTITY: BLACK_REAPER"></span></div>
+                  <div class="terminal-line"><b>&gt;</b><span class="typing-line" data-typing-text="STATUS: UNKNOWN"></span></div>
+                </div>
+              </div>
+              <div class="system-grid-2">
+                <article class="info-card">
+                  <div class="system-mini-head">
+                    <strong>System Info</strong>
+                    <span class="status-pill">BR-001</span>
+                  </div>
+                  <div class="info-matrix">
+                    <div class="info-row"><span>ID</span><b>BR-001</b></div>
+                    <div class="info-row"><span>ORIGIN</span><b>UNKNOWN</b></div>
+                    <div class="info-row"><span>LOCATION</span><b>UNTRACEABLE</b></div>
+                    <div class="info-row"><span>STATUS</span><b>ACTIVE</b></div>
+                    <div class="info-row"><span>LAST ACTIVE</span><b>03:17</b></div>
+                    <div class="info-row"><span>ENTITY</span><b>BLACK_REAPER</b></div>
+                  </div>
+                </article>
+                <article class="log-card">
+                  <div class="system-mini-head">
+                    <strong>Activity / Logs</strong>
+                    <span class="status-pill">LIVE FEED</span>
+                  </div>
+                  <div class="log-list">
+                    <div>[03:17:09] Connection established</div>
+                    <div>[03:17:12] Network path resolved</div>
+                    <div>[03:17:15] Access denied</div>
+                    <div>[03:17:18] Tracking signal...</div>
+                  </div>
+                </article>
+              </div>
+              <div class="system-grid-2">
+                <article class="info-card">
+                  <div class="system-mini-head">
+                    <strong>Capabilities</strong>
+                    <span class="status-pill">MODULES</span>
+                  </div>
+                  <div class="ops-list">
+                    <div>System Analysis</div>
+                    <div>Network Mapping</div>
+                    <div>Exploit Research</div>
+                    <div>Digital Tracking</div>
+                  </div>
+                </article>
+                <article class="terminal-card">
+                  <div class="system-mini-head">
+                    <strong>Terminal</strong>
+                    <span class="status-pill">READY</span>
+                  </div>
+                  <div class="terminal-body">
+                    <div class="terminal-line"><b>&gt;</b><span>whoami</span></div>
+                    <div class="terminal-line"><b>&gt;</b><span>Black_Reaper</span></div>
+                    <div class="terminal-line"><b>&gt;</b><span>status</span></div>
+                    <div class="terminal-line"><b>&gt;</b><span>Active</span></div>
+                  </div>
+                </article>
+              </div>
+              <div class="system-grid-2">
+                <article class="info-card">
+                  <div class="system-mini-head">
+                    <strong>Operations</strong>
+                    <span class="status-pill">ARCHIVE</span>
+                  </div>
+                  <div class="ops-list">
+                    <div>Operation #001 // Status: Completed</div>
+                    <div>Operation #002 // Status: Failed</div>
+                    <div>Operation #003 // Status: Hidden</div>
+                  </div>
+                </article>
+                <article class="contact-card">
+                  <div class="system-mini-head">
+                    <strong>Initiate Contact</strong>
+                    <span class="status-pill">SIGNAL</span>
+                  </div>
+                  <div class="terminal-body">
+                    <div class="terminal-line"><b>&gt;</b><span>Send Signal...</span></div>
+                    <div class="terminal-line"><b>&gt;</b><span>Channel: Telegram</span></div>
+                    <div class="terminal-line"><b>&gt;</b><span>Response: Pending</span></div>
+                  </div>
+                  <button id="revealHiddenBtn" class="btn ghost signal-btn" type="button">Reveal Hidden Section</button>
+                </article>
+              </div>
+              <div class="hidden-console" id="hiddenConsole" hidden>
+                <div class="system-mini-head">
+                  <strong>Hidden Section</strong>
+                  <span class="status-pill">UNLOCKED</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="terminal-line"><b>&gt;</b><span>WARNING: UNAUTHORIZED ACCESS</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>MESSAGE: Some systems are meant to be watched, not touched.</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>ENTITY: BR // 001 // UNKNOWN</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <section class="panel" id="siteMapPanel" style="margin: 12px 0 16px">
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
@@ -11001,7 +11667,8 @@ log(event)`,
         favorites: "kali_tools_favorites_v1",
         recentSections: "kali_tools_recent_sections_v1",
         quizScore: "kali_tools_quiz_score_v1",
-        visitorNoticeSent: "kali_tools_visitor_notice_sent_v1"
+        visitorNoticeSent: "kali_tools_visitor_notice_sent_v1",
+        performanceMode: "kali_tools_performance_mode_v1"
       };
       const TELEGRAM_VISITOR_ALERT = {
         enabled: true,
@@ -12462,6 +13129,9 @@ log(event)`,
         langBtnText: document.getElementById("langBtnText"),
         densityBtn: document.getElementById("densityBtn"),
         densityBtnText: document.getElementById("densityBtnText"),
+        performanceBtn: document.getElementById("performanceBtn"),
+        performanceBtnText: document.getElementById("performanceBtnText"),
+        installAppBtn: document.getElementById("installAppBtn"),
         exportBtn: document.getElementById("exportBtn"),
         resetBtn: document.getElementById("resetBtn"),
         q: document.getElementById("q"),
@@ -12502,7 +13172,6 @@ log(event)`,
         const candidates = ["hacker-mask.svg", "warning.svg", "warning.png", "kali-logo.svg", "kali-logo.png", "kali.svg"];
         const setAssets = (url) => {
           const chosen = url || "kali.svg";
-          document.documentElement.style.setProperty("--mark-url", `url("${chosen}")`);
           if (els.brandLogo) els.brandLogo.src = chosen;
         };
 
@@ -12533,6 +13202,8 @@ log(event)`,
       });
       let userTools = readJsonStorage(STORAGE_KEYS.userTools, []);
       if (!Array.isArray(userTools)) userTools = [];
+      let performanceMode = localStorage.getItem(STORAGE_KEYS.performanceMode) === "lite" ? "lite" : "full";
+      let deferredInstallPrompt = null;
       function i18n(key) {
         const dict = I18N[lang] || I18N.ar;
         return dict[key];
@@ -12545,6 +13216,32 @@ log(event)`,
         }
         if (els.densityBtn) {
           els.densityBtn.title = i18n("densityTip");
+        }
+      }
+      function applyPerformanceMode() {
+        document.documentElement.setAttribute("data-performance", performanceMode === "lite" ? "lite" : "full");
+        const label =
+          lang === "en"
+            ? performanceMode === "lite"
+              ? "Lite Mode"
+              : "Performance"
+            : performanceMode === "lite"
+              ? "أداء خفيف"
+              : "وضع الأداء";
+        if (els.performanceBtnText) {
+          els.performanceBtnText.textContent = label;
+        }
+        if (els.performanceBtn) {
+          els.performanceBtn.classList.toggle("primary", performanceMode === "lite");
+          els.performanceBtn.classList.toggle("ghost", performanceMode !== "lite");
+          els.performanceBtn.title =
+            lang === "en"
+              ? performanceMode === "lite"
+                ? "Lite mode is on"
+                : "Enable lite mode"
+              : performanceMode === "lite"
+                ? "الوضع الخفيف مفعل"
+                : "تفعيل الوضع الخفيف";
         }
       }
       let navResizeObserver = null;
@@ -12622,7 +13319,10 @@ log(event)`,
               search: "Search",
               export: "Export",
               reset: "Reset",
-              language: "Language"
+              language: "Language",
+              sections: "Sections",
+              installApp: "Install App",
+              performance: "Performance"
             }
           : {
               menu: "القائمة",
@@ -12645,7 +13345,10 @@ log(event)`,
               search: "بحث",
               export: "تصدير",
               reset: "إعادة ضبط",
-              language: "اللغة"
+              language: "اللغة",
+              sections: "أقسام الموقع",
+              installApp: "تثبيت التطبيق",
+              performance: "وضع الأداء"
             };
 
         const setText = (selector, value) => {
@@ -12674,6 +13377,9 @@ log(event)`,
 
         setIcon("#sidebarToggle span:first-child", "☰");
         setText("#sidebarToggle .sidebar-toggle-text", t.menu);
+        setText("#navSectionsToggle span:last-child", t.sections);
+        setText("#installAppBtn span:last-child", t.installApp);
+        if (performanceMode !== "lite") setText("#performanceBtnText", t.performance);
         setIcon("#langBtn span[aria-hidden='true']", "🌐");
         setIcon("#densityBtn span[aria-hidden='true']", "⇄");
         setIcon("#exportBtn span[aria-hidden='true']", "↓");
@@ -12720,6 +13426,7 @@ log(event)`,
         els.q.placeholder = lang === "en" ? "e.g. nmap, web, forensics..." : "مثال: nmap, web, forensics...";
         applyStaticUiLabels();
         applyDensity();
+        applyPerformanceMode();
         rebuildSelects();
         rebuildSortSelect();
         if (IS_PHONE && edu100NeedsRender) {
@@ -13764,6 +14471,74 @@ log(event)`,
           }
         });
       }
+      function wirePerformanceMode() {
+        applyPerformanceMode();
+        if (!els.performanceBtn) return;
+        els.performanceBtn.addEventListener("click", () => {
+          performanceMode = performanceMode === "lite" ? "full" : "lite";
+          try {
+            localStorage.setItem(STORAGE_KEYS.performanceMode, performanceMode);
+          } catch (_) {
+            // ignore
+          }
+          applyPerformanceMode();
+        });
+      }
+      function wireSystemIdentityPanels() {
+        const hiddenBtn = document.getElementById("revealHiddenBtn");
+        const hiddenConsole = document.getElementById("hiddenConsole");
+        if (hiddenBtn && hiddenConsole) {
+          hiddenBtn.addEventListener("click", () => {
+            hiddenConsole.hidden = !hiddenConsole.hidden;
+            hiddenBtn.textContent = hiddenConsole.hidden ? "Reveal Hidden Section" : "Hide Hidden Section";
+          });
+        }
+
+        const typingNodes = Array.from(document.querySelectorAll("[data-typing-text]"));
+        typingNodes.forEach((node, idx) => {
+          const fullText = String(node.getAttribute("data-typing-text") || "");
+          node.textContent = "";
+          let charIndex = 0;
+          const startDelay = idx * 650;
+          window.setTimeout(() => {
+            const timer = window.setInterval(() => {
+              charIndex += 1;
+              node.textContent = fullText.slice(0, charIndex);
+              if (charIndex >= fullText.length) window.clearInterval(timer);
+            }, 42);
+          }, startDelay);
+        });
+
+        const loadingScreen = document.getElementById("loadingScreen");
+        if (loadingScreen) {
+          window.setTimeout(() => {
+            loadingScreen.classList.add("hidden");
+          }, 2200);
+        }
+      }
+      function wireInstallPrompt() {
+        if (!els.installAppBtn) return;
+        window.addEventListener("beforeinstallprompt", (e) => {
+          e.preventDefault();
+          deferredInstallPrompt = e;
+          els.installAppBtn.classList.add("show");
+        });
+        els.installAppBtn.addEventListener("click", async () => {
+          if (!deferredInstallPrompt) return;
+          deferredInstallPrompt.prompt();
+          try {
+            await deferredInstallPrompt.userChoice;
+          } catch (_) {
+            // ignore
+          }
+          deferredInstallPrompt = null;
+          els.installAppBtn.classList.remove("show");
+        });
+        window.addEventListener("appinstalled", () => {
+          deferredInstallPrompt = null;
+          els.installAppBtn.classList.remove("show");
+        });
+      }
       function wireTopNavCollapse() {
         const toggleBtn = document.getElementById("navSectionsToggle");
         const navLinks = document.getElementById("topNavLinks");
@@ -14145,6 +14920,9 @@ log(event)`,
         }
         initNavHeight();
         wireTopNavCollapse();
+        wirePerformanceMode();
+        wireSystemIdentityPanels();
+        wireInstallPrompt();
         notifyNewVisitor();
         wireImplementationWidgets();
         wireMiniQuiz();
