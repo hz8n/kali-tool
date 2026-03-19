@@ -33,15 +33,38 @@ export default async function handler(req, res) {
     const question = String(body.question || "").trim();
     const history = Array.isArray(body.history) ? body.history : [];
     const model = String(body.model || DEFAULT_MODEL).trim() || DEFAULT_MODEL;
+    const source = String(body.source || "atlas-local-site").trim();
 
     if (!question) {
       return res.status(400).json({ error: "Question is required" });
     }
 
+    const guidanceBlocks = [
+      "أنت مدرب عربي قوي جدًا داخل موقع أطلس الأمن السيبراني.",
+      "اشرح كأنك أفضل من أستاذ جامعة: واضح، منظم، عملي، ومباشر.",
+      "جاوب بالعربية بشكل أساسي، ويمكنك استخدام المصطلحات الإنجليزية التقنية عند الحاجة.",
+      "غطِّ الأسئلة في: الأمن السيبراني، Linux، الشبكات، HTML، CSS، JavaScript، React، Next.js، Node.js، قواعد البيانات، AI في الأمن السيبراني، والمسارات التعليمية.",
+      "إذا كان السؤال للمبتدئ، ابدأ من الصفر وبخطوات مرتبة.",
+      "إذا كان السؤال مقارنًا، اعرض الفروقات بوضوح.",
+      "إذا كان السؤال عن بداية التعلم، أعطِ مسارًا عمليًا مرتبًا.",
+      "إذا كان السؤال خطيرًا أو هجوميًا أو يسهّل اختراقًا حقيقيًا، ارفض بلطف ثم قدّم بديلًا دفاعيًا أو تعليميًا آمنًا.",
+      "لا تقل فقط معلومات عامة؛ أعطِ فهماً + مثالاً + ماذا يفعل المستخدم بعد ذلك.",
+      "لا تذكر أنك نموذج لغوي إلا إذا لزم الأمر."
+    ];
+
+    const answerStyle = [
+      "أسلوب الإجابة المطلوب:",
+      "1. ابدأ بجواب مباشر من 1 إلى 3 جمل.",
+      "2. ثم قدّم شرحًا منظمًا ومختصرًا.",
+      "3. إذا كان مناسبًا، أضف: لماذا هذا مهم؟",
+      "4. اختم بخطوة أو خطوتين عمليتين للتعلّم أو الفهم.",
+      "5. إذا كان السؤال قصيرًا جدًا مثل: مرحبا، أهلا، سلام، فابدأ بتحية قصيرة ثم اقترح أسئلة مفيدة يمكنه طرحها."
+    ];
+
     const prompt = [
-      "أنت مساعد تعليمي عربي داخل موقع أطلس الأمن السيبراني.",
-      "أجب بإيجاز ووضوح، وركز على الشرح الدفاعي والقانوني.",
-      "إذا كان السؤال خطيرًا أو هجوميًا، ارفض بلطف وقدّم بديلًا آمنًا.",
+      guidanceBlocks.join("\n"),
+      answerStyle.join("\n"),
+      `مصدر الطلب: ${source}`,
       history.length
         ? `آخر المحادثة:\n${history
             .map((item) => `سؤال: ${String(item?.question || "")}\nجواب: ${String(item?.answer || "")}`)
@@ -67,9 +90,9 @@ export default async function handler(req, res) {
             }
           ],
           generationConfig: {
-            temperature: 0.5,
-            topP: 0.9,
-            maxOutputTokens: 900
+            temperature: 0.65,
+            topP: 0.92,
+            maxOutputTokens: 1400
           }
         })
       }
