@@ -194,6 +194,7 @@
         flex-wrap: wrap;
         gap: 12px;
         padding: 14px 0;
+        position: relative;
       }
       .brand {
         display: flex;
@@ -235,12 +236,30 @@
         line-height: 1.35;
       }
       .nav-links {
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         gap: 8px;
         flex: 1 1 360px;
         flex-wrap: wrap;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(860px, calc(100vw - 32px));
+        padding: 12px;
+        border-radius: 24px;
+        background: rgba(1, 12, 3, 0.94);
+        border: 1px solid rgba(0, 255, 65, 0.14);
+        box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
+        backdrop-filter: blur(16px);
+        z-index: 60;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-sections-toggle {
+        min-width: 118px;
       }
       .navtab {
         padding: 9px 10px;
@@ -1142,6 +1161,37 @@
         font-size: 13.2px;
         font-weight: 820;
       }
+      .resource-links {
+        list-style: none;
+        margin: 12px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+      .resource-links li {
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.18);
+        padding: 10px 12px;
+        line-height: 1.75;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .resource-links a {
+        color: #9be9b6;
+        font-weight: 950;
+        text-decoration: none;
+      }
+      .resource-links a:hover {
+        text-decoration: underline;
+      }
+      .inline-note {
+        margin: 10px 0 0;
+        color: rgba(229, 238, 255, 0.76);
+        line-height: 1.8;
+        font-size: 13px;
+        font-weight: 790;
+      }
       .feature-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1759,11 +1809,38 @@
         display: grid;
         gap: 12px;
       }
+      .quiz-toolbar {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .quiz-toolbar .field {
+        display: grid;
+        gap: 8px;
+      }
+      .quiz-toolbar label {
+        color: rgba(248, 251, 255, 0.92);
+        font-size: 13px;
+        font-weight: 950;
+      }
+      .quiz-meta {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        padding: 12px 14px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.8;
+        font-weight: 840;
+      }
       .quiz-question {
         border-radius: 18px;
         border: 1px solid rgba(255, 255, 255, 0.12);
         background: rgba(0, 0, 0, 0.2);
         padding: 14px;
+      }
+      .quiz-question[hidden] {
+        display: none !important;
       }
       .quiz-question h4 {
         margin: 0;
@@ -2034,15 +2111,15 @@
           height: 26px;
         }
         .nav-links {
-          flex: 1 1 100%;
+          width: min(94vw, 520px);
           justify-content: flex-start;
-          flex-wrap: nowrap;
-          overflow-x: auto;
-          padding-bottom: 4px;
+          max-height: min(68vh, 460px);
+          overflow-y: auto;
+          padding: 10px;
           -webkit-overflow-scrolling: touch;
         }
         .nav-links::-webkit-scrollbar {
-          height: 6px;
+          width: 6px;
         }
         .nav-links::-webkit-scrollbar-thumb {
           background: rgba(255, 255, 255, 0.18);
@@ -3970,10 +4047,13 @@
               <small class="credit-top" data-i18n="credit">تم برمجته بواسطه عبدالله الخوالده | Instagram: bqq7k | اذا واجهت اي مشاكل: 0779122780</small>
             </div>
           </div>
-          <div class="nav-links" aria-label="أقسام الموقع">
+          <div class="nav-links" id="topNavLinks" aria-label="أقسام الموقع">
             <a href="#siteMapPanel">البوابة</a>
             <a href="#beginnerPanel">ابدأ من هنا</a>
+            <a href="#frontendMasterPanel">Frontend</a>
             <a href="#toolsHub">الأدوات</a>
+            <a href="#ideasAtlasPanel">الأفكار</a>
+            <a href="#miniArticlesPanel">المقالات</a>
             <a href="#phishingDefensePanel">Phishing</a>
             <a href="#cyberDomainsPanel">المجالات</a>
             <a href="#researcherPathPanel">الباحث الأمني</a>
@@ -3982,6 +4062,9 @@
             <a href="#aboutSitePanel">عن الموقع</a>
           </div>
           <div class="nav-actions">
+            <button id="navSectionsToggle" class="btn ghost nav-sections-toggle" type="button" aria-expanded="false" aria-controls="topNavLinks">
+              <span aria-hidden="true">▤</span><span>أقسام الموقع</span>
+            </button>
             <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="فتح القائمة">
               <span>☰</span><span class="sidebar-toggle-text">القائمة</span>
             </button>
@@ -4031,9 +4114,21 @@
           <div class="sidebar-link-icon">🚀</div>
           <span>ابدأ من هنا</span>
         </a>
+        <a href="#frontendMasterPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">💻</div>
+          <span>HTML / CSS / JS</span>
+        </a>
+        <a href="#ideasAtlasPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🧩</div>
+          <span>أفكار التطوير</span>
+        </a>
         <a href="#referencesPanel" class="sidebar-link">
           <div class="sidebar-link-icon">📘</div>
           <span>المراجع والشهادات</span>
+        </a>
+        <a href="#miniArticlesPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">📰</div>
+          <span>مقالات مصغرة</span>
         </a>
         <a href="#glossaryPanel" class="sidebar-link">
           <div class="sidebar-link-icon">🧠</div>
@@ -5582,46 +5677,136 @@ Report template:
           <div class="panel-inner">
             <div class="section-head" style="margin-top: 0">
               <div>
-                <h2>المراجع والشهادات</h2>
-                <p>تطبيق فعلي لفكرة المكتبة المرجعية: شهادات، كورسات، كتب، ومسارات موصى بها.</p>
+                <h2>المراجع والشهادات والكتب والكورسات</h2>
+                <p>تحولت هذه المساحة إلى مكتبة مرجعية أوسع: شهادات، كورسات مفصلة، كتب أساسية، ومنصات تدريب مع وصف يجعل اختيارك أسهل.</p>
               </div>
             </div>
             <div class="info-grid">
               <article class="info-card">
                 <h4>شهادات للبدء</h4>
                 <ul class="idea-list">
-                  <li>CompTIA Security+</li>
-                  <li>eJPT</li>
-                  <li>PNPT</li>
-                  <li>OSCP للمستوى المتقدم</li>
+                  <li><b>CompTIA Security+</b>: بداية نظرية ممتازة لفهم المفاهيم العامة والسوق.</li>
+                  <li><b>eJPT</b>: خيار عملي جيد للمختبرات والاختبار القانوني للمبتدئ.</li>
+                  <li><b>PNPT</b>: يربط بين الجانب العملي وكتابة التقارير والتفكير الواقعي.</li>
+                  <li><b>OSCP</b>: للمستوى المتقدم ولمن يريد مسارًا عمليًا صارمًا.</li>
+                </ul>
+                <ul class="resource-links">
+                  <li><a href="https://www.comptia.org/certifications/security" target="_blank" rel="noreferrer">CompTIA Security+</a> صفحة الشهادة الرسمية للبداية النظرية.</li>
+                  <li><a href="https://security.ine.com/certifications/ejpt-certification/" target="_blank" rel="noreferrer">INE eJPT</a> مسار عملي مناسب للمختبرات القانونية.</li>
+                  <li><a href="https://certifications.tcm-sec.com/pnpt/" target="_blank" rel="noreferrer">PNPT</a> يركز على التطبيق الواقعي والتقرير النهائي.</li>
+                  <li><a href="https://www.offsec.com/courses/pen-200/" target="_blank" rel="noreferrer">OSCP / PEN-200</a> للمستوى العملي المتقدم.</li>
                 </ul>
               </article>
               <article class="info-card">
-                <h4>كورسات تأسيسية</h4>
+                <h4>كورسات تأسيسية مفصلة</h4>
                 <ul class="idea-list">
-                  <li>Linux Full Course</li>
-                  <li>Networking Fundamentals</li>
-                  <li>Python Full Course</li>
-                  <li>CS50 Introduction to Computer Science</li>
+                  <li><b>Linux Full Course</b>: لتأسيس الطرفية والملفات والصلاحيات والعمل اليومي.</li>
+                  <li><b>Networking Fundamentals</b>: لفهم IP وDNS وHTTP والبروتوكولات من الأساس.</li>
+                  <li><b>Python Full Course</b>: للأتمتة وبناء السكربتات والمنطق البرمجي.</li>
+                  <li><b>CS50</b>: لتقوية طريقة التفكير البرمجي بشكل أعمق من الحفظ.</li>
+                </ul>
+                <ul class="resource-links">
+                  <li><a href="https://www.freecodecamp.org/" target="_blank" rel="noreferrer">freeCodeCamp</a> دورات تأسيسية طويلة ومجانية في البرمجة والويب.</li>
+                  <li><a href="https://cs50.harvard.edu/x/" target="_blank" rel="noreferrer">CS50</a> واحد من أقوى المداخل لفهم البرمجة علميًا وعمليًا.</li>
+                  <li><a href="https://www.theodinproject.com/" target="_blank" rel="noreferrer">The Odin Project</a> مسار ويب تطبيقي مرتب من البداية للمشاريع.</li>
+                  <li><a href="https://developer.mozilla.org/" target="_blank" rel="noreferrer">MDN Web Docs</a> المرجع الأوضح أثناء تعلم HTML وCSS وJavaScript.</li>
                 </ul>
               </article>
               <article class="info-card">
-                <h4>كتب ومراجع</h4>
+                <h4>كتب ومراجع أساسية</h4>
                 <ul class="idea-list">
-                  <li>Computer Networking: A Top-Down Approach</li>
-                  <li>Linux Basics for Hackers</li>
-                  <li>The Web Application Hacker's Handbook</li>
-                  <li>Practical Malware Analysis</li>
+                  <li><b>Computer Networking: A Top-Down Approach</b>: أفضل مدخل أكاديمي للشبكات.</li>
+                  <li><b>Linux Basics for Hackers</b>: كتاب عملي جيد للمختبرات والبداية مع لينكس.</li>
+                  <li><b>The Web Application Hacker's Handbook</b>: مرجع كلاسيكي لفهم أمن الويب.</li>
+                  <li><b>Practical Malware Analysis</b>: مدخل قوي لفهم تحليل البرمجيات الخبيثة.</li>
                 </ul>
+                <p class="inline-note">أفضل استخدام لهذه الكتب: اختر كتابًا واحدًا أساسيًا لكل شهر، واكتب بعد كل فصل ملخصًا قصيرًا وتمرينًا صغيرًا بدل القراءة السلبية فقط.</p>
               </article>
               <article class="info-card">
                 <h4>منصات تدريب</h4>
                 <ul class="idea-list">
-                  <li>TryHackMe</li>
-                  <li>Hack The Box</li>
-                  <li>PortSwigger Web Security Academy</li>
-                  <li>OverTheWire</li>
+                  <li><b>TryHackMe</b>: مناسب جدًا للبداية ومساراته مرتبة.</li>
+                  <li><b>Hack The Box</b>: أقوى للمستوى المتوسط وما بعده.</li>
+                  <li><b>PortSwigger Academy</b>: الأفضل تقريبًا لتعلم أمن الويب عمليًا.</li>
+                  <li><b>OverTheWire</b>: ممتاز لبناء عقلية حل المشكلات ولينكس.</li>
                 </ul>
+                <ul class="resource-links">
+                  <li><a href="https://tryhackme.com/" target="_blank" rel="noreferrer">TryHackMe</a> للمبتدئ الذي يريد مسارات واضحة ومختبرات جاهزة.</li>
+                  <li><a href="https://academy.hackthebox.com/" target="_blank" rel="noreferrer">HTB Academy</a> للمستوى الأعلى وبناء عمق تقني أكبر.</li>
+                  <li><a href="https://portswigger.net/web-security" target="_blank" rel="noreferrer">PortSwigger Web Security Academy</a> مرجع عملي قوي جدًا لأمن الويب.</li>
+                  <li><a href="https://overthewire.org/wargames/" target="_blank" rel="noreferrer">OverTheWire</a> ممتاز لتقوية لينكس والتفكير التحليلي.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كورسات واجهات ومطور ويب</h4>
+                <ul class="idea-list">
+                  <li><b>HTML/CSS Full Course</b>: لبناء الأساس البصري والتخطيطي.</li>
+                  <li><b>JavaScript Full Course</b>: لفهم DOM والتفاعل والمنطق.</li>
+                  <li><b>React Full Course</b>: بعد إتقان الأساسيات مباشرة.</li>
+                  <li><b>Next.js + TypeScript</b>: للمشاريع الحديثة وسوق العمل.</li>
+                </ul>
+                <ul class="resource-links">
+                  <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development" target="_blank" rel="noreferrer">MDN Learn Web Development</a> مسار منظم جدًا لأساسيات الويب.</li>
+                  <li><a href="https://www.freecodecamp.org/learn/" target="_blank" rel="noreferrer">freeCodeCamp Learn</a> تمارين وشهادات مجانية للمبتدئ.</li>
+                  <li><a href="https://react.dev/learn" target="_blank" rel="noreferrer">React Learn</a> المرجع الأهم لفهم React بالطريقة الصحيحة.</li>
+                  <li><a href="https://nextjs.org/learn" target="_blank" rel="noreferrer">Next.js Learn</a> لبناء مشاريع حديثة خطوة بخطوة.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كتب للمطورين</h4>
+                <ul class="idea-list">
+                  <li><b>Clean Code</b>: لتحسين أسلوب كتابة الكود وتنظيمه.</li>
+                  <li><b>You Don't Know JS</b>: لفهم JavaScript بعمق.</li>
+                  <li><b>Eloquent JavaScript</b>: مناسب جدًا للدراسة الجدية.</li>
+                  <li><b>Designing Data-Intensive Applications</b>: مرجع قوي للمستويات الأعلى.</li>
+                </ul>
+                <ul class="resource-links">
+                  <li><a href="https://eloquentjavascript.net/" target="_blank" rel="noreferrer">Eloquent JavaScript</a> متاح مجانًا على الويب للدراسة الجدية.</li>
+                  <li><a href="https://github.com/getify/You-Dont-Know-JS" target="_blank" rel="noreferrer">You Don't Know JS</a> لفهم JavaScript بعمق أكبر.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>كورسات Backend و Full Stack</h4>
+                <ul class="idea-list">
+                  <li><b>Node.js Full Course</b>: لفهم الخادم بلغة JavaScript.</li>
+                  <li><b>Express.js Course</b>: لبناء APIs مرتبة وقابلة للتوسع.</li>
+                  <li><b>SQL / PostgreSQL</b>: لفهم قواعد البيانات بشكل جدي.</li>
+                  <li><b>Docker للمطور</b>: لجعل المشاريع تعمل بثبات في أي بيئة.</li>
+                </ul>
+                <ul class="resource-links">
+                  <li><a href="https://nodejs.org/en/learn" target="_blank" rel="noreferrer">Node.js Learn</a> مدخل رسمي لفهم بيئة Node.</li>
+                  <li><a href="https://expressjs.com/" target="_blank" rel="noreferrer">Express.js</a> موقع الإطار الرسمي والوثائق الأساسية.</li>
+                  <li><a href="https://www.postgresql.org/docs/" target="_blank" rel="noreferrer">PostgreSQL Docs</a> مرجع قوي عندما تبدأ الجدية مع SQL.</li>
+                  <li><a href="https://docs.docker.com/get-started/" target="_blank" rel="noreferrer">Docker Get Started</a> بداية واضحة لفهم الحاويات عمليًا.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>خريطة استخدام المكتبة</h4>
+                <ul class="idea-list">
+                  <li>إذا كنت مبتدئًا: ابدأ بالكورسات التأسيسية ثم الشهادات الأولى.</li>
+                  <li>إذا كنت مطورًا: ابدأ بكتب المطورين وكورسات الواجهات.</li>
+                  <li>إذا أردت الأمن العملي: انتقل إلى المنصات التدريبية والكتب المتخصصة.</li>
+                  <li>إذا أردت Full Stack: امزج بين Frontend وBackend وDatabase.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>مكتبة يوتيوب التعليمية</h4>
+                <ul class="resource-links">
+                  <li><a href="https://www.youtube.com/@freecodecamp" target="_blank" rel="noreferrer">freeCodeCamp</a> دورات طويلة جدًا ومجانية في الويب والبرمجة.</li>
+                  <li><a href="https://www.youtube.com/@TraversyMedia" target="_blank" rel="noreferrer">Traversy Media</a> ممتاز لبناء صورة واسعة عن الويب وFull Stack.</li>
+                  <li><a href="https://www.youtube.com/@TheCyberMentor" target="_blank" rel="noreferrer">The Cyber Mentor</a> محتوى قوي للمسارات الأمنية القانونية.</li>
+                  <li><a href="https://www.youtube.com/@JohnHammond010" target="_blank" rel="noreferrer">John Hammond</a> مناسب لتوسيع الفهم الأمني والمختبرات والتحليل.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>ترتيب دراسة مقترح</h4>
+                <ul class="idea-list">
+                  <li>الشهر 1: HTML وCSS وGit وLinux basics.</li>
+                  <li>الشهر 2: JavaScript وDOM ومشاريع صغيرة.</li>
+                  <li>الشهر 3: React أو Networking Fundamentals بحسب مسارك.</li>
+                  <li>الشهر 4: Backend أو Security Labs مع مشروع موثق.</li>
+                </ul>
+                <p class="inline-note">هذا الترتيب يخفف التشتت: لا تدخل أكثر من مسار ثقيل في نفس الوقت إذا كنت ما زلت تبني الأساس.</p>
               </article>
             </div>
           </div>
@@ -5631,20 +5816,1160 @@ Report template:
             <div class="section-head" style="margin-top: 0">
               <div>
                 <h2>قاموس مصطلحات سيبرانية</h2>
-                <p>تطبيق فعلي لفكرة القاموس والمصطلحات لتقليل الغموض على المبتدئ.</p>
+                <p>تطبيق فعلي لفكرة القاموس والمصطلحات لتقليل الغموض على المبتدئ. الترتيب هنا صار أوسع وأقرب للترتيب الأبجدي حتى تصل للمصطلح أسرع.</p>
               </div>
             </div>
             <div class="term-grid">
-              <div class="term-card"><strong>OSI</strong><span>نموذج يشرح كيف تنتقل البيانات بين طبقات الشبكة.</span></div>
-              <div class="term-card"><strong>TCP</strong><span>بروتوكول اتصال موثوق يعتمد الترتيب والتأكيد.</span></div>
-              <div class="term-card"><strong>UDP</strong><span>بروتوكول أخف وأسرع لكنه لا يضمن الترتيب أو التسليم.</span></div>
+              <div class="term-card"><strong>API</strong><span>واجهة تسمح للتطبيقات أن تتبادل البيانات والطلبات بشكل منظم.</span></div>
+              <div class="term-card"><strong>Attack Surface</strong><span>كل النقاط التي يمكن أن يستهدفها المهاجم داخل النظام أو الخدمة.</span></div>
+              <div class="term-card"><strong>Authentication</strong><span>عملية التحقق من هوية المستخدم أو الخدمة.</span></div>
+              <div class="term-card"><strong>Authorization</strong><span>تحديد ما الذي يحق للمستخدم فعله بعد إثبات هويته.</span></div>
+              <div class="term-card"><strong>Backup</strong><span>نسخة احتياطية تُستخدم لاستعادة البيانات بعد خطأ أو حادث.</span></div>
+              <div class="term-card"><strong>Burp Suite</strong><span>منصة شهيرة لتحليل تطبيقات الويب واختبارها بشكل قانوني داخل المختبرات.</span></div>
+              <div class="term-card"><strong>CI/CD</strong><span>خطوات آلية لبناء المشروع واختباره ونشره بشكل منظم.</span></div>
+              <div class="term-card"><strong>Component</strong><span>جزء مستقل من الواجهة يمكن إعادة استخدامه داخل التطبيق.</span></div>
+              <div class="term-card"><strong>Container</strong><span>وحدة تشغيل معزولة نسبيًا تساعد على نقل التطبيق مع بيئته بسهولة.</span></div>
+              <div class="term-card"><strong>Cookie</strong><span>بيانات صغيرة يخزنها المتصفح لدعم الجلسات والتفضيلات وبعض وظائف الموقع.</span></div>
+              <div class="term-card"><strong>Cross-Origin</strong><span>يشير إلى اختلاف المصدر بين موقعين أو طلبين من حيث الدومين أو البروتوكول أو المنفذ.</span></div>
+              <div class="term-card"><strong>CSRF</strong><span>هجوم يستغل جلسة المستخدم لإرسال طلب غير مقصود نيابة عنه.</span></div>
+              <div class="term-card"><strong>Database</strong><span>مكان منظم لتخزين البيانات واسترجاعها وإدارتها.</span></div>
+              <div class="term-card"><strong>Detection Engineering</strong><span>بناء قواعد وأساليب لاكتشاف السلوكيات المشبوهة داخل البيئة.</span></div>
               <div class="term-card"><strong>DNS</strong><span>خدمة تحويل أسماء النطاقات إلى عناوين IP.</span></div>
-              <div class="term-card"><strong>HTTP</strong><span>بروتوكول تبادل بيانات الويب بين المتصفح والخادم.</span></div>
-              <div class="term-card"><strong>MFA</strong><span>مصادقة متعددة العوامل لرفع مستوى الأمان.</span></div>
-              <div class="term-card"><strong>SIEM</strong><span>منصة تجمع السجلات وتحللها لإعطاء تنبيهات أمنية.</span></div>
-              <div class="term-card"><strong>OSINT</strong><span>جمع معلومات من مصادر مفتوحة وبشكل قانوني.</span></div>
+              <div class="term-card"><strong>Docker</strong><span>أداة لتشغيل التطبيقات داخل حاويات معزولة ومنظمة.</span></div>
+              <div class="term-card"><strong>DOM</strong><span>التمثيل الذي يسمح لـ JavaScript بالتعامل مع عناصر الصفحة وتغييرها.</span></div>
+              <div class="term-card"><strong>EDR</strong><span>حل أمني يراقب الأجهزة الطرفية ويحلل السلوك ويستجيب للتهديدات.</span></div>
+              <div class="term-card"><strong>Endpoint</strong><span>جهاز أو نقطة نهائية داخل الشبكة مثل حاسوب أو هاتف أو خادم.</span></div>
+              <div class="term-card"><strong>Enumeration</strong><span>جمع معلومات منظمة عن الخدمات والمنافذ والمستخدمين ضمن بيئة مصرح بها.</span></div>
+              <div class="term-card"><strong>Express.js</strong><span>إطار Node.js بسيط ومرن لبناء الخوادم وواجهات API.</span></div>
+              <div class="term-card"><strong>Flexbox</strong><span>نظام CSS لترتيب العناصر في صف أو عمود بشكل مرن.</span></div>
               <div class="term-card"><strong>Forensics</strong><span>تحليل الأدلة الرقمية بعد الحوادث أو أثناء التحقيق.</span></div>
+              <div class="term-card"><strong>Git</strong><span>نظام لإدارة الإصدارات وتتبع التغييرات داخل المشاريع البرمجية.</span></div>
+              <div class="term-card"><strong>Grid</strong><span>نظام CSS قوي لتصميم تخطيطات متعددة الأعمدة والصفوف.</span></div>
+              <div class="term-card"><strong>Hashing</strong><span>تحويل البيانات إلى بصمة ثابتة غالبًا تستخدم مع كلمات المرور.</span></div>
+              <div class="term-card"><strong>HTTP</strong><span>بروتوكول تبادل بيانات الويب بين المتصفح والخادم.</span></div>
+              <div class="term-card"><strong>HTTPS</strong><span>نسخة محمية من HTTP تستخدم التشفير أثناء نقل البيانات.</span></div>
+              <div class="term-card"><strong>IAM</strong><span>إدارة الهويات والصلاحيات داخل الأنظمة والمنصات.</span></div>
+              <div class="term-card"><strong>Incident Response</strong><span>الاستجابة المنظمة للحوادث الأمنية من الاكتشاف حتى الاحتواء والتعافي.</span></div>
+              <div class="term-card"><strong>JWT</strong><span>صيغة شائعة للتوكنات تُستخدم في المصادقة ونقل بيانات الهوية.</span></div>
+              <div class="term-card"><strong>JWT Auth</strong><span>أسلوب شائع لإدارة جلسات الدخول باستخدام توكنات موقعة.</span></div>
+              <div class="term-card"><strong>Kubernetes</strong><span>منصة لإدارة الحاويات وتشغيلها وتوسيعها على نطاق أكبر.</span></div>
+              <div class="term-card"><strong>LocalStorage</strong><span>تخزين بسيط داخل المتصفح يحتفظ ببعض البيانات محليًا.</span></div>
+              <div class="term-card"><strong>Log</strong><span>سجل يحتوي أحداثًا أو رسائل تساعد على الفهم والتحليل والاستجابة.</span></div>
+              <div class="term-card"><strong>Malware</strong><span>برمجيات خبيثة صممت لإيذاء النظام أو سرقة البيانات أو تعطيل الخدمة.</span></div>
+              <div class="term-card"><strong>MFA</strong><span>مصادقة متعددة العوامل لرفع مستوى الأمان.</span></div>
+              <div class="term-card"><strong>Middleware</strong><span>طبقة تمرّ عبرها الطلبات في الخادم لإضافة تحقق أو منطق أو حماية.</span></div>
+              <div class="term-card"><strong>React</strong><span>مكتبة JavaScript لبناء واجهات المستخدم على شكل مكونات.</span></div>
+              <div class="term-card"><strong>Next.js</strong><span>إطار فوق React يساعد على بناء تطبيقات ومواقع أكثر جاهزية للنشر.</span></div>
+              <div class="term-card"><strong>Node.js</strong><span>بيئة تشغيل JavaScript خارج المتصفح لبناء أدوات وخوادم.</span></div>
+              <div class="term-card"><strong>OSI</strong><span>نموذج يشرح كيف تنتقل البيانات بين طبقات الشبكة.</span></div>
+              <div class="term-card"><strong>OSINT</strong><span>جمع معلومات من مصادر مفتوحة وبشكل قانوني.</span></div>
+              <div class="term-card"><strong>Patch Management</strong><span>إدارة تحديثات البرامج والأنظمة لسد الثغرات وتقليل المخاطر.</span></div>
+              <div class="term-card"><strong>Phishing</strong><span>خداع المستخدم برسالة أو صفحة مزيفة لسرقة بياناته أو دفعه لتصرف خطير.</span></div>
+              <div class="term-card"><strong>PostgreSQL</strong><span>قاعدة بيانات علائقية قوية جدًا تستخدم في مشاريع حقيقية كثيرة.</span></div>
+              <div class="term-card"><strong>Prisma</strong><span>أداة حديثة للتعامل مع قواعد البيانات بشكل منظم داخل مشاريع Node وTypeScript.</span></div>
+              <div class="term-card"><strong>Privilege Escalation</strong><span>الوصول إلى صلاحيات أعلى من المسموح به داخل النظام أو التطبيق.</span></div>
+              <div class="term-card"><strong>Rate Limiting</strong><span>تقييد عدد الطلبات خلال زمن محدد لتقليل الإساءة والحمل الزائد.</span></div>
+              <div class="term-card"><strong>REST</strong><span>أسلوب شائع لبناء APIs باستخدام موارد وطرق طلب واضحة.</span></div>
+              <div class="term-card"><strong>Responsive Design</strong><span>تصميم يتكيف مع الهاتف والكمبيوتر والأحجام المختلفة للشاشات.</span></div>
+              <div class="term-card"><strong>Reverse Proxy</strong><span>خادم وسيط أمامي يمرر الطلبات إلى خوادم داخلية وقد يضيف حماية وتنظيمًا.</span></div>
+              <div class="term-card"><strong>Sandbox</strong><span>بيئة معزولة تستخدم لاختبار الملفات أو الشيفرات وتقليل الخطر.</span></div>
+              <div class="term-card"><strong>SIEM</strong><span>منصة تجمع السجلات وتحللها لإعطاء تنبيهات أمنية.</span></div>
+              <div class="term-card"><strong>SQL Injection</strong><span>ثغرة تنتج من التعامل غير الآمن مع مدخلات قواعد البيانات.</span></div>
+              <div class="term-card"><strong>TCP</strong><span>بروتوكول اتصال موثوق يعتمد الترتيب والتأكيد.</span></div>
+              <div class="term-card"><strong>Threat Hunting</strong><span>بحث استباقي داخل البيئة عن مؤشرات تهديد قبل تحوله إلى حادث واضح.</span></div>
+              <div class="term-card"><strong>Token</strong><span>قيمة رقمية أو نصية تمثل جلسة أو صلاحية أو هوية مؤقتة.</span></div>
+              <div class="term-card"><strong>TypeScript</strong><span>امتداد لـ JavaScript يضيف أنواع بيانات أوضح وينظم المشاريع الكبيرة.</span></div>
+              <div class="term-card"><strong>UDP</strong><span>بروتوكول أخف وأسرع لكنه لا يضمن الترتيب أو التسليم.</span></div>
+              <div class="term-card"><strong>VPN</strong><span>نفق اتصال يساعد على رفع الخصوصية وحماية البيانات أثناء النقل.</span></div>
+              <div class="term-card"><strong>WAF</strong><span>جدار ناري لتطبيقات الويب يرشح بعض الطلبات الضارة ويحسن الحماية.</span></div>
+              <div class="term-card"><strong>XSS</strong><span>ثغرة تسمح بحقن JavaScript خبيث داخل صفحة يراها المستخدم.</span></div>
             </div>
+          </div>
+        </section>
+        <section class="panel" id="miniArticlesPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>مقالات مصغرة</h2>
+                <p>هذا القسم يضيف نمطًا جديدًا للمحتوى: مقالات قصيرة، مركزة، وسريعة الفهم، حتى يقرأ المستخدم فكرة كاملة في دقائق بدل الغرق دائمًا في شروح طويلة.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>لماذا يبدأ كثيرون بالأدوات بشكل خاطئ؟</h4>
+                <p>لأن الأداة تعطي شعورًا سريعًا بالتقدم، لكنها لا تعطي الفهم. المتعلم القوي يبدأ من الأساسيات: الشبكات، الأنظمة، البرمجة، ثم يرى الأدوات كوسيلة لا كهدف.</p>
+              </article>
+              <article class="info-card">
+                <h4>كيف تعرف أن مستواك يتحسن فعلًا؟</h4>
+                <p>ليس بعدد الفيديوهات التي شاهدتها، بل بعدد المشاريع، الملاحظات، والتقارير التي أنتجتها بنفسك. المخرج الحقيقي أهم من الاستهلاك النظري.</p>
+              </article>
+              <article class="info-card">
+                <h4>ما الفرق بين التعلم والاحتراف؟</h4>
+                <p>المتعلم يعرف المفاهيم، أما المحترف فيعرف متى يطبقها، وكيف يشرحها، وكيف يوثقها، وكيف يبني حولها مشروعًا أو حلًا واقعيًا.</p>
+              </article>
+              <article class="info-card">
+                <h4>لماذا GitHub مهم جدًا؟</h4>
+                <p>لأنه ليس مجرد مكان لحفظ الملفات. هو سجل نموك، معرض أعمالك، والدليل العملي على أنك تبني شيئًا حقيقيًا وقابلًا للمراجعة.</p>
+              </article>
+              <article class="info-card">
+                <h4>متى تنتقل من Frontend إلى Full Stack؟</h4>
+                <p>بعد أن تستطيع بناء واجهات قوية، متجاوبة، ومنظمة. وقتها يصبح الانتقال إلى APIs وقواعد البيانات منطقيًا بدل أن يكون قفزة عشوائية.</p>
+              </article>
+              <article class="info-card">
+                <h4>لماذا المصطلحات تربك المبتدئ؟</h4>
+                <p>لأنها تأتيه قبل السياق. لذلك أفضل طريقة لتعلم أي مصطلح هي ربطه بمثال عملي، لا بحفظ تعريف نظري فقط.</p>
+              </article>
+              <article class="info-card">
+                <h4>كيف تقرأ دورة كاملة بدون أن تضيع؟</h4>
+                <p>قسّم الدورة إلى وحدات، وكل وحدة إلى ملاحظات وتمارين ومشروع صغير. بهذه الطريقة لا تتحول المشاهدة إلى استهلاك فقط، بل إلى بناء متدرج ونتائج واضحة.</p>
+              </article>
+              <article class="info-card">
+                <h4>ما الذي يجعل مشروعك قويًا فعلًا؟</h4>
+                <p>أن يكون فيه هدف واضح، تنظيم جيد، واجهة مفهومة، README مرتب، وتجربة حية أو صور. المشروع القوي يشرح مستواك بدون كثير كلام.</p>
+              </article>
+              <article class="info-card">
+                <h4>كيف تختار بين Frontend وCybersecurity؟</h4>
+                <p>اسأل نفسك: هل تستمتع ببناء الواجهات والمنطق البرمجي؟ أم بتحليل الأنظمة والمخاطر والشبكات؟ الاهتمام الحقيقي أهم من تقليد المسارات الشائعة.</p>
+              </article>
+              <article class="info-card">
+                <h4>لماذا التوثيق مهارة ذهبية؟</h4>
+                <p>لأن التوثيق يحول شغلك من مجهود شخصي إلى معرفة قابلة للنقل والفهم. كثيرون يبنون أشياء جيدة لكنهم لا يعرفون كيف يشرحونها.</p>
+              </article>
+              <article class="info-card">
+                <h4>لماذا يفشل كثير من الناس في أول 30 يوم؟</h4>
+                <p>لأنهم يبنون خطة أكبر من طاقتهم اليومية. الاستمرار لا يحتاج حماسًا خارقًا، بل روتينًا صغيرًا ثابتًا: ساعة أو ساعتان يوميًا مع تطبيق حقيقي.</p>
+              </article>
+              <article class="info-card">
+                <h4>ما أفضل طريقة لتعلم مصطلح جديد؟</h4>
+                <p>اكتب تعريفه بجملة بسيطة، ثم مثالًا عليه، ثم أين رأيته في مشروع أو أداة. هذه الثلاثية تثبّت الفهم أسرع من الحفظ المجرد.</p>
+              </article>
+              <article class="info-card">
+                <h4>هل كثرة الكورسات ترفع المستوى؟</h4>
+                <p>ليس دائمًا. أحيانًا كثرة الكورسات تغطي على ضعف التطبيق. الكورس الجيد يصبح قويًا فقط عندما ينتج عنه ملاحظات، مشروع، ومراجعة لاحقة.</p>
+              </article>
+              <article class="info-card">
+                <h4>كيف تبني عادة مراجعة أسبوعية؟</h4>
+                <p>خصص نهاية كل أسبوع لثلاثة أمور: ما الذي فهمته، ما الذي ما زال ضبابيًا، وما الشيء الذي ستبنيه الأسبوع القادم. هذا وحده يغيّر سرعة التعلم جدًا.</p>
+              </article>
+              <article class="info-card">
+                <h4>لماذا المشروع الصغير أفضل من فكرة ضخمة؟</h4>
+                <p>لأن المشروع الصغير يُنجز. الإنجاز يولد ثقة، والثقة تولد استمرارًا. أما المشروع الضخم مبكرًا فيستهلك الطاقة قبل أن يعطيك نتيجة.</p>
+              </article>
+              <article class="info-card">
+                <h4>كيف تعرف أن شرح المدرس ضعيف بالنسبة لك؟</h4>
+                <p>إذا خرجت بمصطلحات كثيرة لكن بدون صورة ذهنية واضحة أو مثال تطبيقي، فالمشكلة ليست دائمًا فيك. الشرح القوي يجعل الفكرة قابلة للرؤية لا للحفظ فقط.</p>
+              </article>
+              <article class="info-card">
+                <h4>متى تبدأ بالتخصص؟</h4>
+                <p>بعد أن تبني قاعدة عامة تحميك من الضياع. التخصص المبكر جدًا يجعلك قويًا في زاوية وضعيفًا في الصورة الكاملة، بينما القاعدة الجيدة تمنحك مرونة أكبر.</p>
+              </article>
+              <article class="info-card">
+                <h4>هل كتابة الملاحظات فعلًا مهمة؟</h4>
+                <p>نعم، لأن الملاحظة ليست نسخة من الشرح؛ هي إعادة صياغة للفهم بلغتك أنت. عندما تشرح الفكرة لنفسك، تصبح أقرب لتثبيتها واستخدامها لاحقًا.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="ideasAtlasPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>أطلس أفكار تطوير الموقع</h2>
+                <p>هذه المساحة تجمع الأفكار كلها لكن بشكل مرتب وواضح: كل مجموعة تمثل محورًا كاملًا يمكن تحويله لاحقًا إلى صفحات أو ميزات فعلية داخل الموقع.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>1. البداية والتوجيه</h4>
+                <ul class="idea-list">
+                  <li>صفحة ابدأ من هنا للمبتدئ.</li>
+                  <li>صفحة خارطة الطريق حسب الهدف.</li>
+                  <li>صفحة أفضل مسار لي؟</li>
+                  <li>صفحة المبتدئ في السيبراني.</li>
+                  <li>صفحة المبتدئ في البرمجة.</li>
+                  <li>صفحة المبتدئ في Linux.</li>
+                  <li>صفحة المبتدئ في الشبكات.</li>
+                  <li>صفحة المبتدئ في Frontend.</li>
+                  <li>صفحة المبتدئ في Full Stack.</li>
+                  <li>صفحة المبتدئ في أمن الويب.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>2. الاختبارات والتقييم</h4>
+                <ul class="idea-list">
+                  <li>اختبار تحديد مستوى أولي.</li>
+                  <li>اختبار سيبراني مبتدئ.</li>
+                  <li>اختبار سيبراني متوسط.</li>
+                  <li>اختبار سيبراني متقدم.</li>
+                  <li>اختبار Frontend مبتدئ.</li>
+                  <li>اختبار Frontend متوسط.</li>
+                  <li>اختبار Full Stack.</li>
+                  <li>اختبار مصطلحات.</li>
+                  <li>اختبار شبكات.</li>
+                  <li>اختبار Linux.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>3. القواميس والمصطلحات</h4>
+                <ul class="idea-list">
+                  <li>صفحة المصطلحات الأبجدية.</li>
+                  <li>صفحة مصطلحات الويب.</li>
+                  <li>صفحة مصطلحات السيبراني.</li>
+                  <li>صفحة مصطلحات الشبكات.</li>
+                  <li>صفحة مصطلحات البرمجة.</li>
+                  <li>صفحة مصطلحات React.</li>
+                  <li>صفحة مصطلحات السيرفر.</li>
+                  <li>صفحة مصطلحات الحماية.</li>
+                  <li>صفحة مصطلحات البريد.</li>
+                  <li>صفحة مصطلحات التحقيق الرقمي.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>4. الكتب والكورسات</h4>
+                <ul class="idea-list">
+                  <li>صفحة كتب للمبتدئين.</li>
+                  <li>صفحة كتب للمستوى المتوسط.</li>
+                  <li>صفحة كتب متقدمة.</li>
+                  <li>صفحة كورسات مجانية.</li>
+                  <li>صفحة كورسات مدفوعة.</li>
+                  <li>صفحة أفضل قنوات يوتيوب.</li>
+                  <li>صفحة أفضل مواقع تدريب.</li>
+                  <li>صفحة أفضل منصات مختبرات.</li>
+                  <li>صفحة أفضل مراجع رسمية.</li>
+                  <li>صفحة مكتبة PDF مرتبة.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>5. المقالات القصيرة</h4>
+                <ul class="idea-list">
+                  <li>صفحة مقالات قصيرة.</li>
+                  <li>صفحة مقالات للمبتدئ.</li>
+                  <li>صفحة مقالات عن التشتت.</li>
+                  <li>صفحة مقالات عن بناء العادات.</li>
+                  <li>صفحة مقالات عن GitHub.</li>
+                  <li>صفحة مقالات عن الوظائف.</li>
+                  <li>صفحة مقالات عن الدراسة الذكية.</li>
+                  <li>صفحة مقالات عن التخصص.</li>
+                  <li>صفحة مقالات عن المشاريع.</li>
+                  <li>صفحة مقالات عن الأخطاء الشائعة.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>6. المشاريع العملية</h4>
+                <ul class="idea-list">
+                  <li>صفحة مشاريع للمبتدئ.</li>
+                  <li>صفحة مشاريع HTML/CSS.</li>
+                  <li>صفحة مشاريع JavaScript.</li>
+                  <li>صفحة مشاريع React.</li>
+                  <li>صفحة مشاريع Node.js.</li>
+                  <li>صفحة مشاريع Full Stack.</li>
+                  <li>صفحة مشاريع سيبرانية قانونية.</li>
+                  <li>صفحة مشاريع شبكات.</li>
+                  <li>صفحة مشاريع Linux.</li>
+                  <li>صفحة مشاريع Portfolio.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>7. الخطط الزمنية</h4>
+                <ul class="idea-list">
+                  <li>صفحة خطة 30 يوم.</li>
+                  <li>صفحة خطة 60 يوم.</li>
+                  <li>صفحة خطة 90 يوم.</li>
+                  <li>صفحة خطة 6 أشهر.</li>
+                  <li>صفحة خطة سنة كاملة.</li>
+                  <li>صفحة روتين يومي.</li>
+                  <li>صفحة روتين أسبوعي.</li>
+                  <li>صفحة خطة للمشغولين.</li>
+                  <li>صفحة خطة للجامعة.</li>
+                  <li>صفحة خطة بعد التخرج.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>8. المسارات التخصصية</h4>
+                <ul class="idea-list">
+                  <li>صفحة Frontend Roadmap.</li>
+                  <li>صفحة Backend Roadmap.</li>
+                  <li>صفحة Full Stack Roadmap.</li>
+                  <li>صفحة Cybersecurity Roadmap.</li>
+                  <li>صفحة SOC Analyst Roadmap.</li>
+                  <li>صفحة Bug Bounty Roadmap.</li>
+                  <li>صفحة Blue Team Roadmap.</li>
+                  <li>صفحة Digital Forensics Roadmap.</li>
+                  <li>صفحة DevSecOps Roadmap.</li>
+                  <li>صفحة Cloud Security Roadmap.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>9. مسارات التعلم التقنية</h4>
+                <ul class="idea-list">
+                  <li>صفحة تعلم HTML.</li>
+                  <li>صفحة تعلم CSS.</li>
+                  <li>صفحة تعلم JavaScript.</li>
+                  <li>صفحة تعلم React.</li>
+                  <li>صفحة تعلم TypeScript.</li>
+                  <li>صفحة تعلم Next.js.</li>
+                  <li>صفحة تعلم Node.js.</li>
+                  <li>صفحة تعلم Express.</li>
+                  <li>صفحة تعلم SQL.</li>
+                  <li>صفحة تعلم Docker.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>10. الأساسيات السيبرانية</h4>
+                <ul class="idea-list">
+                  <li>صفحة Linux Basics.</li>
+                  <li>صفحة Linux Commands.</li>
+                  <li>صفحة Networking Basics.</li>
+                  <li>صفحة HTTP وDNS.</li>
+                  <li>صفحة Web Security Basics.</li>
+                  <li>صفحة Phishing Awareness.</li>
+                  <li>صفحة Incident Response Basics.</li>
+                  <li>صفحة Digital Forensics Basics.</li>
+                  <li>صفحة Threat Hunting Basics.</li>
+                  <li>صفحة Cloud Basics.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>11. صفحات الخدمة والتعريف</h4>
+                <ul class="idea-list">
+                  <li>صفحة من نحن.</li>
+                  <li>صفحة سياسة الاستخدام.</li>
+                  <li>صفحة إخلاء المسؤولية.</li>
+                  <li>صفحة تواصل معنا.</li>
+                  <li>صفحة اقتراحات المستخدمين.</li>
+                  <li>صفحة تحديثات الموقع.</li>
+                  <li>صفحة الأسئلة الشائعة.</li>
+                  <li>صفحة أكثر الصفحات زيارة.</li>
+                  <li>صفحة آخر الإضافات.</li>
+                  <li>صفحة المفضلة.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>12. ميزات التتبع الشخصي</h4>
+                <ul class="idea-list">
+                  <li>نظام حفظ آخر ما قرأه المستخدم.</li>
+                  <li>نظام متابعة التقدم.</li>
+                  <li>نظام شارات إنجاز.</li>
+                  <li>نظام قائمة مهام تعليمية.</li>
+                  <li>نظام تمييز الصفحات المكتملة.</li>
+                  <li>نظام ملاحظات شخصية.</li>
+                  <li>نظام حفظ الكتب المفضلة.</li>
+                  <li>نظام حفظ الكورسات المفضلة.</li>
+                  <li>نظام مقارنة بين المسارات.</li>
+                  <li>نظام اقتراح المحتوى حسب اهتمام المستخدم.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>13. البحث والتصفية</h4>
+                <ul class="idea-list">
+                  <li>شريط بحث شامل في الموقع كله.</li>
+                  <li>فلترة حسب المستوى.</li>
+                  <li>فلترة حسب المجال.</li>
+                  <li>فلترة حسب اللغة.</li>
+                  <li>فلترة حسب نوع المحتوى.</li>
+                  <li>فلترة حسب مدة الكورس.</li>
+                  <li>فلترة حسب الصعوبة.</li>
+                  <li>فلترة حسب إذا كان مجانيًا أو مدفوعًا.</li>
+                  <li>فلترة حسب المسار الوظيفي.</li>
+                  <li>فلترة حسب نوع الاختبار.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>14. صفحات الأدوات</h4>
+                <ul class="idea-list">
+                  <li>صفحة أفضل أدوات Linux.</li>
+                  <li>صفحة أفضل أدوات Web.</li>
+                  <li>صفحة أفضل أدوات OSINT.</li>
+                  <li>صفحة أفضل أدوات Forensics.</li>
+                  <li>صفحة أفضل أدوات Blue Team.</li>
+                  <li>صفحة أفضل أدوات Logs.</li>
+                  <li>صفحة أفضل أدوات Browser Testing.</li>
+                  <li>صفحة أفضل أدوات API Testing.</li>
+                  <li>صفحة أفضل أدوات Dev.</li>
+                  <li>صفحة أفضل أدوات Productivity.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>15. التوظيف والحضور المهني</h4>
+                <ul class="idea-list">
+                  <li>صفحة كيف تبني CV تقني.</li>
+                  <li>صفحة كيف تبني LinkedIn قوي.</li>
+                  <li>صفحة كيف تبني GitHub قوي.</li>
+                  <li>صفحة كيف تقدم على وظيفة.</li>
+                  <li>صفحة كيف تتجاوز المقابلة.</li>
+                  <li>صفحة أسئلة مقابلات Frontend.</li>
+                  <li>صفحة أسئلة مقابلات Full Stack.</li>
+                  <li>صفحة أسئلة مقابلات SOC.</li>
+                  <li>صفحة أسئلة مقابلات Junior Developer.</li>
+                  <li>صفحة خطة أول وظيفة.</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="frontendMasterPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>تعلم HTML و CSS و JavaScript من الصفر حتى الاحتراف</h2>
+                <p>هذا القسم مبني كأسلوب دورة قوية جدًا: يبدأ من الصفر الكامل، ثم يشرح الفهم الحقيقي، ثم ينقلك إلى المشاريع والاحتراف. الهدف أن تفهم الويب مثل مطور محترف، لا أن تحفظ أكوادًا متفرقة فقط.</p>
+              </div>
+            </div>
+
+            <details class="more" open>
+              <summary>1) الفكرة الصحيحة قبل أن تبدأ</summary>
+              <p class="edu-line">
+                الويب ليس ثلاث مواد منفصلة تحفظها ثم تنساها. <b>HTML</b> هو البنية، <b>CSS</b> هو الشكل والتخطيط، و<b>JavaScript</b>
+                هو السلوك والتفاعل. عندما تفهم هذه الثلاثية كأنها فريق واحد، يصبح بناء أي موقع أو واجهة أو تطبيق أسهل بكثير.
+              </p>
+              <p class="edu-line">
+                الخطأ الذي يقع فيه كثير من الطلاب هو القفز السريع إلى frameworks قبل بناء الأساس. النتيجة أنهم يعرفون أسماء كثيرة،
+                لكنهم يضعفون أمام أي مشكلة حقيقية في الواجهة. لذلك هنا سنتعامل مع الأساسيات بطريقة مهنية وواضحة جدًا.
+              </p>
+            </details>
+
+            <details class="more" open>
+              <summary>2) خارطة الطريق من الصفر إلى الاحتراف</summary>
+              <ul>
+                <li>المرحلة 1: HTML كامل من الصفر: العناصر، النصوص، الروابط، الصور، القوائم، الجداول، والنماذج.</li>
+                <li>المرحلة 2: Semantic HTML: فهم header, nav, main, section, article, aside, footer.</li>
+                <li>المرحلة 3: CSS basics: الألوان، الخطوط، المسافات، الخلفيات، الحدود، والأزرار والبطاقات.</li>
+                <li>المرحلة 4: Layout: Flexbox وGrid وresponsive design.</li>
+                <li>المرحلة 5: JavaScript basics: variables, conditions, loops, functions, arrays, objects.</li>
+                <li>المرحلة 6: DOM وevents وform validation وLocalStorage.</li>
+                <li>المرحلة 7: fetch API وJSON وعرض البيانات داخل الواجهة.</li>
+                <li>المرحلة 8: مشاريع كاملة ثم الانتقال لاحقًا إلى React أو أي إطار عمل.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>3) HTML بأسلوب مفهوم فعلاً</summary>
+              <p class="edu-line">
+                HTML ليست للزينة. HTML هي <b>لغة تنظيم المعنى</b>. عندما تكتب
+                <span class="mono">&lt;h1&gt;</span> فأنت تحدد عنوان الفكرة الرئيسية، وعندما تكتب
+                <span class="mono">&lt;form&gt;</span> فأنت تبني مساحة تفاعل مع المستخدم، وعندما تستخدم
+                <span class="mono">&lt;section&gt;</span> فأنت تقسم الصفحة إلى وحدات مفهومة.
+              </p>
+              <p class="edu-line">
+                يجب أن تتعلم HTML بالطريقة التالية: ابْنِ صفحات حقيقية صغيرة، وليس مجرد حفظ وسوم. ابدأ بصفحة تعريف شخصية، ثم صفحة
+                شركة، ثم صفحة هبوط Landing Page، ثم نموذج تواصل. هكذا يصبح العنصر مرتبطًا بفكرة عملية وليس بالحفظ فقط.
+              </p>
+              <ul>
+                <li>ابدأ بالعناوين والفقرات والقوائم والروابط والصور.</li>
+                <li>ثم انتقل إلى الجداول والنماذج وحقول الإدخال والأزرار.</li>
+                <li>ثم تعلّم Semantic HTML لتصبح صفحاتك أوضح للمستخدم ولمحركات البحث.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>HTML Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=pQN-pnXPaVg" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=pQN-pnXPaVg</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>4) CSS من الزيرو حتى تصميم نظيف ومحترف</summary>
+              <p class="edu-line">
+                CSS ليست مجرد ألوان وخلفيات. CSS هي التي تمنح الصفحة شخصيتها وتنظيمها البصري. هنا تتعلم أولًا كيف تتحكم في
+                typography, spacing, alignment, sizing. وبعدها تنتقل إلى أهم ما يصنع الفرق الحقيقي: <b>Flexbox</b> و<b>Grid</b>.
+              </p>
+              <p class="edu-line">
+                إذا فهمت Flexbox وGrid بعمق، ستستطيع بناء Navbar، Hero، Cards، Dashboards، Layouts معقدة، ومواقع متجاوبة للهاتف
+                والكمبيوتر. هذه هي النقلة التي تجعل واجهاتك تبدو احترافية فعلًا.
+              </p>
+              <ul>
+                <li>ابدأ بتصميم بطاقات وأزرار وعناوين ومسافات صحيحة.</li>
+                <li>ثم ابنِ Sections كاملة مع Flexbox.</li>
+                <li>ثم انتقل إلى Grid لبناء صفحات كبيرة متعددة الأعمدة.</li>
+                <li>وأخيرًا طبّق media queries حتى يكون الموقع ممتازًا على كل الشاشات.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>CSS Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=1Rs2ND1ryYc" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=1Rs2ND1ryYc</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Flexbox & Grid Guide</b>
+                  <a href="https://www.youtube.com/watch?v=3YW65K6LcIA" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=3YW65K6LcIA</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>5) JavaScript من البداية حتى التفاعل الحقيقي</summary>
+              <p class="edu-line">
+                JavaScript هي الجزء الذي يحوّل الصفحة من شيء ثابت إلى تجربة حية. هنا ستبدأ من basics: variables, conditions,
+                loops, functions. لكن الأهم أنك ستتعلم كيف تستخدم هذه الأساسيات داخل الصفحة نفسها.
+              </p>
+              <p class="edu-line">
+                بعدها تدخل إلى <b>DOM</b>: كيف تختار عنصرًا، تغير نصًا، تضيف class، تستجيب لنقرة، تتحقق من نموذج، أو تحفظ بيانات
+                في <span class="mono">LocalStorage</span>. هذه المرحلة هي المفتاح الحقيقي لفهم الواجهات قبل أي framework.
+              </p>
+              <ul>
+                <li>ابدأ بتمارين صغيرة: عدّاد، تبديل ألوان، إظهار وإخفاء، آلة حاسبة بسيطة.</li>
+                <li>ثم ابنِ To-Do List مع إضافة وحذف وحفظ.</li>
+                <li>ثم تعلّم fetch API وعرض بيانات JSON داخل بطاقات.</li>
+                <li>ثم نظّم الكود على شكل دوال وملفات منطقية واضحة.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>JavaScript Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=PkZNo7MFNFg" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=PkZNo7MFNFg</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>DOM Manipulation</b>
+                  <a href="https://www.youtube.com/watch?v=5fb2aPlgoys" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=5fb2aPlgoys</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>6) خطة دراسة احترافية خلال 12 أسبوع</summary>
+              <ul>
+                <li>الأسبوع 1-2: HTML كامل + بناء صفحات ثابتة بسيطة.</li>
+                <li>الأسبوع 3-4: CSS basics + تنسيق بطاقات وأزرار وأقسام.</li>
+                <li>الأسبوع 5-6: Flexbox + Grid + responsive layouts.</li>
+                <li>الأسبوع 7-8: JavaScript basics + تمارين منطقية.</li>
+                <li>الأسبوع 9: DOM + events + form validation.</li>
+                <li>الأسبوع 10: To-Do App + LocalStorage.</li>
+                <li>الأسبوع 11: fetch API + JSON + بطاقات ديناميكية.</li>
+                <li>الأسبوع 12: مشروع نهائي كامل مع نشر وتوثيق.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>7) المشاريع التي توصلك لمستوى قوي</summary>
+              <ul>
+                <li>مشروع 1: Landing Page احترافية متجاوبة.</li>
+                <li>مشروع 2: Portfolio شخصي يعرضك كمطور.</li>
+                <li>مشروع 3: To-Do App مع تخزين محلي.</li>
+                <li>مشروع 4: Dashboard ببطاقات وإحصائيات وفلاتر.</li>
+                <li>مشروع 5: صفحة منتجات مع بحث وفرز وفلاتر بواسطة JavaScript.</li>
+                <li>مشروع 6: Blog frontend يعرض مقالات من JSON أو API.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>8) الأخطاء الشائعة التي تعطل تقدمك</summary>
+              <ul>
+                <li>الانتقال السريع إلى React قبل فهم HTML/CSS/JS.</li>
+                <li>مشاهدة الكورسات بدون كتابة كود يومي.</li>
+                <li>نسخ التصاميم بدون فهم التخطيط.</li>
+                <li>إهمال responsive design من البداية.</li>
+                <li>كتابة JavaScript عشوائيًا بدون تقسيم واضح للدوال والمنطق.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>9) متى تعتبر نفسك جاهزًا للمرحلة التالية؟</summary>
+              <ul>
+                <li>إذا بنيت 3 مشاريع واجهات كاملة بنفسك.</li>
+                <li>إذا فهمت DOM وevents وfetch وLocalStorage جيدًا.</li>
+                <li>إذا استطعت قراءة صفحة وتصميمها من الصفر بدون تقليد أعمى.</li>
+                <li>إذا أصبحت منظمًا في HTML وCSS وJS وليس فقط قادرًا على تشغيل كود.</li>
+              </ul>
+              <p class="edu-line">
+                عندها يمكنك الانتقال إلى React أو Vue أو أي إطار عمل بثقة، لأنك ستكون بنيت أساسًا حقيقيًا لا يهتز مع أول مشكلة.
+              </p>
+            </details>
+
+            <details class="more" open>
+              <summary>10) Responsive Design بعمق: كيف تجعل الموقع ممتازًا على كل الأجهزة</summary>
+              <p class="edu-line">
+                كثير من الطلاب يبنون واجهة جميلة على شاشة الكمبيوتر فقط، ثم تنهار على الهاتف. الاحتراف الحقيقي يبدأ عندما تفكر من
+                البداية: كيف سيبدو هذا العنصر على شاشة صغيرة؟ كيف ستتصرف البطاقات؟ هل الخط واضح؟ هل الأزرار قابلة للنقر؟
+              </p>
+              <ul>
+                <li>تعلم أولًا مبدأ <b>mobile-first</b> بدل بناء كل شيء للديسكتوب فقط.</li>
+                <li>استخدم <span class="mono">max-width</span> و<span class="mono">minmax()</span> و<span class="mono">clamp()</span> بذكاء.</li>
+                <li>اختبر Navbar, Cards, Forms, Tables على الهاتف مبكرًا.</li>
+                <li>افهم أن responsive design ليس تصغيرًا فقط، بل إعادة ترتيب ذكية للمحتوى.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Responsive Web Design</b>
+                  <a href="https://www.youtube.com/watch?v=srvUrASNj0s" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=srvUrASNj0s</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>11) Bootstrap: متى يفيدك ومتى لا تعتمد عليه وحده</summary>
+              <p class="edu-line">
+                Bootstrap ليس بديلًا عن CSS. هو مجرد طبقة تسهّل عليك بناء Layouts وعناصر واجهة بسرعة. إذا فهمته بعد CSS سيكون مفيدًا
+                جدًا في المشاريع السريعة ولوحات التحكم، لكن إذا استخدمته قبل فهم CSS ستصبح مقيدًا وغير قادر على التخصيص الحقيقي.
+              </p>
+              <ul>
+                <li>استخدمه لتسريع بناء Grids وForms وModals وNavbars.</li>
+                <li>لا تعتمد عليه ليحل مكان فهمك لـ Flexbox وGrid.</li>
+                <li>تعلم كيف تخصصه بدل استخدام شكله الافتراضي فقط.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Bootstrap Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=-qfEOE4vtxE" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=-qfEOE4vtxE</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>12) Sass: كيف تجعل CSS أكبر وأكثر تنظيمًا</summary>
+              <p class="edu-line">
+                عندما يكبر المشروع، تصبح CSS الطويلة متعبة. هنا يأتي دور <b>Sass</b>: variables, nesting, mixins, partials. هذه
+                الأدوات تجعل تصميمك منظمًا وسهل التعديل خصوصًا في المشاريع الكبيرة.
+              </p>
+              <ul>
+                <li>تعلم المتغيرات لتوحيد الألوان والمسافات والخطوط.</li>
+                <li>استخدم partials لتقسيم ملفات التصميم حسب المكونات.</li>
+                <li>افهم mixins وextend لكن لا تبالغ في التعقيد.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Sass Crash Course</b>
+                  <a href="https://www.youtube.com/watch?v=nu5mdN2JIwM" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=nu5mdN2JIwM</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>13) Git و GitHub لمطور الواجهة</summary>
+              <p class="edu-line">
+                لا يوجد مطور محترف اليوم بدون Git. المطلوب ليس فقط أن ترفع ملفاتك، بل أن تفهم commits, branches, pull requests,
+                وكيف توثق مشروعك داخل README. هذه الأدوات ترفع مستواك فورًا في أي فريق أو وظيفة.
+              </p>
+              <ul>
+                <li>اعمل commit صغيرًا وواضحًا كلما أنهيت جزءًا مفهومًا.</li>
+                <li>قسّم العمل على branches عندما تجرب ميزة جديدة.</li>
+                <li>اجعل GitHub عندك مثل معرض أعمال منظم وليس مخزن ملفات فقط.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Git & GitHub Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=RGOj5yH7evk" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=RGOj5yH7evk</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>14) React: متى تبدأ به وكيف تتعلمه بشكل صحيح</summary>
+              <p class="edu-line">
+                React ليس الخطوة الأولى، بل الخطوة التالية بعد فهم الأساسيات. عندما تكون قويًا في HTML/CSS/JS ستفهم React كأداة
+                لتنظيم الواجهة إلى Components وإدارة State والتفاعل بشكل أنظف.
+              </p>
+              <ul>
+                <li>ابدأ بـ components وprops وstate وevents.</li>
+                <li>ثم افهم rendering, lists, forms, effects.</li>
+                <li>بعدها انتقل إلى routing وAPI calls وتنظيم المشاريع.</li>
+                <li>لا تتعلم React بالحفظ؛ تعلّم كيف تحل مشكلة واجهة بها.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>React Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=bMknfKXIFA8" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=bMknfKXIFA8</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>15) مشاريع Frontend توصلك للتوظيف</summary>
+              <ul>
+                <li>مشروع 1: موقع شركة احترافي متعدد الصفحات ومتجاوب بالكامل.</li>
+                <li>مشروع 2: Dashboard Admin مع Cards وCharts وFilters.</li>
+                <li>مشروع 3: متجر Frontend مع صفحات منتجات وسلة افتراضية.</li>
+                <li>مشروع 4: تطبيق مهام أو Notes باستخدام JavaScript أو React.</li>
+                <li>مشروع 5: Portfolio شخصي قوي جدًا يشرحك كمطور ويعرض أعمالك الحقيقية.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>16) كيف تبني Portfolio أقوى من كثير من الخريجين</summary>
+              <p class="edu-line">
+                الـ Portfolio ليس مجرد صور. هو دليل على أنك تفهم التصميم، التنظيم، التفاعل، وحل المشكلات. كل مشروع تضعه يجب أن
+                يحتوي: الفكرة، التحدي، ماذا تعلمت، ما التقنيات المستخدمة، وصور أو رابط Demo واضح.
+              </p>
+              <ul>
+                <li>ضع 3 إلى 5 مشاريع قوية فقط بدل 20 مشروعًا سطحيًا.</li>
+                <li>اكتب README محترم لكل مشروع.</li>
+                <li>أظهر تطورك: من Landing Page إلى Dashboard إلى App متكامل.</li>
+                <li>اجعل تصميم Portfolio نفسه احترافيًا لأنه أول اختبار حقيقي لك.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>17) خطة 6 أشهر لتصبح Frontend Developer قوي</summary>
+              <ul>
+                <li>الشهر 1: HTML + CSS basics + صفحات ثابتة.</li>
+                <li>الشهر 2: Flexbox + Grid + responsive design + مشروعين.</li>
+                <li>الشهر 3: JavaScript basics + DOM + mini apps.</li>
+                <li>الشهر 4: APIs + LocalStorage + مشروع Dashboard.</li>
+                <li>الشهر 5: Git/GitHub + Bootstrap أو Sass + تحسين المشاريع.</li>
+                <li>الشهر 6: React basics + Portfolio نهائي + تجهيز للتوظيف.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>18) كيف تدرس يوميًا كأن عندك دكتور ممتاز لكن بدون ضياع</summary>
+              <ul>
+                <li>ساعة شرح مركز فقط.</li>
+                <li>ساعتان تطبيق فعلي وكتابة كود.</li>
+                <li>آخر 30 دقيقة: إعادة بناء ما تعلمته من الذاكرة.</li>
+                <li>كل أسبوع: مشروع صغير كامل.</li>
+                <li>كل شهر: مشروع كبير واحد مع نشر وGitHub وتوثيق.</li>
+              </ul>
+              <p class="edu-line">
+                هذه الطريقة أفضل من التلقي السلبي؛ لأن الفهم الحقيقي في البرمجة يأتي من البناء، لا من المشاهدة فقط.
+              </p>
+            </details>
+
+            <details class="more" open>
+              <summary>19) TypeScript: لماذا يطلبه السوق كثيرًا؟</summary>
+              <p class="edu-line">
+                بعد أن تصبح مرتاحًا مع JavaScript، يأتي <b>TypeScript</b> ليجعل مشاريعك أوضح وأقل عرضة للأخطاء. فكر فيه على أنه
+                JavaScript مع طبقة تنظيم أقوى: أنواع بيانات واضحة، اكتشاف أخطاء مبكر، وفهم أفضل للكود عندما يكبر المشروع.
+              </p>
+              <ul>
+                <li>ابدأ بالأنواع الأساسية: string, number, boolean, arrays, objects.</li>
+                <li>ثم interfaces وtype aliases وfunctions typing.</li>
+                <li>بعدها انتقل إلى استخدامه داخل React لأن هذا هو المسار الأكثر طلبًا.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>TypeScript Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=30LWjhZzg50" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=30LWjhZzg50</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>20) Tailwind CSS: متى يفيدك فعلًا؟</summary>
+              <p class="edu-line">
+                Tailwind لا يغنيك عن CSS، لكنه يسرّع البناء إذا كنت تفهم التصميم أصلًا. ميزته الأساسية أنه يمنحك سرعة كبيرة في
+                النماذج والواجهات الحديثة، لكن يجب أن تستخدمه بعقل وتنظيم، لا أن تملأ العناصر بكلاسات عشوائية.
+              </p>
+              <ul>
+                <li>استخدمه عندما تكون مرتاحًا مع CSS التقليدية.</li>
+                <li>تعلم utility classes مع فهم spacing وlayout وresponsive variants.</li>
+                <li>احرص على تنظيم المكونات بدل تكرار كلاسات طويلة بلا معنى.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Tailwind CSS Crash Course</b>
+                  <a href="https://www.youtube.com/watch?v=ft30zcMlFao" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=ft30zcMlFao</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>21) Next.js: الخطوة الطبيعية بعد React</summary>
+              <p class="edu-line">
+                إذا فهمت React جيدًا، فـ <b>Next.js</b> يعطيك طبقة إنتاجية أقوى: routing جاهز، rendering متقدم، تنظيم مشاريع أنظف،
+                وتجربة ممتازة في بناء مواقع وتطبيقات قابلة للنشر بسرعة. لهذا أصبح شائعًا جدًا في السوق.
+              </p>
+              <ul>
+                <li>ابدأ بفهم pages أو app router حسب النسخة التي تتعلمها.</li>
+                <li>تعلم layouts, data fetching, dynamic routes.</li>
+                <li>ثم طبّق مشروعًا حقيقيًا مثل blog أو dashboard أو landing site متقدم.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Next.js Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=wm5gMKuwSYk" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=wm5gMKuwSYk</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>22) UI / UX Basics للمطور: لماذا تهمك؟</summary>
+              <p class="edu-line">
+                أنت لست بحاجة لأن تصبح مصممًا كاملًا، لكنك تحتاج فهمًا قويًا لـ UI/UX حتى لا تبني واجهات مربكة. فهمك للمساحات،
+                التدرج البصري، وضوح الأزرار، ترتيب المحتوى، والتفاعل البسيط سيجعل شغلك أعلى بكثير من المتوسط.
+              </p>
+              <ul>
+                <li>تعلم hierarchy: ما الذي يجب أن يراه المستخدم أولًا؟</li>
+                <li>افهم spacing وconsistency وcontrast.</li>
+                <li>اجعل كل واجهة لها هدف واضح وسلوك متوقع.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>UI/UX Design Basics</b>
+                  <a href="https://www.youtube.com/watch?v=c9Wg6Cb_YlU" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=c9Wg6Cb_YlU</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>23) Figma للمطور: كيف يفيدك؟</summary>
+              <p class="edu-line">
+                حتى لو لم تكن مصممًا، فهمك لـ Figma يجعلك أسرع في قراءة التصميم وتحويله إلى كود. تتعلم كيف تقرأ spacing,
+                typography, components, colors, auto layout، وكيف تستخرج ما تحتاجه من التصميم بدون تخمين.
+              </p>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Figma for Developers</b>
+                  <a href="https://www.youtube.com/watch?v=FTFaQWZBqQ8" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=FTFaQWZBqQ8</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>24) اختبارات الواجهة: كيف تتعلمها بدون تعقيد؟</summary>
+              <p class="edu-line">
+                المطور القوي لا يبني فقط، بل يطمئن أن ما بناه لن ينكسر. لهذا يجب أن تتعلم أساسيات الاختبار: اختبار المكونات،
+                اختبار السلوك، واختبار النماذج والتفاعل. ليس الهدف أن تصبح خبير QA، بل أن ترفع موثوقية شغلك.
+              </p>
+              <ul>
+                <li>ابدأ بفهم فكرة unit tests وintegration tests بشكل مبسط.</li>
+                <li>إذا استخدمت React، تعرّف على React Testing Library.</li>
+                <li>اختبر الأشياء التي تتفاعل مع المستخدم فعلًا: forms, buttons, filters, state changes.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Frontend Testing Basics</b>
+                  <a href="https://www.youtube.com/watch?v=JKOwJUM4_RM" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=JKOwJUM4_RM</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>25) Deployment: كيف تنشر مشاريعك مثل المحترفين؟</summary>
+              <p class="edu-line">
+                إذا بقي مشروعك محليًا فقط فأنت تضيع فرصة كبيرة. النشر مهم جدًا لأنه يثبت أنك قادر على توصيل مشروعك إلى الإنترنت
+                بشكل فعلي. ابدأ بمشاريع static على <b>Netlify</b> أو <b>Vercel</b>، ثم انتقل إلى مشاريع React وNext.js.
+              </p>
+              <ul>
+                <li>انشر كل مشروع مهم عندك على رابط حي.</li>
+                <li>استخدم دومين واضح أو على الأقل اسم مشروع واضح.</li>
+                <li>أضف رابط المشروع المنشور داخل GitHub وPortfolio.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Deploy with Vercel</b>
+                  <a href="https://www.youtube.com/watch?v=prjMJtXCR-g" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=prjMJtXCR-g</a>
+                </div>
+                <div class="academy-link-card">
+                  <b>Deploy with Netlify</b>
+                  <a href="https://www.youtube.com/watch?v=bjVUqvcCnxM" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=bjVUqvcCnxM</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>26) أسئلة مقابلات Frontend التي يجب أن تكون جاهزًا لها</summary>
+              <ul>
+                <li>ما الفرق بين HTML وSemantic HTML؟</li>
+                <li>ما الفرق بين Flexbox وGrid ومتى تستخدم كل واحد؟</li>
+                <li>اشرح مفهوم box model.</li>
+                <li>كيف يعمل event bubbling في JavaScript؟</li>
+                <li>ما الفرق بين == و === ؟</li>
+                <li>ما هو DOM؟ وكيف تتعامل معه؟</li>
+                <li>ما هي props وstate في React؟</li>
+                <li>كيف تجعل الموقع responsive؟</li>
+                <li>كيف تنظم مشروع Frontend كبير؟</li>
+                <li>ما المشروع الذي تفخر به أكثر؟ ولماذا؟</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>27) الطريق النهائي: من متعلم إلى مطور Frontend جاهز للعمل</summary>
+              <ul>
+                <li>أتقن HTML/CSS/JS بشكل حقيقي.</li>
+                <li>ابنِ 5 مشاريع قوية فعلًا وليس مشاريع شكلية.</li>
+                <li>تعلم Git/GitHub والنشر.</li>
+                <li>أضف React ثم Next.js أو TypeScript حسب مسارك.</li>
+                <li>اهتم بالتصميم والـ UX والـ responsive من البداية.</li>
+                <li>جهّز Portfolio وروابط مباشرة لمشاريعك.</li>
+                <li>تدرب على شرح مشاريعك بالكلام، لأن هذا يفرق جدًا في المقابلات.</li>
+              </ul>
+              <p class="edu-line">
+                إذا التزمت بهذا المسار بجدية، فستبني مستوى يسبق كثيرًا من المسارات العشوائية، لأنك هنا تتعلم بفهم، تطبيق، مشاريع، ونشر حقيقي.
+              </p>
+            </details>
+
+            <details class="more" open>
+              <summary>28) Node.js: كيف تنتقل من الواجهة إلى الخادم</summary>
+              <p class="edu-line">
+                عندما تتقن JavaScript في الواجهة، تصبح <b>Node.js</b> الخطوة الطبيعية التالية لأنها تسمح لك باستخدام نفس اللغة
+                لبناء الخادم. هنا تتعلم كيف يعمل runtime خارج المتصفح، وكيف تدير الملفات، والطلبات، والمسارات، والمنطق الخلفي.
+              </p>
+              <ul>
+                <li>افهم أولًا ما هو runtime ولماذا Node ليس framework.</li>
+                <li>تعلم modules, filesystem, process, npm.</li>
+                <li>بعدها انتقل لبناء API بسيط يستقبل ويرسل JSON.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Node.js Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=TlB_eWDSMt4" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=TlB_eWDSMt4</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>29) Express.js: بناء APIs ومشاريع backend مرتبة</summary>
+              <p class="edu-line">
+                Express هو الإطار الأشهر مع Node لبناء APIs بسرعة وتنظيم. هنا تتعلم routes, controllers, middleware, validation,
+                error handling، وكيف تجعل backend عندك واضحًا وقابلًا للتوسع بدل أن يصبح ملفًا واحدًا فوضويًا.
+              </p>
+              <ul>
+                <li>ابدأ بـ REST API بسيط: GET, POST, PUT, DELETE.</li>
+                <li>ثم أضف middlewares للمصادقة والتحقق من المدخلات.</li>
+                <li>بعدها نظّم المشروع إلى routes وcontrollers وservices.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Express.js Course</b>
+                  <a href="https://www.youtube.com/watch?v=L72fhGm1tfE" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=L72fhGm1tfE</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>30) SQL للمطور: قاعدة البيانات التي يجب أن تفهمها جيدًا</summary>
+              <p class="edu-line">
+                حتى لو استخدمت ORM لاحقًا، يجب أن تفهم SQL نفسها. تعلّم الجداول، العلاقات، joins, indexes, constraints، وكيف
+                تفكر في البيانات بشكل منظم. هذا يرفع مستواك جدًا سواء كنت Frontend أو Full Stack.
+              </p>
+              <ul>
+                <li>ابدأ بـ SELECT وINSERT وUPDATE وDELETE.</li>
+                <li>ثم تعلّم العلاقات one-to-many وmany-to-many.</li>
+                <li>بعدها افهم joins والفهارس وأساسيات تحسين الاستعلام.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>SQL Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=HXV3zeQKqGY</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>31) MongoDB: متى تستخدم NoSQL ومتى لا؟</summary>
+              <p class="edu-line">
+                MongoDB ممتازة للمشاريع التي تستفيد من المرونة في البنية، لكنها ليست الحل لكل شيء. المطلوب أن تفهم الفرق بين
+                SQL وNoSQL، ومتى يكون المستند Document مناسبًا، ومتى تحتاج قاعدة علائقية بدلًا منه.
+              </p>
+              <ul>
+                <li>تعلم collections وdocuments وqueries الأساسية.</li>
+                <li>افهم indexing وaggregation بشكل مبسط.</li>
+                <li>تعلم كيف تربط MongoDB مع Node/Express في مشروع API عملي.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>MongoDB Course</b>
+                  <a href="https://www.youtube.com/watch?v=c2M-rlkkT5o" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=c2M-rlkkT5o</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>32) المصادقة Authorization / Authentication للمطور</summary>
+              <p class="edu-line">
+                أي تطبيق حقيقي يحتاج تسجيل دخول وصلاحيات. يجب أن تفهم الفرق بين <b>Authentication</b> و<b>Authorization</b>،
+                وكيف تعمل sessions أو JWT، وكيف تحمي المسارات والبيانات من الوصول غير المصرح.
+              </p>
+              <ul>
+                <li>ابدأ بنموذج login/register بسيط.</li>
+                <li>ثم أضف hashing لكلمات المرور.</li>
+                <li>بعدها طبّق حماية routes حسب الصلاحية والدور.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>33) Full Stack Roadmap: كيف تجمع الواجهة والخادم معًا</summary>
+              <ul>
+                <li>Frontend: HTML/CSS/JS أو React.</li>
+                <li>Backend: Node.js + Express.</li>
+                <li>Database: SQL أو MongoDB.</li>
+                <li>Auth: sessions أو JWT.</li>
+                <li>Deployment: Vercel / Netlify للواجهة ومنصة مناسبة للخادم.</li>
+                <li>Git/GitHub + README + بيئة نشر حية + توثيق.</li>
+              </ul>
+              <p class="edu-line">
+                عندما تفهم هذه الطبقات وكيف تتكلم مع بعضها عبر API، تكون قد دخلت فعليًا عالم الـ Full Stack.
+              </p>
+            </details>
+
+            <details class="more" open>
+              <summary>34) مشاريع Full Stack توصلك لمستوى قوي</summary>
+              <ul>
+                <li>مشروع 1: نظام مهام كامل مع تسجيل دخول وحفظ في قاعدة بيانات.</li>
+                <li>مشروع 2: متجر بسيط مع منتجات وسلة وطلبات.</li>
+                <li>مشروع 3: Blog كامل فيه لوحة تحكم للمقالات والتعليقات.</li>
+                <li>مشروع 4: Dashboard Admin مع صلاحيات متعددة.</li>
+                <li>مشروع 5: Portfolio + CMS صغير تدير منه المحتوى بنفسك.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>35) System Design للمطور المبتدئ والمتوسط</summary>
+              <p class="edu-line">
+                لا تحتاج أن تبدأ فيه مبكرًا جدًا، لكن فهم الأساسيات مهم: كيف تقسم التطبيق؟ كيف تفصل الواجهة عن الخادم؟ كيف تدير
+                الحالة والملفات والصلاحيات؟ كيف تمنع أن يصبح المشروع فوضويًا عند النمو؟
+              </p>
+              <ul>
+                <li>افهم طبقات التطبيق: UI, API, Database.</li>
+                <li>تعلم الفصل بين concerns بدل وضع كل شيء في مكان واحد.</li>
+                <li>ابدأ بالتصميم البسيط ثم طوّره عند الحاجة.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>36) خطة توظيف كاملة: Frontend أو Full Stack</summary>
+              <ul>
+                <li>ابنِ 4-6 مشاريع قوية ومنشورة.</li>
+                <li>نظّم GitHub وPortfolio بشكل احترافي.</li>
+                <li>جهّز نسخة مختصرة تشرح كل مشروع: الفكرة، المشكلة، الحل، التحديات.</li>
+                <li>راجع HTML/CSS/JS وReact وGit وAPIs وأسئلة المقابلات.</li>
+                <li>إذا أردت Full Stack، أضف Node وExpress وDatabase وAuth.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>37) المسار النهائي: كيف تصبح مطورًا متكاملًا بحق</summary>
+              <p class="edu-line">
+                البداية تكون من الواجهة، لكن الاحتراف يأتي عندما تفهم الرحلة كاملة: كيف تبني الواجهة، كيف تتصل بالخادم، كيف تخزن
+                البيانات، كيف تحمي الدخول، كيف تنشر المشروع، وكيف تشرح ما بنيته بوضوح. هذا هو الفارق بين من "جرّب البرمجة" ومن
+                "أصبح مطورًا جاهزًا للعمل".
+              </p>
+              <ul>
+                <li>أتقن الأساسيات أولًا ولا تستعجل التخصصات الكثيرة.</li>
+                <li>ابنِ مشاريع حقيقية لا مجرد تمارين.</li>
+                <li>اجعل كل مشروع منشورًا وموثقًا.</li>
+                <li>تعلم كيف تتكلم عن شغلك تقنيًا بشكل واضح ومقنع.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>38) Docker للمطور: كيف تجعل مشروعك يعمل بثبات في أي بيئة</summary>
+              <p class="edu-line">
+                Docker مهم جدًا لأنه يحل مشكلة "يعمل عندي ولا يعمل عندك". تتعلم كيف تحزم التطبيق مع بيئته، وكيف تشغل الواجهة
+                والخادم وقاعدة البيانات بطريقة متوقعة ومنظمة. هذا يرفع مستواك مباشرة في المشاريع الحقيقية.
+              </p>
+              <ul>
+                <li>ابدأ بفهم images وcontainers وDockerfile.</li>
+                <li>ثم تعلّم docker-compose لتشغيل أكثر من خدمة معًا.</li>
+                <li>استخدمه لاحقًا مع مشاريع Full Stack حتى تكون جاهزة للتطوير والنشر.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Docker Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=3c-iBn73dDE" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=3c-iBn73dDE</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>39) REST API بعمق: كيف تبني API نظيفة ومفهومة</summary>
+              <p class="edu-line">
+                REST ليس مجرد routes. يجب أن تفهم resources وmethods وstatus codes وvalidation وerror handling وpagination.
+                API المرتبة تسهّل على الواجهة التعامل معها، وتجعل مشروعك قابلًا للصيانة.
+              </p>
+              <ul>
+                <li>سمِّ الموارد بشكل واضح مثل users وposts وorders.</li>
+                <li>استخدم status codes صحيحة بدل إرسال كل شيء 200.</li>
+                <li>اجعل بنية الردود والأخطاء موحدة.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>40) Prisma: لماذا يحبه كثير من مطوري Node؟</summary>
+              <p class="edu-line">
+                Prisma أداة حديثة للتعامل مع قواعد البيانات بشكل أنظف داخل مشاريع Node وTypeScript. تعطيك models واضحة،
+                migrations منظمة، وقراءة أسهل للاستعلامات مقارنة بالكتابة اليدوية الطويلة.
+              </p>
+              <ul>
+                <li>تعلم schema.prisma وكيف تعرف الجداول والعلاقات.</li>
+                <li>افهم migrations وseed data.</li>
+                <li>استخدمه مع PostgreSQL في مشروع حقيقي لترى قيمته.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>Prisma Crash Course</b>
+                  <a href="https://www.youtube.com/watch?v=RebA5J-rlwg" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=RebA5J-rlwg</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>41) PostgreSQL: قاعدة بيانات قوية للمشاريع الجادة</summary>
+              <p class="edu-line">
+                PostgreSQL من أقوى الخيارات للمشاريع الحقيقية. إذا تعلمتها جيدًا ستكون خطوة ممتازة جدًا نحو بناء تطبيقات مستقرة
+                وقوية. وهي أيضًا مطلوبة في السوق بشكل كبير.
+              </p>
+              <ul>
+                <li>ابدأ بالجداول والعلاقات والقيود والفهارس.</li>
+                <li>افهم joins وaggregations بشكل عملي.</li>
+                <li>اربطها مع Prisma أو مباشرة مع Node/Express حسب مشروعك.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>PostgreSQL Full Course</b>
+                  <a href="https://www.youtube.com/watch?v=qw--VYLpxG4" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=qw--VYLpxG4</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more">
+              <summary>42) Testing للمشاريع Full Stack</summary>
+              <p class="edu-line">
+                عندما يكبر مشروعك، الاختبارات تصبح استثمارًا حقيقيًا. على مستوى الواجهة اختبر السلوك. وعلى مستوى الخادم اختبر
+                routes والمنطق الأساسي. هكذا ترفع الثقة في شغلك بدل الاعتماد على التجربة اليدوية فقط.
+              </p>
+              <ul>
+                <li>اختبر API responses والحالات المتوقعة والخاطئة.</li>
+                <li>اختبر forms وfilters وcritical flows في الواجهة.</li>
+                <li>لا تحاول اختبار كل شيء من البداية، ابدأ بالأجزاء المهمة.</li>
+              </ul>
+            </details>
+
+            <details class="more" open>
+              <summary>43) Security للمطور: الحد الأدنى الذي يجب أن تعرفه</summary>
+              <p class="edu-line">
+                حتى لو لم تكن متخصصًا بالأمن، يجب أن تعرف أساسيات حماية التطبيق: validation, hashing, authentication, rate limiting,
+                secrets management, secure headers. هذه ليست إضافات، بل جزء من شغل المطور المحترف.
+              </p>
+              <ul>
+                <li>تحقق من المدخلات دائمًا في الواجهة والخادم.</li>
+                <li>لا تخزن كلمات المرور كنص عادي أبدًا.</li>
+                <li>احمِ الأسرار داخل env vars ولا ترفعها إلى GitHub.</li>
+                <li>افهم XSS وCSRF وSQL injection ولو على مستوى المطور.</li>
+              </ul>
+            </details>
+
+            <details class="more">
+              <summary>44) CI/CD: كيف تجعل المشروع ينتقل من GitHub إلى النشر باحتراف</summary>
+              <p class="edu-line">
+                CI/CD تعني أنك لا تعمل بشكل عشوائي. كل تغيير يمر بمسار واضح: push، اختبار، بناء، ثم نشر. هذا يرفع جودة المشروع
+                ويجعلك أقرب جدًا لأسلوب الشركات.
+              </p>
+              <ul>
+                <li>ابدأ بفهم GitHub Actions كخطوة أولى.</li>
+                <li>شغّل lint أو tests تلقائيًا عند كل push.</li>
+                <li>اربط النشر مع Vercel أو أي منصة مناسبة عند نجاح البناء.</li>
+              </ul>
+              <div class="academy-links">
+                <div class="academy-link-card">
+                  <b>GitHub Actions Intro</b>
+                  <a href="https://www.youtube.com/watch?v=R8_veQiYBjI" target="_blank" rel="noopener noreferrer">https://www.youtube.com/watch?v=R8_veQiYBjI</a>
+                </div>
+              </div>
+            </details>
+
+            <details class="more" open>
+              <summary>45) خطة احتراف سنة كاملة: من الصفر إلى مطور جاهز فعلاً</summary>
+              <ul>
+                <li>الشهر 1-2: HTML + CSS + JavaScript basics + صفحات ثابتة قوية.</li>
+                <li>الشهر 3-4: DOM + Responsive + Projects + Git/GitHub.</li>
+                <li>الشهر 5-6: React + TypeScript + Portfolio + نشر المشاريع.</li>
+                <li>الشهر 7-8: Node + Express + REST APIs + Authentication.</li>
+                <li>الشهر 9-10: SQL أو PostgreSQL + Prisma أو MongoDB + مشروع Full Stack.</li>
+                <li>الشهر 11: Docker + Testing + Security basics + تحسين المشاريع.</li>
+                <li>الشهر 12: CI/CD + مقابلات + توظيف + ترتيب Portfolio النهائي.</li>
+              </ul>
+              <p class="edu-line">
+                إذا درست بهذا الشكل مع مشاريع حقيقية وتوثيق جيد، فستخرج بمستوى أقوى بكثير من التعلم العشوائي أو التلقي النظري فقط.
+              </p>
+            </details>
           </div>
         </section>
         <section class="panel" id="phishingDefensePanel" style="margin: 12px 0 16px">
@@ -6348,11 +7673,31 @@ Report template:
             <div class="section-head" style="margin-top: 0">
               <div>
                 <h2>اختبار سريع</h2>
-                <p>تطبيق عملي لفكرة الاختبارات القصيرة داخل الموقع مع حفظ آخر نتيجة محليًا.</p>
+                <p>أصبح الاختبار قابلًا للتحديد: اختر اختبار مواقع، أو سيبراني، أو اعرض الكل ثم احسب النتيجة.</p>
               </div>
             </div>
             <div class="quiz-shell" id="quizShell">
-              <div class="quiz-question" data-quiz-question="q1" data-correct="b">
+              <div class="quiz-toolbar">
+                <div class="field">
+                  <label for="quizTypeSelect">نوع الاختبار</label>
+                  <select id="quizTypeSelect">
+                    <option value="all">الكل</option>
+                    <option value="web">اختبار مواقع</option>
+                    <option value="cyber">اختبار سيبراني</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="quizLevelSelect">المستوى</label>
+                  <select id="quizLevelSelect">
+                    <option value="all">كل المستويات</option>
+                    <option value="beginner">مبتدئ</option>
+                    <option value="intermediate">متوسط</option>
+                    <option value="advanced">متقدم</option>
+                  </select>
+                </div>
+                <div class="quiz-meta" id="quizMeta">اختر نوع الاختبار أولًا، ثم أجب على الأسئلة الظاهرة فقط.</div>
+              </div>
+              <div class="quiz-question" data-quiz-level="beginner" data-quiz-topic="web" data-quiz-question="q1" data-correct="b">
                 <h4>1. ما البروتوكول المستخدم غالبًا لتصفح المواقع؟</h4>
                 <div class="quiz-options">
                   <label class="quiz-option"><input type="radio" name="q1" value="a" /> DNS</label>
@@ -6360,7 +7705,7 @@ Report template:
                   <label class="quiz-option"><input type="radio" name="q1" value="c" /> SMTP</label>
                 </div>
               </div>
-              <div class="quiz-question" data-quiz-question="q2" data-correct="c">
+              <div class="quiz-question" data-quiz-level="beginner" data-quiz-topic="cyber" data-quiz-question="q2" data-correct="c">
                 <h4>2. ما فائدة MFA؟</h4>
                 <div class="quiz-options">
                   <label class="quiz-option"><input type="radio" name="q2" value="a" /> زيادة سرعة الشبكة</label>
@@ -6368,12 +7713,132 @@ Report template:
                   <label class="quiz-option"><input type="radio" name="q2" value="c" /> إضافة طبقة تحقق إضافية</label>
                 </div>
               </div>
-              <div class="quiz-question" data-quiz-question="q3" data-correct="a">
+              <div class="quiz-question" data-quiz-level="beginner" data-quiz-topic="cyber" data-quiz-question="q3" data-correct="a">
                 <h4>3. ما المجال الذي يهتم بتحليل الأدلة الرقمية؟</h4>
                 <div class="quiz-options">
                   <label class="quiz-option"><input type="radio" name="q3" value="a" /> Forensics</label>
                   <label class="quiz-option"><input type="radio" name="q3" value="b" /> DNS</label>
                   <label class="quiz-option"><input type="radio" name="q3" value="c" /> UI Design</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="beginner" data-quiz-topic="web" data-quiz-question="q4" data-correct="b">
+                <h4>4. أي تقنية تستخدم غالبًا لترتيب العناصر في سطر أو عمود داخل CSS؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q4" value="a" /> JSON</label>
+                  <label class="quiz-option"><input type="radio" name="q4" value="b" /> Flexbox</label>
+                  <label class="quiz-option"><input type="radio" name="q4" value="c" /> DNS</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="beginner" data-quiz-topic="web" data-quiz-question="q5" data-correct="a">
+                <h4>5. ما دور JavaScript داخل الواجهة غالبًا؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q5" value="a" /> إضافة التفاعل والسلوك</label>
+                  <label class="quiz-option"><input type="radio" name="q5" value="b" /> تخزين السجلات على الخادم فقط</label>
+                  <label class="quiz-option"><input type="radio" name="q5" value="c" /> استبدال HTML نهائيًا</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="beginner" data-quiz-topic="cyber" data-quiz-question="q6" data-correct="b">
+                <h4>6. ما الهدف من SIEM داخل بيئة أمنية؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q6" value="a" /> تصميم واجهة متجر</label>
+                  <label class="quiz-option"><input type="radio" name="q6" value="b" /> جمع السجلات وتحليلها</label>
+                  <label class="quiz-option"><input type="radio" name="q6" value="c" /> ضغط الصور في الموقع</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="intermediate" data-quiz-topic="web" data-quiz-question="q7" data-correct="c">
+                <h4>7. أي عنصر HTML يستخدم غالبًا للتنقل الرئيسي في الصفحة؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q7" value="a" /> table</label>
+                  <label class="quiz-option"><input type="radio" name="q7" value="b" /> footer</label>
+                  <label class="quiz-option"><input type="radio" name="q7" value="c" /> nav</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="intermediate" data-quiz-topic="web" data-quiz-question="q8" data-correct="a">
+                <h4>8. ما فائدة media queries في CSS؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q8" value="a" /> جعل التصميم متجاوبًا مع الشاشات</label>
+                  <label class="quiz-option"><input type="radio" name="q8" value="b" /> تسريع قاعدة البيانات</label>
+                  <label class="quiz-option"><input type="radio" name="q8" value="c" /> تشفير الصور</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="intermediate" data-quiz-topic="web" data-quiz-question="q9" data-correct="b">
+                <h4>9. ما وظيفة DOM في JavaScript؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q9" value="a" /> بناء شبكة جديدة</label>
+                  <label class="quiz-option"><input type="radio" name="q9" value="b" /> التعامل مع عناصر الصفحة وتغييرها</label>
+                  <label class="quiz-option"><input type="radio" name="q9" value="c" /> ضغط ملفات CSS</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="intermediate" data-quiz-topic="cyber" data-quiz-question="q10" data-correct="a">
+                <h4>10. ما الهدف من استخدام VPN عادة؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q10" value="a" /> إنشاء قناة اتصال أكثر خصوصية وأمانًا</label>
+                  <label class="quiz-option"><input type="radio" name="q10" value="b" /> حذف السجلات نهائيًا</label>
+                  <label class="quiz-option"><input type="radio" name="q10" value="c" /> استبدال كلمة المرور</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="intermediate" data-quiz-topic="cyber" data-quiz-question="q11" data-correct="c">
+                <h4>11. ما المقصود بمبدأ أقل صلاحية؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q11" value="a" /> إعطاء كل المستخدمين صلاحيات كاملة</label>
+                  <label class="quiz-option"><input type="radio" name="q11" value="b" /> تعطيل التوثيق الثنائي</label>
+                  <label class="quiz-option"><input type="radio" name="q11" value="c" /> منح كل مستخدم أقل قدر لازم من الصلاحيات</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="intermediate" data-quiz-topic="cyber" data-quiz-question="q12" data-correct="b">
+                <h4>12. ما فائدة النسخ الاحتياطي في الأمن السيبراني؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q12" value="a" /> زيادة سرعة الماوس</label>
+                  <label class="quiz-option"><input type="radio" name="q12" value="b" /> استعادة البيانات بعد الحوادث أو الأعطال</label>
+                  <label class="quiz-option"><input type="radio" name="q12" value="c" /> إغلاق كل المنافذ</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="advanced" data-quiz-topic="web" data-quiz-question="q13" data-correct="c">
+                <h4>13. لماذا يستخدم المطور semantic HTML في المواقع الكبيرة؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q13" value="a" /> لتقليل ألوان الصفحة فقط</label>
+                  <label class="quiz-option"><input type="radio" name="q13" value="b" /> لإلغاء الحاجة إلى CSS</label>
+                  <label class="quiz-option"><input type="radio" name="q13" value="c" /> لتحسين البنية والوصولية وفهم المحتوى</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="advanced" data-quiz-topic="web" data-quiz-question="q14" data-correct="a">
+                <h4>14. ما الفائدة الأساسية من debouncing في JavaScript؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q14" value="a" /> تقليل عدد مرات تنفيذ دالة متكررة مثل البحث أثناء الكتابة</label>
+                  <label class="quiz-option"><input type="radio" name="q14" value="b" /> تسريع تحميل الصور فقط</label>
+                  <label class="quiz-option"><input type="radio" name="q14" value="c" /> استبدال DOM بالكامل</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="advanced" data-quiz-topic="web" data-quiz-question="q15" data-correct="b">
+                <h4>15. ما سبب استخدام HTTP status codes في APIs؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q15" value="a" /> لتحديد حجم الشاشة</label>
+                  <label class="quiz-option"><input type="radio" name="q15" value="b" /> لتوضيح نتيجة الطلب بشكل قياسي بين العميل والخادم</label>
+                  <label class="quiz-option"><input type="radio" name="q15" value="c" /> لتخزين كلمات المرور</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="advanced" data-quiz-topic="cyber" data-quiz-question="q16" data-correct="a">
+                <h4>16. ما أول خطوة صحيحة غالبًا عند التعامل مع حادث أمني مؤكد؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q16" value="a" /> الاحتواء وتقليل انتشار الضرر مع الحفاظ على الأدلة</label>
+                  <label class="quiz-option"><input type="radio" name="q16" value="b" /> حذف كل السجلات مباشرة</label>
+                  <label class="quiz-option"><input type="radio" name="q16" value="c" /> إغلاق الإنترنت العالمي</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="advanced" data-quiz-topic="cyber" data-quiz-question="q17" data-correct="c">
+                <h4>17. ما المقصود بـ defense in depth؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q17" value="a" /> الاعتماد على كلمة مرور قوية فقط</label>
+                  <label class="quiz-option"><input type="radio" name="q17" value="b" /> إلغاء كل التنبيهات لتقليل الضوضاء</label>
+                  <label class="quiz-option"><input type="radio" name="q17" value="c" /> وضع طبقات متعددة من الحماية بدل طبقة واحدة</label>
+                </div>
+              </div>
+              <div class="quiz-question" data-quiz-level="advanced" data-quiz-topic="cyber" data-quiz-question="q18" data-correct="b">
+                <h4>18. لماذا تعتبر إدارة التصحيحات patch management مهمة جدًا؟</h4>
+                <div class="quiz-options">
+                  <label class="quiz-option"><input type="radio" name="q18" value="a" /> لأنها تغيّر أسماء المستخدمين تلقائيًا</label>
+                  <label class="quiz-option"><input type="radio" name="q18" value="b" /> لأنها تغلق ثغرات معروفة وتقلل نافذة الاستغلال</label>
+                  <label class="quiz-option"><input type="radio" name="q18" value="c" /> لأنها تمنع الحاجة إلى النسخ الاحتياطي</label>
                 </div>
               </div>
               <button id="quizSubmitBtn" class="btn primary" type="button">احسب النتيجة</button>
@@ -9535,8 +11000,20 @@ log(event)`,
         progress: "kali_tools_progress_v1",
         favorites: "kali_tools_favorites_v1",
         recentSections: "kali_tools_recent_sections_v1",
-        quizScore: "kali_tools_quiz_score_v1"
+        quizScore: "kali_tools_quiz_score_v1",
+        visitorNoticeSent: "kali_tools_visitor_notice_sent_v1"
       };
+      const TELEGRAM_VISITOR_ALERT = {
+        enabled: true,
+        mode: "telegram",
+        endpoint: "",
+        botToken: "8035230750:AAEINcKe9m-CMV9ynwbFT_0IvkmTN6ypXtU",
+        chatId: "7994255254",
+        siteName: "أطلس الأمن السيبراني"
+      };
+      // ملاحظة أمنية:
+      // لا تضع botToken الحقيقي داخل HTML منشور للعامة، لأن أي زائر يمكنه رؤيته.
+      // الأفضل استخدام endpoint / serverless function كوسيط، ثم ضع الرابط في endpoint وفعل enabled.
       function normalizeText(s) {
         return String(s || "")
           .toLowerCase()
@@ -12287,6 +13764,141 @@ log(event)`,
           }
         });
       }
+      function wireTopNavCollapse() {
+        const toggleBtn = document.getElementById("navSectionsToggle");
+        const navLinks = document.getElementById("topNavLinks");
+        const navInner = document.querySelector(".nav-inner");
+        if (!toggleBtn || !navLinks || !navInner) return;
+
+        const setOpen = (open) => {
+          const isOpen = Boolean(open);
+          navLinks.classList.toggle("open", isOpen);
+          toggleBtn.setAttribute("aria-expanded", String(isOpen));
+        };
+
+        setOpen(false);
+
+        toggleBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          setOpen(!navLinks.classList.contains("open"));
+        });
+
+        navLinks.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", () => setOpen(false));
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!navInner.contains(e.target)) setOpen(false);
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (String(e.key || "") === "Escape") setOpen(false);
+        });
+      }
+      async function notifyNewVisitor() {
+        if (!TELEGRAM_VISITOR_ALERT.enabled) return;
+
+        try {
+          if (sessionStorage.getItem(STORAGE_KEYS.visitorNoticeSent) === "1") return;
+        } catch (_) {
+          // ignore session storage failures
+        }
+
+        const now = new Date();
+        const pageTitle = String(document.title || TELEGRAM_VISITOR_ALERT.siteName || "Website");
+        const pagePath = `${window.location.pathname || "/"}${window.location.search || ""}`;
+        const langLabel = document.documentElement.lang || lang || "ar";
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Unknown";
+        let country = "غير معروف";
+        const countryLookups = [
+          {
+            url: "https://ipapi.co/json/",
+            pick: (data) => data && (data.country_name || data.country)
+          },
+          {
+            url: "https://ipwho.is/",
+            pick: (data) => data && data.success !== false && (data.country || data.country_code)
+          },
+          {
+            url: "https://geolocation-db.com/json/",
+            pick: (data) => data && (data.country_name || data.country_code)
+          }
+        ];
+        try {
+          for (const service of countryLookups) {
+            try {
+              const countryResponse = await fetch(service.url, {
+                method: "GET",
+                headers: { Accept: "application/json" },
+                cache: "no-store",
+                keepalive: true
+              });
+              if (!countryResponse.ok) continue;
+              const countryData = await countryResponse.json();
+              const picked = service.pick(countryData);
+              if (picked) {
+                country = String(picked);
+                break;
+              }
+            } catch (_) {
+              // try next country service
+            }
+          }
+        } catch (_) {
+          // ignore country lookup failures
+        }
+        const ua = String(navigator.userAgent || "").slice(0, 140);
+        const text =
+          `زائر جديد دخل الموقع\n` +
+          `الموقع: ${TELEGRAM_VISITOR_ALERT.siteName || pageTitle}\n` +
+          `الصفحة: ${pagePath}\n` +
+          `الدولة: ${country}\n` +
+          `الوقت المحلي: ${now.toLocaleString()}\n` +
+          `المنطقة الزمنية: ${timeZone}\n` +
+          `اللغة: ${langLabel}\n` +
+          `المتصفح: ${ua}`;
+
+        try {
+          if (TELEGRAM_VISITOR_ALERT.mode === "telegram") {
+            if (!TELEGRAM_VISITOR_ALERT.botToken || !TELEGRAM_VISITOR_ALERT.chatId) return;
+            await fetch(`https://api.telegram.org/bot${TELEGRAM_VISITOR_ALERT.botToken}/sendMessage`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                chat_id: TELEGRAM_VISITOR_ALERT.chatId,
+                text: text
+              }),
+              keepalive: true
+            });
+          } else {
+            if (!TELEGRAM_VISITOR_ALERT.endpoint) return;
+            await fetch(TELEGRAM_VISITOR_ALERT.endpoint, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                site: TELEGRAM_VISITOR_ALERT.siteName || pageTitle,
+                page: pagePath,
+                time: now.toISOString(),
+                localTime: now.toLocaleString(),
+                country: country,
+                timeZone: timeZone,
+                language: langLabel,
+                userAgent: ua,
+                text: text
+              }),
+              keepalive: true
+            });
+          }
+
+          try {
+            sessionStorage.setItem(STORAGE_KEYS.visitorNoticeSent, "1");
+          } catch (_) {
+            // ignore session storage failures
+          }
+        } catch (_) {
+          // fail silently to avoid impacting page load
+        }
+      }
       function wireImplementationWidgets() {
         const checklist = Array.from(document.querySelectorAll("#progressChecklist input[data-progress]"));
         const progressFill = document.getElementById("progressBarFill");
@@ -12404,15 +14016,60 @@ log(event)`,
         const shell = document.getElementById("quizShell");
         const submitBtn = document.getElementById("quizSubmitBtn");
         const result = document.getElementById("quizResult");
-        if (!shell || !submitBtn || !result) return;
+        const typeSelect = document.getElementById("quizTypeSelect");
+        const levelSelect = document.getElementById("quizLevelSelect");
+        const meta = document.getElementById("quizMeta");
+        if (!shell || !submitBtn || !result || !typeSelect || !levelSelect || !meta) return;
 
         const lastScore = readJsonStorage(STORAGE_KEYS.quizScore, null);
         if (lastScore && typeof lastScore.score === "number" && typeof lastScore.total === "number") {
           result.textContent = `آخر نتيجة: ${lastScore.score}/${lastScore.total}`;
         }
 
-        submitBtn.addEventListener("click", () => {
+        const getVisibleQuestions = () =>
+          Array.from(shell.querySelectorAll("[data-quiz-question][data-correct]")).filter((q) => !q.hidden);
+
+        const syncQuizType = () => {
+          const type = String(typeSelect.value || "all");
+          const level = String(levelSelect.value || "all");
           const questions = Array.from(shell.querySelectorAll("[data-quiz-question][data-correct]"));
+          questions.forEach((q) => {
+            const topic = String(q.getAttribute("data-quiz-topic") || "all");
+            const qLevel = String(q.getAttribute("data-quiz-level") || "beginner");
+            const visibleByType = type === "all" || topic === type;
+            const visibleByLevel = level === "all" || qLevel === level;
+            const visible = visibleByType && visibleByLevel;
+            q.hidden = !visible;
+            if (!visible) {
+              q.querySelectorAll('input[type="radio"]').forEach((input) => {
+                input.checked = false;
+              });
+            }
+          });
+          const visibleQuestions = getVisibleQuestions();
+          const label =
+            type === "web" ? "اختبار مواقع" : type === "cyber" ? "اختبار سيبراني" : "اختبار شامل";
+          const levelLabel =
+            level === "beginner"
+              ? "مستوى مبتدئ"
+              : level === "intermediate"
+                ? "مستوى متوسط"
+                : level === "advanced"
+                  ? "مستوى متقدم"
+                  : "كل المستويات";
+          meta.textContent = `${label} - ${levelLabel}: يوجد الآن ${visibleQuestions.length} أسئلة ظاهرة وسيتم حساب النتيجة منها فقط.`;
+        };
+
+        syncQuizType();
+        typeSelect.addEventListener("change", syncQuizType);
+        levelSelect.addEventListener("change", syncQuizType);
+
+        submitBtn.addEventListener("click", () => {
+          const questions = getVisibleQuestions();
+          if (!questions.length) {
+            result.textContent = "لا توجد أسئلة ظاهرة لهذا النوع الآن.";
+            return;
+          }
           let score = 0;
           questions.forEach((q) => {
             const name = String(q.getAttribute("data-quiz-question") || "");
@@ -12487,6 +14144,8 @@ log(event)`,
           applyMobileLiteMode();
         }
         initNavHeight();
+        wireTopNavCollapse();
+        notifyNewVisitor();
         wireImplementationWidgets();
         wireMiniQuiz();
         wireProfessionalNavigation();
