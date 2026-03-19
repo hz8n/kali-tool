@@ -5368,7 +5368,7 @@
                 </div>
                 <div class="terminal-body">
                   <div class="terminal-line"><b>&gt;</b><span>مساعد مجاني داخل الموقع يشرح، يوجّه، ويجاوب من المعرفة الموجودة هنا.</span></div>
-                  <div class="terminal-line"><b>&gt;</b><span>مناسب للمبتدئ، ويقدر يشرح HTML / CSS / JS / Cybersecurity / AI / أدوات.</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>مربوط الآن بقاعدة معرفة محلية فيها أكثر من 50000 مدخل منظّم حول الويب والسيبراني وLinux والشبكات وAI وحل المشاكل.</span></div>
                 </div>
               </article>
               <div class="ai-chat-box" id="aiChatBox">
@@ -8869,6 +8869,7 @@ Report template:
         </div>
       </div>
     </footer>
+    <script src="./knowledge-base.js"></script>
     <script>
       "use strict";
       const I18N = {
@@ -14986,8 +14987,71 @@ log(event)`,
         const input = document.getElementById("aiAssistantInput");
         const sendBtn = document.getElementById("aiAssistantSendBtn");
         if (!chatBox || !input || !sendBtn) return;
+        const externalKnowledgeBase = Array.isArray(window.ATLAS_KB) ? window.ATLAS_KB : [];
         const conversationMemory = [];
         const MAX_MEMORY = 6;
+        const VIDEO_RECOMMENDATIONS = [
+          {
+            keywords: ["linux", "kali", "bash", "terminal", "shell", "لينكس", "اوامر"],
+            label: "Introduction to Linux – Full Course for Beginners",
+            url: "https://www.youtube.com/watch?v=sWbUDq4S6Y8"
+          },
+          {
+            keywords: ["شبكات", "network", "networking", "dns", "http", "tcp", "udp", "ip"],
+            label: "Computer Networking Course - Network Engineering",
+            url: "https://www.youtube.com/watch?v=qiQR5rTSshw"
+          },
+          {
+            keywords: ["html", "css", "واجهة", "frontend", "ويب", "web design"],
+            label: "HTML & CSS Crash Course Tutorial",
+            url: "https://www.youtube.com/watch?v=hu-q2zYwEYs"
+          },
+          {
+            keywords: ["javascript", "js", "dom", "async", "events"],
+            label: "Learn JavaScript - Full Course for Beginners",
+            url: "https://www.youtube.com/watch?v=PkZNo7MFNFg"
+          },
+          {
+            keywords: ["react", "next", "nextjs", "components", "jsx"],
+            label: "Learn React With This ONE Project",
+            url: "https://www.youtube.com/watch?v=G6D9cBaLViA"
+          },
+          {
+            keywords: ["typescript", "ts", "type safety"],
+            label: "TypeScript Tutorial for Beginners",
+            url: "https://www.youtube.com/watch?v=d56mG7DezGs"
+          },
+          {
+            keywords: ["python", "بايثون"],
+            label: "Python Full Course for Beginners",
+            url: "https://www.youtube.com/watch?v=K5KVEU3aaeQ"
+          },
+          {
+            keywords: ["ai", "ذكاء", "اصطناعي", "llm", "prompt", "gemini"],
+            label: "Harvard CS50’s Artificial Intelligence with Python",
+            url: "https://www.youtube.com/watch?v=5NgNicANyqM"
+          },
+          {
+            keywords: ["git", "github", "version control"],
+            label: "Learn Git – Full Course for Beginners",
+            url: "https://www.youtube.com/watch?v=zTjRZNkhiEU"
+          },
+          {
+            keywords: ["cloud", "aws", "azure", "gcp", "devsecops", "docker", "kubernetes"],
+            label: "AWS Certified Cloud Practitioner Certification Course",
+            url: "https://www.youtube.com/watch?v=NhDYbskXRgc"
+          },
+          {
+            keywords: ["cyber", "سيبراني", "cybersecurity", "امن", "security", "soc", "phishing", "forensics"],
+            label: "Introduction to Programming and Computer Science - Full Course",
+            url: "https://www.youtube.com/watch?v=zOjov-2OZ0E"
+          },
+          {
+            keywords: [],
+            label: "Harvard CS50 (2023) – Full Computer Science University Course",
+            url: "https://www.youtube.com/watch?v=LfaMVlDaQ24"
+          }
+        ];
         const labels = {
           "#beginnerPanel": "ابدأ من هنا",
           "#academySection": "التعلّم",
@@ -15095,6 +15159,21 @@ log(event)`,
           chatBox.appendChild(item);
           chatBox.scrollTop = chatBox.scrollHeight;
         };
+        const pickEducationalVideo = (question, answerText) => {
+          const haystack = normalizeText(`${question} ${answerText}`);
+          const found =
+            VIDEO_RECOMMENDATIONS.find((item) =>
+              (item.keywords || []).some((keyword) => haystack.includes(normalizeText(keyword)))
+            ) || VIDEO_RECOMMENDATIONS[VIDEO_RECOMMENDATIONS.length - 1];
+          return found;
+        };
+        const withEducationalVideo = (question, answerText) => {
+          const base = String(answerText || "").trim();
+          if (!base) return base;
+          if (/(youtube\.com|youtu\.be)/i.test(base)) return base;
+          const video = pickEducationalVideo(question, base);
+          return `${base}\n\nفيديو تعليمي مقترح: ${video.label}\n${video.url}`;
+        };
         const setPendingState = (pending) => {
           sendBtn.disabled = Boolean(pending);
           input.disabled = Boolean(pending);
@@ -15151,7 +15230,8 @@ log(event)`,
             .join(" ");
           const tokens = uniq(tokenize(`${q} ${memoryContext}`));
 
-          const scored = LOCAL_AI_KB.map((entry) => {
+          const allKnowledge = LOCAL_AI_KB.concat(externalKnowledgeBase);
+          const scored = allKnowledge.map((entry) => {
             let score = 0;
             entry.keywords.forEach((keyword) => {
               const normalizedKeyword = normalizeText(keyword);
@@ -15160,6 +15240,7 @@ log(event)`,
                 if (normalizedKeyword.includes(token) || token.includes(normalizedKeyword)) score += 0.5;
               });
             });
+            if (entry.source === "atlas-massive-kb") score -= 0.15;
             return { entry, score };
           })
             .filter((item) => item.score > 0)
@@ -15215,7 +15296,10 @@ log(event)`,
           try {
             const externalResult = await askExternalAi(question);
             if (externalResult.answer) {
-              const answer = `${externalResult.answer}\n\nالمصدر: ${EXTERNAL_AI_CONFIG.providerName}`;
+              const answer = withEducationalVideo(
+                question,
+                `${externalResult.answer}\n\nالمصدر: ${EXTERNAL_AI_CONFIG.providerName}`
+              );
               conversationMemory.push({ question, answer });
               if (conversationMemory.length > MAX_MEMORY) conversationMemory.shift();
               appendMessage("bot", answer);
@@ -15226,7 +15310,7 @@ log(event)`,
               EXTERNAL_AI_CONFIG.enabled && externalResult.reason && externalResult.reason !== "disabled"
                 ? `\n\nملاحظة تقنية: تعذر الاتصال بـ ${EXTERNAL_AI_CONFIG.providerName} حاليًا، لذلك تم التحويل إلى المساعد المحلي.`
                 : "";
-            appendMessage("bot", `${localAnswer}${diagnostics}`);
+            appendMessage("bot", withEducationalVideo(question, `${localAnswer}${diagnostics}`));
           } finally {
             setPendingState(false);
           }
