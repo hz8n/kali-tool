@@ -12026,6 +12026,14 @@ log(event)`,
             "إذا سألت عن المراجع، فابدأ بما يخدم مستواك الحالي لا بما يبدو مشهورًا فقط. للمبتدئ: CS50, freeCodeCamp, Linux basics, networking foundations. للسيبراني العملي: TryHackMe ثم PortSwigger ثم كتب متخصصة.",
           next: "اختر مصدرًا واحدًا أساسيًا في كل مرحلة بدل جمع عشرين كورسًا بدون تطبيق.",
           links: ["#referencesPanel", "#miniArticlesPanel", "#ideasAtlasPanel"]
+        },
+        {
+          topic: "greeting",
+          keywords: ["مرحبا", "اهلا", "هلا", "السلام", "hello", "hi", "هاي", "hey"],
+          answer:
+            "مرحبًا. اسألني مباشرة عن أي موضوع مثل: كيف أبدأ في الأمن السيبراني، ما الفرق بين HTML وCSS وJavaScript، ما هو SOC، ما هو phishing، أو كيف أتعلم Linux.",
+          next: "كلما كان سؤالك أوضح، كانت إجابتي أدق وأقوى.",
+          links: ["#beginnerPanel", "#academySection", "#aiCyberPanel"]
         }
       ];
       const EXTERNAL_AI_CONFIG = {
@@ -15093,7 +15101,9 @@ log(event)`,
           sendBtn.textContent = pending ? "جارٍ التفكير..." : "اسأل المساعد";
         };
         const askExternalAi = async (question) => {
-          if (!EXTERNAL_AI_CONFIG.enabled || !EXTERNAL_AI_CONFIG.endpoint) return "";
+          if (!EXTERNAL_AI_CONFIG.enabled || !EXTERNAL_AI_CONFIG.endpoint) {
+            return { answer: "", reason: "disabled" };
+          }
           const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
           const timeoutId = controller
             ? window.setTimeout(() => controller.abort(), Number(EXTERNAL_AI_CONFIG.timeoutMs) || 18000)
@@ -15113,11 +15123,20 @@ log(event)`,
               }),
               signal: controller ? controller.signal : undefined
             });
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            if (!response.ok) {
+              const raw = await response.text().catch(() => "");
+              throw new Error(`HTTP ${response.status}${raw ? ` :: ${raw.slice(0, 160)}` : ""}`);
+            }
             const data = await response.json();
-            return String(data.answer || data.text || data.response || "").trim();
-          } catch (_) {
-            return "";
+            return {
+              answer: String(data.answer || data.text || data.response || "").trim(),
+              reason: ""
+            };
+          } catch (error) {
+            return {
+              answer: "",
+              reason: String(error && error.message ? error.message : error || "external-ai-failed")
+            };
           } finally {
             if (timeoutId) window.clearTimeout(timeoutId);
           }
@@ -15194,15 +15213,20 @@ log(event)`,
           input.value = "";
           setPendingState(true);
           try {
-            const externalAnswer = await askExternalAi(question);
-            if (externalAnswer) {
-              const answer = `${externalAnswer}\n\nالمصدر: ${EXTERNAL_AI_CONFIG.providerName}`;
+            const externalResult = await askExternalAi(question);
+            if (externalResult.answer) {
+              const answer = `${externalResult.answer}\n\nالمصدر: ${EXTERNAL_AI_CONFIG.providerName}`;
               conversationMemory.push({ question, answer });
               if (conversationMemory.length > MAX_MEMORY) conversationMemory.shift();
               appendMessage("bot", answer);
               return;
             }
-            appendMessage("bot", answerQuestion(question));
+            const localAnswer = answerQuestion(question);
+            const diagnostics =
+              EXTERNAL_AI_CONFIG.enabled && externalResult.reason && externalResult.reason !== "disabled"
+                ? `\n\nملاحظة تقنية: تعذر الاتصال بـ ${EXTERNAL_AI_CONFIG.providerName} حاليًا، لذلك تم التحويل إلى المساعد المحلي.`
+                : "";
+            appendMessage("bot", `${localAnswer}${diagnostics}`);
           } finally {
             setPendingState(false);
           }
