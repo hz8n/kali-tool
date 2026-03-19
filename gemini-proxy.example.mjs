@@ -1,41 +1,69 @@
+import { createServer } from "node:http";
+
+const PORT = Number(process.env.PORT || 8787);
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "";
 const DEFAULT_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
-function extractGeminiText(data) {
-  const parts = data?.candidates?.[0]?.content?.parts;
-  if (!Array.isArray(parts)) return "";
-  return parts
-    .map((part) => String(part?.text || "").trim())
-    .filter(Boolean)
-    .join("\n")
-    .trim();
+function readJson(req) {
+  return new Promise((resolve, reject) => {
+    let body = "";
+    req.on("data", (chunk) => {
+      body += chunk;
+      if (body.length > 2_000_000) {
+        reject(new Error("Payload too large"));
+        req.destroy();
+      }
+    });
+    req.on("end", () => {
+      try {
+        resolve(body ? JSON.parse(body) : {});
+      } catch (error) {
+        reject(error);
+      }
+    });
+    req.on("error", reject);
+  });
 }
 
-export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+function sendJson(res, status, payload) {
+  res.writeHead(status, {
+    "Content-Type": "application/json; charset=utf-8",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
+  });
+  res.end(JSON.stringify(payload));
+}
 
+function extractGeminiText(data) {
+  const candidateText = data?.candidates?.[0]?.content?.parts
+    ?.map((part) => String(part?.text || "").trim())
+    .filter(Boolean)
+    .join("\n");
+  return String(candidateText || "").trim();
+}
+
+createServer(async (req, res) => {
   if (req.method === "OPTIONS") {
-    return res.status(204).end();
+    return sendJson(res, 204, {});
   }
 
-  if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+  if (req.method !== "POST" || req.url !== "/api/gemini") {
+    return sendJson(res, 404, { error: "Not found" });
   }
 
-  const apiKey = process.env.GEMINI_API_KEY || "";
-  if (!apiKey) {
-    return res.status(500).json({ error: "Missing GEMINI_API_KEY" });
+  if (!GEMINI_API_KEY) {
+    return sendJson(res, 500, { error: "Missing GEMINI_API_KEY" });
   }
 
   try {
-    const body = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
-    const question = String(body.question || "").trim();
-    const history = Array.isArray(body.history) ? body.history : [];
-    const model = String(body.model || DEFAULT_MODEL).trim() || DEFAULT_MODEL;
+    const body = await readJson(req);
+    const question = String(body?.question || "").trim();
+    const history = Array.isArray(body?.history) ? body.history : [];
+    const model = String(body?.model || DEFAULT_MODEL).trim() || DEFAULT_MODEL;
 
     if (!question) {
-      return res.status(400).json({ error: "Question is required" });
+      return sendJson(res, 400, { error: "Question is required" });
     }
 
     const prompt = [
@@ -53,7 +81,7 @@ export default async function handler(req, res) {
       .join("\n\n");
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(apiKey)}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`,
       {
         method: "POST",
         headers: {
@@ -77,7 +105,7 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const raw = await response.text();
-      return res.status(response.status).json({
+      return sendJson(res, response.status, {
         error: "Gemini request failed",
         details: raw.slice(0, 1500)
       });
@@ -87,14 +115,16 @@ export default async function handler(req, res) {
     const answer = extractGeminiText(data);
 
     if (!answer) {
-      return res.status(502).json({ error: "Empty Gemini response" });
+      return sendJson(res, 502, { error: "Empty Gemini response" });
     }
 
-    return res.status(200).json({ answer, model });
+    return sendJson(res, 200, { answer, model });
   } catch (error) {
-    return res.status(500).json({
+    return sendJson(res, 500, {
       error: "Proxy failure",
       details: String(error?.message || error)
     });
   }
-}
+}).listen(PORT, () => {
+  console.log(`Gemini proxy running on http://localhost:${PORT}/api/gemini`);
+});
