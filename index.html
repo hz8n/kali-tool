@@ -240,6 +240,34 @@
       .terminal-line b {
         color: var(--accent);
       }
+      .terminal-input-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .terminal-input-row input {
+        font-family: inherit;
+      }
+      .terminal-output {
+        margin-top: 10px;
+        min-height: 20px;
+        color: rgba(170, 255, 195, 0.76);
+        font-size: 12px;
+      }
+      .terminal-history {
+        margin-top: 12px;
+        display: grid;
+        gap: 8px;
+      }
+      .terminal-history div {
+        padding: 8px 10px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: rgba(170, 255, 195, 0.74);
+        font-size: 12px;
+      }
       .typing-line::after {
         content: "_";
         margin-inline-start: 4px;
@@ -286,6 +314,20 @@
       .hidden-console[hidden] {
         display: none;
       }
+      .hidden-console.reveal {
+        animation: hidden-console-in 0.35s ease;
+      }
+      .hidden-access-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 12px;
+        flex-wrap: wrap;
+      }
+      .hidden-access-row input {
+        max-width: 220px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      }
       .status-pill {
         display: inline-flex;
         align-items: center;
@@ -297,6 +339,49 @@
         color: rgba(170, 255, 195, 0.86);
         font-size: 11px;
         font-weight: 900;
+      }
+      .ai-assistant-shell {
+        display: grid;
+        gap: 12px;
+      }
+      .ai-chat-box {
+        border-radius: 18px;
+        border: 1px solid rgba(var(--accent-rgb), 0.14);
+        background: rgba(0, 8, 2, 0.82);
+        padding: 14px;
+        min-height: 260px;
+        display: grid;
+        gap: 10px;
+      }
+      .ai-message {
+        border-radius: 14px;
+        padding: 12px;
+        line-height: 1.9;
+        font-size: 13px;
+      }
+      .ai-message.user {
+        background: rgba(var(--accent-rgb), 0.08);
+        border: 1px solid rgba(var(--accent-rgb), 0.14);
+      }
+      .ai-message.bot {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .ai-input-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .ai-input-row input {
+        flex: 1 1 320px;
+      }
+      .ai-chip-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .ai-chip-row button {
+        font-size: 12px;
       }
       .hero-anon-label {
         position: absolute;
@@ -451,6 +536,10 @@
       @keyframes typing-caret {
         0%, 49% { opacity: 1; }
         50%, 100% { opacity: 0; }
+      }
+      @keyframes hidden-console-in {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
       }
       @keyframes hero-glitch-scan {
         0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.12; clip-path: inset(0 0 0 0); }
@@ -4517,6 +4606,7 @@
             <a href="#siteMapPanel">الرئيسية</a>
             <a href="#academySection">التعلّم</a>
             <a href="#toolsHub">الأدوات</a>
+            <a href="#aiCyberPanel">AI</a>
             <a href="#quizPanel">الاختبارات</a>
             <a href="#aboutSitePanel">عن الموقع</a>
           </div>
@@ -4590,6 +4680,10 @@
         <a href="#referencesPanel" class="sidebar-link">
           <div class="sidebar-link-icon">📘</div>
           <span>المراجع والشهادات</span>
+        </a>
+        <a href="#aiCyberPanel" class="sidebar-link">
+          <div class="sidebar-link-icon">🤖</div>
+          <span>AI للأمن السيبراني</span>
         </a>
         <a href="#miniArticlesPanel" class="sidebar-link">
           <div class="sidebar-link-icon">📰</div>
@@ -5094,7 +5188,7 @@
                     <strong>Activity / Logs</strong>
                     <span class="status-pill">LIVE FEED</span>
                   </div>
-                  <div class="log-list">
+                  <div class="log-list" id="liveLogList">
                     <div>[03:17:09] Connection established</div>
                     <div>[03:17:12] Network path resolved</div>
                     <div>[03:17:15] Access denied</div>
@@ -5126,6 +5220,12 @@
                     <div class="terminal-line"><b>&gt;</b><span>status</span></div>
                     <div class="terminal-line"><b>&gt;</b><span>Active</span></div>
                   </div>
+                  <div class="terminal-input-row">
+                    <input id="terminalCommandInput" type="text" placeholder="اكتب أمرًا مثل: whoami أو status" />
+                    <button id="terminalRunBtn" class="btn ghost signal-btn" type="button">RUN</button>
+                  </div>
+                  <div class="terminal-output" id="terminalOutput">جاهز لاستقبال أوامر آمنة.</div>
+                  <div class="terminal-history" id="terminalHistory"></div>
                 </article>
               </div>
               <div class="system-grid-2">
@@ -5150,7 +5250,15 @@
                     <div class="terminal-line"><b>&gt;</b><span>Channel: Telegram</span></div>
                     <div class="terminal-line"><b>&gt;</b><span>Response: Pending</span></div>
                   </div>
-                  <button id="revealHiddenBtn" class="btn ghost signal-btn" type="button">Reveal Hidden Section</button>
+                  <div class="hidden-access-row">
+                    <input id="signalInput" type="text" placeholder="اكتب رسالتك أو كلمة signal" />
+                    <button id="signalSendBtn" class="btn ghost signal-btn" type="button">Send Signal</button>
+                  </div>
+                  <div class="terminal-output" id="signalOutput">القناة جاهزة لاستقبال الإشارة.</div>
+                  <div class="hidden-access-row">
+                    <input id="hiddenAccessInput" type="text" placeholder="أدخل كلمة المرور لفتح القسم المخفي" />
+                    <button id="revealHiddenBtn" class="btn ghost signal-btn" type="button">Unlock</button>
+                  </div>
                 </article>
               </div>
               <div class="hidden-console" id="hiddenConsole" hidden>
@@ -5163,6 +5271,118 @@
                   <div class="terminal-line"><b>&gt;</b><span>MESSAGE: Some systems are meant to be watched, not touched.</span></div>
                   <div class="terminal-line"><b>&gt;</b><span>ENTITY: BR // 001 // UNKNOWN</span></div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="panel" id="aiCyberPanel" style="margin: 12px 0 16px">
+          <div class="panel-inner">
+            <div class="section-head" style="margin-top: 0">
+              <div>
+                <h2>AI في الأمن السيبراني</h2>
+                <p>قسم عملي يشرح كيف تستفيد من الذكاء الاصطناعي في العمل الدفاعي، التحليل، الأتمتة، وبناء فهم أسرع دون تحويله إلى اختصار خطير أو غير قانوني.</p>
+              </div>
+            </div>
+            <div class="info-grid">
+              <article class="info-card">
+                <h4>ما الذي يقدمه AI هنا فعلًا؟</h4>
+                <ul class="idea-list">
+                  <li>تلخيص السجلات الطويلة واستخراج الأنماط المهمة.</li>
+                  <li>شرح التنبيهات الأمنية بلغة أبسط للمبتدئ أو المحلل.</li>
+                  <li>المساعدة في كتابة التقارير والتوصيات والإصلاحات.</li>
+                  <li>بناء Playbooks وChecklists أسرع لفِرق الدفاع.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>AI كمساعد SOC Analyst</h4>
+                <ul class="idea-list">
+                  <li>تصنيف التنبيه: هل هو عالي الأولوية أم ضوضاء؟</li>
+                  <li>تلخيص الحادث خلال ثوانٍ بدل قراءة عشرات السطور.</li>
+                  <li>اقتراح خطوات الاحتواء الأولي والتحقق اليدوي.</li>
+                  <li>تحويل التلغرامات والسجلات إلى Timeline واضح.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>AI لتحليل phishing والرسائل</h4>
+                <ul class="idea-list">
+                  <li>تحليل النص واكتشاف صياغة الاستعجال أو الانتحال.</li>
+                  <li>استخراج مؤشرات مثل الدومين والروابط والطلبات المشبوهة.</li>
+                  <li>إعادة كتابة الشرح للمستخدمين بصيغة توعوية بسيطة.</li>
+                  <li>المساعدة في بناء قوالب توعية واختبارات phishing awareness.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>AI مع المطورين وAppSec</h4>
+                <ul class="idea-list">
+                  <li>شرح الثغرات البرمجية بلغة يفهمها المطور بسرعة.</li>
+                  <li>اقتراح تحسينات على validation وauth وlogging.</li>
+                  <li>تلخيص Pull Requests الكبيرة والتركيز على الأجزاء الحساسة.</li>
+                  <li>تحويل Findings إلى مهام إصلاح واضحة وقابلة للتنفيذ.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>أتمتة ذكية وآمنة</h4>
+                <ul class="idea-list">
+                  <li>تلخيص نتائج الأدوات بدل إغراق المستخدم في output خام.</li>
+                  <li>إنشاء Incident Notes تلقائيًا من أحداث متعددة.</li>
+                  <li>بناء مسودات Queries أو Regex أو Sigma بشكل أسرع.</li>
+                  <li>اقتراح خطوات التحقق التالية للمحلل بدل العمل العشوائي.</li>
+                </ul>
+              </article>
+              <article class="info-card">
+                <h4>حدود AI التي يجب فهمها</h4>
+                <ul class="idea-list">
+                  <li>قد يهلوس أو يخلط بين معلومة صحيحة وخاطئة.</li>
+                  <li>لا يجب أن يكون بديلًا عن التحقق البشري.</li>
+                  <li>لا تضع أسرارًا أو بيانات حساسة في أي نموذج غير موثوق.</li>
+                  <li>استخدمه كمساعد قرار، لا كمصدر قرار نهائي.</li>
+                </ul>
+              </article>
+              <article class="terminal-card">
+                <div class="system-mini-head">
+                  <strong>AI Prompt Lab</strong>
+                  <span class="status-pill">DEFENSIVE USE</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="terminal-line"><b>&gt;</b><span>حلل هذا التنبيه واشرحه بلغة بسيطة.</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>لخّص هذه السجلات واذكر أهم 3 مؤشرات.</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>حوّل هذا الحادث إلى Timeline واضح.</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>اقترح خطوات تحقق آمنة لاختبار التنبيه.</span></div>
+                </div>
+              </article>
+              <article class="info-card">
+                <h4>أفكار مفيدة للموقع</h4>
+                <ul class="idea-list">
+                  <li>مساعد يشرح أي مصطلح سيبراني داخل الموقع فورًا.</li>
+                  <li>مساعد يحول المقال الطويل إلى نسخة مختصرة.</li>
+                  <li>مولد أسئلة Quiz من نفس المحتوى التعليمي.</li>
+                  <li>مولد Roadmap حسب هدف الزائر: SOC, Web, Frontend, Full Stack.</li>
+                </ul>
+              </article>
+            </div>
+            <div class="ai-assistant-shell" style="margin-top: 14px">
+              <article class="terminal-card">
+                <div class="system-mini-head">
+                  <strong>Cyber AI Assistant</strong>
+                  <span class="status-pill">FREE / LOCAL</span>
+                </div>
+                <div class="terminal-body">
+                  <div class="terminal-line"><b>&gt;</b><span>مساعد مجاني داخل الموقع يشرح، يوجّه، ويجاوب من المعرفة الموجودة هنا.</span></div>
+                  <div class="terminal-line"><b>&gt;</b><span>مناسب للمبتدئ، ويقدر يشرح HTML / CSS / JS / Cybersecurity / AI / أدوات.</span></div>
+                </div>
+              </article>
+              <div class="ai-chat-box" id="aiChatBox">
+                <div class="ai-message bot">مرحبًا، أنا مساعد الموقع. اسألني مثلًا: كيف أبدأ في الأمن السيبراني؟ ما الفرق بين HTML وCSS وJS؟ كيف أستخدم AI بشكل مفيد في السيبراني؟</div>
+              </div>
+              <div class="ai-chip-row">
+                <button class="btn ghost" type="button" data-ai-prompt="كيف أبدأ في الأمن السيبراني؟">ابدأ في السيبراني</button>
+                <button class="btn ghost" type="button" data-ai-prompt="اشرح لي HTML وCSS وJavaScript ببساطة">تعلم الويب</button>
+                <button class="btn ghost" type="button" data-ai-prompt="كيف يساعد AI في الأمن السيبراني؟">AI في السيبراني</button>
+                <button class="btn ghost" type="button" data-ai-prompt="ما أفضل مسار للمبتدئ داخل الموقع؟">أفضل مسار</button>
+              </div>
+              <div class="ai-input-row">
+                <input id="aiAssistantInput" type="text" placeholder="اسأل أي سؤال تعليمي..." />
+                <button id="aiAssistantSendBtn" class="btn primary" type="button">اسأل المساعد</button>
               </div>
             </div>
           </div>
@@ -11670,6 +11890,151 @@ log(event)`,
         visitorNoticeSent: "kali_tools_visitor_notice_sent_v1",
         performanceMode: "kali_tools_performance_mode_v1"
       };
+      const LOCAL_AI_KB = [
+        {
+          topic: "cyber-start",
+          keywords: ["ابدأ", "بداية", "مبتدئ", "سيبراني", "cyber", "امن", "security"],
+          answer:
+            "ابدأ بهذا الترتيب: Linux basics ثم الشبكات ثم البرمجة الأساسية ثم أمن الويب ثم المختبرات القانونية مثل TryHackMe. داخل الموقع ابدأ من قسم 'ابدأ من هنا' ثم 'التعلّم' ثم 'الاختبارات'.",
+          next: "إذا كنت جديدًا جدًا، ركّز أول شهر على Linux والشبكات فقط قبل أي أدوات.",
+          links: ["#beginnerPanel", "#academySection", "#quizPanel"]
+        },
+        {
+          topic: "frontend",
+          keywords: ["html", "css", "javascript", "js", "frontend", "واجهة", "ويب"],
+          answer:
+            "HTML يبني هيكل الصفحة، CSS ينسق الشكل، وJavaScript يضيف التفاعل. الترتيب الأفضل: HTML ثم CSS ثم JavaScript ثم Responsive Design ثم React أو Next.js بعد إتقان الأساسيات.",
+          next: "إذا هدفك التوظيف، ابنِ مشروعين ثابتين قبل القفز إلى React أو Next.js.",
+          links: ["#frontendMasterPanel", "#referencesPanel", "#quizPanel"]
+        },
+        {
+          topic: "ai-cyber",
+          keywords: ["ai", "ذكاء", "اصطناعي", "مساعد", "soc", "logs", "prompt"],
+          answer:
+            "AI مفيد في الأمن السيبراني لتلخيص السجلات، شرح التنبيهات، بناء Timeline للحوادث، واقتراح خطوات تحقق أولية. لا تعتمد عليه وحده، وتحقق من أي نتيجة يدويًا خصوصًا في الأمور الحساسة.",
+          next: "أفضل استخدام عملي له هنا: فهم التنبيه أسرع، تنظيم التقرير، وتحويل الفوضى إلى خطوات واضحة.",
+          links: ["#aiCyberPanel", "#cyberDomainsPanel", "#referencesPanel"]
+        },
+        {
+          topic: "tools",
+          keywords: ["ادوات", "tools", "nmap", "forensics", "تصنيف", "فلتر"],
+          answer:
+            "قسم الأدوات داخل الموقع يعطيك بحثًا وفلاتر حسب المجال والخطورة. استخدم التصنيف لتضييق النطاق أولًا، ثم اقرأ الوصف العام لكل أداة بدل التعامل معها كهدف بحد ذاته.",
+          next: "إذا كنت مشتتًا بين الأدوات، ابدأ بفئة واحدة فقط مثل Web أو Network.",
+          links: ["#toolsHub", "#eduPanel", "#glossaryPanel"]
+        },
+        {
+          topic: "paths",
+          keywords: ["مسار", "roadmap", "تعلم", "خطة", "frontend", "full stack", "soc"],
+          answer:
+            "إذا كنت محتارًا: المبتدئ يبدأ بخطة 30-90 يوم، ثم يختار مسارًا واحدًا فقط. للمطور: Frontend ثم Full Stack. للسيبراني: Linux + Networking + Web Security + Labs.",
+          next: "اختيار مسار واحد في البداية أفضل من حمل 3 مسارات معًا.",
+          links: ["#ideasAtlasPanel", "#academySection", "#missionPanel"]
+        },
+        {
+          topic: "safe-use",
+          keywords: ["قانوني", "قانون", "مسموح", "مختبر", "تفويض", "اذن"],
+          answer:
+            "الموقع تعليمي ودفاعي. أي تجربة يجب أن تكون على أجهزتك، في مختبر محلي، أو ضمن تفويض قانوني واضح. لا تستخدم أي معرفة هنا على أنظمة خارج النطاق المصرح به.",
+          next: "إذا شككت في قانونية خطوة ما، اعتبرها مرفوضة حتى يكون عندك تفويض صريح.",
+          links: ["#aboutSitePanel", "#phishingDefensePanel", "#missionPanel"]
+        },
+        {
+          topic: "linux",
+          keywords: ["linux", "لينكس", "kali", "terminal", "bash", "اوامر", "طرفية"],
+          answer:
+            "لينكس مهم لأنه يعطيك فهمًا للملفات، الصلاحيات، الخدمات، والشبكات من مستوى عملي جدًا. ابدأ بأوامر التنقل، الملفات، الصلاحيات، الحزم، والـ logs، ثم طبّق داخل مختبر نظيف.",
+          next: "إذا كنت مبتدئًا، ركّز أولًا على `cd`, `ls`, `cat`, `grep`, الصلاحيات، وإدارة الحزم قبل الأدوات الأمنية.",
+          links: ["#beginnerPanel", "#academySection", "#phishingDefensePanel"]
+        },
+        {
+          topic: "networking",
+          keywords: ["شبكات", "network", "dns", "http", "tcp", "udp", "ip", "subnet"],
+          answer:
+            "الشبكات هي العمود الفقري للأمن السيبراني. افهم أولًا IP وDNS وHTTP وTCP/UDP ثم راقب الترافيك وارتبط ذلك بالأدوات والتنبيهات التي تراها.",
+          next: "إذا واجهت صعوبة، لا تقفز إلى الهجمات أو الأدوات قبل فهم كيف تنتقل البيانات أصلًا.",
+          links: ["#glossaryPanel", "#academySection", "#cyberDomainsPanel"]
+        },
+        {
+          topic: "python",
+          keywords: ["python", "بايثون", "برمجة", "script", "سكريبت", "automation", "اتمتة"],
+          answer:
+            "Python ممتاز لبناء التفكير البرمجي والأتمتة. ابدأ بالمتغيرات، الشروط، الحلقات، الدوال، الملفات، ثم انتقل إلى parsing, requests, logs, automation scripts.",
+          next: "أفضل طريقة لتعلمه: كل مفهوم صغير تبني له سكربتًا صغيرًا بدل المشاهدة فقط.",
+          links: ["#frontendMasterPanel", "#referencesPanel", "#missionPanel"]
+        },
+        {
+          topic: "react-next",
+          keywords: ["react", "next", "nextjs", "typescript", "تايب سكربت"],
+          answer:
+            "لا تبدأ React أو Next.js قبل فهم HTML وCSS وJavaScript جيدًا. بعد ذلك ابدأ بالمكونات، state، props، ثم التوجيه والـ data fetching، وبعدها انتقل إلى TypeScript وNext.js.",
+          next: "المشكلة الشائعة هي دخول React مبكرًا جدًا ثم الضياع في المفاهيم الأساسية.",
+          links: ["#frontendMasterPanel", "#referencesPanel", "#quizPanel"]
+        },
+        {
+          topic: "sql-backend",
+          keywords: ["sql", "database", "postgresql", "mongo", "backend", "express", "node"],
+          answer:
+            "في Backend ركز على: HTTP lifecycle ثم APIs ثم قواعد البيانات ثم auth ثم validation والـ logging. SQL مهم جدًا لأنه يبني لديك فهمًا منظمًا للبيانات والعلاقات.",
+          next: "إذا تريد Full Stack، لا تهمل قاعدة البيانات لأنها غالبًا مصدر أغلب الأخطاء المنطقية لاحقًا.",
+          links: ["#frontendMasterPanel", "#referencesPanel", "#ideasAtlasPanel"]
+        },
+        {
+          topic: "phishing",
+          keywords: ["phishing", "تصيد", "ايميل", "بريد", "رسالة", "headers", "dmarc"],
+          answer:
+            "في التصيد ركّز على التحليل والكشف والوقاية: تحقق من الدومين، الرؤوس، الروابط، أسلوب الرسالة، وSPF/DKIM/DMARC. لا تتعامل معه كتقنية هجومية بل كموضوع دفاعي وتحليلي.",
+          next: "أفضل بداية هنا هي تحليل بريد مشبوه ورابط مشبوه داخل مختبر آمن وليس أي شيء خارجي.",
+          links: ["#phishingDefensePanel", "#aiCyberPanel", "#glossaryPanel"]
+        },
+        {
+          topic: "soc-siem",
+          keywords: ["soc", "siem", "logs", "alert", "incident", "timeline", "detection"],
+          answer:
+            "مهمات SOC تبدأ من فهم التنبيه، تجميع الأدلة، بناء Timeline، التحقق من الأثر، ثم رفع التوصية أو الاحتواء الأولي. SIEM ليس مجرد شاشة، بل طريقة رؤية وربط وتحليل.",
+          next: "أقوى مهارة هنا هي تحويل عشرات السجلات المتفرقة إلى قصة واحدة مفهومة.",
+          links: ["#cyberDomainsPanel", "#aiCyberPanel", "#quizPanel"]
+        },
+        {
+          topic: "forensics-malware",
+          keywords: ["forensics", "malware", "memory", "evidence", "ادلة", "تحليل جنائي", "برمجيات خبيثة"],
+          answer:
+            "التحليل الجنائي الرقمي يهتم بالأدلة، التسلسل الزمني، والحفاظ على سلامة البيانات. أما malware analysis فيركز على السلوك، المؤشرات، والفرز قبل التحليل الأعمق.",
+          next: "ادخل هذا المجال بعقلية تحقيق وتوثيق، لا بعقلية مؤثرات وأدوات فقط.",
+          links: ["#cyberDomainsPanel", "#glossaryPanel", "#referencesPanel"]
+        },
+        {
+          topic: "bugbounty",
+          keywords: ["bug bounty", "bounty", "ثغرات", "باحث", "researcher", "مكافآت"],
+          answer:
+            "لو أردت bug bounty فابدأ بأمن الويب، قراءة scope بعناية، فهم الأساسيات، كتابة تقرير قوي، واحترام الحدود القانونية. الجودة هنا أهم من كمية المحاولات.",
+          next: "أفضل بداية: PortSwigger Academy + كتابة ملاحظات وتقارير نظيفة.",
+          links: ["#researcherPathPanel", "#referencesPanel", "#miniArticlesPanel"]
+        },
+        {
+          topic: "cloud-devsecops",
+          keywords: ["cloud", "aws", "azure", "gcp", "devsecops", "docker", "ci/cd", "kubernetes"],
+          answer:
+            "في Cloud وDevSecOps ابدأ بالبنية أولًا: IAM, secrets, logging, images, CI/CD, policies. لا تدخل الأدوات قبل فهم lifecycle الخاص بالنشر والتشغيل والمراقبة.",
+          next: "Docker وCI/CD وsecrets management من أهم المداخل العملية هنا.",
+          links: ["#cyberDomainsPanel", "#frontendMasterPanel", "#aiCyberPanel"]
+        },
+        {
+          topic: "certs-books",
+          keywords: ["شهادة", "شهادات", "books", "كتب", "كورسات", "courses", "مراجع"],
+          answer:
+            "إذا سألت عن المراجع، فابدأ بما يخدم مستواك الحالي لا بما يبدو مشهورًا فقط. للمبتدئ: CS50, freeCodeCamp, Linux basics, networking foundations. للسيبراني العملي: TryHackMe ثم PortSwigger ثم كتب متخصصة.",
+          next: "اختر مصدرًا واحدًا أساسيًا في كل مرحلة بدل جمع عشرين كورسًا بدون تطبيق.",
+          links: ["#referencesPanel", "#miniArticlesPanel", "#ideasAtlasPanel"]
+        }
+      ];
+      const EXTERNAL_AI_CONFIG = {
+        enabled: true,
+        endpoint: "/api/gemini",
+        timeoutMs: 18000,
+        providerName: "Gemini",
+        model: "gemini-2.5-flash"
+      };
       const TELEGRAM_VISITOR_ALERT = {
         enabled: true,
         mode: "telegram",
@@ -14487,10 +14852,102 @@ log(event)`,
       function wireSystemIdentityPanels() {
         const hiddenBtn = document.getElementById("revealHiddenBtn");
         const hiddenConsole = document.getElementById("hiddenConsole");
-        if (hiddenBtn && hiddenConsole) {
-          hiddenBtn.addEventListener("click", () => {
-            hiddenConsole.hidden = !hiddenConsole.hidden;
-            hiddenBtn.textContent = hiddenConsole.hidden ? "Reveal Hidden Section" : "Hide Hidden Section";
+        const hiddenInput = document.getElementById("hiddenAccessInput");
+        if (hiddenBtn && hiddenConsole && hiddenInput) {
+          const toggleHiddenConsole = () => {
+            const pass = String(hiddenInput.value || "").trim().toLowerCase();
+            if (pass === "br-001" || pass === "black_reaper" || pass === "blackreaper") {
+              hiddenConsole.hidden = !hiddenConsole.hidden;
+              hiddenConsole.classList.toggle("reveal", !hiddenConsole.hidden);
+              hiddenBtn.textContent = hiddenConsole.hidden ? "Unlock" : "Hide";
+            }
+          };
+          hiddenBtn.addEventListener("click", toggleHiddenConsole);
+          hiddenInput.addEventListener("keydown", (e) => {
+            if (String(e.key || "") === "Enter") toggleHiddenConsole();
+          });
+        }
+
+        const terminalInput = document.getElementById("terminalCommandInput");
+        const terminalRunBtn = document.getElementById("terminalRunBtn");
+        const terminalOutput = document.getElementById("terminalOutput");
+        const terminalHistory = document.getElementById("terminalHistory");
+        if (terminalInput && terminalRunBtn && terminalOutput && terminalHistory) {
+          const safeCommands = {
+            whoami: "Black_Reaper",
+            status: "Active // Watching...",
+            id: "BR-001",
+            origin: "Unknown",
+            help: "Available: whoami, status, id, origin, signal, coords, clear",
+            signal: "Signal relay standing by...",
+            coords: "31.9539 N / 35.9106 E"
+          };
+          const appendHistory = (cmd, result) => {
+            const item = document.createElement("div");
+            item.textContent = `> ${cmd} // ${result}`;
+            terminalHistory.prepend(item);
+            while (terminalHistory.children.length > 5) {
+              terminalHistory.removeChild(terminalHistory.lastElementChild);
+            }
+          };
+          const runCommand = () => {
+            const cmd = String(terminalInput.value || "").trim().toLowerCase();
+            if (!cmd) return;
+            if (cmd === "clear") {
+              terminalHistory.innerHTML = "";
+              terminalOutput.textContent = "Terminal history cleared.";
+              terminalInput.value = "";
+              return;
+            }
+            const result = safeCommands[cmd] || "Unknown command. Try: help";
+            terminalOutput.textContent = result;
+            appendHistory(cmd, result);
+            terminalInput.value = "";
+          };
+          terminalRunBtn.addEventListener("click", runCommand);
+          terminalInput.addEventListener("keydown", (e) => {
+            if (String(e.key || "") === "Enter") runCommand();
+          });
+        }
+
+        const liveLogList = document.getElementById("liveLogList");
+        if (liveLogList) {
+          const liveEntries = [
+            "Ghost route detected",
+            "Status set to WATCHING...",
+            "Unknown entity matched",
+            "Signal rerouted",
+            "Trace interrupted"
+          ];
+          let liveIndex = 0;
+          window.setInterval(() => {
+            const item = document.createElement("div");
+            const stamp = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+            item.textContent = `[${stamp}] ${liveEntries[liveIndex % liveEntries.length]}`;
+            liveIndex += 1;
+            liveLogList.prepend(item);
+            while (liveLogList.children.length > 5) {
+              liveLogList.removeChild(liveLogList.lastElementChild);
+            }
+          }, 4200);
+        }
+
+        const signalInput = document.getElementById("signalInput");
+        const signalSendBtn = document.getElementById("signalSendBtn");
+        const signalOutput = document.getElementById("signalOutput");
+        if (signalInput && signalSendBtn && signalOutput) {
+          const sendSignal = () => {
+            const payload = String(signalInput.value || "").trim();
+            if (!payload) {
+              signalOutput.textContent = "اكتب إشارة أولًا.";
+              return;
+            }
+            signalOutput.textContent = `Signal accepted // ${payload}`;
+            signalInput.value = "";
+          };
+          signalSendBtn.addEventListener("click", sendSignal);
+          signalInput.addEventListener("keydown", (e) => {
+            if (String(e.key || "") === "Enter") sendSignal();
           });
         }
 
@@ -14515,6 +14972,256 @@ log(event)`,
             loadingScreen.classList.add("hidden");
           }, 2200);
         }
+      }
+      function wireLocalAiAssistant() {
+        const chatBox = document.getElementById("aiChatBox");
+        const input = document.getElementById("aiAssistantInput");
+        const sendBtn = document.getElementById("aiAssistantSendBtn");
+        if (!chatBox || !input || !sendBtn) return;
+        const conversationMemory = [];
+        const MAX_MEMORY = 6;
+        const labels = {
+          "#beginnerPanel": "ابدأ من هنا",
+          "#academySection": "التعلّم",
+          "#quizPanel": "الاختبارات",
+          "#frontendMasterPanel": "Frontend",
+          "#referencesPanel": "المراجع",
+          "#aiCyberPanel": "AI",
+          "#cyberDomainsPanel": "المجالات",
+          "#toolsHub": "الأدوات",
+          "#eduPanel": "الشرح التعليمي",
+          "#glossaryPanel": "القاموس",
+          "#ideasAtlasPanel": "أفكار التطوير",
+          "#missionPanel": "ماذا يقدم الموقع",
+          "#aboutSitePanel": "عن الموقع",
+          "#phishingDefensePanel": "Phishing",
+          "#miniArticlesPanel": "المقالات",
+          "#researcherPathPanel": "الباحث الأمني",
+          "#systemIdentityPanel": "Black Reaper System",
+          "#activityLogsPanel": "Activity Logs",
+          "#operationsPanel": "Operations"
+        };
+        const splitSentences = (text) =>
+          String(text || "")
+            .split(/[\n\r]+|[.!?؟]+/g)
+            .map((part) => String(part || "").trim())
+            .filter((part) => part.length >= 20);
+        const tokenize = (text) =>
+          uniq(
+            normalizeText(text)
+              .split(/[\s,.;:!?()\[\]{}\/\\|+\-=_"'`~@#$%^&*<>]+/)
+              .map((x) => x.trim())
+              .filter((x) => x.length >= 2)
+          );
+        const buildSectionDocs = () => {
+          return Array.from(document.querySelectorAll("main section[id], main article[id]"))
+            .map((section) => {
+              const heading = section.querySelector("h1, h2, h3, h4, strong");
+              const title = String(heading ? heading.textContent || "" : section.id).trim();
+              const rawText = normalizeText(section.textContent || "");
+              const text = rawText.slice(0, 7000);
+              const sentences = splitSentences(section.textContent || "").slice(0, 40);
+              const keywords = uniq(tokenize(`${title} ${section.id} ${text.slice(0, 1400)}`));
+              return {
+                id: `#${section.id}`,
+                title,
+                text,
+                sentences,
+                keywords
+              };
+            })
+            .filter((item) => item.title && item.text && item.text.length > 60);
+        };
+        const sectionDocs = buildSectionDocs();
+        const buildLinkText = (links) =>
+          (Array.isArray(links) ? links : [])
+            .map((link) => labels[link] || link.replace(/^#/, ""))
+            .filter(Boolean)
+            .slice(0, 4)
+            .join(" / ");
+        const extractSnippet = (doc, tokens, questionText) => {
+          const ranked = doc.sentences
+            .map((sentence) => {
+              const normalizedSentence = normalizeText(sentence);
+              let score = 0;
+              if (questionText && normalizedSentence.includes(questionText)) score += 10;
+              tokens.forEach((token) => {
+                if (normalizedSentence.includes(token)) score += token.length > 4 ? 3 : 1;
+                if (normalizeText(doc.title).includes(token)) score += 2;
+              });
+              return { sentence, score };
+            })
+            .filter((item) => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 2)
+            .map((item) => item.sentence);
+          if (ranked.length) return ranked.join(" ");
+          return String(doc.sentences[0] || doc.text || "").slice(0, 220);
+        };
+        const getSectionHints = (tokens, questionText) => {
+          return sectionDocs
+            .map((doc) => {
+              let score = 0;
+              const normalizedTitle = normalizeText(doc.title);
+              if (questionText && doc.text.includes(questionText)) score += 12;
+              tokens.forEach((token) => {
+                if (normalizedTitle.includes(token)) score += token.length > 4 ? 5 : 2;
+                if (doc.text.includes(token)) score += token.length > 4 ? 2 : 1;
+                if (doc.keywords.includes(token)) score += 1;
+              });
+              return {
+                doc,
+                score,
+                snippet: extractSnippet(doc, tokens, questionText)
+              };
+            })
+            .filter((item) => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 3);
+        };
+
+        const appendMessage = (role, text) => {
+          const item = document.createElement("div");
+          item.className = `ai-message ${role}`;
+          item.textContent = text;
+          chatBox.appendChild(item);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        };
+        const setPendingState = (pending) => {
+          sendBtn.disabled = Boolean(pending);
+          input.disabled = Boolean(pending);
+          sendBtn.textContent = pending ? "جارٍ التفكير..." : "اسأل المساعد";
+        };
+        const askExternalAi = async (question) => {
+          if (!EXTERNAL_AI_CONFIG.enabled || !EXTERNAL_AI_CONFIG.endpoint) return "";
+          const controller = typeof AbortController !== "undefined" ? new AbortController() : null;
+          const timeoutId = controller
+            ? window.setTimeout(() => controller.abort(), Number(EXTERNAL_AI_CONFIG.timeoutMs) || 18000)
+            : null;
+          try {
+            const response = await fetch(EXTERNAL_AI_CONFIG.endpoint, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                question,
+                history: conversationMemory.slice(-4),
+                source: "atlas-local-site",
+                provider: EXTERNAL_AI_CONFIG.providerName,
+                model: EXTERNAL_AI_CONFIG.model
+              }),
+              signal: controller ? controller.signal : undefined
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            return String(data.answer || data.text || data.response || "").trim();
+          } catch (_) {
+            return "";
+          } finally {
+            if (timeoutId) window.clearTimeout(timeoutId);
+          }
+        };
+
+        const answerQuestion = (question) => {
+          const q = normalizeText(question);
+          if (!q) return "اكتب سؤالك أولًا، وأنا سأحاول إرشادك من محتوى الموقع.";
+          const memoryContext = conversationMemory
+            .slice(-2)
+            .map((item) => item.question)
+            .join(" ");
+          const tokens = uniq(tokenize(`${q} ${memoryContext}`));
+
+          const scored = LOCAL_AI_KB.map((entry) => {
+            let score = 0;
+            entry.keywords.forEach((keyword) => {
+              const normalizedKeyword = normalizeText(keyword);
+              if (q.includes(normalizedKeyword)) score += normalizedKeyword.length > 4 ? 2 : 1;
+              tokens.forEach((token) => {
+                if (normalizedKeyword.includes(token) || token.includes(normalizedKeyword)) score += 0.5;
+              });
+            });
+            return { entry, score };
+          })
+            .filter((item) => item.score > 0)
+            .sort((a, b) => b.score - a.score);
+
+          const sectionHints = getSectionHints(tokens, q);
+
+          if (!scored.length && !sectionHints.length) {
+            return "لم أجد تطابقًا قويًا داخل قاعدة المعرفة الحالية أو أقسام الصفحة. جرّب أن تسأل باسم المجال مباشرة مثل: Linux، الشبكات، HTML، JavaScript، React، SOC، phishing، forensics، cloud، أو AI في الأمن السيبراني.";
+          }
+
+          const top = scored.slice(0, 3).map((item) => item.entry);
+          const opening =
+            top.length > 1 || sectionHints.length > 1
+              ? "سؤالك يلمس أكثر من محور، لذلك هذا جواب مركب من قاعدة المعرفة ومحتوى الموقع:\n"
+              : "هذا أفضل جواب مختصر من المساعد المحلي ومحتوى الصفحة:\n";
+          const kbBody = top.length
+            ? top
+                .map((entry) => `- ${entry.answer}${entry.next ? `\n- متابعة مهمة: ${entry.next}` : ""}`)
+                .join("\n")
+            : "";
+          const sectionBody = sectionHints.length
+            ? `\n${sectionHints
+                .slice(0, 2)
+                .map((item) => `- من قسم "${item.doc.title}": ${item.snippet}`)
+                .join("\n")}`
+            : "";
+          const links = buildLinkText(
+            uniq([].concat(top.flatMap((entry) => entry.links || [])).concat(sectionHints.map((item) => item.doc.id)))
+          );
+          const sectionNames = sectionHints.length
+            ? `\n\nأكثر أقسام الموقع ارتباطًا بسؤالك:\n${sectionHints.map((item) => `- ${item.doc.title}`).join("\n")}`
+            : "";
+          const styleHint =
+            q.includes("كيف")
+              ? "\n\nإذا أردت، اسألني بعدها عن: من أين أبدأ؟ أو ما أول 3 خطوات؟"
+              : q.includes("ما هو") || q.includes("وش") || q.includes("شو")
+                ? "\n\nإذا تريد، أشرح لك هذا الموضوع بشكل أبسط أو أعطيك مثالًا عمليًا."
+                : "";
+          const closing = links ? `\n\nأنسب أقسام تكمل منها الآن: ${links}` : "";
+          const answer = `${opening}${kbBody || "- اعتمدت أكثر هنا على استرجاع المعلومات من أقسام الموقع."}${sectionBody}${sectionNames}${closing}${styleHint}`;
+          conversationMemory.push({ question, answer });
+          if (conversationMemory.length > MAX_MEMORY) conversationMemory.shift();
+          return answer;
+        };
+
+        const submitQuestion = async (presetText) => {
+          const question = String(presetText || input.value || "").trim();
+          if (!question) return;
+          appendMessage("user", question);
+          input.value = "";
+          setPendingState(true);
+          try {
+            const externalAnswer = await askExternalAi(question);
+            if (externalAnswer) {
+              const answer = `${externalAnswer}\n\nالمصدر: ${EXTERNAL_AI_CONFIG.providerName}`;
+              conversationMemory.push({ question, answer });
+              if (conversationMemory.length > MAX_MEMORY) conversationMemory.shift();
+              appendMessage("bot", answer);
+              return;
+            }
+            appendMessage("bot", answerQuestion(question));
+          } finally {
+            setPendingState(false);
+          }
+        };
+
+        sendBtn.addEventListener("click", () => {
+          void submitQuestion();
+        });
+        input.addEventListener("keydown", (e) => {
+          if (String(e.key || "") === "Enter") {
+            e.preventDefault();
+            void submitQuestion();
+          }
+        });
+        document.querySelectorAll("[data-ai-prompt]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            void submitQuestion(String(btn.getAttribute("data-ai-prompt") || ""));
+          });
+        });
       }
       function wireInstallPrompt() {
         if (!els.installAppBtn) return;
@@ -14922,6 +15629,7 @@ log(event)`,
         wireTopNavCollapse();
         wirePerformanceMode();
         wireSystemIdentityPanels();
+        wireLocalAiAssistant();
         wireInstallPrompt();
         notifyNewVisitor();
         wireImplementationWidgets();
